@@ -11,6 +11,7 @@ import React from 'react';
 import {VStack, Text} from '@chakra-ui/react';
 import Hero from '../components/Hero';
 import RouteSideCar from '../components/RoutesSideBar';
+import Head from 'next/head';
 
 import {GetServerSideProps} from 'next';
 import {getRepos} from '../lib/GetGithub';
@@ -26,16 +27,28 @@ interface IProps {
 const Repos: React.FC<IProps> = ({ res }: IProps) => {
 
     return (
-        <header className="App-header">
-            <VStack>
-                <RouteSideCar />
-                <Hero title={'Projects'}/>
-                <ProjectGrid repos={res} />
-                <Text m={2} fontSize="sm" color="gray.500">
-                    Flat icons by MrSquaare
-                </Text>
-            </VStack>
-        </header>
+        <>
+            <Head>
+                <meta property="og:title" content="Exclaimation's Repos"/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:url" content="https://exclaimation.netlify.app/"/>
+                <meta property="og:image" content="https://docs.google.com/uc?export=download&id=1YJ3qp7-_dsW_JvCbKXHJUVeuXTR_vaEW"/>
+                <meta property="og:description"
+                    content="d-exclaimations public repostories and / or projects." />
+                <title> Exclaimation Repos </title>
+            </Head>
+            <header className="App-header">
+
+                <VStack>
+                    <RouteSideCar/>
+                    <Hero title={'Projects'}/>
+                    <ProjectGrid repos={res}/>
+                    <Text m={2} fontSize="sm" color="gray.500">
+                        Flat icons by MrSquaare
+                    </Text>
+                </VStack>
+            </header>
+        </>
     );
 };
 

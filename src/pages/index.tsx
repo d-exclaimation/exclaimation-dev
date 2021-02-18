@@ -16,6 +16,7 @@ import Carousel from '../components/Carousel';
 import {GetServerSideProps} from 'next';
 import {getProfile} from '../lib/GetGithub';
 import {GithubProfile} from '../models/GithubProfile';
+import Head from 'next/head';
 
 interface Props {
     github: GithubProfile
@@ -24,18 +25,29 @@ interface Props {
 
 const Index: React.FC<Props> = ({ github }: Props) => {
     return (
-        <header className="App-header">
-            <Center>
-                <VStack>
-                    <RouteSideCar />
-                    <Hero title={github.name} />
-                    <Text m={2} color="#fafafa">{ github.bio }</Text>
-                    <Carousel
-                        github={github}
-                    />
-                </VStack>
-            </Center>
-        </header>
+        <>
+            <Head>
+                <meta property="og:title" content="Exclaimation's Profile"/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:url" content="https://exclaimation.netlify.app/"/>
+                <meta property="og:image" content="https://docs.google.com/uc?export=download&id=1YJ3qp7-_dsW_JvCbKXHJUVeuXTR_vaEW"/>
+                <meta property="og:description"
+                    content="d-exclaimations home page" />
+                <title> Exclaimation </title>
+            </Head>
+            <header className="App-header">
+                <Center>
+                    <VStack>
+                        <RouteSideCar/>
+                        <Hero title={github.name}/>
+                        <Text m={2} color="#fafafa">{github.bio}</Text>
+                        <Carousel
+                            github={github}
+                        />
+                    </VStack>
+                </Center>
+            </header>
+        </>
     );
 };
 
