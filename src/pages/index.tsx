@@ -33,7 +33,7 @@ const Index: React.FC<Props> = ({ github }: Props) => {
                 <meta property="og:image" content="https://docs.google.com/uc?export=download&id=1YJ3qp7-_dsW_JvCbKXHJUVeuXTR_vaEW"/>
                 <meta property="og:description"
                     content="d-exclaimations home page" />
-                <title> Exclaimation </title>
+                <title> { github.name } </title>
             </Head>
             <header className="App-header">
                 <Center>

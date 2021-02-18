@@ -8,7 +8,7 @@
 
 import React from 'react';
 
-import { Box, VStack, Button } from '@chakra-ui/react';
+import { Box, VStack, Button, Stack } from '@chakra-ui/react';
 import {favRed} from '../constants/color.scheme';
 import Link from 'next/link';
 
@@ -23,6 +23,7 @@ const RouteSideCar: React.FC = (): JSX.Element => {
         Math.floor(Math.min(window.height * 0.005, 2)),
         Math.floor(Math.min(window.width * 0.005, 2))
     ];
+    const [shown, setShown] = React.useState<boolean>(true);
 
     const bSize = (): 'sm' | 'md' | 'lg' | 'xs' => {
         const size = (window.width / 1300) * 4;
@@ -36,8 +37,8 @@ const RouteSideCar: React.FC = (): JSX.Element => {
             pos="absolute" top={location[0]} left={location[1]}
             p={location[1]}
         >
-            <VStack spacing={location[1] * 2}>
-                {res.map((val, i) => {
+            <Stack direction={ window.width >= window.height ? 'row'  : 'column'} spacing={location[1] * 2}>
+                {shown && res.map((val, i) => {
                     const name = val.length > 1 ?
                         capitalized(val.slice(1))
                         : 'Home';
@@ -52,7 +53,16 @@ const RouteSideCar: React.FC = (): JSX.Element => {
                         </Link>
                     );
                 })}
-            </VStack>
+                <Button
+                    color={shown ? favRed : 'gray.500'}
+                    variant="ghost"
+                    size={bSize()}
+                    boxShadow="dark-lg"
+                    onClick={() => setShown(!shown)}
+                >
+                    { shown ? ( window.width >= window.height ? '⟨' : '︿') : '...' }
+                </Button>
+            </Stack>
         </Box>
     );
 };

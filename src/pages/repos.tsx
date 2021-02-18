@@ -35,7 +35,7 @@ const Repos: React.FC<IProps> = ({ res }: IProps) => {
                 <meta property="og:image" content="https://docs.google.com/uc?export=download&id=1YJ3qp7-_dsW_JvCbKXHJUVeuXTR_vaEW"/>
                 <meta property="og:description"
                     content="d-exclaimations public repostories and / or projects." />
-                <title> Exclaimation Repos </title>
+                <title> d-exclaimation{ '\'s ' + res.length} projects </title>
             </Head>
             <header className="App-header">
 
