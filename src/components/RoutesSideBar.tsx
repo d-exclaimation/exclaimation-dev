@@ -8,7 +8,7 @@
 
 import React from 'react';
 
-import { Box, VStack, Button, Stack } from '@chakra-ui/react';
+import { Box, Button, Stack } from '@chakra-ui/react';
 import {favRed} from '../constants/color.scheme';
 import Link from 'next/link';
 
@@ -23,7 +23,7 @@ const RouteSideCar: React.FC = (): JSX.Element => {
         Math.floor(Math.min(window.height * 0.005, 2)),
         Math.floor(Math.min(window.width * 0.005, 2))
     ];
-    const [shown, setShown] = React.useState<boolean>(true);
+    const [shown, setShown] = React.useState<boolean>(false);
 
     const bSize = (): 'sm' | 'md' | 'lg' | 'xs' => {
         const size = (window.width / 1300) * 4;
