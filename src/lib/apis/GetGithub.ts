@@ -6,8 +6,8 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
-import {GithubProfile, parseRaw} from '../models/GithubProfile';
-import {parseRepo, Repo, RepoRaw} from '../models/Repo';
+import {GithubProfile, parseRaw} from '../../models/interfaces/GithubProfile';
+import {parseRepo, Repo, RepoRaw} from '../../models/interfaces/Repo';
 
 export const getProfile = async (): Promise<GithubProfile> => {
     const resp = await fetch(process.env.GITHUB || 'https://api.github.com/users/d-exclaimation');

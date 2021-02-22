@@ -9,13 +9,13 @@
 import React from 'react';
 
 import {VStack, Text} from '@chakra-ui/react';
-import Hero from '../components/Hero';
-import RouteSideCar from '../components/RoutesSideBar';
+import Hero from '../components/templates/Hero';
+import RouteSideCar from '../components/global/RoutesSideBar';
 import Head from 'next/head';
 
 import {GetServerSideProps} from 'next';
-import {getRepos} from '../lib/GetGithub';
-import {Repo} from '../models/Repo';
+import {getRepos} from '../lib/apis/GetGithub';
+import {Repo} from '../models/interfaces/Repo';
 import ProjectGrid from '../components/ProjectGrid';
 
 
@@ -38,7 +38,6 @@ const Repos: React.FC<IProps> = ({ res }: IProps) => {
                 <title> d-exclaimation{ '\'s ' + res.length} projects </title>
             </Head>
             <header className="App-header">
-
                 <VStack>
                     <RouteSideCar/>
                     <Hero title={'Projects'}/>

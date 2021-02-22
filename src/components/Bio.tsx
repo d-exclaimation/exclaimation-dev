@@ -10,9 +10,13 @@ import React from 'react';
 
 import { VStack, Text, Box } from '@chakra-ui/react';
 import { favRed } from '../constants/color.scheme';
-import {useWindowSize} from '../lib/WindowConfig';
+import {useWindowSize} from '../lib/hooks/useWindow';
 
-const Bio: React.FC = () => {
+interface Props {
+    bio: string
+}
+
+const Bio: React.FC<Props> = ({ bio }: Props) => {
     const window = useWindowSize();
     const bSize = (): 'sm' | 'md' | 'lg' | 'xs' => {
         const size = (window.width / 650) * 4;
@@ -20,22 +24,23 @@ const Bio: React.FC = () => {
         const all: ('xs' | 'sm' | 'md' | 'lg')[] = ['xs', 'sm', 'sm', 'lg'];
         return all[index];
     };
+
     return (
         <VStack spacing={5}>
             <Box
                 width={window.width / 2}
                 shadow="dark-lg"
-                p={3} borderRadius={10}
+                p={window.width > 800 ? 5 : 3} borderRadius={10}
             >
                 <Text
                     fontSize={bSize()}
                     color={favRed}>
-                    Hellooooooo, this is suppose to be my bio, but I can{'\''}t be asked to do so
+                    { bio }
                 </Text>
             </Box>
             <Text
-                p={2} color="gray.500"
-                fontSize="sm"
+                p={10} color="gray.500"
+                fontSize="xs"
             > { 'd-exclaimation' } </Text>
         </VStack>
     );

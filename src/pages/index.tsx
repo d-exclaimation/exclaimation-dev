@@ -1,5 +1,5 @@
 //
-//  index.tsx
+//  home.tsx
 //  personal-blog
 //
 //  Created by d-exclaimation on 4:22 PM.
@@ -9,13 +9,13 @@
 import React from 'react';
 
 import { VStack, Center, Text } from '@chakra-ui/react';
-import Hero from '../components/Hero';
-import RouteSideCar from '../components/RoutesSideBar';
+import Hero from '../components/templates/Hero';
+import RouteSideCar from '../components/global/RoutesSideBar';
 import Carousel from '../components/Carousel';
 
 import {GetServerSideProps} from 'next';
-import {getProfile} from '../lib/GetGithub';
-import {GithubProfile} from '../models/GithubProfile';
+import {getProfile} from '../lib/apis/GetGithub';
+import {GithubProfile} from '../models/interfaces/GithubProfile';
 import Head from 'next/head';
 
 interface Props {

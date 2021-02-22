@@ -10,20 +10,21 @@ import React from 'react';
 
 import Head from 'next/head';
 import {Center, Text, VStack } from '@chakra-ui/react';
-import RouteSideCar from '../components/RoutesSideBar';
+import RouteSideCar from '../components/global/RoutesSideBar';
 import Bio from '../components/Bio';
 
 import {GetServerSideProps} from 'next';
-import {getProfile} from '../lib/GetGithub';
-import {GithubProfile} from '../models/GithubProfile';
+import {getProfile} from '../lib/apis/GetGithub';
+import {GithubProfile} from '../models/interfaces/GithubProfile';
 import ProfileCard from '../components/ProfileCard';
-import Hero from '../components/Hero';
+import Hero from '../components/templates/Hero';
 
 interface Props {
     github: GithubProfile
+    bio: string
 }
 
-const About: React.FC<Props> = ({ github }: Props) => {
+const About: React.FC<Props> = ({ github, bio }: Props) => {
     return (
         <>
             <Head>
@@ -41,7 +42,7 @@ const About: React.FC<Props> = ({ github }: Props) => {
                         <RouteSideCar/>
                         <ProfileCard imageUrl={github.avatar_url} />
                         <Hero title={github.name}/>
-                        <Bio />
+                        <Bio bio={bio} />
                     </VStack>
                 </Center>
             </header>
@@ -51,7 +52,11 @@ const About: React.FC<Props> = ({ github }: Props) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
     const res = await getProfile();
-    return { props: { github: res } };
+    const bio = new Array<string>(120)
+        .fill('a')
+        .map(val => Math.round(Math.random()) ? val.toUpperCase() : val.toLowerCase())
+        .join('');
+    return { props: { github: res, bio: bio } };
 };
 
 

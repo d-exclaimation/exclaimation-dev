@@ -1,5 +1,5 @@
 //
-//  WindowConfig.ts
+//  useWindow.ts
 //  app
 //
 //  Created by d-exclaimation on 3:16 PM.

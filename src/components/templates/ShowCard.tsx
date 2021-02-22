@@ -9,7 +9,7 @@
 import React from 'react';
 import {Box, Img} from '@chakra-ui/react';
 import Link from 'next/link';
-import {useWindowSize} from '../lib/WindowConfig';
+import {useWindowSize} from '../../lib/hooks/useWindow';
 
 interface Props {
     imageUrl: string,
@@ -22,12 +22,12 @@ const ShowCard: React.FC<Props> = ({ imageUrl, title, body, url }: Props) => {
     const window = useWindowSize();
 
     const card = {
-        width: Math.floor(Math.min(60, window.width / 6)),
+        width: Math.floor(Math.min(60, window.width / 5)),
     };
 
     return (
-        <Box bg="#282c34" maxW="sm" boxShadow="dark-lg" borderRadius="lg" overflow="hidden">
-            <Img width={card.width} src={imageUrl} />
+        <Box bg="#282c34" maxW={card.width} boxShadow="dark-lg" borderRadius="lg" overflow="hidden">
+            <Img src={imageUrl} />
 
             <Link href={url}>
                 <Box p="3">

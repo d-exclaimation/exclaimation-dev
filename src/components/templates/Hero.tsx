@@ -7,7 +7,7 @@
 //
 
 import React from 'react';
-import { Heading } from '@chakra-ui/react'
+import { Heading } from '@chakra-ui/react';
 
 interface HeroProps {
     title? : string,
@@ -22,6 +22,6 @@ const Hero: React.FC<HeroProps> = ({ title }: HeroProps) => {
             { title ?? 'Next.js' }
         </Heading>
     );
-}
+};
 
 export default Hero;

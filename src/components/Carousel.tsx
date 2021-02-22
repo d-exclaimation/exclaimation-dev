@@ -11,8 +11,8 @@ import React from 'react';
 import { HStack, Button } from '@chakra-ui/react';
 import {favRed} from '../constants/color.scheme';
 
-import {useWindowSize} from '../lib/WindowConfig';
-import {GithubProfile} from '../models/GithubProfile';
+import {useWindowSize} from '../lib/hooks/useWindow';
+import {GithubProfile} from '../models/interfaces/GithubProfile';
 import Link from 'next/link';
 
 interface Props {

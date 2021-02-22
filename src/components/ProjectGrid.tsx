@@ -6,11 +6,11 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 import React from 'react';
-import ShowCard from './ShowCard';
+import ShowCard from './templates/ShowCard';
 import { SimpleGrid } from '@chakra-ui/react';
 
-import {Repo} from '../models/Repo';
-import {useWindowSize} from '../lib/WindowConfig';
+import {Repo} from '../models/interfaces/Repo';
+import {useWindowSize} from '../lib/hooks/useWindow';
 import {langBar} from '../lib/LanguageBarURL';
 import {drivePlayURL} from '../lib/GoogleDriveURL';
 

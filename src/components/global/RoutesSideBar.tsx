@@ -9,35 +9,29 @@
 import React from 'react';
 
 import { Box, Button, Stack } from '@chakra-ui/react';
-import {favRed} from '../constants/color.scheme';
+import {favRed} from '../../constants/color.scheme';
 import Link from 'next/link';
 
-import {routes} from '../lib/routes';
-import {useWindowSize} from '../lib/WindowConfig';
-import {capitalized} from '../lib/Typography';
+import {routes} from '../../lib/routes';
+import {useWindowSize} from '../../lib/hooks/useWindow';
+import {capitalized} from '../../lib/Typography';
+import {useDynamicCorner} from '../../lib/hooks/useDynamicCorner';
+import {useDynamicSize} from '../../lib/hooks/useDynamicSize';
 
 const RouteSideCar: React.FC = (): JSX.Element => {
     const res = routes();
     const window = useWindowSize();
-    const location = [
-        Math.floor(Math.min(window.height * 0.005, 2)),
-        Math.floor(Math.min(window.width * 0.005, 2))
-    ];
-    const [shown, setShown] = React.useState<boolean>(false);
+    const location = useDynamicCorner();
+    const bSize = useDynamicSize();
 
-    const bSize = (): 'sm' | 'md' | 'lg' | 'xs' => {
-        const size = (window.width / 1300) * 4;
-        const index = Math.floor(size) - 1;
-        const all: ('xs' | 'sm' | 'md' | 'lg')[] = ['xs', 'sm', 'sm', 'lg'];
-        return all[index];
-    };
+    const [shown, setShown] = React.useState<boolean>(false);
 
     return (
         <Box
-            pos="absolute" top={location[0]} left={location[1]}
-            p={location[1]}
+            pos="absolute" top={location.y} left={location.x}
+            p={location.x}
         >
-            <Stack direction={ window.width >= window.height ? 'row'  : 'column'} spacing={location[1] * 2}>
+            <Stack direction={ window.width >= window.height ? 'row'  : 'column'} spacing={location.x * 2}>
                 {shown && res.map((val, i) => {
                     const name = val.length > 1 ?
                         capitalized(val.slice(1))
@@ -47,7 +41,7 @@ const RouteSideCar: React.FC = (): JSX.Element => {
                             <Button
                                 color={favRed}
                                 variant="ghost"
-                                size={bSize()}
+                                size={bSize}
                                 boxShadow="dark-lg"
                             > { name } </Button>
                         </Link>
@@ -56,7 +50,7 @@ const RouteSideCar: React.FC = (): JSX.Element => {
                 <Button
                     color={shown ? favRed : 'gray.500'}
                     variant="ghost"
-                    size={bSize()}
+                    size={bSize}
                     boxShadow="dark-lg"
                     onClick={() => setShown(!shown)}
                 >
