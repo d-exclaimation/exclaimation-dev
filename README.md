@@ -1,6 +1,8 @@
 # nest-rest-kit
 Updated personal website / app using SSR with [`nextjs`](https://github.com/vercel/next.js/)
 
+![Preview](public/images/preview.png)
+
 ### More to come
 
 ### Pages
