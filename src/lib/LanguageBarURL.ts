@@ -16,5 +16,6 @@ export const langBar: Map<string, string> = new Map([
     ['c#', 'https://drive.google.com/file/d/13SJRGOxywH3jsJS-wVXHjPnXndMc2Tnr/view?usp=sharing'],
     ['elixir', 'https://drive.google.com/file/d/1bRo-gRKlvJTXDC-69N3ZyePLxjyDoXvt/view?usp=sharing'],
     ['python', 'https://drive.google.com/file/d/1lggRW3TbYhiZS6juRkNDMJpHRC37KrZb/view?usp=sharing'],
-    ['kotlin', 'https://drive.google.com/file/d/1e_scRe5RLursk4ja9gMRSeCFhifEe3wT/view?usp=sharing']
+    ['kotlin', 'https://drive.google.com/file/d/1e_scRe5RLursk4ja9gMRSeCFhifEe3wT/view?usp=sharing'],
+    ['shell', 'https://drive.google.com/file/d/1_ttjwYbVE6wBl-UXUMh6nms-JH3P5sa6/view?usp=sharing']
 ]);
