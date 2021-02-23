@@ -27,12 +27,12 @@ const Index: React.FC<Props> = ({ github }: Props) => {
     return (
         <>
             <Head>
-                <meta property="og:title" content="Exclaimation's Profile"/>
+                <meta property="og:title" content="d-xclaimation"/>
                 <meta property="og:type" content="website"/>
                 <meta property="og:url" content="https://exclaimation.netlify.app/"/>
                 <meta property="og:image" content="https://docs.google.com/uc?export=download&id=1YJ3qp7-_dsW_JvCbKXHJUVeuXTR_vaEW"/>
                 <meta property="og:description"
-                    content="d-exclaimations home page" />
+                    content="Welcome to the d-exclaimation developer website by vin aka d-exclaimation. This is the website / web app for all things related to me. My profiles, links, repos, projects, bios, and blogs, you named it it is probably here." />
                 <title> { github.name } </title>
             </Head>
             <header className="App-header">

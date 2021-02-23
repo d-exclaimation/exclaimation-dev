@@ -33,7 +33,7 @@ const About: React.FC<Props> = ({ github, bio }: Props) => {
                 <meta property="og:url" content="https://exclaimation.netlify.app/"/>
                 <meta property="og:image" content="https://docs.google.com/uc?export=download&id=1YJ3qp7-_dsW_JvCbKXHJUVeuXTR_vaEW"/>
                 <meta property="og:description"
-                    content="d-exclaimations about page" />
+                    content="All about me, d-exclaimation. My bio....maybe some other personal stuff that are not really technical" />
                 <title> { `${github.name}'s profile`} </title>
             </Head>
             <header className="App-header">

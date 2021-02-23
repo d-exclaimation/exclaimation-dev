@@ -34,7 +34,7 @@ const Repos: React.FC<IProps> = ({ res }: IProps) => {
                 <meta property="og:url" content="https://exclaimation.netlify.app/"/>
                 <meta property="og:image" content="https://docs.google.com/uc?export=download&id=1YJ3qp7-_dsW_JvCbKXHJUVeuXTR_vaEW"/>
                 <meta property="og:description"
-                    content="d-exclaimations public repostories and / or projects." />
+                    content="All projects and repos made by d-exclaimation (vin). This is where you find whatever I spent most of my days doing." />
                 <title> d-exclaimation{ '\'s ' + res.length} projects </title>
             </Head>
             <header className="App-header">
