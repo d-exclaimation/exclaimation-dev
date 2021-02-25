@@ -65,6 +65,4 @@ const Carousel: React.FC<Props> = ({ github }: Props) => {
     );
 };
 
-const roles = ['Student', 'Developer', 'Definitely Human'];
-
 export default Carousel;

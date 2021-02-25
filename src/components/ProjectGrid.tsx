@@ -22,7 +22,7 @@ const ProjectGrid: React.FC<Props> = ({ repos }: Props) => {
     const window = useWindowSize();
     const grid = Math.floor(window.width / 240);
     const langImage = (lang: string): string => {
-        const url = langBar.get(lang) ?? langBar.get('exclaim')!;
+        const url = langBar.get(lang) ?? langBar.get('exclaim') ?? 'none';
         return drivePlayURL(url);
     };
 
