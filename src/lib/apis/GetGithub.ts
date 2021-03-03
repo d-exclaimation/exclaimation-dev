@@ -17,7 +17,7 @@ export const getProfile = async (): Promise<GithubProfile> => {
 export const getRepos = async (): Promise<Repo[]> => {
 
     try {
-        const resp = await fetch(process.env.REPOS || 'https://api.github.com/users/d-exclaimation/repos');
+        const resp = await fetch(process.env.REPOS || '');
         const raws: RepoRaw[] = await resp.json();
         return raws.map(raw => parseRepo(raw));
     } catch (e) {
