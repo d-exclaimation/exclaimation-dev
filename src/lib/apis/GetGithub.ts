@@ -10,8 +10,7 @@ import {GithubProfile, parseRaw} from '../../models/interfaces/GithubProfile';
 import {parseRepo, Repo, RepoRaw} from '../../models/interfaces/Repo';
 
 export const getProfile = async (): Promise<GithubProfile> => {
-    console.log(process.env.GITHUB);
-    const resp = await fetch(process.env.GITHUB || 'https://api.github.com/users/d-exclaimation');
+    const resp = await fetch(process.env.GITHUB || '');
     return parseRaw(await resp.json());
 };
 
