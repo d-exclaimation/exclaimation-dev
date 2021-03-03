@@ -8,7 +8,7 @@
 
 import React from 'react';
 
-import { VStack, Center, Text } from '@chakra-ui/react';
+import { Box, VStack, Center, Text, Img } from '@chakra-ui/react';
 import Hero from '../components/templates/Hero';
 import RouteSideCar from '../components/global/RoutesSideBar';
 import Carousel from '../components/Carousel';
@@ -17,6 +17,7 @@ import {GetServerSideProps} from 'next';
 import {getProfile} from '../lib/apis/GetGithub';
 import {GithubProfile} from '../models/interfaces/GithubProfile';
 import Head from 'next/head';
+import EpicProfile from '../components/EpicProfile';
 
 interface Props {
     github: GithubProfile
@@ -44,7 +45,7 @@ const Index: React.FC<Props> = ({ github }: Props) => {
                 <Center>
                     <VStack>
                         <RouteSideCar/>
-                        <Hero title={github.name}/>
+                        <EpicProfile name={github.name}/>
                         <Text m={2} color="#fafafa">{github.bio}</Text>
                         <Carousel
                             github={github}
