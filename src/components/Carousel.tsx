@@ -8,7 +8,10 @@
 
 import React from 'react';
 
-import { HStack, Button } from '@chakra-ui/react';
+import {
+    Box, HStack, Button, VStack,
+    Stat, StatLabel, StatNumber, StatHelpText, StatArrow
+} from '@chakra-ui/react';
 import {favRed} from '../constants/color.scheme';
 
 import {useWindowSize} from '../lib/hooks/useWindow';
@@ -29,39 +32,60 @@ const Carousel: React.FC<Props> = ({ github }: Props) => {
     };
 
     return (
-        <HStack>
-            <Link href={github.html_url + '?tab=repositories'}>
-                <Button
-                    variant="ghost"
-                    size={bSize()}
-                    color={favRed}
-                    boxShadow="dark-lg"
-                >
-                    Public Repo: { github.public_repos }
-                </Button>
-            </Link>
-            <Link href={github.html_url}>
-                <Button
-                    variant="ghost"
-                    size={bSize()}
-                    color="#fafafa"
-                    boxShadow="dark-lg"
-                >
-                    Github
-                </Button>
-            </Link>
+        <VStack>
+            <HStack>
+                <Link href={github.html_url}>
+                    <Button
+                        variant="ghost"
+                        size={bSize()}
+                        color="#fafafa"
+                        boxShadow="dark-lg"
+                    >
+                        Github
+                    </Button>
+                </Link>
 
-            <Link href={`https://twitter.com/${github.twitter_username}`}>
-                <Button
-                    variant="ghost"
-                    size={bSize()}
-                    color="#00acee"
-                    boxShadow="dark-lg"
-                >
-                    Twitter
-                </Button>
-            </Link>
-        </HStack>
+                <Link href={`https://twitter.com/${github.twitter_username}`}>
+                    <Button
+                        variant="ghost"
+                        size={bSize()}
+                        color="#00acee"
+                        boxShadow="dark-lg"
+                    >
+                        Twitter
+                    </Button>
+                </Link>
+                <Link href={'https://www.instagram.com/d_exclaimation/'}>
+                    <Button
+                        variant="ghost"
+                        size={bSize()}
+                        color={'#da83ec'}
+                        boxShadow="dark-lg"
+                    >
+                        Instagram
+                    </Button>
+                </Link>
+            </HStack>
+            <Box
+                m={2} p={5} borderRadius={20} shadow="dark-lg" color="#fafafa"
+            >
+                <Link href={github.html_url + '?tab=repositories'}>
+                    <Stat>
+                        <StatLabel
+                            color={favRed}
+                            size={bSize()}
+                        >Public Repos</StatLabel>
+                        <StatNumber
+                            size={bSize()}
+                        >{ github.public_repos }</StatNumber>
+                        <StatHelpText size={bSize()}>
+                            <StatArrow type="increase" />
+                            {( 1 / github.public_repos).toFixed(2)}%
+                        </StatHelpText>
+                    </Stat>
+                </Link>
+            </Box>
+        </VStack>
     );
 };
 
