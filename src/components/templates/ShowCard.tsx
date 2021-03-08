@@ -7,7 +7,7 @@
 //
 
 import React from 'react';
-import {Box, Img} from '@chakra-ui/react';
+import {Box, Img, Text} from '@chakra-ui/react';
 import Link from 'next/link';
 import {useWindowSize} from '../../lib/hooks/useWindow';
 
@@ -41,9 +41,9 @@ const ShowCard: React.FC<Props> = ({ imageUrl, title, body, url }: Props) => {
                         {title}
                     </Box>
 
-                    <Box fontSize="sm" color="#dadada">
+                    <Text fontSize="sm" color="#dadada" isTruncated>
                         {body}
-                    </Box>
+                    </Text>
                 </Box>
             </Link>
         </Box>

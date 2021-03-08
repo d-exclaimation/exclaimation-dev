@@ -9,14 +9,21 @@
 import React from 'react';
 
 import { VStack, Text, Box } from '@chakra-ui/react';
-import { favRed } from '../constants/color.scheme';
+import { favRed, nextBlue, mildGray } from '../constants/color.scheme';
 import {useWindowSize} from '../lib/hooks/useWindow';
 
-interface Props {
-    bio: string
+export enum Color {
+    red,
+    blue,
+    gray,
 }
 
-const Bio: React.FC<Props> = ({ bio }: Props) => {
+interface Props {
+    bio: string,
+    color: Color
+}
+
+const Bio: React.FC<Props> = ({ bio, color }: Props) => {
     const window = useWindowSize();
     const bSize = (): 'sm' | 'md' | 'lg' | 'xs' => {
         const size = (window.width / 650) * 4;
@@ -25,23 +32,38 @@ const Bio: React.FC<Props> = ({ bio }: Props) => {
         return all[index];
     };
 
+    const textSize = (): 'sm' | 'md' => {
+        const size = bSize();
+        if (size === 'sm' || size === 'md') {
+            return 'sm';
+        }
+        return 'md';
+    };
+
+    const hexColor = ((): string => {
+        switch (color) {
+        case Color.blue:
+            return nextBlue;
+        case Color.gray:
+            return mildGray;
+        case Color.red:
+            return favRed;
+        }
+    })();
+
     return (
-        <VStack spacing={5}>
+        <VStack spacing={5} m={2}>
             <Box
                 width={window.width / 2}
                 shadow="dark-lg"
                 p={window.width > 800 ? 5 : 3} borderRadius={10}
             >
                 <Text
-                    fontSize={bSize()}
-                    color={favRed}>
+                    fontSize={textSize()}
+                    color={hexColor}>
                     { bio }
                 </Text>
             </Box>
-            <Text
-                p={10} color="gray.500"
-                fontSize="xs"
-            > { 'd-exclaimation' } </Text>
         </VStack>
     );
 };

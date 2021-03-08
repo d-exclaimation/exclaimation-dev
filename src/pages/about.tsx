@@ -9,9 +9,9 @@
 import React from 'react';
 
 import Head from 'next/head';
-import {Center, VStack } from '@chakra-ui/react';
+import {Center, Text, VStack} from '@chakra-ui/react';
 import RouteSideCar from '../components/global/RoutesSideBar';
-import Bio from '../components/Bio';
+import Bio, {Color} from '../components/Bio';
 
 import {GetStaticProps} from 'next';
 import {getProfile} from '../lib/apis/GetGithub';
@@ -21,7 +21,7 @@ import Hero from '../components/templates/Hero';
 
 interface Props {
     github: GithubProfile
-    bio: string
+    bio: string[]
 }
 
 const About: React.FC<Props> = ({ github, bio }: Props) => {
@@ -47,7 +47,15 @@ const About: React.FC<Props> = ({ github, bio }: Props) => {
                         <RouteSideCar/>
                         <ProfileCard imageUrl={github.avatar_url} />
                         <Hero title={github.name}/>
-                        <Bio bio={bio} />
+                        { bio.map((val, i) => {
+                            return (
+                                <Bio key={i} bio={val} color={Color.gray} />
+                            );
+                        }) }
+                        <Text
+                            p={10} color="gray.500"
+                            fontSize="xs"
+                        > { 'd-exclaimation' } </Text>
                     </VStack>
                 </Center>
             </header>
@@ -57,10 +65,11 @@ const About: React.FC<Props> = ({ github, bio }: Props) => {
 
 export const getStaticProps: GetStaticProps = async () => {
     const res = await getProfile();
-    const bio = new Array<string>(120)
-        .fill('a')
-        .map(val => Math.round(Math.random()) ? val.toUpperCase() : val.toLowerCase())
-        .join('');
+    const bio = [
+        'Hey.....d-exclaimation here or you can call me Vincent, vin or cent. I am a programmer who can do full-stack development, and other stuff as well. ',
+        'I can make Web-application or iOS for end to end client to server. I can also automate some stuff and make microservices. ',
+        'I mainly use Typescript React, NextJs, SwiftUI, NodeJs, Express, NestJs, Apollo-Server, Golang Gin, Fiber, Gqlgen, Fx, and even some Rust here and there. Basically, Typescript + Go + Rust combo',
+    ];
     return { props: { github: res, bio: bio } };
 };
 

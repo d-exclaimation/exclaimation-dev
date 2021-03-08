@@ -7,3 +7,5 @@
 //
 
 export const favRed = '#ff0056';
+export const mildGray = '#808181';
+export const nextBlue = '#90f5eb';

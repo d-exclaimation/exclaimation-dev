@@ -39,7 +39,7 @@ const ProjectGrid: React.FC<Props> = ({ repos }: Props) => {
                             key={item.id}
                             imageUrl={langImage(`${item.language}`.toLowerCase())}
                             title={item.name}
-                            body={item.full_name}
+                            body={item.description || item.full_name}
                             url={item.html_url}
                         />
                     );
