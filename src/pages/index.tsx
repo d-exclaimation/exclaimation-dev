@@ -8,23 +8,24 @@
 
 import React from 'react';
 
-import { Box, VStack, Center, Text, Img } from '@chakra-ui/react';
-import Hero from '../components/templates/Hero';
+import { VStack, Center, Text } from '@chakra-ui/react';
 import RouteSideCar from '../components/global/RoutesSideBar';
 import Carousel from '../components/Carousel';
 
 import {GetServerSideProps} from 'next';
-import {getProfile} from '../lib/apis/GetGithub';
+import {getProfile, getTopLang} from '../lib/apis/GetGithub';
 import {GithubProfile} from '../models/interfaces/GithubProfile';
 import Head from 'next/head';
 import EpicProfile from '../components/EpicProfile';
 
 interface Props {
-    github: GithubProfile
+    github: GithubProfile,
+    langName: string,
+    percentage: number,
 }
 
 
-const Index: React.FC<Props> = ({ github }: Props) => {
+const Index: React.FC<Props> = ({ github, langName, percentage }: Props) => {
     return (
         <>
             <Head>
@@ -49,6 +50,8 @@ const Index: React.FC<Props> = ({ github }: Props) => {
                         <Text m={2} color="#fafafa">{github.bio}</Text>
                         <Carousel
                             github={github}
+                            langName={langName}
+                            percentage={percentage}
                         />
                     </VStack>
                 </Center>
@@ -60,7 +63,12 @@ const Index: React.FC<Props> = ({ github }: Props) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
     const res = await getProfile();
-    return { props: { github: res } };
+    const lang = await getTopLang();
+    return { props: {
+        github: res,
+        langName: lang.name,
+        percentage: lang.percent,
+    }};
 };
 
 export default Index;

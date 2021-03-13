@@ -12,17 +12,19 @@ import {
     Box, HStack, Button, VStack,
     Stat, StatLabel, StatNumber, StatHelpText, StatArrow
 } from '@chakra-ui/react';
-import {favRed} from '../constants/color.scheme';
+import {favRed, nextBlue} from '../constants/color.scheme';
 
 import {useWindowSize} from '../lib/hooks/useWindow';
 import {GithubProfile} from '../models/interfaces/GithubProfile';
 import Link from 'next/link';
 
 interface Props {
-    github: GithubProfile
+    github: GithubProfile,
+    langName: string,
+    percentage: number,
 }
 
-const Carousel: React.FC<Props> = ({ github }: Props) => {
+const Carousel: React.FC<Props> = ({ github, langName, percentage }: Props) => {
     const window = useWindowSize();
     const bSize = (): 'sm' | 'md' | 'lg' | 'xs' => {
         const size = (window.width / 1300) * 4;
@@ -66,25 +68,44 @@ const Carousel: React.FC<Props> = ({ github }: Props) => {
                     </Button>
                 </Link>
             </HStack>
-            <Box
-                m={2} p={5} borderRadius={20} shadow="dark-lg" color="#fafafa"
-            >
-                <Link href={github.html_url + '?tab=repositories'}>
+            <HStack>
+                <Box
+                    m={2} p={5} borderRadius={20} shadow="dark-lg" color="#fafafa"
+                >
+                    <Link href={github.html_url + '?tab=repositories'}>
+                        <Stat>
+                            <StatLabel
+                                color={favRed}
+                                size={bSize()}
+                            >Public Repos</StatLabel>
+                            <StatNumber
+                                size={bSize()}
+                            >{ github.public_repos }</StatNumber>
+                            <StatHelpText size={bSize()}>
+                                <StatArrow type="increase" />
+                                {( 1 / github.public_repos).toFixed(2)}%
+                            </StatHelpText>
+                        </Stat>
+                    </Link>
+                </Box>
+                <Box
+                    m={2} p={5} borderRadius={20} shadow="dark-lg" color="#fafafa"
+                >
                     <Stat>
                         <StatLabel
-                            color={favRed}
+                            color={nextBlue}
                             size={bSize()}
-                        >Public Repos</StatLabel>
+                        > Top Language </StatLabel>
                         <StatNumber
                             size={bSize()}
-                        >{ github.public_repos }</StatNumber>
+                        >{ langName }</StatNumber>
                         <StatHelpText size={bSize()}>
                             <StatArrow type="increase" />
-                            {( 1 / github.public_repos).toFixed(2)}%
+                            {percentage}%
                         </StatHelpText>
                     </Stat>
-                </Link>
-            </Box>
+                </Box>
+            </HStack>
         </VStack>
     );
 };
