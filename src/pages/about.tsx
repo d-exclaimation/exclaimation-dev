@@ -68,7 +68,7 @@ export const getStaticProps: GetStaticProps = async () => {
     const bio = [
         'Hey.....d-exclaimation here or you can call me Vincent, vin or cent. I am a programmer who can do full-stack development, and other stuff as well. ',
         'I can make Web-application or iOS for end to end client to server. I can also automate some stuff and make microservices. ',
-        'I mainly use Typescript React, NextJs, SwiftUI, NodeJs, Express, NestJs, Apollo-Server, Golang Gin, Fiber, Gqlgen, Fx, and even some Rust here and there. Basically, Typescript + Go + Rust combo',
+        'I mainly use Typescript, Go, and Swift with some Rust, Python, and C#. I also usually stick a stack that consist of React, Typescript, Go, Postgres, NodeJs, and maybe GraphQL',
     ];
     return { props: { github: res, bio: bio } };
 };
