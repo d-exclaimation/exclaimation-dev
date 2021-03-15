@@ -8,7 +8,7 @@
 
 import React from 'react';
 
-import { VStack, Center, Text } from '@chakra-ui/react';
+import { VStack, Center, Text, Box } from '@chakra-ui/react';
 import RouteSideCar from '../components/global/RoutesSideBar';
 import Carousel from '../components/Carousel';
 
@@ -47,7 +47,12 @@ const Index: React.FC<Props> = ({ github, langName, percentage }: Props) => {
                     <VStack>
                         <RouteSideCar/>
                         <EpicProfile name={github.name}/>
-                        <Text m={2} color="#fafafa">{github.bio}</Text>
+                        <Box m={2}>
+                            <Text
+                                align={'center'}
+                                m={2} color="#fafafa"
+                            >{github.bio}</Text>
+                        </Box>
                         <Carousel
                             github={github}
                             langName={langName}
