@@ -12,6 +12,5 @@ export const routes = (): string[] => {
         '/',
         '/repos',
         '/profile',
-        '/chill'
     ];
 };
