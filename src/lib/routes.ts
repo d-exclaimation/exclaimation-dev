@@ -12,6 +12,6 @@ export const routes = (): string[] => {
         '/',
         '/repos',
         '/profile',
-        '/music'
+        '/chill'
     ];
 };
