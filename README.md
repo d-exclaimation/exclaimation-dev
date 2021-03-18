@@ -1,4 +1,4 @@
-# nest-rest-kit
+# exclaimation
 Updated personal website / app using SSR with [`nextjs`](https://github.com/vercel/next.js/)
 
 ![Preview](public/images/preview.png)
