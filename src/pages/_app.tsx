@@ -1,6 +1,6 @@
 //
 //  _app.tsx
-//  index
+//  entry
 //
 //  Created by d-exclaimation on 1:30 PM.
 //  Copyright © 2021 d-exclaimation. All rights reserved.

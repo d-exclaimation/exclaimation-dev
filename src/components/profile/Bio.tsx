@@ -9,8 +9,8 @@
 import React from 'react';
 
 import { VStack, Text, Box } from '@chakra-ui/react';
-import { favRed, nextBlue, mildGray } from '../constants/color.scheme';
-import {useWindowSize} from '../lib/hooks/useWindow';
+import { favRed, nextBlue, mildGray } from '../../constants/color.scheme';
+import {useWindowSize} from '../../lib/hooks/useWindow';
 
 export enum Color {
     red,

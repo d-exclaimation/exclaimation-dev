@@ -17,10 +17,10 @@ import {
     DrawerContent,
     DrawerCloseButton,
 } from '@chakra-ui/react';
-import {IMedia} from '../models/interfaces/Media';
-import {useDynamicCorner} from '../lib/hooks/useDynamicCorner';
-import {useDynamicSize} from '../lib/hooks/useDynamicSize';
-import {favRed} from '../constants/color.scheme';
+import {IMedia} from '../../models/interfaces/Media';
+import {useDynamicCorner} from '../../lib/hooks/useDynamicCorner';
+import {useDynamicSize} from '../../lib/hooks/useDynamicSize';
+import {favRed} from '../../constants/color.scheme';
 
 interface Props {
     curr: IMedia | null,

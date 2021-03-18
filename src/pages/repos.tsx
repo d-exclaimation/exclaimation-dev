@@ -10,13 +10,13 @@ import React from 'react';
 
 import {VStack, Text} from '@chakra-ui/react';
 import Hero from '../components/templates/Hero';
-import RouteSideCar from '../components/global/RoutesSideBar';
+import RouteSideCar from '../components/shared/RoutesSideBar';
+import ProjectGrid from '../components/projects/ProjectGrid';
+import MetaHead from '../components/shared/MetaHead';
 
 import {GetServerSideProps} from 'next';
 import {getRepos} from '../lib/apis/GetGithub';
 import {Repo} from '../models/interfaces/Repo';
-import ProjectGrid from '../components/ProjectGrid';
-import MetaHead from '../components/global/MetaHead';
 
 
 interface IProps {

@@ -8,7 +8,7 @@
 
 import React from 'react';
 import {Box, Img} from '@chakra-ui/react';
-import {useWindowSize} from '../lib/hooks/useWindow';
+import {useWindowSize} from '../../lib/hooks/useWindow';
 
 interface Props {
     imageUrl: string,

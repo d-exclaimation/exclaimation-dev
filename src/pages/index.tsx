@@ -9,7 +9,7 @@
 import React from 'react';
 
 import { VStack, Center, Text, Box } from '@chakra-ui/react';
-import RouteSideCar from '../components/global/RoutesSideBar';
+import RouteSideCar from '../components/shared/RoutesSideBar';
 import Carousel from '../components/Carousel';
 
 import {GetServerSideProps} from 'next';
@@ -17,7 +17,7 @@ import {getProfile, getTopLang} from '../lib/apis/GetGithub';
 import {GithubProfile} from '../models/interfaces/GithubProfile';
 import Head from 'next/head';
 import EpicProfile from '../components/EpicProfile';
-import MetaHead from '../components/global/MetaHead';
+import MetaHead from '../components/shared/MetaHead';
 
 interface Props {
     github: GithubProfile,

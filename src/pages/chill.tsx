@@ -1,5 +1,5 @@
 //
-//  chill.tsx
+//  music.tsx
 //  exclaimation
 //
 //  Created by d-exclaimation on 11:29 AM.
@@ -8,17 +8,17 @@
 
 import React from 'react';
 
-import {Box} from '@chakra-ui/react';
-import MetaHead from '../components/global/MetaHead';
-import MusicPlayer from '../components/MusicPlayer';
+import MetaHead from '../components/shared/MetaHead';
+import MusicPlayer from '../components/music/MusicPlayer';
+import MediaModal from '../components/music/MediaModal';
+import MusicList from '../components/music/MusicList';
+import RouteSideCar from '../components/shared/RoutesSideBar';
+import Hero from '../components/templates/Hero';
 
 import {GetStaticProps} from 'next';
 import {drivePlayURL} from '../lib/GoogleDriveURL';
 import {IMedia} from '../models/interfaces/Media';
-import MediaModal from '../components/MediaModal';
-import MusicList from '../components/MusicList';
-import RouteSideCar from '../components/global/RoutesSideBar';
-import Hero from '../components/templates/Hero';
+
 
 interface Props {
     musics: IMedia[]
@@ -30,7 +30,7 @@ const Chill: React.FC<Props> = ({ musics }: Props) => {
 
     return (
         <>
-            <MetaHead title={'d-exclaimation\'s chill place'} description={'A chill place to listen to your favourite lofi hiphop songs to study and relax'}/>
+            <MetaHead title={'d-exclaimation\'s music place'} description={'A music place to listen to your favourite lofi hiphop songs to study and relax'}/>
             <header className="App-header">
                 <RouteSideCar/>
                 <MediaModal musics={musicList} setMusics={setMusicList}/>
@@ -47,8 +47,8 @@ const Chill: React.FC<Props> = ({ musics }: Props) => {
 
 export const getStaticProps: GetStaticProps = async () => {
     const musics: [string, string][] = [
-        ['Time-Lapse', 'https://drive.google.com/file/d/190hvOqQAcSoBuzG71DbAYYG6cDXeLxIf/view?usp=sharing'],
-        ['Close to The Sun', 'https://drive.google.com/file/d/12tRQQuJezu71ZY4IBGXLzKrz9IxFrmGA/view?usp=sharing'],
+        ['Time-Lapse', 'https://drive.google.com/file/d/1QUcBuO473xmpW9vQ23qeOW9bvE5pOnMj/view?usp=sharing'],
+        ['Close to The Sun', 'https://drive.google.com/file/d/1WrJ5gDCPSZ8q8uN85MxYFYKRsd9jPU2O/view?usp=sharing'],
     ];
 
     const parseDriveAudio = ([name, url]: [string, string]): IMedia => ({ name: name, url: drivePlayURL(url) });

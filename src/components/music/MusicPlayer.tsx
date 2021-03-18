@@ -17,10 +17,10 @@ import {
     SliderThumb, Img,
 } from '@chakra-ui/react';
 
-import {usePlayer} from '../lib/hooks/useAudio';
+import {usePlayer} from '../../lib/hooks/useAudio';
 import Router from 'next/router';
-import {useWindowSize} from '../lib/hooks/useWindow';
-import {useDynamicCorner} from '../lib/hooks/useDynamicCorner';
+import {useWindowSize} from '../../lib/hooks/useWindow';
+import {useDynamicCorner} from '../../lib/hooks/useDynamicCorner';
 
 interface Props {
     url: string,
@@ -63,7 +63,7 @@ const MusicPlayer: React.FC<Props> = ({ url, name }: Props) => {
                 minW={card.width} boxShadow="dark-lg" borderRadius="lg" overflow="hidden"
             >
                 <VStack>
-                    <Slider value={volume * 100} onChangeEnd={(val) => toggleVolume(val / 100)} aria-label="slider-ex-2" colorScheme="pink" defaultValue={50}>
+                    <Slider onChangeEnd={(val) => toggleVolume(val / 100)} aria-label="slider-ex-2" colorScheme="pink" defaultValue={50}>
                         <SliderTrack>
                             <SliderFilledTrack />
                         </SliderTrack>

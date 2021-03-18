@@ -1,5 +1,5 @@
 //
-//  about.tsx
+//  profile.tsx
 //  personal
 //
 //  Created by d-exclaimation on 3:40 PM.
@@ -9,15 +9,15 @@
 import React from 'react';
 
 import {Center, Text, VStack} from '@chakra-ui/react';
-import RouteSideCar from '../components/global/RoutesSideBar';
-import Bio, {Color} from '../components/Bio';
+import RouteSideCar from '../components/shared/RoutesSideBar';
+import Bio, {Color} from '../components/profile/Bio';
+import ProfileCard from '../components/profile/ProfileCard';
+import Hero from '../components/templates/Hero';
+import MetaHead from '../components/shared/MetaHead';
 
 import {GetStaticProps} from 'next';
 import {getProfile} from '../lib/apis/GetGithub';
 import {GithubProfile} from '../models/interfaces/GithubProfile';
-import ProfileCard from '../components/ProfileCard';
-import Hero from '../components/templates/Hero';
-import MetaHead from '../components/global/MetaHead';
 
 interface Props {
     github: GithubProfile
@@ -27,7 +27,7 @@ interface Props {
 const About: React.FC<Props> = ({ github, bio }: Props) => {
     return (
         <>
-            <MetaHead title={`${github.name}'s profile`} description={'All about me, d-exclaimation. My bio....maybe some other personal stuff that are not really technical'}/>
+            <MetaHead title={`${github.name}'s profile`} description={'All profile me, d-exclaimation. My bio....maybe some other personal stuff that are not really technical'}/>
             <header className="App-header">
                 <Center>
                     <VStack spacing={2}>

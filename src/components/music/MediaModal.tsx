@@ -7,7 +7,7 @@
 //
 
 import React from 'react';
-import {IMedia} from '../models/interfaces/Media';
+import {IMedia} from '../../models/interfaces/Media';
 
 import {
     Box, Button,
@@ -15,9 +15,9 @@ import {
     FormLabel,
     Input,
 } from '@chakra-ui/react';
-import FormModal from './templates/FormModal';
-import {useDynamicCorner} from '../lib/hooks/useDynamicCorner';
-import {useDynamicSize} from '../lib/hooks/useDynamicSize';
+import FormModal from '../templates/FormModal';
+import {useDynamicCorner} from '../../lib/hooks/useDynamicCorner';
+import {useDynamicSize} from '../../lib/hooks/useDynamicSize';
 
 interface Props {
     musics: IMedia[],

@@ -11,6 +11,7 @@ export const routes = (): string[] => {
     return [
         '/',
         '/repos',
-        '/about'
+        '/profile',
+        '/music'
     ];
 };
