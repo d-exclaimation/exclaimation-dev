@@ -28,7 +28,7 @@ const EpicProfile: React.FC<Props> = ({ name }: Props) => {
                 pos="fixed"
                 top={pos.y} left={pos.x}
                 width={size} src="/images/mylogo.png"
-                opacity={0.1}
+                opacity={0.05}
             />
             <Box borderRadius={20}>
                 <Hero title={name}/>

@@ -17,6 +17,7 @@ import {getProfile, getTopLang} from '../lib/apis/GetGithub';
 import {GithubProfile} from '../models/interfaces/GithubProfile';
 import Head from 'next/head';
 import EpicProfile from '../components/EpicProfile';
+import MetaHead from '../components/global/MetaHead';
 
 interface Props {
     github: GithubProfile,
@@ -28,20 +29,7 @@ interface Props {
 const Index: React.FC<Props> = ({ github, langName, percentage }: Props) => {
     return (
         <>
-            <Head>
-                <meta property="og:title" content="d-xclaimation"/>
-                <meta property="og:type" content="website"/>
-                <meta property="og:url" content="https://exclaimation.netlify.app/"/>
-                <meta property="og:image" content="https://docs.google.com/uc?export=download&id=1YJ3qp7-_dsW_JvCbKXHJUVeuXTR_vaEW"/>
-                <link rel="icon" href="/images/favicon.ico" />
-                <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
-                <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
-                <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
-                <link rel="manifest" href="/images/site.webmanifest" />
-                <meta property="og:description"
-                    content="Welcome to the d-exclaimation developer website by vin aka d-exclaimation. This is the website / web app for all things related to me. My profiles, links, repos, projects, bios, and blogs, you named it it is probably here." />
-                <title> { github.name } </title>
-            </Head>
+            <MetaHead title={github.name} description={'Welcome to the d-exclaimation developer website by vin aka d-exclaimation. This is the website / web app for all things related to me. My profiles, links, repos, projects, bios, and blogs, you named it it is probably here'}/>
             <header className="App-header">
                 <Center>
                     <VStack>
