@@ -1,6 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more profile ignoring files.
 .graphqlconfig
 graphql.schema.json
+**/dev-schema.graphql
 
 # dependencies
 /node_modules
