@@ -1,0 +1,7 @@
+query AllPost {
+    posts {
+        id
+        title
+        crabrave
+    }
+}

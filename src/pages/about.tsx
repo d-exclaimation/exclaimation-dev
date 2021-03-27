@@ -28,7 +28,7 @@ const About: React.FC<Props> = ({ github, bio }: Props) => {
     return (
         <>
             <MetaHead title={`${github.name}'s profile`} description={'All profile me, d-exclaimation. My bio....maybe some other personal stuff that are not really technical'}/>
-            <header className="App-header">
+            <div className="App-header">
                 <Center>
                     <VStack spacing={2}>
                         <RouteSideCar/>
@@ -45,7 +45,7 @@ const About: React.FC<Props> = ({ github, bio }: Props) => {
                         > { 'd-exclaimation' } </Text>
                     </VStack>
                 </Center>
-            </header>
+            </div>
         </>
     );
 };

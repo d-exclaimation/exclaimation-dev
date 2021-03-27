@@ -32,7 +32,7 @@ const Repos: React.FC<IProps> = ({ res }: IProps) => {
                 title={`d-exclaimation's ${res.length} repos`}
                 description={'All projects and repos made by d-exclaimation (vin). This is where you find whatever I spent most of my days doing.'}
             />
-            <header className="App-header">
+            <div className="App-header">
                 <VStack>
                     <RouteSideCar/>
                     <Hero title={'Repos'}/>
@@ -45,7 +45,7 @@ const Repos: React.FC<IProps> = ({ res }: IProps) => {
                         Flat icons by MrSquaare
                     </Text>
                 </VStack>
-            </header>
+            </div>
         </>
     );
 };

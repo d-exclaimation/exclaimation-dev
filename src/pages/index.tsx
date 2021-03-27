@@ -30,7 +30,7 @@ const Index: React.FC<Props> = ({ github, langName, percentage }: Props) => {
     return (
         <>
             <MetaHead title={github.name} description={'Welcome to the d-exclaimation developer website by vin aka d-exclaimation. This is the website / web app for all things related to me. My profiles, links, repos, projects, bios, and blogs, you named it it is probably here'}/>
-            <header className="App-header">
+            <div className="App-header">
                 <Center>
                     <VStack>
                         <RouteSideCar/>
@@ -48,7 +48,7 @@ const Index: React.FC<Props> = ({ github, langName, percentage }: Props) => {
                         />
                     </VStack>
                 </Center>
-            </header>
+            </div>
         </>
     );
 };

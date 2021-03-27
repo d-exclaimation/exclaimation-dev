@@ -31,7 +31,7 @@ const Chill: React.FC<Props> = ({ musics }: Props) => {
     return (
         <>
             <MetaHead title={'d-exclaimation\'s music place'} description={'A music place to listen to your favourite lofi hiphop songs to study and relax'}/>
-            <header className="App-header">
+            <div className="App-header">
                 <RouteSideCar/>
                 <MediaModal musics={musicList} setMusics={setMusicList}/>
                 <MusicList curr={curr} setCurr={setCurr} musics={musicList}/>
@@ -40,7 +40,7 @@ const Chill: React.FC<Props> = ({ musics }: Props) => {
                         <MusicPlayer url={curr.url} name={curr.name}/> :
                         <Hero title={'Chill Zone'} />
                 }
-            </header>
+            </div>
         </>
     );
 };

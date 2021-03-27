@@ -7,22 +7,28 @@
 //
 
 import React from 'react';
-import { ApolloProvider } from '@apollo/client';
-import { ChakraProvider } from '@chakra-ui/react';
+import { Provider, createClient } from 'urql';
+import { ChakraProvider} from '@chakra-ui/react';
 
 import theme from '../theme';
 import '../index.css';
 import { AppProps } from 'next/app';
-import {useApollo} from '../lib/hooks/useApollo';
+import {__graph__} from '../constants/uri';
+
+const client = createClient({
+    url: __graph__,
+    fetchOptions: {
+        credentials: 'include'
+    }
+});
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-    const apolloClient = useApollo(pageProps.initialApolloState);
     return (
-        <ApolloProvider client={apolloClient}>
+        <Provider value={client}>
             <ChakraProvider resetCSS theme={theme}>
                 <Component {...pageProps} />
             </ChakraProvider>
-        </ApolloProvider>
+        </Provider>
     );
 };
 
