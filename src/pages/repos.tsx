@@ -28,13 +28,20 @@ const Repos: React.FC<IProps> = ({ res }: IProps) => {
 
     return (
         <>
-            <MetaHead title={`d-exclaimation's ${res.length} repos`} description={'All projects and repos made by d-exclaimation (vin). This is where you find whatever I spent most of my days doing.'}/>
+            <MetaHead
+                title={`d-exclaimation's ${res.length} repos`}
+                description={'All projects and repos made by d-exclaimation (vin). This is where you find whatever I spent most of my days doing.'}
+            />
             <header className="App-header">
                 <VStack>
                     <RouteSideCar/>
-                    <Hero title={'Projects'}/>
+                    <Hero title={'Repos'}/>
                     <ProjectGrid repos={res}/>
-                    <Text m={2} fontSize="sm" color="gray.500">
+                    <Text
+                        m={2}
+                        fontSize="sm"
+                        color="gray.500"
+                    >
                         Flat icons by MrSquaare
                     </Text>
                 </VStack>
