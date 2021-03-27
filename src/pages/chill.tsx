@@ -48,7 +48,8 @@ const Chill: React.FC<Props> = ({ musics }: Props) => {
 export const getStaticProps: GetStaticProps = async () => {
     const musics: [string, string][] = [
         ['Time-Lapse', 'https://drive.google.com/file/d/1QUcBuO473xmpW9vQ23qeOW9bvE5pOnMj/view?usp=sharing'],
-        ['Close to The Sun', 'https://drive.google.com/file/d/1WrJ5gDCPSZ8q8uN85MxYFYKRsd9jPU2O/view?usp=sharing'],
+        ['Close to The Sun', 'https://drive.google.com/file/d/12tRQQuJezu71ZY4IBGXLzKrz9IxFrmGA/view?usp=sharing'],
+        ['Close to The Sun | raw', 'https://drive.google.com/file/d/1WrJ5gDCPSZ8q8uN85MxYFYKRsd9jPU2O/view?usp=sharing'],
     ];
 
     const parseDriveAudio = ([name, url]: [string, string]): IMedia => ({ name: name, url: drivePlayURL(url) });

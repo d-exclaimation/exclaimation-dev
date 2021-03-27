@@ -28,7 +28,6 @@ interface Props {
 }
 
 const MusicPlayer: React.FC<Props> = ({ url, name }: Props) => {
-    console.log(url);
     const [isPlaying, togglePlayer, , toggleVolume, time] = usePlayer(url, true);
     const window = useWindowSize();
     const corner = useDynamicCorner();
