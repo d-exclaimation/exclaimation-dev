@@ -18,6 +18,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   newPost: Post;
   updatePost: Post;
+  incrementCrabRave: Post;
   deletePost: Post;
 };
 
@@ -32,6 +33,11 @@ export type MutationUpdatePostArgs = {
   id: Scalars['Int'];
   input: PostDto;
   key: Scalars['String'];
+};
+
+
+export type MutationIncrementCrabRaveArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -64,6 +70,33 @@ export type QueryPostArgs = {
   id: Scalars['Int'];
 };
 
+export type CreatePostMutationMutationVariables = Exact<{
+  input: PostDto;
+  key: Scalars['String'];
+}>;
+
+
+export type CreatePostMutationMutation = (
+  { __typename?: 'Mutation' }
+  & { newPost: (
+    { __typename?: 'Post' }
+    & Pick<Post, 'id' | 'title' | 'body' | 'crabrave'>
+  ) }
+);
+
+export type UpRaveMutationVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type UpRaveMutation = (
+  { __typename?: 'Mutation' }
+  & { incrementCrabRave: (
+    { __typename?: 'Post' }
+    & Pick<Post, 'id' | 'title' | 'body' | 'crabrave'>
+  ) }
+);
+
 export type AllPostQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -76,6 +109,34 @@ export type AllPostQuery = (
 );
 
 
+export const CreatePostMutationDocument = gql`
+    mutation CreatePostMutation($input: PostDTO!, $key: String!) {
+  newPost(input: $input, key: $key) {
+    id
+    title
+    body
+    crabrave
+  }
+}
+    `;
+
+export function useCreatePostMutationMutation() {
+  return Urql.useMutation<CreatePostMutationMutation, CreatePostMutationMutationVariables>(CreatePostMutationDocument);
+};
+export const UpRaveDocument = gql`
+    mutation UpRave($id: Int!) {
+  incrementCrabRave(id: $id) {
+    id
+    title
+    body
+    crabrave
+  }
+}
+    `;
+
+export function useUpRaveMutation() {
+  return Urql.useMutation<UpRaveMutation, UpRaveMutationVariables>(UpRaveDocument);
+};
 export const AllPostDocument = gql`
     query AllPost {
   posts {
@@ -87,5 +148,5 @@ export const AllPostDocument = gql`
     `;
 
 export function useAllPostQuery(options: Omit<Urql.UseQueryArgs<AllPostQueryVariables>, 'query'> = {}) {
-    return Urql.useQuery<AllPostQuery>({ query: AllPostDocument, ...options });
-}
+  return Urql.useQuery<AllPostQuery>({ query: AllPostDocument, ...options });
+};

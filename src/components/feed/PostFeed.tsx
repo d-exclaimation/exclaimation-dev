@@ -7,36 +7,44 @@
 //
 
 import React from 'react';
-import {Box, SimpleGrid, Text} from '@chakra-ui/react';
+import {SimpleGrid, Text} from '@chakra-ui/react';
 import {useWindowSize} from '../../lib/hooks/useWindow';
-import {Post} from '../../models/graphql/types';
-import ShowCard from '../templates/ShowCard';
-import {drivePlayURL} from '../../lib/GoogleDriveURL';
-import {langBar} from '../../lib/LanguageBarURL';
+import {Post, useUpRaveMutation} from '../../models/graphql/types';
+import PostPreview from './PostPreview';
 
 interface Props {
     isFetching: boolean,
     posts: ({ __typename?: 'Post' | undefined; } & Pick<Post, 'title' | 'id' | 'crabrave'>)[]
 }
 
-const DEFAULT = drivePlayURL(langBar.get('exclaim') ?? 'no-image');
 
 const PostFeed: React.FC<Props> = ({ isFetching, posts }: Props) => {
+    const [, upRave] = useUpRaveMutation();
     const window = useWindowSize();
     const grid = Math.floor(window.width / 240); 
     if(isFetching)
-        return <Box>Loading...</Box>;
+        return <Text color="#fafafa">Loading...</Text>;
     
     return (
-        <SimpleGrid
-            columns={Math.min(3, grid)} borderRadius={10}
-            p={2}
-            spacing={4}
-        >
-            { posts.map((post, i) => 
-                <ShowCard key={i} imageUrl={DEFAULT} title={post.title} body={`Crabrave: ${post.crabrave}`} url={'/feed'}/>
-            )}
-        </SimpleGrid>
+        <>
+            <SimpleGrid
+                columns={Math.min(3, grid)} borderRadius={10}
+                p={2}
+                spacing={4}
+            >
+                { posts.map(post  =>
+                    <PostPreview
+                        key={post.id}
+                        title={post.title}
+                        crabrave={post.crabrave}
+                        url={'/feed'}
+                        upRave={async () => {
+                            await upRave({ id: parseInt(post.id) });
+                        }}
+                    />
+                )}
+            </SimpleGrid>
+        </>
     );
 };
 

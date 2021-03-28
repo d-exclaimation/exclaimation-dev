@@ -1,0 +1,8 @@
+mutation UpRave($id: Int!) {
+    incrementCrabRave(id: $id) {
+        id
+        title
+        body
+        crabrave
+    }
+}
