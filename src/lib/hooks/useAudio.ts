@@ -7,18 +7,21 @@
 //
 
 import React from 'react';
+import {useInterval} from './useInterval';
 
+interface AudioPlayer {
+    isPlaying: boolean,
+    toggleAudio: () => void,
+    volume: number,
+    toggleVolume: (vol: number) => void,
+    time: number
+}
 
-export const usePlayer = (url: string, loop: boolean): [boolean, () => void, number, (vol: number) => void, number] => {
+export const usePlayer = (url: string, loop: boolean): AudioPlayer => {
     const [volume, setVolume] = React.useState(0.5);
     const [audio] = React.useState(new Audio(url));
     const [time, setTime] = React.useState(audio.currentTime);
     const [isPlaying, setPlaying] = React.useState(false);
-
-    audio.volume = volume;
-    setInterval(() => {
-        setTime(Math.floor(audio.currentTime));
-    }, 1000);
 
     const toggleVolume = (vol: number) => {
         setPlaying(!isPlaying);
@@ -28,6 +31,12 @@ export const usePlayer = (url: string, loop: boolean): [boolean, () => void, num
     const toggleAudio = () => {
         setPlaying(!isPlaying);
     };
+
+    audio.volume = volume;
+
+    useInterval(() => {
+        setTime(Math.floor(audio.currentTime));
+    }, 1000);
 
 
     React.useEffect(() => {
@@ -49,9 +58,15 @@ export const usePlayer = (url: string, loop: boolean): [boolean, () => void, num
         };
     }, []);
 
-    return [isPlaying, toggleAudio, volume, toggleVolume, time];
+    return {
+        isPlaying,
+        toggleAudio,
+        volume,
+        toggleVolume,
+        time
+    };
 };
 
 export const useAudio = (url: string): (() => void) => {
-    return usePlayer(url, false)[1];
+    return usePlayer(url, false).toggleAudio;
 };

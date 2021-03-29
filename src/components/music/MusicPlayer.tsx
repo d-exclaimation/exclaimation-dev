@@ -7,7 +7,6 @@
 //
 
 import React from 'react';
-
 import {
     HStack, VStack,
     Box, Button, Text,
@@ -28,7 +27,7 @@ interface Props {
 }
 
 const MusicPlayer: React.FC<Props> = ({ url, name }: Props) => {
-    const [isPlaying, togglePlayer, , toggleVolume, time] = usePlayer(url, true);
+    const { isPlaying, toggleAudio,  toggleVolume, time} = usePlayer(url, true);
     const window = useWindowSize();
     const corner = useDynamicCorner();
     const card = {
@@ -43,7 +42,7 @@ const MusicPlayer: React.FC<Props> = ({ url, name }: Props) => {
 
     const toggle = (_: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         try {
-            togglePlayer();
+            toggleAudio();
         } catch (err) {
             console.log(`${err}: ${_}`);
             Router.reload();
