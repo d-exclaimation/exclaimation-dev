@@ -8,16 +8,15 @@
 
 import {useWindowSize} from './useWindow';
 
+interface Vector {
+    x: number,
+    y: number
+}
+
 export function useDynamicCorner(): Vector {
     const window = useWindowSize();
     return {
         x: Math.floor(Math.min(window.width * 0.005, 2)),
         y: Math.floor(Math.min(window.height * 0.005, 2))
     };
-}
-
-
-interface Vector {
-    x: number,
-    y: number
 }

@@ -9,6 +9,11 @@
 
 import { useState, useEffect } from 'react';
 
+interface Size {
+    width: number;
+    height: number;
+}
+
 export function useWindowSize(): Size {
     // Initialize state with undefined width/height so server and client renders match
     const [windowSize, setWindowSize] = useState<Size>({
@@ -37,9 +42,4 @@ export function useWindowSize(): Size {
     }, []); // Empty array ensures that effect is only run on mount
 
     return windowSize;
-}
-
-interface Size {
-    width: number;
-    height: number;
 }

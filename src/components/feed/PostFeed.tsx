@@ -39,7 +39,11 @@ const PostFeed: React.FC<Props> = ({ isFetching, posts }: Props) => {
                         crabrave={post.crabrave}
                         url={'/feed'}
                         upRave={async () => {
-                            await upRave({ id: parseInt(post.id) });
+                            try {
+                                await upRave({ id: parseInt(post.id) });
+                            } catch (err) {
+                                console.error(err);
+                            }
                         }}
                     />
                 )}
