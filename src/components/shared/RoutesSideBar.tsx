@@ -29,9 +29,14 @@ const RouteSideCar: React.FC = (): JSX.Element => {
     return (
         <Box
             pos="absolute" top={location.y} left={location.x}
-            p={location.x}
+            p={Math.floor(location.x / 2)}
+            borderRadius={10}
+            boxShadow="dark-lg"
         >
-            <Stack direction={ window.width >= window.height ? 'row'  : 'column'} spacing={location.x * 2}>
+            <Stack
+                direction={ window.width >= window.height ? 'row'  : 'column'}
+                spacing={location.x * 2}
+            >
                 {shown && res.map((val, i) => {
                     const name = val.length > 1 ?
                         capitalized(val.slice(1))
@@ -42,7 +47,6 @@ const RouteSideCar: React.FC = (): JSX.Element => {
                                 color={favRed}
                                 variant="ghost"
                                 size={bSize}
-                                boxShadow="dark-lg"
                             > { name } </Button>
                         </Link>
                     );
@@ -51,7 +55,6 @@ const RouteSideCar: React.FC = (): JSX.Element => {
                     color={shown ? favRed : 'gray.500'}
                     variant="ghost"
                     size={bSize}
-                    boxShadow="dark-lg"
                     onClick={() => setShown(!shown)}
                 >
                     { shown ? ( window.width >= window.height ? '⟨' : '︿') : '...' }

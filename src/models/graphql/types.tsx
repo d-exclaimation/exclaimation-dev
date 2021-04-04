@@ -52,11 +52,19 @@ export type Post = {
   title: Scalars['String'];
   body: Scalars['String'];
   crabrave: Scalars['Int'];
+  snippet: Scalars['String'];
+  nodes: Array<PostNode>;
 };
 
 export type PostDto = {
   title: Scalars['String'];
   body: Scalars['String'];
+};
+
+export type PostNode = {
+  __typename?: 'PostNode';
+  type: Scalars['String'];
+  leaf: Scalars['String'];
 };
 
 export type Query = {
@@ -69,6 +77,20 @@ export type Query = {
 export type QueryPostArgs = {
   id: Scalars['Int'];
 };
+
+export type FullPostFragment = (
+  { __typename?: 'Post' }
+  & Pick<Post, 'id' | 'title' | 'crabrave'>
+  & { nodes: Array<(
+    { __typename?: 'PostNode' }
+    & Pick<PostNode, 'type' | 'leaf'>
+  )> }
+);
+
+export type PostSnippetFragment = (
+  { __typename?: 'Post' }
+  & Pick<Post, 'id' | 'title' | 'snippet' | 'crabrave'>
+);
 
 export type CreatePostMutationMutationVariables = Exact<{
   input: PostDto;
@@ -93,8 +115,21 @@ export type UpRaveMutation = (
   { __typename?: 'Mutation' }
   & { incrementCrabRave: (
     { __typename?: 'Post' }
-    & Pick<Post, 'id' | 'title' | 'body' | 'crabrave'>
+    & Pick<Post, 'id' | 'crabrave'>
   ) }
+);
+
+export type PostQueryVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type PostQuery = (
+  { __typename?: 'Query' }
+  & { post?: Maybe<(
+    { __typename?: 'Post' }
+    & FullPostFragment
+  )> }
 );
 
 export type AllPostQueryVariables = Exact<{ [key: string]: never; }>;
@@ -104,11 +139,29 @@ export type AllPostQuery = (
   { __typename?: 'Query' }
   & { posts: Array<(
     { __typename?: 'Post' }
-    & Pick<Post, 'id' | 'title' | 'crabrave'>
+    & PostSnippetFragment
   )> }
 );
 
-
+export const FullPostFragmentDoc = gql`
+    fragment FullPost on Post {
+  id
+  title
+  nodes {
+    type
+    leaf
+  }
+  crabrave
+}
+    `;
+export const PostSnippetFragmentDoc = gql`
+    fragment PostSnippet on Post {
+  id
+  title
+  snippet
+  crabrave
+}
+    `;
 export const CreatePostMutationDocument = gql`
     mutation CreatePostMutation($input: PostDTO!, $key: String!) {
   newPost(input: $input, key: $key) {
@@ -121,32 +174,39 @@ export const CreatePostMutationDocument = gql`
     `;
 
 export function useCreatePostMutationMutation() {
-  return Urql.useMutation<CreatePostMutationMutation, CreatePostMutationMutationVariables>(CreatePostMutationDocument);
-};
+    return Urql.useMutation<CreatePostMutationMutation, CreatePostMutationMutationVariables>(CreatePostMutationDocument);
+}
 export const UpRaveDocument = gql`
     mutation UpRave($id: Int!) {
   incrementCrabRave(id: $id) {
     id
-    title
-    body
     crabrave
   }
 }
     `;
 
 export function useUpRaveMutation() {
-  return Urql.useMutation<UpRaveMutation, UpRaveMutationVariables>(UpRaveDocument);
-};
+    return Urql.useMutation<UpRaveMutation, UpRaveMutationVariables>(UpRaveDocument);
+}
+export const PostDocument = gql`
+    query Post($id: Int!) {
+  post(id: $id) {
+    ...FullPost
+  }
+}
+    ${FullPostFragmentDoc}`;
+
+export function usePostQuery(options: Omit<Urql.UseQueryArgs<PostQueryVariables>, 'query'> = {}) {
+    return Urql.useQuery<PostQuery>({ query: PostDocument, ...options });
+}
 export const AllPostDocument = gql`
     query AllPost {
   posts {
-    id
-    title
-    crabrave
+    ...PostSnippet
   }
 }
-    `;
+    ${PostSnippetFragmentDoc}`;
 
 export function useAllPostQuery(options: Omit<Urql.UseQueryArgs<AllPostQueryVariables>, 'query'> = {}) {
-  return Urql.useQuery<AllPostQuery>({ query: AllPostDocument, ...options });
-};
+    return Urql.useQuery<AllPostQuery>({ query: AllPostDocument, ...options });
+}

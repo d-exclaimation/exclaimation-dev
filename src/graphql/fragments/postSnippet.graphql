@@ -1,0 +1,6 @@
+fragment PostSnippet on Post {
+    id
+    title
+    snippet
+    crabrave
+}

@@ -56,6 +56,7 @@ const Bio: React.FC<Props> = ({ bio, color }: Props) => {
             <Box
                 width={window.width / 2}
                 shadow="dark-lg"
+                bg="#fafafa"
                 p={window.width > 800 ? 5 : 3} borderRadius={10}
             >
                 <Text

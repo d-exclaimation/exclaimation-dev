@@ -1,7 +1,5 @@
 query AllPost {
     posts {
-        id
-        title
-        crabrave
+        ...PostSnippet
     }
 }

@@ -26,7 +26,7 @@ const ShowCard: React.FC<Props> = ({ imageUrl, title, body, url }: Props) => {
     };
 
     return (
-        <Box bg="#282c34" maxW={card.width} boxShadow="dark-lg" borderRadius="lg" overflow="hidden">
+        <Box bg="#fafafa" maxW={card.width} boxShadow="dark-lg" borderRadius="lg" overflow="hidden">
             <Img src={imageUrl} />
 
             <Link href={url}>
@@ -36,12 +36,12 @@ const ShowCard: React.FC<Props> = ({ imageUrl, title, body, url }: Props) => {
                         fontWeight="semibold"
                         lineHeight="tight"
                         isTruncated
-                        color="#fafafa"
+                        color="#f282c34"
                     >
                         {title}
                     </Box>
 
-                    <Text fontSize="sm" color="#dadada" isTruncated>
+                    <Text fontSize="sm" color="gray.500" isTruncated>
                         {body}
                     </Text>
                 </Box>

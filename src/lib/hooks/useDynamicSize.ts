@@ -8,10 +8,10 @@
 
 import {useWindowSize} from './useWindow';
 
-export function useDynamicSize(): 'sm' | 'md' | 'lg' | 'xs' {
+export function useDynamicSize(limit = 4): 'sm' | 'md' | 'lg' | 'xs' {
     const window = useWindowSize();
     const size = (window.width / 1300) * 4;
     const index = Math.floor(size) - 1;
     const all: ('xs' | 'sm' | 'md' | 'lg')[] = ['xs', 'sm', 'sm', 'lg'];
-    return all[index];
+    return all[Math.min(limit, index)];
 }

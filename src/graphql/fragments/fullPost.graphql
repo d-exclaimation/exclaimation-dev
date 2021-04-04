@@ -1,0 +1,9 @@
+fragment FullPost on Post {
+    id
+    title
+    nodes {
+        type
+        leaf
+    }
+    crabrave
+}

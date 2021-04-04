@@ -7,47 +7,34 @@
 //
 
 import React from 'react';
-import {SimpleGrid, Text} from '@chakra-ui/react';
-import {useWindowSize} from '../../lib/hooks/useWindow';
-import {Post, useUpRaveMutation} from '../../models/graphql/types';
+import {VStack, Text} from '@chakra-ui/react';
+import {AllPostQuery, PostSnippetFragment} from '../../models/graphql/types';
 import PostPreview from './PostPreview';
 
 interface Props {
     isFetching: boolean,
-    posts: ({ __typename?: 'Post' | undefined; } & Pick<Post, 'title' | 'id' | 'crabrave'>)[]
+    posts: PostSnippetFragment[]
 }
 
 
 const PostFeed: React.FC<Props> = ({ isFetching, posts }: Props) => {
-    const [, upRave] = useUpRaveMutation();
-    const window = useWindowSize();
-    const grid = Math.floor(window.width / 240); 
     if(isFetching)
         return <Text color="#fafafa">Loading...</Text>;
     
     return (
         <>
-            <SimpleGrid
-                columns={Math.min(3, grid)} borderRadius={10}
+            <VStack
+                borderRadius={10}
                 p={2}
-                spacing={4}
+                spacing={8}
             >
                 { posts.map(post  =>
                     <PostPreview
                         key={post.id}
-                        title={post.title}
-                        crabrave={post.crabrave}
-                        url={'/feed'}
-                        upRave={async () => {
-                            try {
-                                await upRave({ id: parseInt(post.id) });
-                            } catch (err) {
-                                console.error(err);
-                            }
-                        }}
+                        post={post}
                     />
                 )}
-            </SimpleGrid>
+            </VStack>
         </>
     );
 };
