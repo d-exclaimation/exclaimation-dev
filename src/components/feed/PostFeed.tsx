@@ -8,7 +8,7 @@
 
 import React from 'react';
 import {VStack, Text} from '@chakra-ui/react';
-import {AllPostQuery, PostSnippetFragment} from '../../models/graphql/types';
+import {PostSnippetFragment} from '../../models/graphql/types';
 import PostPreview from './PostPreview';
 
 interface Props {

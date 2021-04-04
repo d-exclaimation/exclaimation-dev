@@ -29,7 +29,7 @@ const ContentView: React.FC<Props> = ({post}: Props) => {
     };
 
     return (
-        <Box bg="white" boxShadow="dark-lg" width={width} p={5} borderRadius={5}>
+        <Box color="white" boxShadow="dark-lg" width={width} p={5} borderRadius={5}>
             {post.nodes.map((leaf, idx) => {
                 return (
                     <Box key={idx}>

@@ -52,11 +52,11 @@ const Bio: React.FC<Props> = ({ bio, color }: Props) => {
     })();
 
     return (
-        <VStack spacing={5} m={2}>
+        <VStack spacing={5}>
             <Box
                 width={window.width / 2}
                 shadow="dark-lg"
-                bg="#fafafa"
+                m={3}
                 p={window.width > 800 ? 5 : 3} borderRadius={10}
             >
                 <Text

@@ -28,7 +28,7 @@ const PostPreview: React.FC<Props> = ({post}: Props) => {
     };
 
     return (
-        <Flex p={5} w={card.width} bg="white" shadow="dark-lg" borderRadius={5}>
+        <Flex p={5} w={card.width} shadow="dark-lg" borderRadius={5}>
             <Flex direction="column"  alignItems="center" justifyContent="center" mr={4}>
                 <IconButton
                     colorScheme="pink"
@@ -41,11 +41,11 @@ const PostPreview: React.FC<Props> = ({post}: Props) => {
                         id: parseInt(post.id)
                     })}
                 />
-                <Text fontSize={size} color="black" mt={2}>{post.crabrave}</Text>
+                <Text fontSize={size} color="white" mt={2}>{post.crabrave}</Text>
             </Flex>
             <Box>
                 <NextLink href="/post/[id]" as={`/post/${post.id}`}>
-                    <Heading as={Link} color="black" fontSize="xl">{post.title}</Heading>
+                    <Heading as={Link} color="white" fontSize="xl">{post.title}</Heading>
                 </NextLink>
                 <Text color="gray.500" fontSize="lg" mt={4} mb={3} isTruncated maxW={card.text}>{post.snippet}</Text>
             </Box>
