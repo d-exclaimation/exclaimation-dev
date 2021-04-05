@@ -13,9 +13,10 @@ import {useRouter} from 'next/router';
 
 interface Props {
     limit: number
+    sort: string
 }
 
-const ShowMore: React.FC<Props> = ({limit}: Props) => {
+const ShowMore: React.FC<Props> = ({limit, sort}: Props) => {
     const size = useDynamicSize(2);
     const router = useRouter();
     const addition = Math.max(Math.floor(limit / 3 * 2), 1);
@@ -26,7 +27,7 @@ const ShowMore: React.FC<Props> = ({limit}: Props) => {
                 variant="ghost"
                 size={size}
                 m={5}
-                onClick={() => router.push(`/feed?limit=${limit + addition}`)}
+                onClick={() => router.push(`/feed?limit=${limit + addition}&sort=${sort}`)}
             >
                 Show More
             </Button>

@@ -17,14 +17,17 @@ import {useAllPostQuery} from '../models/graphql/types';
 import RouteSideCar from '../components/shared/RoutesSideBar';
 import {useRouter} from 'next/router';
 import ShowMore from '../components/feed/ShowMore';
+import ToggleSort from '../components/feed/ToggleSort';
 
 
 const Feed: React.FC = () => {
     const router = useRouter();
     const limit = typeof router.query.limit === 'string' ? parseInt(router.query.limit) : 12;
+    const by: 'latest' | 'hot' = typeof router.query.sort === 'string' ? router.query.sort === 'hot' ? 'hot' : 'latest' : 'latest';
     const [{fetching, error, data}] = useAllPostQuery({
         variables: {
-            limit: limit
+            limit: limit,
+            by: by
         }
     });
 
@@ -38,11 +41,12 @@ const Feed: React.FC = () => {
             <MetaHead title={`d-exclaimation's ${data?.posts.length ?? 0} posts `} description={'My blog, rant, and just shit posts all in one bundle'} />
             <div className="App-header">
                 <RouteSideCar/>
+                <ToggleSort sort={by} limit={limit}/>
                 <Box m={5}>
-                    <Hero title={'Blogs and Posts'} />
+                    <Hero title={'Blogs and Posts'}/>
                 </Box>
                 <PostFeed isFetching={fetching} posts={data?.posts ?? []}/>
-                <ShowMore limit={limit}/>
+                <ShowMore limit={limit} sort={by}/>
             </div>
         </>
     );

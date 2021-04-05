@@ -46,9 +46,9 @@ const Post: React.FC = () => {
         <>
             <MetaHead title={data.post.title} description={`Blog post about ${data.post.title}`} />
             <div className="Post-header">
-                <RouteSideCar/>
+                <RouteSideCar />
                 <Box m={5}>
-                    <Hero title={data.post.title}/>
+                    <Hero title={data.post.title} />
                 </Box>
                 <Center>
                     <ContentView post={data.post}/>

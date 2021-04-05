@@ -81,6 +81,7 @@ export type QueryPostArgs = {
 
 export type QueryPostsArgs = {
   limit: Scalars['Int'];
+  by: Scalars['String'];
 };
 
 export type FullPostFragment = (
@@ -139,6 +140,7 @@ export type PostQuery = (
 
 export type AllPostQueryVariables = Exact<{
   limit: Scalars['Int'];
+  by: Scalars['String'];
 }>;
 
 
@@ -207,8 +209,8 @@ export function usePostQuery(options: Omit<Urql.UseQueryArgs<PostQueryVariables>
   return Urql.useQuery<PostQuery>({ query: PostDocument, ...options });
 };
 export const AllPostDocument = gql`
-    query AllPost($limit: Int!) {
-  posts(limit: $limit) {
+    query AllPost($limit: Int!, $by: String!) {
+  posts(limit: $limit, by: $by) {
     ...PostSnippet
   }
 }

@@ -18,7 +18,12 @@ import {capitalized} from '../../lib/Typography';
 import {useDynamicCorner} from '../../lib/hooks/useDynamicCorner';
 import {useDynamicSize} from '../../lib/hooks/useDynamicSize';
 
-const RouteSideCar: React.FC = (): JSX.Element => {
+interface Props {
+    color?: string
+}
+
+const RouteSideCar: React.FC<Props> = ({color}: Props): JSX.Element => {
+    const hex = color || favRed;
     const res = routes();
     const window = useWindowSize();
     const location = useDynamicCorner();
@@ -44,7 +49,7 @@ const RouteSideCar: React.FC = (): JSX.Element => {
                     return (
                         <Link key={i} href={val}>
                             <Button
-                                color={favRed}
+                                color={hex}
                                 variant="ghost"
                                 size={bSize}
                             > { name } </Button>
@@ -52,7 +57,7 @@ const RouteSideCar: React.FC = (): JSX.Element => {
                     );
                 })}
                 <Button
-                    color={shown ? favRed : 'gray.500'}
+                    color={shown ? hex : 'gray.500'}
                     variant="ghost"
                     size={bSize}
                     onClick={() => setShown(!shown)}

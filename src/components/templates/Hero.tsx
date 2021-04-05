@@ -11,13 +11,15 @@ import { Heading } from '@chakra-ui/react';
 
 interface HeroProps {
     title? : string,
+    color? : string,
 }
 
-const Hero: React.FC<HeroProps> = ({ title }: HeroProps) => {
+const Hero: React.FC<HeroProps> = ({ title, color }: HeroProps) => {
+    const hex = color || '#ff0056';
     return (
         <Heading
             fontSize="6vw"
-            color={'#ff0056'}
+            color={hex}
         >
             { title ?? 'Next.js' }
         </Heading>

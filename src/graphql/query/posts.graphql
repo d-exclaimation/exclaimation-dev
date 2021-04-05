@@ -1,5 +1,5 @@
-query AllPost($limit: Int!) {
-    posts(limit: $limit) {
+query AllPost($limit: Int!, $by: String!) {
+    posts(limit: $limit, by: $by    ) {
         ...PostSnippet
     }
 }
