@@ -78,6 +78,11 @@ export type QueryPostArgs = {
   id: Scalars['Int'];
 };
 
+
+export type QueryPostsArgs = {
+  limit: Scalars['Int'];
+};
+
 export type FullPostFragment = (
   { __typename?: 'Post' }
   & Pick<Post, 'id' | 'title' | 'crabrave'>
@@ -132,7 +137,9 @@ export type PostQuery = (
   )> }
 );
 
-export type AllPostQueryVariables = Exact<{ [key: string]: never; }>;
+export type AllPostQueryVariables = Exact<{
+  limit: Scalars['Int'];
+}>;
 
 
 export type AllPostQuery = (
@@ -174,8 +181,8 @@ export const CreatePostMutationDocument = gql`
     `;
 
 export function useCreatePostMutationMutation() {
-    return Urql.useMutation<CreatePostMutationMutation, CreatePostMutationMutationVariables>(CreatePostMutationDocument);
-}
+  return Urql.useMutation<CreatePostMutationMutation, CreatePostMutationMutationVariables>(CreatePostMutationDocument);
+};
 export const UpRaveDocument = gql`
     mutation UpRave($id: Int!) {
   incrementCrabRave(id: $id) {
@@ -186,8 +193,8 @@ export const UpRaveDocument = gql`
     `;
 
 export function useUpRaveMutation() {
-    return Urql.useMutation<UpRaveMutation, UpRaveMutationVariables>(UpRaveDocument);
-}
+  return Urql.useMutation<UpRaveMutation, UpRaveMutationVariables>(UpRaveDocument);
+};
 export const PostDocument = gql`
     query Post($id: Int!) {
   post(id: $id) {
@@ -197,16 +204,16 @@ export const PostDocument = gql`
     ${FullPostFragmentDoc}`;
 
 export function usePostQuery(options: Omit<Urql.UseQueryArgs<PostQueryVariables>, 'query'> = {}) {
-    return Urql.useQuery<PostQuery>({ query: PostDocument, ...options });
-}
+  return Urql.useQuery<PostQuery>({ query: PostDocument, ...options });
+};
 export const AllPostDocument = gql`
-    query AllPost {
-  posts {
+    query AllPost($limit: Int!) {
+  posts(limit: $limit) {
     ...PostSnippet
   }
 }
     ${PostSnippetFragmentDoc}`;
 
 export function useAllPostQuery(options: Omit<Urql.UseQueryArgs<AllPostQueryVariables>, 'query'> = {}) {
-    return Urql.useQuery<AllPostQuery>({ query: AllPostDocument, ...options });
-}
+  return Urql.useQuery<AllPostQuery>({ query: AllPostDocument, ...options });
+};

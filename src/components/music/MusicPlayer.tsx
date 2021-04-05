@@ -49,11 +49,17 @@ const MusicPlayer: React.FC<Props> = ({ url, name }: Props) => {
         }
     };
 
+    const diskWidth = (() => {
+        if (window.width > window.height)
+            return Math.floor(window.width / 4);
+        return Math.floor(window.height / 4);
+    })();
+
     return (
         <>
-            <Box p={3} bg="white" borderRadius={200}>
-                <Box p={3} bg="black" borderRadius={200}>
-                    <Img className={isPlaying ? 'Spinning' : ''} src="/images/mylogo.png" />
+            <Box p={window.width > window.height ? 6 : 3} bg="white" borderRadius={window.width > window.height ? 400 : 200}>
+                <Box p={window.width > window.height ? 12 : 3} bg="black" borderRadius={window.width > window.height ? 400 : 200}>
+                    <Img w={diskWidth} className={isPlaying ? 'Spinning' : ''} src="/images/mylogo.png" />
                 </Box>
             </Box>
             <Box

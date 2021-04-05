@@ -15,10 +15,18 @@ import {withCustomUrql} from '../lib/ssr/withUrqlClient';
 import {withUrqlClient} from 'next-urql';
 import {useAllPostQuery} from '../models/graphql/types';
 import RouteSideCar from '../components/shared/RoutesSideBar';
+import {useRouter} from 'next/router';
+import ShowMore from '../components/feed/ShowMore';
 
 
 const Feed: React.FC = () => {
-    const [{fetching, error, data}] = useAllPostQuery();
+    const router = useRouter();
+    const limit = typeof router.query.limit === 'string' ? parseInt(router.query.limit) : 12;
+    const [{fetching, error, data}] = useAllPostQuery({
+        variables: {
+            limit: limit
+        }
+    });
 
     if (error || (!data && !fetching))
         return <div className="App-header">
@@ -34,6 +42,7 @@ const Feed: React.FC = () => {
                     <Hero title={'Blogs and Posts'} />
                 </Box>
                 <PostFeed isFetching={fetching} posts={data?.posts ?? []}/>
+                <ShowMore limit={limit}/>
             </div>
         </>
     );
