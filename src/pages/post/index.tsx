@@ -1,23 +1,23 @@
 //
-//  feed.tsx
+//  index.tsx
 //  exclaimation
 //
-//  Created by d-exclaimation on 9:06 PM.
+//  Created by d-exclaimation on 6:02 PM.
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
 import React from 'react';
-import MetaHead from '../components/shared/MetaHead';
-import Hero from '../components/templates/Hero';
-import PostFeed from '../components/feed/PostFeed';
+import MetaHead from '../../components/shared/MetaHead';
+import Hero from '../../components/templates/Hero';
+import PostFeed from '../../components/feed/PostFeed';
 import {Box} from '@chakra-ui/react';
-import {withCustomUrql} from '../lib/ssr/withUrqlClient';
+import {withCustomUrql} from '../../lib/ssr/withUrqlClient';
 import {withUrqlClient} from 'next-urql';
-import {useAllPostQuery} from '../models/graphql/types';
-import RouteSideCar from '../components/shared/RoutesSideBar';
+import {useAllPostQuery} from '../../models/graphql/types';
+import RouteSideCar from '../../components/shared/RoutesSideBar';
 import {useRouter} from 'next/router';
-import ShowMore from '../components/feed/ShowMore';
-import ToggleSort from '../components/feed/ToggleSort';
+import ShowMore from '../../components/feed/ShowMore';
+import ToggleSort from '../../components/feed/ToggleSort';
 
 
 const Feed: React.FC = () => {
