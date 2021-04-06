@@ -27,7 +27,7 @@ const ShowMore: React.FC<Props> = ({limit, sort}: Props) => {
                 variant="ghost"
                 size={size}
                 m={5}
-                onClick={() => router.push(`/feed?limit=${limit + addition}&sort=${sort}`)}
+                onClick={() => router.push(`/post?limit=${limit + addition}&sort=${sort}`)}
             >
                 Show More
             </Button>

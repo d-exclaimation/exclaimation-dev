@@ -38,7 +38,7 @@ const ToggleSort: React.FC<Props> = ({sort, limit}: Props) => {
                     size="md"
                     width={Math.min(Math.floor(window.width / 6), 100)}
                     fontSize={size}
-                    onChange={val => router.push(`/feed?limit=${limit}&sort=${val.target.value}`)} value={sort}
+                    onChange={val => router.push(`/post?limit=${limit}&sort=${val.target.value}`)} value={sort}
                 >
                     <option value="latest">Latest</option>
                     <option value="hot">Hot</option>
