@@ -7,7 +7,7 @@
 //
 
 import React from 'react';
-import {Box, Button} from '@chakra-ui/react';
+import {Box} from '@chakra-ui/react';
 import {overideMarkdown} from '../shared/MarkdownOveride';
 import {useWindowSize} from '../../lib/hooks/useWindow';
 
@@ -20,7 +20,8 @@ const PreviewMarkdown: React.FC<Props> = ({body}: Props) => {
     return (
         <Box
             color="white"
-            minW={Math.floor(window.width / 1.25)} minH={Math.floor(window.height / 1.6)}
+            w={Math.floor(window.width / 1.25)} minH={Math.floor(window.height / 1.6)}
+            boxShadow="lg"
         >
             {overideMarkdown(body).map((com, idx) => {
                 return <Box key={idx}>{com}</Box>;

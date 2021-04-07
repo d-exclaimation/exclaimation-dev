@@ -108,7 +108,7 @@ export type CreatePostMutationMutation = (
   { __typename?: 'Mutation' }
   & { newPost: (
     { __typename?: 'Post' }
-    & Pick<Post, 'id' | 'title' | 'body' | 'crabrave'>
+    & Pick<Post, 'id'>
   ) }
 );
 
@@ -175,9 +175,6 @@ export const CreatePostMutationDocument = gql`
     mutation CreatePostMutation($input: PostDTO!, $key: String!) {
   newPost(input: $input, key: $key) {
     id
-    title
-    body
-    crabrave
   }
 }
     `;

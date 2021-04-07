@@ -7,7 +7,8 @@
 //
 
 import React from 'react';
-import {Input} from '@chakra-ui/react';
+import {Input, Box} from '@chakra-ui/react';
+import {useWindowSize} from '../../lib/hooks/useWindow';
 
 interface Props {
     state: string
@@ -15,12 +16,22 @@ interface Props {
 }
 
 const TitleEditor: React.FC<Props> = ({state, changeState}: Props) => {
+    const window = useWindowSize();
     return (
-        <Input
-            variant="flushed"
-            value={state}
-            onChange={e => changeState(e.target.value)}
-        />
+        <Box
+            p={window.width < window.height ? 2 : 4}
+            px={window.width < window.height ? 4 : 6}
+            m={10} boxShadow="dark-lg" borderRadius={10}
+        >
+            <Input
+                color="white"
+                placeholder="Enter your title"
+                minW={Math.floor(window.width / 1.25)}
+                variant="flushed"
+                value={state}
+                onChange={e => changeState(e.target.value)}
+            />
+        </Box>
     );
 };
 

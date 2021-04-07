@@ -1,8 +1,5 @@
 mutation CreatePostMutation($input: PostDTO!, $key: String!) {
     newPost(input: $input, key: $key) {
         id
-        title
-        body
-        crabrave
     }
 }

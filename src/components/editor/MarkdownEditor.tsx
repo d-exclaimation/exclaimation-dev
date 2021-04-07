@@ -7,42 +7,27 @@
 //
 
 import React, {useState} from 'react';
-import {
-    Box, FormControl, FormLabel, Textarea, Button,
-    Tabs, TabList, TabPanels, Tab, TabPanel
-} from '@chakra-ui/react';
-import {useWindowSize} from '../../lib/hooks/useWindow';
-import PreviewMarkdown from './PreviewMarkdown';
+import {Button, HStack} from '@chakra-ui/react';
+import MarkdownForm from './MarkdownForm';
+import KeyForm from './KeyForm';
 
-const MarkdownEditor: React.FC = () => {
-    const window = useWindowSize();
+interface Props {
+    submit: (title: string, body: string, key: string) => void,
+}
+
+const MarkdownEditor: React.FC<Props> = ({submit}: Props) => {
     const [form, setForm] = useState<string>('');
+    const [title, setTitle] = useState<string>('');
+    const [key, setKey] = useState<string>('');
+
+
     return (
         <>
-            <Box p={window.width < window.height ? 2 : 4} boxShadow="dark-lg" borderRadius={10}>
-                <Tabs isFitted variant="unstyled" colorScheme="teal" isManual>
-                    <TabList>
-                        <Tab _selected={{ color: 'teal.200' }}>Editor</Tab>
-                        <Tab _selected={{ color: 'red.200' }} >Preview</Tab>
-                    </TabList>
-                    <TabPanels>
-                        <TabPanel>
-                            <Textarea
-                                variant="flushed"
-                                minW={Math.floor(window.width / 1.25)} minH={Math.floor(window.height / 1.6)}
-                                size="lg"
-                                color="#fafafa"
-                                value={form}
-                                placeholder="Enter your post body here"
-                                onChange={e => setForm(e.target.value)}
-                            />
-                        </TabPanel>
-                        <TabPanel>
-                            <PreviewMarkdown body={form} />
-                        </TabPanel>
-                    </TabPanels>
-                </Tabs>
-            </Box>
+            <MarkdownForm title={title} setTitle={setTitle} body={form} setBody={setForm}/>
+            <HStack m={5}>
+                <KeyForm changeKey={setKey} keyValue={key}/>
+                <Button colorScheme="teal" onClick={() => submit(title, form, key)}>Submit</Button>
+            </HStack>
         </>
     );
 };
