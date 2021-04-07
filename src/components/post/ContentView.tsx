@@ -11,7 +11,7 @@ import {FullPostFragment} from '../../models/graphql/types';
 import {Box} from '@chakra-ui/react';
 import ReactMarkdown from 'react-markdown';
 import {useWindowSize} from '../../lib/hooks/useWindow';
-import {countHeader} from '../shared/MarkdownOverrider';
+import {countHeader} from '../shared/HeaderOveride';
 
 interface Props {
     post: FullPostFragment

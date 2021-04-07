@@ -59,7 +59,7 @@ const MusicPlayer: React.FC<Props> = ({ url, name }: Props) => {
         <>
             <Box p={window.width > window.height ? 6 : 3} bg="white" borderRadius={window.width > window.height ? 400 : 200}>
                 <Box p={window.width > window.height ? 12 : 3} bg="black" borderRadius={window.width > window.height ? 400 : 200}>
-                    <Img w={diskWidth} className={isPlaying ? 'Spinning' : ''} src="/images/mylogo.png" />
+                    <Img w={diskWidth} className={isPlaying ? 'Spinning' : ''} src="/images/mylogo.png" alt="my logo spinning" />
                 </Box>
             </Box>
             <Box

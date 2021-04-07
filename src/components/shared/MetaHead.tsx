@@ -16,6 +16,7 @@ interface Props {
 const MetaHead: React.FC<Props> = ({title, description}: Props) => {
     return (
         <Head>
+            <meta property="title" content={title}/>
             <meta property="og:title" content={title}/>
             <meta property="og:type" content="website"/>
             <meta property="og:url" content="https://exclaimation.netlify.app/"/>
@@ -25,6 +26,7 @@ const MetaHead: React.FC<Props> = ({title, description}: Props) => {
             <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
             <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
             <link rel="manifest" href="/images/site.webmanifest" />
+            <meta property="description" content={description}/>
             <meta property="og:description"
                 content={description} />
             <title> { title } </title>

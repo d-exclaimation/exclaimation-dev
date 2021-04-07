@@ -8,7 +8,6 @@
 
 import React from 'react';
 import {Select, Box, Center} from '@chakra-ui/react';
-import {UpDownIcon} from '@chakra-ui/icons';
 import {useDynamicCorner} from '../../lib/hooks/useDynamicCorner';
 import {useDynamicSize} from '../../lib/hooks/useDynamicSize';
 import {useWindowSize} from '../../lib/hooks/useWindow';
@@ -37,11 +36,11 @@ const ToggleSort: React.FC<Props> = ({sort, limit}: Props) => {
                     color="pink.500"
                     size="md"
                     width={Math.min(Math.floor(window.width / 6), 100)}
-                    fontSize={size}
+                    fontSize={size === 'xs' ? '16px' : size}
                     onChange={val => router.push(`/post?limit=${limit}&sort=${val.target.value}`)} value={sort}
                 >
-                    <option value="latest">Latest</option>
-                    <option value="hot">Hot</option>
+                    <option value="latest">{window.width < window.height ? '🕓' : 'Latest'}</option>
+                    <option value="hot">{window.width < window.height ? '🔥' : 'Hot'}</option>
                 </Select>
             </Center>
         </Box>

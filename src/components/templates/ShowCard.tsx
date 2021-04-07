@@ -27,7 +27,7 @@ const ShowCard: React.FC<Props> = ({ imageUrl, title, body, url }: Props) => {
 
     return (
         <Box bg="##f282c34" maxW={card.width} boxShadow="dark-lg" borderRadius="lg" overflow="hidden">
-            <Img src={imageUrl} />
+            <Img src={imageUrl} alt={title} />
 
             <Link href={url}>
                 <Box p="3">
