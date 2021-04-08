@@ -27,7 +27,7 @@ const TitleEditor: React.FC<Props> = ({state, changeState}: Props) => {
                 color="white"
                 placeholder="Enter your title"
                 minW={Math.floor(window.width / 1.25)}
-                variant="flushed"
+                variant="unstyled"
                 value={state}
                 onChange={e => changeState(e.target.value)}
             />

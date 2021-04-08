@@ -25,15 +25,15 @@ const MarkdownForm: React.FC<Props> = ({title, body, setTitle, setBody}: Props) 
         <>
             <TitleEditor state={title} changeState={setTitle}/>
             <Box p={window.width < window.height ? 2 : 4} boxShadow="dark-lg" borderRadius={10}>
-                <Tabs isFitted variant="unstyled" colorScheme="teal" isManual>
+                <Tabs isFitted variant="soft-rounded" colorScheme="whiteAlpha" isManual>
                     <TabList>
-                        <Tab _selected={{ color: 'teal.200' }}>Editor</Tab>
-                        <Tab _selected={{ color: 'red.200' }} >Preview</Tab>
+                        <Tab>Editor</Tab>
+                        <Tab>Preview</Tab>
                     </TabList>
                     <TabPanels>
                         <TabPanel>
                             <Textarea
-                                variant="flushed"
+                                variant="unstyled"
                                 minW={Math.floor(window.width / 1.25)} minH={Math.floor(window.height / 1.6)}
                                 size="lg"
                                 color="#fafafa"

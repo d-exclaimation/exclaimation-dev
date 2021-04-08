@@ -13,29 +13,26 @@ import {withCustomUrql} from '../lib/ssr/withUrqlClient';
 import MetaHead from '../components/shared/MetaHead';
 import MarkdownEditor from '../components/editor/MarkdownEditor';
 import {useCreatePostMutationMutation} from '../models/graphql/types';
-import {useRouter} from 'next/router';
+import RouteSideCar from '../components/shared/RoutesSideBar';
 
 const Editor: React.FC = () => {
-    const router = useRouter();
     const [, createPost] = useCreatePostMutationMutation();
     return (
         <div className="Post-header">
             <MetaHead title={'d-exclaimation post editor'} description={'Editor with a preview with markdown'}/>
+            <RouteSideCar/>
             <MarkdownEditor submit={async (title, body, key) => {
                 try {
-                    const {error, data} = await createPost({
+                    const {error} = await createPost({
                         input: {
                             title,
                             body
                         },
                         key: key
                     });
-                    if (error)
-                        await router.push('/post');
-                    else
-                        await router.push(`/post/${data?.newPost.id}`);
+                    return error ? 'failure' : 'success';
                 } catch (e) {
-                    console.error(e);
+                    return 'failure';
                 }
             }} />
         </div>

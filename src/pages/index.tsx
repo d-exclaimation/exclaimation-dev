@@ -15,7 +15,6 @@ import Carousel from '../components/Carousel';
 import {GetServerSideProps} from 'next';
 import {getProfile, getTopLang} from '../lib/apis/GetGithub';
 import {GithubProfile} from '../models/interfaces/GithubProfile';
-import Head from 'next/head';
 import EpicProfile from '../components/EpicProfile';
 import MetaHead from '../components/shared/MetaHead';
 
