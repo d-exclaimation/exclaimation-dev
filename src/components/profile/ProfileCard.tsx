@@ -22,7 +22,7 @@ const ProfileCard: React.FC<Props> = ({ imageUrl }: Props) => {
             boxShadow="dark-lg"
             borderRadius="lg" overflow="hidden"
         >
-            <Img width={Math.floor(window.width / 2.5)} src={imageUrl} alt="my logo" />
+            <Img width="50vw" src={imageUrl} alt="my logo" />
         </Box>
     );
 };

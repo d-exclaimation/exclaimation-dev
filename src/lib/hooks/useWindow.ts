@@ -15,7 +15,7 @@ interface Size {
 }
 
 export function useWindowSize(): Size {
-    // Initialize state with undefined width/height so server and client renders match
+    // Initialize state with undefined width/height so server and client server match
     const [windowSize, setWindowSize] = useState<Size>({
         width: 0,
         height: 0,

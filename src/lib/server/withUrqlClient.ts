@@ -9,9 +9,10 @@
 import {__graph__} from '../../constants/uri';
 import {SSRExchange} from 'next-urql';
 
-export const withCustomUrql = (_ssrExchange: SSRExchange) => ({
+export const createUrqlClient = (_ssrExchange: SSRExchange):  {fetchOptions: {credentials: 'include'}, url: string} => ({
     url: __graph__,
     fetchOptions: {
         credentials: 'include' as const
-    }
+    },
+    // exchanges: [_ssrExchange]
 });

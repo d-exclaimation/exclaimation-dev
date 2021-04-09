@@ -1,7 +1,7 @@
 {
   "name": "exclaimation-dev",
-  "version": "1.2.0",
-  "homepage": "https://exclaimation.netlify.app/",
+  "version": "6.2.0",
+  "homepage": "https://www.dexclaimation.com/",
   "scripts": {
     "dev": "next",
     "build": "next build",

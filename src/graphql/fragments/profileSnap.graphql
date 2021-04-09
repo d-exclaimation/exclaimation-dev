@@ -1,0 +1,7 @@
+fragment ProfileSnap on Profile {
+    name
+    bio
+    githubURL
+    twitterUsername
+    reposCount
+}

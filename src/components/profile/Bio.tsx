@@ -27,21 +27,6 @@ interface Props {
 
 const Bio: React.FC<Props> = ({ title, bio, color }: Props) => {
     const window = useWindowSize();
-    const bSize = (): 'sm' | 'md' | 'lg' | 'xs' => {
-        const size = (window.width / 650) * 4;
-        const index = Math.floor(size) - 1;
-        const all: ('xs' | 'sm' | 'md' | 'lg')[] = ['xs', 'sm', 'sm', 'lg'];
-        return all[index];
-    };
-
-    const textSize = (): 'sm' | 'md' => {
-        const size = bSize();
-        if (size === 'sm' || size === 'md') {
-            return 'sm';
-        }
-        return 'md';
-    };
-
     const hexColor = ((): string => {
         switch (color) {
         case Color.blue:
@@ -58,10 +43,10 @@ const Bio: React.FC<Props> = ({ title, bio, color }: Props) => {
             <Feature
                 title={title}
                 desc={bio}
-                width={Math.floor(window.width / 2)}
+                width={Math.max(300 ,Math.floor(window.width / 1.5))}
                 headingColor={'#a09c9c'}
                 color={hexColor}
-                font={textSize()}
+                font="min(16px, 3vw)"
             />
         </Box>
     );

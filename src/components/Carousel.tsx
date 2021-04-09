@@ -14,32 +14,23 @@ import {
 } from '@chakra-ui/react';
 import {favRed, nextBlue} from '../constants/color.scheme';
 
-import {useWindowSize} from '../lib/hooks/useWindow';
-import {GithubProfile} from '../models/interfaces/GithubProfile';
 import Link from 'next/link';
+import {ProfileSnapFragment} from '../models/graphql/types';
 
 interface Props {
-    github: GithubProfile,
+    github: ProfileSnapFragment,
     langName: string,
     percentage: number,
 }
 
 const Carousel: React.FC<Props> = ({ github, langName, percentage }: Props) => {
-    const window = useWindowSize();
-    const bSize = (): 'sm' | 'md' | 'lg' | 'xs' => {
-        const size = (window.width / 1300) * 4;
-        const index = Math.floor(size) - 1;
-        const all: ('xs' | 'sm' | 'md' | 'lg')[] = ['xs', 'sm', 'sm', 'lg'];
-        return all[index];
-    };
-
     return (
         <VStack>
             <HStack>
-                <Link href={github.html_url}>
+                <Link href={github.githubURL}>
                     <Button
                         variant="ghost"
-                        size={bSize()}
+                        fontSize="min(16px, 3vw + 2px)"
                         color="#fafafa"
                         boxShadow="dark-lg"
                     >
@@ -47,10 +38,10 @@ const Carousel: React.FC<Props> = ({ github, langName, percentage }: Props) => {
                     </Button>
                 </Link>
 
-                <Link href={`https://twitter.com/${github.twitter_username}`}>
+                <Link href={`https://twitter.com/${github.twitterUsername}`}>
                     <Button
                         variant="ghost"
-                        size={bSize()}
+                        fontSize="min(16px, 3vw + 2px)"
                         color="#00acee"
                         boxShadow="dark-lg"
                     >
@@ -60,7 +51,7 @@ const Carousel: React.FC<Props> = ({ github, langName, percentage }: Props) => {
                 <Link href={'https://www.instagram.com/d_exclaimation/'}>
                     <Button
                         variant="ghost"
-                        size={bSize()}
+                        fontSize="min(16px, 3vw + 2px)"
                         color={'#da83ec'}
                         boxShadow="dark-lg"
                     >
@@ -72,18 +63,18 @@ const Carousel: React.FC<Props> = ({ github, langName, percentage }: Props) => {
                 <Box
                     m={2} p={5} borderRadius={20} shadow="dark-lg" color="#fafafa"
                 >
-                    <Link href={github.html_url + '?tab=repositories'}>
+                    <Link href={github.githubURL + '?tab=repositories'}>
                         <Stat>
                             <StatLabel
                                 color={favRed}
-                                size={bSize()}
+                                fontSize="min(20px, 3vw + 2px)"
                             >Public Repos</StatLabel>
                             <StatNumber
-                                size={bSize()}
-                            >{ github.public_repos }</StatNumber>
-                            <StatHelpText size={bSize()}>
+                                fontSize="min(20px, 3vw + 2px)"
+                            >{ github.reposCount }</StatNumber>
+                            <StatHelpText fontSize="min(16px, 3vw + 2px)">
                                 <StatArrow type="increase" />
-                                {( 1 / github.public_repos).toFixed(2)}%
+                                {( 1 / github.reposCount).toFixed(2)}%
                             </StatHelpText>
                         </Stat>
                     </Link>
@@ -94,14 +85,14 @@ const Carousel: React.FC<Props> = ({ github, langName, percentage }: Props) => {
                     <Stat>
                         <StatLabel
                             color={nextBlue}
-                            size={bSize()}
+                            fontSize="min(20px, 3vw + 2px)"
                         > Top Language </StatLabel>
                         <StatNumber
-                            size={bSize()}
+                            fontSize="min(20px, 3vw + 2px)"
                         >{ langName }</StatNumber>
-                        <StatHelpText size={bSize()}>
+                        <StatHelpText fontSize="min(16px, 3vw + 2px)">
                             <StatArrow type="increase" />
-                            {percentage}%
+                            {percentage.toFixed(2)}%
                         </StatHelpText>
                     </Stat>
                 </Box>

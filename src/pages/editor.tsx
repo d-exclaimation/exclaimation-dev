@@ -9,7 +9,7 @@
 import React from 'react';
 
 import {withUrqlClient} from 'next-urql';
-import {withCustomUrql} from '../lib/ssr/withUrqlClient';
+import {createUrqlClient} from '../lib/server/withUrqlClient';
 import MetaHead from '../components/shared/MetaHead';
 import MarkdownEditor from '../components/editor/MarkdownEditor';
 import {useCreatePostMutationMutation} from '../models/graphql/types';
@@ -42,4 +42,4 @@ const Editor: React.FC = () => {
     );
 };
 
-export default withUrqlClient(withCustomUrql)(Editor);
+export default withUrqlClient(createUrqlClient)(Editor);

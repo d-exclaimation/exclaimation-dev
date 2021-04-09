@@ -38,13 +38,12 @@ const scheme = (index: number): ColorScheme => {
 
 const MusicList: React.FC<Props> = ({curr, setCurr, musics}: Props) => {
     const corner = useDynamicCorner();
-    const bSize = useDynamicSize();
     const [isShown, setShown] = React.useState<boolean>(false);
 
     return (
         <>
             <Button
-                size={bSize}
+                fontSize="min(16px, 3vw + 2px)"
                 pos="absolute" bottom={corner.y} right={corner.x}
                 variant="ghost"
                 color={favRed}

@@ -12,7 +12,7 @@ import MetaHead from '../../components/shared/MetaHead';
 import RouteSideCar from '../../components/shared/RoutesSideBar';
 import {Box, Center} from '@chakra-ui/react';
 
-import {withCustomUrql} from '../../lib/ssr/withUrqlClient';
+import {createUrqlClient} from '../../lib/server/withUrqlClient';
 import {withUrqlClient} from 'next-urql';
 import {useRouter} from 'next/router';
 import {useDeletePostMutation, usePostQuery} from '../../models/graphql/types';
@@ -74,4 +74,4 @@ const Post: React.FC = () => {
     );
 };
 
-export default withUrqlClient(withCustomUrql, {ssr: true})(Post);
+export default withUrqlClient(createUrqlClient, {ssr: true})(Post);

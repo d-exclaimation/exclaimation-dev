@@ -1,0 +1,5 @@
+query Languages {
+    repos(limit: 1000) {
+        ...LanguageSnapshot
+    }
+}

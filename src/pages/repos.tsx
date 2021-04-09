@@ -14,50 +14,59 @@ import RouteSideCar from '../components/shared/RoutesSideBar';
 import ProjectGrid from '../components/projects/ProjectGrid';
 import MetaHead from '../components/shared/MetaHead';
 
-import {GetServerSideProps} from 'next';
-import {getRepos} from '../lib/apis/GetGithub';
-import {Repo} from '../models/interfaces/Repo';
+import {withUrqlClient} from 'next-urql';
+import {createUrqlClient} from '../lib/server/withUrqlClient';
+
 import FooterDisclaimer from '../components/shared/FooterDisclaimer';
+import {useReposQuery} from '../models/graphql/types';
+import {useRouter} from 'next/router';
 
+const Repos: React.FC = () => {
+    const router = useRouter();
+    const [{fetching, data, error}] = useReposQuery({
+        variables: {
+            limit: 30
+        }
+    });
 
-interface IProps {
-    res: Repo[]
-}
+    if (error) {
+        router.push('/404?nothing=true').catch(console.log);
+        return <div className="App-header">Not found</div>;
+    }
 
+    if (!data) {
+        return <div className="App-header">Not found</div>;
+    }
 
-const Repos: React.FC<IProps> = ({ res }: IProps) => {
+    if (fetching) {
+        return <div className="App-header">Loading...</div>;
+    }
 
     return (
         <>
             <MetaHead
-                title={`d-exclaimation's ${res.length} repos`}
+                title={`d-exclaimation's ${data.repos.length} repos`}
                 description={'All projects and repos made by d-exclaimation (vin). This is where you find whatever I spent most of my days doing.'}
             />
             <div className="App-header">
                 <VStack>
                     <RouteSideCar/>
                     <Hero title={'Repos'}/>
-                    <ProjectGrid repos={res}/>
-
+                    <ProjectGrid repos={data.repos}/>
+                    <HStack>
+                        <Text
+                            m={2}
+                            fontSize="min(10px, 2vw)"
+                            color="gray.500"
+                        >
+                            Flat icons by MrSquaare
+                        </Text>
+                        <FooterDisclaimer/>
+                    </HStack>
                 </VStack>
-                <HStack>
-                    <Text
-                        m={2}
-                        fontSize="sm"
-                        color="gray.500"
-                    >
-                    Flat icons by MrSquaare
-                    </Text><FooterDisclaimer/>
-                </HStack>
             </div>
         </>
     );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
-    const res = await getRepos();
-    return { props: { res } };
-};
-
-
-export default Repos;
+export default withUrqlClient(createUrqlClient, {ssr: true})(Repos);

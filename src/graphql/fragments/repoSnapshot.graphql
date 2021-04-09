@@ -1,0 +1,8 @@
+fragment RepoSnapshot on Repo {
+    id
+    language
+    name
+    description
+    repoName
+    url
+}

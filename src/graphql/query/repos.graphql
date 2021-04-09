@@ -1,0 +1,5 @@
+query Repos ($limit: Int!) {
+    repos(limit: $limit) {
+        ...RepoSnapshot
+    }
+}

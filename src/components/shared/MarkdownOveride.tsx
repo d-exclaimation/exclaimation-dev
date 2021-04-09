@@ -8,7 +8,7 @@
 
 import React from 'react';
 import {countHeader} from './HeaderOveride';
-import {isolatePlumbing} from '../../lib/apis/pipes';
+import {isolatePlumbing} from '../../lib/data/pipes';
 import {Box} from '@chakra-ui/react';
 import ReactMarkdown from 'react-markdown';
 

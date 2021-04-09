@@ -9,13 +9,13 @@ import React from 'react';
 import ShowCard from '../templates/ShowCard';
 import { SimpleGrid } from '@chakra-ui/react';
 
-import {Repo} from '../../models/interfaces/Repo';
 import {useWindowSize} from '../../lib/hooks/useWindow';
 import {langBar} from '../../lib/LanguageBarURL';
 import {drivePlayURL} from '../../lib/GoogleDriveURL';
+import {RepoSnapshotFragment} from '../../models/graphql/types';
 
 interface Props {
-    repos: Repo[]
+    repos: RepoSnapshotFragment[]
 }
 
 const ProjectGrid: React.FC<Props> = ({ repos }: Props) => {
@@ -33,14 +33,14 @@ const ProjectGrid: React.FC<Props> = ({ repos }: Props) => {
                 p={2}
                 spacing={4}
             >
-                { repos.map((item: Repo) => {
+                { repos.map(item => {
                     return (
                         <ShowCard
                             key={item.id}
                             imageUrl={langImage(`${item.language}`.toLowerCase())}
                             title={item.name}
-                            body={item.description || item.full_name}
-                            url={item.html_url}
+                            body={item.description || item.repoName}
+                            url={item.url}
                         />
                     );
                 })}

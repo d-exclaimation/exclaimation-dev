@@ -12,8 +12,8 @@ import {Text} from '@chakra-ui/react';
 const FooterDisclaimer: React.FC = () => {
     return (
         <Text
-            p={10} color="gray.500"
-            fontSize="xs"
+            p={5} color="gray.500"
+            fontSize="min(10px, 2vw)"
         > { 'Copyright © 2021 d-exclaimation. All rights reserved.' } </Text>
     );
 };

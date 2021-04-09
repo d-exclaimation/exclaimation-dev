@@ -16,7 +16,6 @@ import {routes} from '../../lib/routes';
 import {useWindowSize} from '../../lib/hooks/useWindow';
 import {capitalized} from '../../lib/Typography';
 import {useDynamicCorner} from '../../lib/hooks/useDynamicCorner';
-import {useDynamicSize} from '../../lib/hooks/useDynamicSize';
 
 interface Props {
     color?: string
@@ -27,7 +26,6 @@ const RouteSideCar: React.FC<Props> = ({color}: Props): JSX.Element => {
     const res = routes();
     const window = useWindowSize();
     const location = useDynamicCorner();
-    const bSize = useDynamicSize();
 
     const [shown, setShown] = React.useState<boolean>(false);
 
@@ -53,7 +51,7 @@ const RouteSideCar: React.FC<Props> = ({color}: Props): JSX.Element => {
                             <Button
                                 color={hex}
                                 variant="ghost"
-                                size={bSize}
+                                fontSize="min(16px, 3vw + 2px)"
                             > { name } </Button>
                         </Link>
                     );
@@ -61,7 +59,7 @@ const RouteSideCar: React.FC<Props> = ({color}: Props): JSX.Element => {
                 <Button
                     color={shown ? hex : 'gray.500'}
                     variant="ghost"
-                    size={bSize}
+                    fontSize="min(16px, 3vw + 2px)"
                     onClick={() => setShown(!shown)}
                 >
                     { shown ? ( window.width >= window.height ? '⟨' : '︿') : '...' }

@@ -21,7 +21,6 @@ interface Props {
 const ToggleSort: React.FC<Props> = ({sort, limit}: Props) => {
     const router = useRouter();
     const corner = useDynamicCorner();
-    const size = useDynamicSize(2);
     const window = useWindowSize();
     return (
         <Box
@@ -35,12 +34,12 @@ const ToggleSort: React.FC<Props> = ({sort, limit}: Props) => {
                     variant="filled"
                     color="pink.500"
                     size="md"
-                    width={Math.min(Math.floor(window.width / 6), 100)}
-                    fontSize={size === 'xs' ? '16px' : size}
+                    width={window.width < window.height ? '30vw': 'auto'}
+                    fontSize={window.width < window.height ? '4vw' : '1vw'}
                     onChange={val => router.push(`/post?limit=${limit}&sort=${val.target.value}`)} value={sort}
                 >
-                    <option value="latest">{window.width < window.height ? '🕓' : 'Latest'}</option>
-                    <option value="hot">{window.width < window.height ? '🔥' : 'Hot'}</option>
+                    <option value="latest">Latest</option>
+                    <option value="hot">Hot</option>
                 </Select>
             </Center>
         </Box>

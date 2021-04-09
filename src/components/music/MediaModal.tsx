@@ -26,7 +26,6 @@ interface Props {
 
 const MediaModal: React.FC<Props> = ({musics, setMusics}: Props) => {
     const corner = useDynamicCorner();
-    const bSize = useDynamicSize();
     const [shown, setShown] = React.useState(false);
     const [name, setName] = React.useState('');
     const [url, setURL] = React.useState('');
@@ -38,7 +37,7 @@ const MediaModal: React.FC<Props> = ({musics, setMusics}: Props) => {
             <Button
                 color="teal"
                 boxShadow="dark-lg"
-                size={bSize}
+                fontSize="min(16px, 3vw + 2px)"
                 onClick={() => setShown(true)}> Add New </Button>
             <FormModal
                 title={'Add a new media'}

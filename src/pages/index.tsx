@@ -8,70 +8,76 @@
 
 import React from 'react';
 
-import {Grid, GridItem, Text, Box, VStack} from '@chakra-ui/react';
+import {Grid, GridItem, Text, Box, VStack, Center} from '@chakra-ui/react';
 import RouteSideCar from '../components/shared/RoutesSideBar';
 import Carousel from '../components/Carousel';
 
-import {GetServerSideProps} from 'next';
-import {getProfile, getTopLang} from '../lib/apis/GetGithub';
-import {GithubProfile} from '../models/interfaces/GithubProfile';
+import {withUrqlClient} from 'next-urql';
+import {createUrqlClient} from '../lib/server/withUrqlClient';
 import EpicProfile from '../components/EpicProfile';
 import MetaHead from '../components/shared/MetaHead';
-import {routes} from '../lib/routes';
 import FooterDisclaimer from '../components/shared/FooterDisclaimer';
-
-interface Props {
-    github: GithubProfile,
-    langName: string,
-    percentage: number,
-}
+import {useWindowSize} from '../lib/hooks/useWindow';
+import {useLanguagesQuery, useProfileQuery} from '../models/graphql/types';
+import {useRouter} from 'next/router';
+import {countTopLang} from '../lib/data/countTopLang';
 
 
-const Index: React.FC<Props> = ({ github, langName, percentage }: Props) => {
+const Index: React.FC = () => {
+    const window = useWindowSize();
+    const router = useRouter();
+    const [{fetching, data, error}] = useProfileQuery();
+    const [{data: langs}] = useLanguagesQuery();
+    const { top, percentage } = countTopLang(langs?.repos);
+
+    if (error)
+        router.push('/404?nothing=true').catch(console.log);
+
+    if (!data) {
+        return <div>Loading...</div>;
+    }
+
+    if(fetching) {
+        return <div className="App-header">Loading...</div>;
+    }
+
     return (
         <>
-            <MetaHead title={github.name} description={'Welcome to the d-exclaimation developer website by vin aka d-exclaimation. This is the website / web app for all things related to me. My profiles, links, repos, projects, bios, and blogs, you named it it is probably here'}/>
+            <MetaHead title={data.profile.name} description={'Welcome to the d-exclaimation developer website by vin aka d-exclaimation. This is the website / web app for all things related to me. My profiles, links, repos, projects, bios, and blogs, you named it it is probably here'}/>
             <div className="App-header">
                 <Grid
                     gap={4}
                 >
-                    <GridItem colSpan={4} rowSpan={2}>
+                    <GridItem colSpan={5} rowSpan={2} mt={window.width < window.height ? '30vw' : '10vw'}>
                         <VStack>
                             <RouteSideCar/>
-                            <EpicProfile name={github.name}/>
+                            <EpicProfile name={data.profile.name}/>
                             <Box m={2}>
                                 <Text
                                     align={'center'}
                                     m={2} color="#fafafa"
-                                >{github.bio}</Text>
+                                >{data.profile.bio}</Text>
                             </Box>
                         </VStack>
                     </GridItem>
                     <GridItem colSpan={1} ocacity={0} />
-                    <GridItem colSpan={2}>
+                    <GridItem colSpan={3}>
                         <Carousel
-                            github={github}
-                            langName={langName}
+                            github={data.profile}
+                            langName={top}
                             percentage={percentage}
                         />
                     </GridItem>
                     <GridItem colSpan={1} ocacity={0} />
+                    <GridItem colSpan={5}>
+                        <Center>
+                            <FooterDisclaimer/>
+                        </Center>
+                    </GridItem>
                 </Grid>
-                <FooterDisclaimer/>
             </div>
         </>
     );
 };
 
-
-export const getServerSideProps: GetServerSideProps = async () => {
-    const res = await getProfile();
-    const lang = await getTopLang();
-    return { props: {
-        github: res,
-        langName: lang.name,
-        percentage: lang.percent,
-    }};
-};
-
-export default Index;
+export default withUrqlClient(createUrqlClient, { ssr: true })(Index);

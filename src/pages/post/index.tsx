@@ -11,7 +11,7 @@ import MetaHead from '../../components/shared/MetaHead';
 import Hero from '../../components/templates/Hero';
 import PostFeed from '../../components/feed/PostFeed';
 import {Box} from '@chakra-ui/react';
-import {withCustomUrql} from '../../lib/ssr/withUrqlClient';
+import {createUrqlClient} from '../../lib/server/withUrqlClient';
 import {withUrqlClient} from 'next-urql';
 import {useAllPostQuery} from '../../models/graphql/types';
 import RouteSideCar from '../../components/shared/RoutesSideBar';
@@ -43,7 +43,7 @@ const Feed: React.FC = () => {
             <div className="App-header">
                 <RouteSideCar/>
                 <ToggleSort sort={by} limit={limit}/>
-                <Box m={5}>
+                <Box m={5} mt="min(10px, 40vw)">
                     <Hero title={'Blogs and Posts'}/>
                 </Box>
                 <PostFeed isFetching={fetching} posts={data?.posts ?? []}/>
@@ -54,4 +54,4 @@ const Feed: React.FC = () => {
     );
 };
 
-export default withUrqlClient(withCustomUrql, { ssr: true })(Feed);
+export default withUrqlClient(createUrqlClient, { ssr: true })(Feed);
