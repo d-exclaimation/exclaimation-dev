@@ -20,7 +20,7 @@ const PreviewMarkdown: React.FC<Props> = ({body}: Props) => {
     return (
         <Box
             color="white"
-            w="80%" minH={Math.floor(window.height / 1.6)}
+            w={Math.floor(window.width * 0.8)} minH={Math.floor(window.height / 1.6)}
         >
             {overideMarkdown(body).map((com, idx) => {
                 return <Box key={idx}>{com}</Box>;
