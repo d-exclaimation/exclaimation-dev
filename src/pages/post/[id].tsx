@@ -15,9 +15,11 @@ import {Box, Center} from '@chakra-ui/react';
 import {withCustomUrql} from '../../lib/ssr/withUrqlClient';
 import {withUrqlClient} from 'next-urql';
 import {useRouter} from 'next/router';
-import {usePostQuery} from '../../models/graphql/types';
+import {useDeletePostMutation, usePostQuery} from '../../models/graphql/types';
 import ContentView from '../../components/post/ContentView';
 import UpRave from '../../components/post/UpRave';
+import Deletion from '../../components/post/Deletion';
+import {FormResult} from '../../models/enum/FormResult';
 
 
 const Post: React.FC = () => {
@@ -29,22 +31,25 @@ const Post: React.FC = () => {
             id: pid
         }
     });
+    const [, deletePost] = useDeletePostMutation();
 
-    if(error)
-        return  <div className="App-header">
-            <Hero title={'404 not found :)'}/>
+    if(error) {
+        if (typeof window !== 'undefined')
+            router.push(`/404?post=${pid}`).catch(console.log);
+        return <div className="App-header">
+            <Hero title={'Please wait...'}/>
         </div>;
-
+    }
     if(fetching)
         return <div className="App-header">fetching...</div>;
-
     if (!data?.post)
         return <div className="App-header">404 Not found :)</div>;
 
+    const firstLine = data.post.nodes.length < 1 ? '' : data.post.nodes[0].leaf;
 
     return (
         <>
-            <MetaHead title={data.post.title} description={`Blog post about ${data.post.title}`} />
+            <MetaHead title={data.post.title} description={firstLine} />
             <div className="Post-header">
                 <RouteSideCar />
                 <Box m={5}>
@@ -54,6 +59,14 @@ const Post: React.FC = () => {
                     <ContentView post={data.post}/>
                 </Center>
                 <UpRave post={data.post}/>
+                <Deletion deletePost={async key => {
+                    try {
+                        const {error} = await deletePost({id: pid, key: key});
+                        return error ? FormResult.failure : FormResult.success;
+                    } catch (e) {
+                        return FormResult.failure;
+                    }
+                }}/>
             </div>
         </>
     );

@@ -8,7 +8,7 @@
 
 import React from 'react';
 import {Flex, IconButton, Text} from '@chakra-ui/react';
-import {ChevronUpIcon} from '@chakra-ui/icons';
+import {ArrowUpIcon} from '@chakra-ui/icons';
 import {FullPostFragment, useUpRaveMutation} from '../../models/graphql/types';
 import {useDynamicCorner} from '../../lib/hooks/useDynamicCorner';
 import {useDynamicSize} from '../../lib/hooks/useDynamicSize';
@@ -37,7 +37,7 @@ const UpRave: React.FC<Props> = ({post}: Props) => {
                 aria-label="UpRave"
                 variant="outline"
                 size={size}
-                icon={<ChevronUpIcon/>}
+                icon={<ArrowUpIcon/>}
                 isLoading={fetching}
                 onClick={() => upRave({
                     id: parseInt(post.id)

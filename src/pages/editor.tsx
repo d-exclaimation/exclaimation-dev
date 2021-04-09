@@ -14,6 +14,7 @@ import MetaHead from '../components/shared/MetaHead';
 import MarkdownEditor from '../components/editor/MarkdownEditor';
 import {useCreatePostMutationMutation} from '../models/graphql/types';
 import RouteSideCar from '../components/shared/RoutesSideBar';
+import {FormResult} from '../models/enum/FormResult';
 
 const Editor: React.FC = () => {
     const [, createPost] = useCreatePostMutationMutation();
@@ -30,9 +31,9 @@ const Editor: React.FC = () => {
                         },
                         key: key
                     });
-                    return error ? 'failure' : 'success';
+                    return error ? FormResult.failure : FormResult.success;
                 } catch (e) {
-                    return 'failure';
+                    return FormResult.failure;
                 }
             }} />
         </div>

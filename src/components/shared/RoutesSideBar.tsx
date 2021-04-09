@@ -37,6 +37,8 @@ const RouteSideCar: React.FC<Props> = ({color}: Props): JSX.Element => {
             p={Math.floor(location.x / 2)}
             borderRadius={10}
             boxShadow="dark-lg"
+            bg="#282c34"
+            style={{ zIndex: 10 }}
         >
             <Stack
                 direction={ window.width >= window.height ? 'row'  : 'column'}

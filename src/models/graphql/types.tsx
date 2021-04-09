@@ -112,6 +112,20 @@ export type CreatePostMutationMutation = (
   ) }
 );
 
+export type DeletePostMutationVariables = Exact<{
+  id: Scalars['Int'];
+  key: Scalars['String'];
+}>;
+
+
+export type DeletePostMutation = (
+  { __typename?: 'Mutation' }
+  & { deletePost: (
+    { __typename?: 'Post' }
+    & Pick<Post, 'id'>
+  ) }
+);
+
 export type UpRaveMutationVariables = Exact<{
   id: Scalars['Int'];
 }>;
@@ -181,6 +195,17 @@ export const CreatePostMutationDocument = gql`
 
 export function useCreatePostMutationMutation() {
   return Urql.useMutation<CreatePostMutationMutation, CreatePostMutationMutationVariables>(CreatePostMutationDocument);
+};
+export const DeletePostDocument = gql`
+    mutation DeletePost($id: Int!, $key: String!) {
+  deletePost(id: $id, key: $key) {
+    id
+  }
+}
+    `;
+
+export function useDeletePostMutation() {
+  return Urql.useMutation<DeletePostMutation, DeletePostMutationVariables>(DeletePostDocument);
 };
 export const UpRaveDocument = gql`
     mutation UpRave($id: Int!) {
