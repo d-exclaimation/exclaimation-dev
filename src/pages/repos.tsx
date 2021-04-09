@@ -8,7 +8,7 @@
 
 import React from 'react';
 
-import {VStack, Text} from '@chakra-ui/react';
+import {VStack, Text, HStack} from '@chakra-ui/react';
 import Hero from '../components/templates/Hero';
 import RouteSideCar from '../components/shared/RoutesSideBar';
 import ProjectGrid from '../components/projects/ProjectGrid';
@@ -17,6 +17,7 @@ import MetaHead from '../components/shared/MetaHead';
 import {GetServerSideProps} from 'next';
 import {getRepos} from '../lib/apis/GetGithub';
 import {Repo} from '../models/interfaces/Repo';
+import FooterDisclaimer from '../components/shared/FooterDisclaimer';
 
 
 interface IProps {
@@ -37,14 +38,17 @@ const Repos: React.FC<IProps> = ({ res }: IProps) => {
                     <RouteSideCar/>
                     <Hero title={'Repos'}/>
                     <ProjectGrid repos={res}/>
+
+                </VStack>
+                <HStack>
                     <Text
                         m={2}
                         fontSize="sm"
                         color="gray.500"
                     >
-                        Flat icons by MrSquaare
-                    </Text>
-                </VStack>
+                    Flat icons by MrSquaare
+                    </Text><FooterDisclaimer/>
+                </HStack>
             </div>
         </>
     );

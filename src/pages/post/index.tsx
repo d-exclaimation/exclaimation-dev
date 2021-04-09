@@ -18,6 +18,7 @@ import RouteSideCar from '../../components/shared/RoutesSideBar';
 import {useRouter} from 'next/router';
 import ShowMore from '../../components/feed/ShowMore';
 import ToggleSort from '../../components/feed/ToggleSort';
+import FooterDisclaimer from '../../components/shared/FooterDisclaimer';
 
 
 const Feed: React.FC = () => {
@@ -47,6 +48,7 @@ const Feed: React.FC = () => {
                 </Box>
                 <PostFeed isFetching={fetching} posts={data?.posts ?? []}/>
                 <ShowMore limit={limit} sort={by}/>
+                <FooterDisclaimer/>
             </div>
         </>
     );

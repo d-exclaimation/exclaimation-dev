@@ -20,6 +20,7 @@ import ContentView from '../../components/post/ContentView';
 import UpRave from '../../components/post/UpRave';
 import Deletion from '../../components/post/Deletion';
 import {FormResult} from '../../models/enum/FormResult';
+import FooterDisclaimer from '../../components/shared/FooterDisclaimer';
 
 
 const Post: React.FC = () => {
@@ -67,6 +68,7 @@ const Post: React.FC = () => {
                         return FormResult.failure;
                     }
                 }}/>
+                <FooterDisclaimer/>
             </div>
         </>
     );

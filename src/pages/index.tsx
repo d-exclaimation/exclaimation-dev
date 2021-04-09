@@ -18,6 +18,7 @@ import {GithubProfile} from '../models/interfaces/GithubProfile';
 import EpicProfile from '../components/EpicProfile';
 import MetaHead from '../components/shared/MetaHead';
 import {routes} from '../lib/routes';
+import FooterDisclaimer from '../components/shared/FooterDisclaimer';
 
 interface Props {
     github: GithubProfile,
@@ -56,6 +57,7 @@ const Index: React.FC<Props> = ({ github, langName, percentage }: Props) => {
                     </GridItem>
                     <GridItem colSpan={1} ocacity={0} />
                 </Grid>
+                <FooterDisclaimer/>
             </div>
         </>
     );

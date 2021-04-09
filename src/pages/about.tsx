@@ -18,10 +18,11 @@ import MetaHead from '../components/shared/MetaHead';
 import {GetStaticProps} from 'next';
 import {getProfile} from '../lib/apis/GetGithub';
 import {GithubProfile} from '../models/interfaces/GithubProfile';
+import FooterDisclaimer from '../components/shared/FooterDisclaimer';
 
 interface Props {
     github: GithubProfile
-    bio: string[]
+    bio: {title: string, bio: string}[]
 }
 
 const About: React.FC<Props> = ({ github, bio }: Props) => {
@@ -34,15 +35,12 @@ const About: React.FC<Props> = ({ github, bio }: Props) => {
                         <RouteSideCar/>
                         <ProfileCard imageUrl={github.avatar_url} />
                         <Hero title={github.name}/>
-                        { bio.map((val, i) => {
+                        { bio.map((curr, i) => {
                             return (
-                                <Bio key={i} bio={val} color={Color.gray} />
+                                <Bio key={i} title={curr.title} bio={curr.bio} color={Color.gray} />
                             );
                         }) }
-                        <Text
-                            p={10} color="gray.500"
-                            fontSize="xs"
-                        > { 'd-exclaimation' } </Text>
+                        <FooterDisclaimer/>
                     </VStack>
                 </Center>
             </div>
@@ -52,10 +50,10 @@ const About: React.FC<Props> = ({ github, bio }: Props) => {
 
 export const getStaticProps: GetStaticProps = async () => {
     const res = await getProfile();
-    const bio = [
-        'Hey.....d-exclaimation here or you can call me Vincent, vin or cent. I am a programmer who can do full-stack development, and other stuff as well. ',
-        'I can make Web-application or iOS for end to end client to server. I can also automate some stuff and make microservices. ',
-        'I mainly use Typescript, Go, Swift, and Rust with some Elixir, and C#. I also usually stick a stack that consist of React, Typescript, Go, Postgres, NodeJs, and maybe GraphQL',
+    const bio: {title: string, bio: string}[] = [
+        {title: 'Quick bio', bio: 'Hey.....d-exclaimation here or you can call me Vincent (shorthand: \'vin\' or \'cent\', up to you). I am a programmer who can do full-stack development, and other stuff as well. '},
+        {title: 'What do I do?', bio: 'I can make Web-application or iOS for end to end client to server. I can also automate some stuff and make microservices. '},
+        {title: 'My Tech Stack', bio: 'I mainly use Typescript, Go, Swift, and Rust with some Elixir, and C#. I also usually stick a stack that consist of React, Typescript, Go, Postgres, NodeJs, and maybe GraphQL'},
     ];
     return { props: { github: res, bio: bio } };
 };

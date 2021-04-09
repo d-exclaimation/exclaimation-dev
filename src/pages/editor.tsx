@@ -15,6 +15,7 @@ import MarkdownEditor from '../components/editor/MarkdownEditor';
 import {useCreatePostMutationMutation} from '../models/graphql/types';
 import RouteSideCar from '../components/shared/RoutesSideBar';
 import {FormResult} from '../models/enum/FormResult';
+import FooterDisclaimer from '../components/shared/FooterDisclaimer';
 
 const Editor: React.FC = () => {
     const [, createPost] = useCreatePostMutationMutation();
@@ -36,6 +37,7 @@ const Editor: React.FC = () => {
                     return FormResult.failure;
                 }
             }} />
+            <FooterDisclaimer/>
         </div>
     );
 };

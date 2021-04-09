@@ -8,9 +8,10 @@
 
 import React from 'react';
 
-import { VStack, Text, Box } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { favRed, nextBlue, mildGray } from '../../constants/color.scheme';
 import {useWindowSize} from '../../lib/hooks/useWindow';
+import Feature from '../templates/FeatureCard';
 
 export enum Color {
     red,
@@ -19,11 +20,12 @@ export enum Color {
 }
 
 interface Props {
+    title: string
     bio: string,
     color: Color
 }
 
-const Bio: React.FC<Props> = ({ bio, color }: Props) => {
+const Bio: React.FC<Props> = ({ title, bio, color }: Props) => {
     const window = useWindowSize();
     const bSize = (): 'sm' | 'md' | 'lg' | 'xs' => {
         const size = (window.width / 650) * 4;
@@ -52,20 +54,16 @@ const Bio: React.FC<Props> = ({ bio, color }: Props) => {
     })();
 
     return (
-        <VStack spacing={5}>
-            <Box
-                width={window.width / 2}
-                shadow="dark-lg"
-                m={3}
-                p={window.width > 800 ? 5 : 3} borderRadius={10}
-            >
-                <Text
-                    fontSize={textSize()}
-                    color={hexColor}>
-                    { bio }
-                </Text>
-            </Box>
-        </VStack>
+        <Box m={10}>
+            <Feature
+                title={title}
+                desc={bio}
+                width={Math.floor(window.width / 2)}
+                headingColor={'#a09c9c'}
+                color={hexColor}
+                font={textSize()}
+            />
+        </Box>
     );
 };
 

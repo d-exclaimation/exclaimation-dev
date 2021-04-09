@@ -10,6 +10,7 @@ import React from 'react';
 import {HStack, VStack, Heading, Img, Divider} from '@chakra-ui/react';
 import {favRed} from '../constants/color.scheme';
 import {useWindowSize} from '../lib/hooks/useWindow';
+import FooterDisclaimer from '../components/shared/FooterDisclaimer';
 
 const Error: React.FC = () => {
     const window = useWindowSize();
@@ -41,6 +42,7 @@ const Error: React.FC = () => {
                         </Heading>
                     </VStack>
                 </HStack>
+                <FooterDisclaimer/>
             </div>
         </>
     );

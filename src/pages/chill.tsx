@@ -18,6 +18,7 @@ import Hero from '../components/templates/Hero';
 import {GetStaticProps} from 'next';
 import {drivePlayURL} from '../lib/GoogleDriveURL';
 import {IMedia} from '../models/interfaces/Media';
+import FooterDisclaimer from '../components/shared/FooterDisclaimer';
 
 
 interface Props {
@@ -40,6 +41,7 @@ const Chill: React.FC<Props> = ({ musics }: Props) => {
                         <MusicPlayer url={curr.url} name={curr.name}/> :
                         <Hero title={'Chill Zone'} />
                 }
+                <FooterDisclaimer/>
             </div>
         </>
     );
