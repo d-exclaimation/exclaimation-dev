@@ -7,21 +7,22 @@
 //
 
 import React from 'react';
+import {Text} from '@chakra-ui/react';
 import MetaHead from '../components/shared/MetaHead';
 import LoginForm from '../components/admin/LoginForm';
 import {FormResult} from '../models/enum/FormResult';
 import {withUrqlClient} from 'next-urql';
 import {createUrqlClient} from '../lib/server/createUrqlClient';
 import {useLoginAdminMutation, useMeQuery} from '../models/graphql/types';
-import {useRouter} from 'next/router';
 
 export const Admin: React.FC = () => {
-    const router = useRouter();
     const [, loginAdmin] = useLoginAdminMutation();
     const [{error, fetching}] = useMeQuery();
 
     if (!error && !fetching)
-        (async () => await router.push('/'))();
+        return (<div className="App-header">
+            <Text color="#fafafa"> You have logged in </Text>
+        </div>);
 
     return (
         <>
