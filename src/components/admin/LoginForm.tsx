@@ -35,13 +35,13 @@ const LoginForm: React.FC<Props> = ({login}: Props) => {
             return {
                 status: 'error',
                 title: 'Failure',
-                body: 'Failed to upload post!'
+                body: 'Failed to login as admin, check your credentials!'
             };
         case FormResult.success:
             return {
                 status: 'success',
                 title: 'Success',
-                body: 'Data uploaded to the server. Fire on!'
+                body: 'Welcome admin. Continue on!'
             };
         }
     })();

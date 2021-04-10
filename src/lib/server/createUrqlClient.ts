@@ -7,6 +7,8 @@
 //
 
 import {__graph__} from '../../constants/uri';
+import { dedupExchange, fetchExchange } from 'urql';
+import { cacheExchange } from '@urql/exchange-graphcache';
 import {SSRExchange} from 'next-urql';
 
 export const createUrqlClient = (_ssrExchange: SSRExchange) => ({
@@ -14,5 +16,15 @@ export const createUrqlClient = (_ssrExchange: SSRExchange) => ({
     fetchOptions: {
         credentials: 'include' as const
     },
-    // exchanges: [_ssrExchange]
+    exchanges: [dedupExchange, cacheExchange({
+        updates: {
+            Mutation: {
+                login: (_result, _var, cache) => {
+                    cache.inspectFields('Query')
+                        .filter(field => field.fieldName === 'me')
+                        .forEach(field => cache.invalidate('Query', field.fieldKey));
+                },
+            }
+        }
+    }), fetchExchange]
 });
