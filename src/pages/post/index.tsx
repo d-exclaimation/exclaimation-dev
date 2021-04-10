@@ -11,7 +11,7 @@ import MetaHead from '../../components/shared/MetaHead';
 import Hero from '../../components/templates/Hero';
 import PostFeed from '../../components/feed/PostFeed';
 import {Box} from '@chakra-ui/react';
-import {createUrqlClient} from '../../lib/server/withUrqlClient';
+import {createUrqlClient} from '../../lib/server/createUrqlClient';
 import {withUrqlClient} from 'next-urql';
 import {useAllPostQuery} from '../../models/graphql/types';
 import RouteSideCar from '../../components/shared/RoutesSideBar';

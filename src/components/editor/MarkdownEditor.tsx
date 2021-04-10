@@ -7,9 +7,8 @@
 //
 
 import React, {useState} from 'react';
-import {Button, HStack} from '@chakra-ui/react';
+import {Box, Button} from '@chakra-ui/react';
 import MarkdownForm from './MarkdownForm';
-import KeyForm from '../shared/KeyForm';
 import Hero from '../templates/Hero';
 import AlertPopUp from '../templates/AlertPopUp';
 import {useRouter} from 'next/router';
@@ -17,14 +16,13 @@ import {FormResult} from '../../models/enum/FormResult';
 import AlertNotification from '../templates/AlertNotification';
 
 interface Props {
-    submit: (title: string, body: string, key: string) => Promise<FormResult>,
+    submit: (title: string, body: string) => Promise<FormResult>,
 }
 
 const MarkdownEditor: React.FC<Props> = ({submit}: Props) => {
     const router = useRouter();
     const [form, setForm] = useState<string>('');
     const [title, setTitle] = useState<string>('');
-    const [key, setKey] = useState<string>('');
     const [isAlert, setAlert] = useState<boolean>(false);
     const [res, setRes] = useState<FormResult>(FormResult.none);
 
@@ -59,12 +57,13 @@ const MarkdownEditor: React.FC<Props> = ({submit}: Props) => {
         setForm('');
         setTitle('');
         setAlert(false);
-        setKey('');
     };
 
     return (
         <>
-            <Hero title={title || 'Enter your title'} />
+            <Box m={5} mt="min(10px, 40vw)">
+                <Hero title={title || 'Enter your title'}/>
+            </Box>
             <MarkdownForm title={title} setTitle={setTitle} body={form} setBody={setForm}/>
             <AlertNotification
                 status={alertContent.status}
@@ -79,20 +78,17 @@ const MarkdownEditor: React.FC<Props> = ({submit}: Props) => {
                         clear();
                 }}
             />
-            <HStack m={10} py={3} px={5} boxShadow="dark-lg" borderRadius={10}>
-                <>
-                    <KeyForm changeKey={setKey} keyValue={key}/>
-                    <Button colorScheme="teal" onClick={() => setAlert(true)}>Submit</Button>
-                    <AlertPopUp
-                        header={'Create new post'}
-                        body={'Are you sure you want to post this?'}
-                        confirmation={'Yes'}
-                        isShown={isAlert} onConfirm={async () => {
-                            setRes(await submit(title, form, key));
-                            setAlert(false);
-                        }} onClose={() => setAlert(false)}/>
-                </>
-            </HStack>
+            <>
+                <Button m={10} variant="ghost" boxShadow="dark-lg" colorScheme="teal" onClick={() => setAlert(true)}>Submit</Button>
+                <AlertPopUp
+                    header={'Create new post'}
+                    body={'Are you sure you want to post this?'}
+                    confirmation={'Yes'}
+                    isShown={isAlert} onConfirm={async () => {
+                        setRes(await submit(title, form));
+                        setAlert(false);
+                    }} onClose={() => setAlert(false)}/>
+            </>
         </>
     );
 };

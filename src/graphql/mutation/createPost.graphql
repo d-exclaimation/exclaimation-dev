@@ -1,5 +1,5 @@
-mutation CreatePostMutation($input: PostDTO!, $key: String!) {
-    newPost(input: $input, key: $key) {
+mutation CreatePostMutation($input: PostDTO!) {
+    newPost(input: $input) {
         id
     }
 }

@@ -7,7 +7,6 @@
 //
 
 import React, {useState} from 'react';
-import KeyForm from '../shared/KeyForm';
 import {
     Button,
     IconButton,
@@ -23,15 +22,16 @@ import {ViewOffIcon} from '@chakra-ui/icons';
 import {useDynamicCorner} from '../../lib/hooks/useDynamicCorner';
 import {FormResult} from '../../models/enum/FormResult';
 import {useRouter} from 'next/router';
+import AlertNotification from '../templates/AlertNotification';
+import AlertPopUp from '../templates/AlertPopUp';
 
 interface Props {
-    deletePost: (key: string) => Promise<FormResult>,
+    deletePost: () => Promise<FormResult>,
 }
 const Deletion: React.FC<Props> = ({deletePost}: Props) => {
     const router = useRouter();
     const corner = useDynamicCorner();
     const [isShown, setShown] = useState<boolean>(false);
-    const [pass, setPass] = useState<string>('');
     const onClose = () => setShown(false);
     return (
         <>
@@ -46,27 +46,17 @@ const Deletion: React.FC<Props> = ({deletePost}: Props) => {
                 bottom={corner.y}
                 right={corner.x}
             />
-            <Modal isOpen={isShown} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent bg="#282c34">
-                    <ModalHeader color="#fafafa">Delete this post?</ModalHeader>
-                    <ModalCloseButton color="#fafafa" />
-                    <ModalBody>
-                        <KeyForm keyValue={pass} changeKey={setPass}/>
-                    </ModalBody>
-
-                    <ModalFooter>
-                        <Button colorScheme="teal" variant="ghost" mr={3} onClick={onClose}>
-                            Close
-                        </Button>
-                        <Button colorScheme="pink" variant="ghost" onClick={async () => {
-                            const res = await deletePost(pass);
-                            if(res === FormResult.success)
-                                await router.push('/post');
-                        }}>Yes, please!</Button>
-                    </ModalFooter>
-                </ModalContent>
-            </Modal>
+            <AlertPopUp
+                header={'Delete this post?'} body={'Are you sure about this?'}
+                confirmation={'Yes, please!'}
+                isShown={isShown}
+                onConfirm={async () => {
+                    const res = await deletePost();
+                    if(res === FormResult.success)
+                        await router.push('/post');
+                }}
+                onClose={onClose}
+            />
         </>
     );
 };

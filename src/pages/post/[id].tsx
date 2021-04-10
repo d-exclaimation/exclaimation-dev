@@ -12,10 +12,10 @@ import MetaHead from '../../components/shared/MetaHead';
 import RouteSideCar from '../../components/shared/RoutesSideBar';
 import {Box, Center} from '@chakra-ui/react';
 
-import {createUrqlClient} from '../../lib/server/withUrqlClient';
+import {createUrqlClient} from '../../lib/server/createUrqlClient';
 import {withUrqlClient} from 'next-urql';
 import {useRouter} from 'next/router';
-import {useDeletePostMutation, usePostQuery} from '../../models/graphql/types';
+import {useDeletePostMutation, useMeQuery, usePostQuery} from '../../models/graphql/types';
 import ContentView from '../../components/post/ContentView';
 import UpRave from '../../components/post/UpRave';
 import Deletion from '../../components/post/Deletion';
@@ -33,6 +33,7 @@ const Post: React.FC = () => {
         }
     });
     const [, deletePost] = useDeletePostMutation();
+    const [credentials] = useMeQuery();
 
     if(error) {
         if (typeof window !== 'undefined')
@@ -60,14 +61,18 @@ const Post: React.FC = () => {
                     <ContentView post={data.post}/>
                 </Center>
                 <UpRave post={data.post}/>
-                <Deletion deletePost={async key => {
-                    try {
-                        const {error} = await deletePost({id: pid, key: key});
-                        return error ? FormResult.failure : FormResult.success;
-                    } catch (e) {
-                        return FormResult.failure;
-                    }
-                }}/>
+                {
+                    !credentials.fetching && !credentials.error
+                    &&
+                    <Deletion deletePost={async () => {
+                        try {
+                            const {error} = await deletePost({id: pid});
+                            return error ? FormResult.failure : FormResult.success;
+                        } catch (e) {
+                            return FormResult.failure;
+                        }
+                    }}/>
+                }
                 <FooterDisclaimer/>
             </div>
         </>

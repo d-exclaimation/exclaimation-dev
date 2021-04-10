@@ -13,7 +13,7 @@ import RouteSideCar from '../components/shared/RoutesSideBar';
 import Carousel from '../components/Carousel';
 
 import {withUrqlClient} from 'next-urql';
-import {createUrqlClient} from '../lib/server/withUrqlClient';
+import {createUrqlClient} from '../lib/server/createUrqlClient';
 import EpicProfile from '../components/EpicProfile';
 import MetaHead from '../components/shared/MetaHead';
 import FooterDisclaimer from '../components/shared/FooterDisclaimer';

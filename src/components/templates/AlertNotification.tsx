@@ -25,8 +25,8 @@ const AlertNotification: React.FC<Props> = ({ status, title, body, isShown, onCl
                 <Alert status={status} borderRadius={10}>
                     <AlertIcon />
                     <HStack flex="1">
-                        <AlertTitle>{title}!</AlertTitle>
-                        <AlertDescription display="block">
+                        <AlertTitle fontSize="min(20px, 3vw)">{title}!</AlertTitle>
+                        <AlertDescription fontSize="max(16px, 1vw)" display="block">
                             {body}
                         </AlertDescription>
                     </HStack>

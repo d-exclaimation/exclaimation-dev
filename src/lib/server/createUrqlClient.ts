@@ -1,5 +1,5 @@
 //
-//  withUrqlClient.ts
+//  createUrqlClient.ts
 //  exclaimation
 //
 //  Created by d-exclaimation on 7:23 PM.
@@ -9,7 +9,7 @@
 import {__graph__} from '../../constants/uri';
 import {SSRExchange} from 'next-urql';
 
-export const createUrqlClient = (_ssrExchange: SSRExchange):  {fetchOptions: {credentials: 'include'}, url: string} => ({
+export const createUrqlClient = (_ssrExchange: SSRExchange) => ({
     url: __graph__,
     fetchOptions: {
         credentials: 'include' as const

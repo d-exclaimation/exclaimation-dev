@@ -16,6 +16,7 @@ export type Scalars = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  loginAsAdmin: Scalars['String'];
   newPost: Post;
   updatePost: Post;
   incrementCrabRave: Post;
@@ -23,16 +24,19 @@ export type Mutation = {
 };
 
 
+export type MutationLoginAsAdminArgs = {
+  options: PasswordInput;
+};
+
+
 export type MutationNewPostArgs = {
   input: PostDto;
-  key: Scalars['String'];
 };
 
 
 export type MutationUpdatePostArgs = {
   id: Scalars['Int'];
   input: PostDto;
-  key: Scalars['String'];
 };
 
 
@@ -43,7 +47,11 @@ export type MutationIncrementCrabRaveArgs = {
 
 export type MutationDeletePostArgs = {
   id: Scalars['Int'];
-  key: Scalars['String'];
+};
+
+export type PasswordInput = {
+  time: Scalars['String'];
+  pass: Scalars['String'];
 };
 
 export type Post = {
@@ -86,6 +94,7 @@ export type Query = {
   posts: Array<Post>;
   profile: Profile;
   repos: Array<Repo>;
+  me?: Maybe<Scalars['String']>;
 };
 
 
@@ -145,7 +154,6 @@ export type RepoSnapshotFragment = (
 
 export type CreatePostMutationMutationVariables = Exact<{
   input: PostDto;
-  key: Scalars['String'];
 }>;
 
 
@@ -159,7 +167,6 @@ export type CreatePostMutationMutation = (
 
 export type DeletePostMutationVariables = Exact<{
   id: Scalars['Int'];
-  key: Scalars['String'];
 }>;
 
 
@@ -184,6 +191,17 @@ export type UpRaveMutation = (
   ) }
 );
 
+export type LoginAdminMutationVariables = Exact<{
+  time: Scalars['String'];
+  key: Scalars['String'];
+}>;
+
+
+export type LoginAdminMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'loginAsAdmin'>
+);
+
 export type LanguagesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -193,6 +211,14 @@ export type LanguagesQuery = (
     { __typename?: 'Repo' }
     & LanguageSnapshotFragment
   )> }
+);
+
+export type MeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MeQuery = (
+  { __typename?: 'Query' }
+  & Pick<Query, 'me'>
 );
 
 export type PostQueryVariables = Exact<{
@@ -291,27 +317,27 @@ export const RepoSnapshotFragmentDoc = gql`
 }
     `;
 export const CreatePostMutationDocument = gql`
-    mutation CreatePostMutation($input: PostDTO!, $key: String!) {
-  newPost(input: $input, key: $key) {
+    mutation CreatePostMutation($input: PostDTO!) {
+  newPost(input: $input) {
     id
   }
 }
     `;
 
 export function useCreatePostMutationMutation() {
-    return Urql.useMutation<CreatePostMutationMutation, CreatePostMutationMutationVariables>(CreatePostMutationDocument);
-}
+  return Urql.useMutation<CreatePostMutationMutation, CreatePostMutationMutationVariables>(CreatePostMutationDocument);
+};
 export const DeletePostDocument = gql`
-    mutation DeletePost($id: Int!, $key: String!) {
-  deletePost(id: $id, key: $key) {
+    mutation DeletePost($id: Int!) {
+  deletePost(id: $id) {
     id
   }
 }
     `;
 
 export function useDeletePostMutation() {
-    return Urql.useMutation<DeletePostMutation, DeletePostMutationVariables>(DeletePostDocument);
-}
+  return Urql.useMutation<DeletePostMutation, DeletePostMutationVariables>(DeletePostDocument);
+};
 export const UpRaveDocument = gql`
     mutation UpRave($id: Int!) {
   incrementCrabRave(id: $id) {
@@ -322,8 +348,17 @@ export const UpRaveDocument = gql`
     `;
 
 export function useUpRaveMutation() {
-    return Urql.useMutation<UpRaveMutation, UpRaveMutationVariables>(UpRaveDocument);
+  return Urql.useMutation<UpRaveMutation, UpRaveMutationVariables>(UpRaveDocument);
+};
+export const LoginAdminDocument = gql`
+    mutation LoginAdmin($time: String!, $key: String!) {
+  loginAsAdmin(options: {time: $time, pass: $key})
 }
+    `;
+
+export function useLoginAdminMutation() {
+  return Urql.useMutation<LoginAdminMutation, LoginAdminMutationVariables>(LoginAdminDocument);
+};
 export const LanguagesDocument = gql`
     query Languages {
   repos(limit: 1000) {
@@ -333,8 +368,17 @@ export const LanguagesDocument = gql`
     ${LanguageSnapshotFragmentDoc}`;
 
 export function useLanguagesQuery(options: Omit<Urql.UseQueryArgs<LanguagesQueryVariables>, 'query'> = {}) {
-    return Urql.useQuery<LanguagesQuery>({ query: LanguagesDocument, ...options });
+  return Urql.useQuery<LanguagesQuery>({ query: LanguagesDocument, ...options });
+};
+export const MeDocument = gql`
+    query Me {
+  me
 }
+    `;
+
+export function useMeQuery(options: Omit<Urql.UseQueryArgs<MeQueryVariables>, 'query'> = {}) {
+  return Urql.useQuery<MeQuery>({ query: MeDocument, ...options });
+};
 export const PostDocument = gql`
     query Post($id: Int!) {
   post(id: $id) {
@@ -344,8 +388,8 @@ export const PostDocument = gql`
     ${FullPostFragmentDoc}`;
 
 export function usePostQuery(options: Omit<Urql.UseQueryArgs<PostQueryVariables>, 'query'> = {}) {
-    return Urql.useQuery<PostQuery>({ query: PostDocument, ...options });
-}
+  return Urql.useQuery<PostQuery>({ query: PostDocument, ...options });
+};
 export const AllPostDocument = gql`
     query AllPost($limit: Int!, $by: String!) {
   posts(limit: $limit, by: $by) {
@@ -355,8 +399,8 @@ export const AllPostDocument = gql`
     ${PostSnippetFragmentDoc}`;
 
 export function useAllPostQuery(options: Omit<Urql.UseQueryArgs<AllPostQueryVariables>, 'query'> = {}) {
-    return Urql.useQuery<AllPostQuery>({ query: AllPostDocument, ...options });
-}
+  return Urql.useQuery<AllPostQuery>({ query: AllPostDocument, ...options });
+};
 export const ProfileDocument = gql`
     query Profile {
   profile {
@@ -366,8 +410,8 @@ export const ProfileDocument = gql`
     ${ProfileSnapFragmentDoc}`;
 
 export function useProfileQuery(options: Omit<Urql.UseQueryArgs<ProfileQueryVariables>, 'query'> = {}) {
-    return Urql.useQuery<ProfileQuery>({ query: ProfileDocument, ...options });
-}
+  return Urql.useQuery<ProfileQuery>({ query: ProfileDocument, ...options });
+};
 export const ReposDocument = gql`
     query Repos($limit: Int!) {
   repos(limit: $limit) {
@@ -377,5 +421,5 @@ export const ReposDocument = gql`
     ${RepoSnapshotFragmentDoc}`;
 
 export function useReposQuery(options: Omit<Urql.UseQueryArgs<ReposQueryVariables>, 'query'> = {}) {
-    return Urql.useQuery<ReposQuery>({ query: ReposDocument, ...options });
-}
+  return Urql.useQuery<ReposQuery>({ query: ReposDocument, ...options });
+};

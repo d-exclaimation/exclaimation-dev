@@ -15,7 +15,7 @@ import ProjectGrid from '../components/projects/ProjectGrid';
 import MetaHead from '../components/shared/MetaHead';
 
 import {withUrqlClient} from 'next-urql';
-import {createUrqlClient} from '../lib/server/withUrqlClient';
+import {createUrqlClient} from '../lib/server/createUrqlClient';
 
 import FooterDisclaimer from '../components/shared/FooterDisclaimer';
 import {useReposQuery} from '../models/graphql/types';
