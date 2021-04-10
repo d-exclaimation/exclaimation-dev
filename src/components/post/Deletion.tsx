@@ -8,21 +8,12 @@
 
 import React, {useState} from 'react';
 import {
-    Button,
     IconButton,
-    Modal,
-    ModalBody,
-    ModalCloseButton,
-    ModalContent,
-    ModalFooter,
-    ModalHeader,
-    ModalOverlay
 } from '@chakra-ui/react';
 import {ViewOffIcon} from '@chakra-ui/icons';
 import {useDynamicCorner} from '../../lib/hooks/useDynamicCorner';
 import {FormResult} from '../../models/enum/FormResult';
 import {useRouter} from 'next/router';
-import AlertNotification from '../templates/AlertNotification';
 import AlertPopUp from '../templates/AlertPopUp';
 
 interface Props {
