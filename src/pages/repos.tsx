@@ -20,6 +20,7 @@ import {createUrqlClient} from '../lib/server/createUrqlClient';
 import FooterDisclaimer from '../components/shared/FooterDisclaimer';
 import {useReposQuery} from '../models/graphql/types';
 import {useRouter} from 'next/router';
+import LoadingScreen from '../components/shared/LoadingScreen';
 
 const Repos: React.FC = () => {
     const router = useRouter();
@@ -31,15 +32,15 @@ const Repos: React.FC = () => {
 
     if (error) {
         router.push('/404?nothing=true').catch(console.log);
-        return <div className="App-header">Not found</div>;
+        return <LoadingScreen />;
     }
 
     if (!data) {
-        return <div className="App-header">Not found</div>;
+        return <LoadingScreen />;
     }
 
     if (fetching) {
-        return <div className="App-header">Loading...</div>;
+        return <LoadingScreen />;
     }
 
     return (

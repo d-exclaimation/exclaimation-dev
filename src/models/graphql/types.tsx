@@ -14,6 +14,12 @@ export type Scalars = {
   Float: number;
 };
 
+export type Language = {
+  __typename?: 'Language';
+  lang: Scalars['String'];
+  percentage: Scalars['Float'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   loginAsAdmin: Scalars['String'];
@@ -94,6 +100,7 @@ export type Query = {
   posts: Array<Post>;
   profile: Profile;
   repos: Array<Repo>;
+  topLang: Language;
   me?: Maybe<Scalars['String']>;
 };
 
@@ -130,11 +137,6 @@ export type FullPostFragment = (
     { __typename?: 'PostNode' }
     & Pick<PostNode, 'type' | 'leaf'>
   )> }
-);
-
-export type LanguageSnapshotFragment = (
-  { __typename?: 'Repo' }
-  & Pick<Repo, 'id' | 'language'>
 );
 
 export type PostSnippetFragment = (
@@ -207,10 +209,10 @@ export type LanguagesQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type LanguagesQuery = (
   { __typename?: 'Query' }
-  & { repos: Array<(
-    { __typename?: 'Repo' }
-    & LanguageSnapshotFragment
-  )> }
+  & { topLang: (
+    { __typename?: 'Language' }
+    & Pick<Language, 'lang' | 'percentage'>
+  ) }
 );
 
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
@@ -283,12 +285,6 @@ export const FullPostFragmentDoc = gql`
   crabrave
 }
     `;
-export const LanguageSnapshotFragmentDoc = gql`
-    fragment LanguageSnapshot on Repo {
-  id
-  language
-}
-    `;
 export const PostSnippetFragmentDoc = gql`
     fragment PostSnippet on Post {
   id
@@ -325,8 +321,8 @@ export const CreatePostMutationDocument = gql`
     `;
 
 export function useCreatePostMutationMutation() {
-  return Urql.useMutation<CreatePostMutationMutation, CreatePostMutationMutationVariables>(CreatePostMutationDocument);
-};
+    return Urql.useMutation<CreatePostMutationMutation, CreatePostMutationMutationVariables>(CreatePostMutationDocument);
+}
 export const DeletePostDocument = gql`
     mutation DeletePost($id: Int!) {
   deletePost(id: $id) {
@@ -336,8 +332,8 @@ export const DeletePostDocument = gql`
     `;
 
 export function useDeletePostMutation() {
-  return Urql.useMutation<DeletePostMutation, DeletePostMutationVariables>(DeletePostDocument);
-};
+    return Urql.useMutation<DeletePostMutation, DeletePostMutationVariables>(DeletePostDocument);
+}
 export const UpRaveDocument = gql`
     mutation UpRave($id: Int!) {
   incrementCrabRave(id: $id) {
@@ -348,8 +344,8 @@ export const UpRaveDocument = gql`
     `;
 
 export function useUpRaveMutation() {
-  return Urql.useMutation<UpRaveMutation, UpRaveMutationVariables>(UpRaveDocument);
-};
+    return Urql.useMutation<UpRaveMutation, UpRaveMutationVariables>(UpRaveDocument);
+}
 export const LoginAdminDocument = gql`
     mutation LoginAdmin($time: String!, $key: String!) {
   loginAsAdmin(options: {time: $time, pass: $key})
@@ -357,19 +353,20 @@ export const LoginAdminDocument = gql`
     `;
 
 export function useLoginAdminMutation() {
-  return Urql.useMutation<LoginAdminMutation, LoginAdminMutationVariables>(LoginAdminDocument);
-};
+    return Urql.useMutation<LoginAdminMutation, LoginAdminMutationVariables>(LoginAdminDocument);
+}
 export const LanguagesDocument = gql`
     query Languages {
-  repos(limit: 1000) {
-    ...LanguageSnapshot
+  topLang {
+    lang
+    percentage
   }
 }
-    ${LanguageSnapshotFragmentDoc}`;
+    `;
 
 export function useLanguagesQuery(options: Omit<Urql.UseQueryArgs<LanguagesQueryVariables>, 'query'> = {}) {
-  return Urql.useQuery<LanguagesQuery>({ query: LanguagesDocument, ...options });
-};
+    return Urql.useQuery<LanguagesQuery>({ query: LanguagesDocument, ...options });
+}
 export const MeDocument = gql`
     query Me {
   me
@@ -377,8 +374,8 @@ export const MeDocument = gql`
     `;
 
 export function useMeQuery(options: Omit<Urql.UseQueryArgs<MeQueryVariables>, 'query'> = {}) {
-  return Urql.useQuery<MeQuery>({ query: MeDocument, ...options });
-};
+    return Urql.useQuery<MeQuery>({ query: MeDocument, ...options });
+}
 export const PostDocument = gql`
     query Post($id: Int!) {
   post(id: $id) {
@@ -388,8 +385,8 @@ export const PostDocument = gql`
     ${FullPostFragmentDoc}`;
 
 export function usePostQuery(options: Omit<Urql.UseQueryArgs<PostQueryVariables>, 'query'> = {}) {
-  return Urql.useQuery<PostQuery>({ query: PostDocument, ...options });
-};
+    return Urql.useQuery<PostQuery>({ query: PostDocument, ...options });
+}
 export const AllPostDocument = gql`
     query AllPost($limit: Int!, $by: String!) {
   posts(limit: $limit, by: $by) {
@@ -399,8 +396,8 @@ export const AllPostDocument = gql`
     ${PostSnippetFragmentDoc}`;
 
 export function useAllPostQuery(options: Omit<Urql.UseQueryArgs<AllPostQueryVariables>, 'query'> = {}) {
-  return Urql.useQuery<AllPostQuery>({ query: AllPostDocument, ...options });
-};
+    return Urql.useQuery<AllPostQuery>({ query: AllPostDocument, ...options });
+}
 export const ProfileDocument = gql`
     query Profile {
   profile {
@@ -410,8 +407,8 @@ export const ProfileDocument = gql`
     ${ProfileSnapFragmentDoc}`;
 
 export function useProfileQuery(options: Omit<Urql.UseQueryArgs<ProfileQueryVariables>, 'query'> = {}) {
-  return Urql.useQuery<ProfileQuery>({ query: ProfileDocument, ...options });
-};
+    return Urql.useQuery<ProfileQuery>({ query: ProfileDocument, ...options });
+}
 export const ReposDocument = gql`
     query Repos($limit: Int!) {
   repos(limit: $limit) {
@@ -421,5 +418,5 @@ export const ReposDocument = gql`
     ${RepoSnapshotFragmentDoc}`;
 
 export function useReposQuery(options: Omit<Urql.UseQueryArgs<ReposQueryVariables>, 'query'> = {}) {
-  return Urql.useQuery<ReposQuery>({ query: ReposDocument, ...options });
-};
+    return Urql.useQuery<ReposQuery>({ query: ReposDocument, ...options });
+}

@@ -1,4 +1,0 @@
-fragment LanguageSnapshot on Repo {
-    id
-    language
-}

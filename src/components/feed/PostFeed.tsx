@@ -22,20 +22,18 @@ const PostFeed: React.FC<Props> = ({ isFetching, posts }: Props) => {
         return <Text color="#fafafa">Loading...</Text>;
     
     return (
-        <>
-            <VStack
-                borderRadius={10}
-                p={2}
-                spacing={8}
-            >
-                { posts.map(post  =>
-                    <PostPreview
-                        key={post.id}
-                        post={post}
-                    />
-                )}
-            </VStack>
-        </>
+        <VStack
+            borderRadius={10}
+            p={2}
+            spacing={8}
+        >
+            { posts.map(post  =>
+                <PostPreview
+                    key={post.id}
+                    post={post}
+                />
+            )}
+        </VStack>
     );
 };
 

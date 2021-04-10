@@ -19,6 +19,7 @@ import {useRouter} from 'next/router';
 import ShowMore from '../../components/feed/ShowMore';
 import ToggleSort from '../../components/feed/ToggleSort';
 import FooterDisclaimer from '../../components/shared/FooterDisclaimer';
+import LoadingScreen from '../../components/shared/LoadingScreen';
 
 
 const Feed: React.FC = () => {
@@ -32,10 +33,17 @@ const Feed: React.FC = () => {
         }
     });
 
-    if (error || (!data && !fetching))
-        return <div className="App-header">
-            <Hero title={'Coming Soon :)'}/>
-        </div>;
+    if (error) {
+        if (typeof window !== 'undefined')
+            router.push('/404?nofeed=true').catch(console.log);
+        return <LoadingScreen />;
+    }
+
+    if(fetching)
+        return <LoadingScreen />;
+
+    if (!data)
+        return <LoadingScreen />;
 
     return (
         <>

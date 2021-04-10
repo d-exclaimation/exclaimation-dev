@@ -21,6 +21,7 @@ import UpRave from '../../components/post/UpRave';
 import Deletion from '../../components/post/Deletion';
 import {FormResult} from '../../models/enum/FormResult';
 import FooterDisclaimer from '../../components/shared/FooterDisclaimer';
+import LoadingScreen from '../../components/shared/LoadingScreen';
 
 
 const Post: React.FC = () => {
@@ -38,14 +39,12 @@ const Post: React.FC = () => {
     if(error) {
         if (typeof window !== 'undefined')
             router.push(`/404?post=${pid}`).catch(console.log);
-        return <div className="App-header">
-            <Hero title={'Please wait...'}/>
-        </div>;
+        return <LoadingScreen />;
     }
     if(fetching)
-        return <div className="App-header">fetching...</div>;
+        return <LoadingScreen />;
     if (!data?.post)
-        return <div className="App-header">404 Not found :)</div>;
+        return <LoadingScreen />;
 
     const firstLine = data.post.nodes.length < 1 ? '' : data.post.nodes[0].leaf;
 

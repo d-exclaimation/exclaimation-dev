@@ -7,11 +7,10 @@
 //
 
 import React, {useState} from 'react';
-import {Box, FormControl, FormHelperText, FormLabel, Button, Flex, Spacer} from '@chakra-ui/react';
+import {Box, Button, Flex, FormControl, FormHelperText, FormLabel, Spacer, useToast} from '@chakra-ui/react';
 import {FormResult} from '../../models/enum/FormResult';
 import KeyForm from '../shared/KeyForm';
 import {useWindowSize} from '../../lib/hooks/useWindow';
-import AlertNotification from '../templates/AlertNotification';
 import {useRouter} from 'next/router';
 
 interface Props {
@@ -23,6 +22,8 @@ const LoginForm: React.FC<Props> = ({login}: Props) => {
     const [key, setKey] = useState<string>('');
     const [res, setRes] = useState<FormResult>(FormResult.none);
     const window = useWindowSize();
+    const toast = useToast();
+
     const alertContent = ((): {status: 'success' | 'error' | 'info', title: string, body: string} => {
         switch (res) {
         case FormResult.none:
@@ -45,19 +46,26 @@ const LoginForm: React.FC<Props> = ({login}: Props) => {
             };
         }
     })();
+
+    React.useEffect(() => {
+        if (res === FormResult.none)
+            return;
+        toast({
+            title: alertContent.title,
+            description: alertContent.body,
+            status: alertContent.status,
+            duration: 2000,
+            isClosable: true,
+            onCloseComplete: async () => {
+                if(res === FormResult.success)
+                    await router.push('/');
+                setRes(FormResult.none);
+            }
+        });
+    }, [res]);
+
     return (
         <Box p={5} minW={Math.floor(window.width / 2.5)} boxShadow="dark-lg" borderRadius={10}>
-            <AlertNotification
-                status={alertContent.status}
-                title={alertContent.title}
-                body={alertContent.body}
-                isShown={res !== FormResult.none}
-                onClose={async () => {
-                    if(res === FormResult.success)
-                        await router.push('/');
-                    setRes(FormResult.none);
-                }}
-            />
             <FormControl>
                 <FormLabel color="#fafafa">Login as Admin</FormLabel>
                 <KeyForm keyValue={key} changeKey={key => setKey(key)}/>

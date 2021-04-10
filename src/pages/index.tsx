@@ -20,26 +20,30 @@ import FooterDisclaimer from '../components/shared/FooterDisclaimer';
 import {useWindowSize} from '../lib/hooks/useWindow';
 import {useLanguagesQuery, useProfileQuery} from '../models/graphql/types';
 import {useRouter} from 'next/router';
-import {countTopLang} from '../lib/data/countTopLang';
+import LoadingScreen from '../components/shared/LoadingScreen';
 
 
 const Index: React.FC = () => {
     const window = useWindowSize();
     const router = useRouter();
     const [{fetching, data, error}] = useProfileQuery();
-    const [{data: langs}] = useLanguagesQuery();
-    const { top, percentage } = countTopLang(langs?.repos);
+    const [lang] = useLanguagesQuery();
 
     if (error)
         router.push('/404?nothing=true').catch(console.log);
 
-    if (!data) {
-        return <div>Loading...</div>;
+    if(fetching || lang.fetching) {
+        return <LoadingScreen />;
     }
 
-    if(fetching) {
-        return <div className="App-header">Loading...</div>;
+    if (!data) {
+        return <LoadingScreen />;
     }
+
+    if (!lang.data) {
+        return <LoadingScreen />;
+    }
+
 
     return (
         <>
@@ -64,8 +68,8 @@ const Index: React.FC = () => {
                     <GridItem colSpan={3}>
                         <Carousel
                             github={data.profile}
-                            langName={top}
-                            percentage={percentage}
+                            langName={lang.data.topLang.lang}
+                            percentage={lang.data.topLang.percentage}
                         />
                     </GridItem>
                     <GridItem colSpan={1} ocacity={0} />
