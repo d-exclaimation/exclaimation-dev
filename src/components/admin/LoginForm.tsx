@@ -59,7 +59,6 @@ const LoginForm: React.FC<Props> = ({login}: Props) => {
             onCloseComplete: async () => {
                 if(res === FormResult.success)
                     await router.push('/');
-                setRes(FormResult.none);
             }
         });
     }, [res]);

@@ -7,28 +7,17 @@
 //
 
 import React from 'react';
-import {CircularProgress, Img} from '@chakra-ui/react';
+import {Spinner} from '@chakra-ui/react';
 import {favRed} from '../../constants/color.scheme';
-import {useWindowSize} from '../../lib/hooks/useWindow';
 
 export const LoadingScreen: React.FC = () => {
-    const window = useWindowSize();
-    const size = Math.floor( Math.min(window.width, window.height) / 1.5);
-    const pos = {
-        y: Math.floor(window.height / 2) - size / 2,
-        x: Math.floor(window.width / 2) - size / 2,
-    };
     return (
         <div className="App-header">
-            <CircularProgress isIndeterminate size="20vw" color={favRed}/>
-            <Img
-                pos="fixed"
-                top={pos.y} left={pos.x}
-                width={size} src="/images/mylogo.png"
-                opacity={0.05}
-                alt="My Image"
-                className={'Spinning'}
-                style={{ zIndex: 0 }}
+            <Spinner
+                thickness="1vw"
+                speed="1s"
+                color={favRed}
+                size="xl"
             />
         </div>
     );

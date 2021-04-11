@@ -43,8 +43,8 @@ const Deletion: React.FC<Props> = ({deletePost}: Props) => {
                 isShown={isShown}
                 onConfirm={async () => {
                     const res = await deletePost();
-                    if(res === FormResult.success)
-                        await router.push('/post');
+                    setShown(false);
+                    setTimeout(async () => await router.push('/post'), 20);
                 }}
                 onClose={onClose}
             />

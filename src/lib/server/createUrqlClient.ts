@@ -10,6 +10,7 @@ import {__graph__} from '../../constants/uri';
 import { dedupExchange, fetchExchange } from 'urql';
 import { cacheExchange } from '@urql/exchange-graphcache';
 import {SSRExchange} from 'next-urql';
+import {MeDocument} from '../../models/graphql/types';
 
 export const createUrqlClient = (ssrExchange: SSRExchange) => ({
     url: __graph__,
@@ -20,13 +21,12 @@ export const createUrqlClient = (ssrExchange: SSRExchange) => ({
         updates: {
             Mutation: {
                 loginAsAdmin: (_result, _var, cache) => {
-                    cache.inspectFields('Query')
-                        .filter(field => field.fieldName === 'me')
-                        .forEach(field => cache.invalidate('Query', field.fieldKey));
+                    cache.updateQuery({ query: MeDocument }, data => data);
                 },
                 deletePost : (_result, _var, cache) => {
                     cache.invalidate({
                         __typename: 'Post',
+                        id: _var.id as any,
                     });
                 }
             }
