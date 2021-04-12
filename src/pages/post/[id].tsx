@@ -34,7 +34,9 @@ const Post: React.FC = () => {
         }
     });
     const [, deletePost] = useDeletePostMutation();
-    const [credentials] = useMeQuery();
+    const [credentials] = useMeQuery({
+        pause: typeof window === 'undefined'
+    });
 
     if(error) {
         if (typeof window !== 'undefined')

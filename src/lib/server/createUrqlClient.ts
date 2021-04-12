@@ -12,24 +12,33 @@ import { cacheExchange } from '@urql/exchange-graphcache';
 import {SSRExchange} from 'next-urql';
 import {MeDocument} from '../../models/graphql/types';
 
-export const createUrqlClient = (ssrExchange: SSRExchange) => ({
-    url: __graph__,
-    fetchOptions: {
-        credentials: 'include' as const
-    },
-    exchanges: [dedupExchange, cacheExchange({
-        updates: {
-            Mutation: {
-                loginAsAdmin: (_result, _var, cache) => {
-                    cache.updateQuery({ query: MeDocument }, data => data);
-                },
-                deletePost : (_result, _var, cache) => {
-                    cache.invalidate({
-                        __typename: 'Post',
-                        id: _var.id as any,
-                    });
+export const createUrqlClient = (ssrExchange: SSRExchange, ctx: any) => {
+    let cookie = '';
+    if (typeof window === 'undefined') {
+        cookie = ctx.req.header.cookie;
+    }
+
+    return ({
+        url: __graph__,
+        fetchOptions: {
+            credentials: 'include' as const,
+            headers: cookie ? {
+                cookie,
+            } : undefined,
+        },
+        exchanges: [dedupExchange, cacheExchange({
+            updates: {
+                Mutation: {
+                    loginAsAdmin: (_result, _var, cache) => {
+                        cache.updateQuery({ query: MeDocument }, data => data);
+                    },
+                    deletePost : (_result, _var, cache) => {
+                        cache.invalidate({
+                            __typename: 'Post',
+                            id: _var.id as any,
+                        });
+                    }
                 }
             }
-        }
-    }), ssrExchange, fetchExchange]
-});
+        }), ssrExchange, fetchExchange]
+    }); };

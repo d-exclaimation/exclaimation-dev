@@ -17,7 +17,9 @@ import {useLoginAdminMutation, useMeQuery} from '../models/graphql/types';
 
 export const Admin: React.FC = () => {
     const [, loginAdmin] = useLoginAdminMutation();
-    const [{error, fetching}] = useMeQuery();
+    const [{error, fetching}] = useMeQuery({
+        pause: typeof window === 'undefined'
+    });
 
     if (!error && !fetching)
         return (<div className="App-header">
