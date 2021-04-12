@@ -9,7 +9,7 @@
 import React from 'react';
 import {FullPostFragment} from '../../models/graphql/types';
 import {Box} from '@chakra-ui/react';
-import ReactMarkdown from 'react-markdown';
+import Markdown from 'react-markdown';
 import {useWindowSize} from '../../lib/hooks/useWindow';
 import {countHeader} from '../shared/HeaderOveride';
 
@@ -24,12 +24,21 @@ const ContentView: React.FC<Props> = ({post}: Props) => {
 
     const createMarkdown = (leaf: FullPostFragment['nodes'][0]) => {
         return (
-            leaf.type === 'header' ? countHeader(leaf.leaf) : leaf.type === 'space' ? <Box m={4}/> : <ReactMarkdown source={leaf.leaf}/>
+            leaf.type === 'header' ? countHeader(leaf.leaf) : leaf.type === 'space' ? <Box my={4}/> : <Markdown source={leaf.leaf} /> // <ReactMarkdown source={leaf.leaf}/>
         );
     };
 
     return (
-        <Box color="white" boxShadow="dark-lg" width={width} p={5} borderRadius={5} minHeight={window.height / 2}>
+        <Box
+            color="white"
+            boxShadow="dark-lg"
+            minW={width}
+            maxW={window.width}
+            p={5}
+            borderRadius={5}
+            minHeight={window.height / 2}
+            fontSize="2vmin"
+        >
             {post.nodes.map((leaf, idx) => {
                 return (
                     <Box key={idx}>

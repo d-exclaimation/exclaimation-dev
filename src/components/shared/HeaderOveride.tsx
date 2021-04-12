@@ -25,7 +25,7 @@ export const countHeader = (row: string): JSX.Element => {
     case 2:
         return <Heading size="lg"> {rest}</Heading>;
     case 3:
-        return <Heading size="mg"> {rest}</Heading>;
+        return <Heading size="md"> {rest}</Heading>;
     default:
         return <Heading size="sm"> {rest}</Heading>;
     }

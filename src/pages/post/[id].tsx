@@ -53,13 +53,13 @@ const Post: React.FC = () => {
             <MetaHead title={data.post.title} description={firstLine} />
             <div className="Post-header">
                 <RouteSideCar />
-                <Box m={5}>
+                <UpRave post={data.post}/>
+                <Box mx="auto">
                     <Hero title={data.post.title} />
                 </Box>
                 <Center>
                     <ContentView post={data.post}/>
                 </Center>
-                <UpRave post={data.post}/>
                 {
                     !credentials.fetching && !credentials.error
                     &&

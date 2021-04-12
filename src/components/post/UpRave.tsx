@@ -31,6 +31,7 @@ const UpRave: React.FC<Props> = ({post}: Props) => {
             borderRadius={10}
             top={corner.y}
             right={corner.x}
+            bg="#282c34"
         >
             <IconButton
                 colorScheme="pink"
@@ -42,8 +43,11 @@ const UpRave: React.FC<Props> = ({post}: Props) => {
                 onClick={() => upRave({
                     id: parseInt(post.id)
                 })}
+                zIndex={10}
             />
-            <Text fontSize={size} color="white" mt={2}>{post.crabrave}</Text>
+            <Text fontSize={size} color="white" mt={2}
+                zIndex={10}
+            >{post.crabrave}</Text>
         </Flex>
     );
 };
