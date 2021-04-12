@@ -37,7 +37,7 @@ const ContentView: React.FC<Props> = ({post}: Props) => {
             p={5}
             borderRadius={5}
             minHeight={window.height / 2}
-            fontSize="2vmin"
+            fontSize={Math.floor(window.width * 0.015)}
         >
             {post.nodes.map((leaf, idx) => {
                 return (
