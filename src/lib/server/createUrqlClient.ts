@@ -15,7 +15,7 @@ import {MeDocument} from '../../models/graphql/types';
 export const createUrqlClient = (ssrExchange: SSRExchange, ctx: any) => {
     let cookie = '';
     if (typeof window === 'undefined') {
-        cookie = ctx.req.header.cookie;
+        cookie = ctx.req?.header?.cookie;
     }
 
     return ({
