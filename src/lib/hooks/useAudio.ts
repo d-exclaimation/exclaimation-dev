@@ -6,7 +6,7 @@
 //  Copyright © 2020 d-exclaimation. All rights reserved.
 //
 
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {useInterval} from './useInterval';
 
 interface AudioPlayer {
@@ -18,10 +18,10 @@ interface AudioPlayer {
 }
 
 export function usePlayer(url: string, loop: boolean): AudioPlayer {
-    const [volume, setVolume] = React.useState(0.5);
-    const [audio] = React.useState(new Audio(url));
-    const [time, setTime] = React.useState(audio.currentTime);
-    const [isPlaying, setPlaying] = React.useState(false);
+    const [volume, setVolume] = useState(0.5);
+    const [audio] = useState(new Audio(url));
+    const [time, setTime] = useState(audio.currentTime);
+    const [isPlaying, setPlaying] = useState(false);
 
     const toggleVolume = (vol: number) => {
         setPlaying(!isPlaying);
@@ -38,18 +38,20 @@ export function usePlayer(url: string, loop: boolean): AudioPlayer {
             setTimeout(toggleAudio, 0);
     };
 
-    audio.volume = volume;
-
     useInterval(() => {
         setTime(Math.floor(audio.currentTime));
     }, 1000);
 
+    useEffect(() => {
+        audio.volume = volume;
+    }, [volume]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         isPlaying ? audio.play() : audio.pause();
     }, [isPlaying]);
 
-    React.useEffect(() => {
+    useEffect(() => {
+        audio.volume = volume;
         audio.addEventListener('ended', endAudio);
         return () => {
             audio.removeEventListener('ended', endAudio);
