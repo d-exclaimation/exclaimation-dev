@@ -6,8 +6,9 @@
 //  Copyright © 2020 d-exclaimation. All rights reserved.
 //
 
-import React from 'react';
+import {useState, useEffect, useRef} from 'react';
 import {useInterval} from './useInterval';
+import {useToggle} from './useToggle';
 
 interface AudioPlayer {
     isPlaying: boolean,
@@ -18,45 +19,38 @@ interface AudioPlayer {
 }
 
 export function usePlayer(url: string, loop: boolean): AudioPlayer {
-    const [volume, setVolume] = React.useState(0.5);
-    const [audio] = React.useState(new Audio(url));
-    const [time, setTime] = React.useState(audio.currentTime);
-    const [isPlaying, setPlaying] = React.useState(false);
-
+    const audio = useRef(new Audio(url));
+    const [volume, setVolume] = useState(audio.current.volume);
+    const [time, setTime] = useState(audio.current.currentTime);
+    const [isPlaying, toggleAudio] = useToggle();
     const toggleVolume = (vol: number) => {
-        setPlaying(!isPlaying);
         setVolume(vol);
-        setPlaying(isPlaying);
-    };
-    const toggleAudio = () => {
-        setPlaying(!isPlaying);
     };
 
     const endAudio = () => {
-        setPlaying(false);
+        toggleAudio(false);
         if (loop)
-            setTimeout(toggleAudio, 0);
+            setTimeout(() => toggleAudio(true), 0);
     };
 
-    audio.volume = volume;
+    useInterval(() => setTime(Math.floor(audio.current.currentTime)), 1000);
 
-    useInterval(() => {
-        setTime(Math.floor(audio.currentTime));
-    }, 1000);
+    useEffect(() => {
+        audio.current.volume = volume;
+    }, [volume]);
 
-
-    React.useEffect(() => {
-        isPlaying ? audio.play() : audio.pause();
+    useEffect(() => {
+        isPlaying ? audio.current.play() : audio.current.pause();
     }, [isPlaying]);
 
-    React.useEffect(() => {
-        audio.addEventListener('ended', endAudio);
+    useEffect(() => {
+        audio.current.addEventListener('ended', endAudio);
         return () => {
-            audio.removeEventListener('ended', endAudio);
+            audio.current.removeEventListener('ended', endAudio);
         };
     }, []);
 
-    return { isPlaying, toggleAudio, volume, toggleVolume, time };
+    return { isPlaying, toggleAudio: () => toggleAudio(), volume, toggleVolume, time };
 }
 
 export function useAudio(url: string): (() => void)  {

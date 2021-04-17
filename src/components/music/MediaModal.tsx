@@ -17,7 +17,6 @@ import {
 } from '@chakra-ui/react';
 import FormModal from '../templates/FormModal';
 import {useDynamicCorner} from '../../lib/hooks/useDynamicCorner';
-import {useDynamicSize} from '../../lib/hooks/useDynamicSize';
 
 interface Props {
     musics: IMedia[],

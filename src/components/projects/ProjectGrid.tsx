@@ -10,8 +10,7 @@ import ShowCard from '../templates/ShowCard';
 import { SimpleGrid } from '@chakra-ui/react';
 
 import {useWindowSize} from '../../lib/hooks/useWindow';
-import {langBar} from '../../lib/LanguageBarURL';
-import {drivePlayURL} from '../../lib/GoogleDriveURL';
+import {langBarOptions} from '../../lib/LanguageBarURL';
 import {RepoSnapshotFragment} from '../../models/graphql/types';
 
 interface Props {
@@ -22,8 +21,10 @@ const ProjectGrid: React.FC<Props> = ({ repos }: Props) => {
     const window = useWindowSize();
     const grid = Math.floor(window.width / 240);
     const langImage = (lang: string): string => {
-        const url = langBar.get(lang) ?? langBar.get('exclaim') ?? 'none';
-        return drivePlayURL(url);
+        if (langBarOptions.has(lang)) {
+            return `https://delivery-exclaimation-30760d.netlify.app/images/lang-bar/${lang}-bar.png`;
+        }
+        return 'https://delivery-exclaimation-30760d.netlify.app/images/lang-bar/exclaim-bar.png';
     };
 
     return (
