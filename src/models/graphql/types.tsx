@@ -16,6 +16,7 @@ export type Scalars = {
 
 export type Language = {
   __typename?: 'Language';
+  id: Scalars['ID'];
   lang: Scalars['String'];
   percentage: Scalars['Float'];
 };
@@ -77,12 +78,14 @@ export type PostDto = {
 
 export type PostNode = {
   __typename?: 'PostNode';
+  id: Scalars['ID'];
   type: Scalars['String'];
   leaf: Scalars['String'];
 };
 
 export type Profile = {
   __typename?: 'Profile';
+  id: Scalars['ID'];
   avatarURL: Scalars['String'];
   githubURL: Scalars['String'];
   name: Scalars['String'];
@@ -135,7 +138,7 @@ export type FullPostFragment = (
   & Pick<Post, 'id' | 'title' | 'crabrave'>
   & { nodes: Array<(
     { __typename?: 'PostNode' }
-    & Pick<PostNode, 'type' | 'leaf'>
+    & Pick<PostNode, 'id' | 'type' | 'leaf'>
   )> }
 );
 
@@ -146,7 +149,7 @@ export type PostSnippetFragment = (
 
 export type ProfileSnapFragment = (
   { __typename?: 'Profile' }
-  & Pick<Profile, 'name' | 'bio' | 'githubURL' | 'twitterUsername' | 'reposCount'>
+  & Pick<Profile, 'id' | 'name' | 'bio' | 'githubURL' | 'twitterUsername' | 'reposCount'>
 );
 
 export type RepoSnapshotFragment = (
@@ -279,6 +282,7 @@ export const FullPostFragmentDoc = gql`
   id
   title
   nodes {
+    id
     type
     leaf
   }
@@ -295,6 +299,7 @@ export const PostSnippetFragmentDoc = gql`
     `;
 export const ProfileSnapFragmentDoc = gql`
     fragment ProfileSnap on Profile {
+  id
   name
   bio
   githubURL

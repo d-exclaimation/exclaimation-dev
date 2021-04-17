@@ -1,4 +1,5 @@
 fragment ProfileSnap on Profile {
+    id
     name
     bio
     githubURL

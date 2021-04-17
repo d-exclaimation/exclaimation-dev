@@ -2,6 +2,7 @@ fragment FullPost on Post {
     id
     title
     nodes {
+        id
         type
         leaf
     }
