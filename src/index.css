@@ -25,7 +25,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: calc(1px + 2vmin);
+    font-size: /* calc(6px + 2vmin) */ max(3vmin, 20px);
 }
 
 .Spinning {
@@ -37,6 +37,26 @@
     transform: rotate(0.3rad);
     transform: rotate(3grad);
     transform: rotate(.03turn);
+}
+
+pre {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    background-color: #27272c;
+    border-radius: 1rem;
+    padding: .5rem;
+}
+code {
+    color: #b9b9c0;
+}
+
+.Markdown {
+    width: clamp(45ch, 70ch, 100ch);
+    padding: 1rem;
 }
 
 @keyframes spin {
