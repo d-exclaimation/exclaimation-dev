@@ -7,41 +7,30 @@
 //
 
 import React from 'react';
-import {HStack, VStack, Heading, Img, Divider} from '@chakra-ui/react';
+import {VStack, Heading} from '@chakra-ui/react';
 import {favRed} from '../constants/color.scheme';
-import {useWindowSize} from '../lib/hooks/useWindow';
 import FooterDisclaimer from '../components/shared/FooterDisclaimer';
+import GameOfLife from '../components/conway/GameOfLife';
 
 const Error: React.FC = () => {
-    const window = useWindowSize();
     return (
         <>
             <div className="App-header">
-                <HStack>
-                    <Img
-                        maxW={Math.floor(window.width / 3)}
-                        src="/images/mylogo.png"
-                        alt="this is an image lol"
-                        mr={3}
-                    />
-                    <VStack>
-                        <Heading
-                            fontSize="6vw"
-                            color={favRed}
-                        >
-                            404
-                        </Heading>
-                        <Divider
-                            color="white"
-                        />
-                        <Heading
-                            fontSize="1vw"
-                            color={'#c10142'}
-                        >
-                           Page Not Found
-                        </Heading>
-                    </VStack>
-                </HStack>
+                <VStack>
+                    <Heading
+                        fontSize="6vw"
+                        color={favRed}
+                    >
+                        404
+                    </Heading>
+                    <Heading
+                        fontSize="1vw"
+                        color={'#c10142'}
+                    >
+                        Page Not Found
+                    </Heading>
+                </VStack>
+                <GameOfLife init={true} />
                 <FooterDisclaimer/>
             </div>
         </>

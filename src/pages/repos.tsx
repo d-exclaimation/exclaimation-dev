@@ -30,8 +30,9 @@ const Repos: React.FC = () => {
         }
     });
 
-    if (error) {
-        router.push('/404?nothing=true').catch(console.log);
+    if(error) {
+        if (typeof window !== 'undefined')
+            router.push('/404').catch(console.log);
         return <LoadingScreen />;
     }
 

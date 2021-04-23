@@ -24,7 +24,7 @@ const ContentView: React.FC<Props> = ({post}: Props) => {
 
     const createMarkdown = (leaf: FullPostFragment['nodes'][0]) => {
         return (
-            leaf.type === 'header' ? countHeader(leaf.leaf) : leaf.type === 'space' ? <Box my={4}/> :  <Markdown source={leaf.leaf} /> // <ReactMarkdown source={leaf.leaf}/>
+            leaf.type === 'header' ? countHeader(leaf.leaf) : leaf.type === 'space' ? <Box my={4}/> :  <Markdown source={leaf.leaf} />
         );
     };
 
