@@ -11,16 +11,17 @@ import React from 'react';
 import {Grid, GridItem, Text, Box, VStack, Center} from '@chakra-ui/react';
 import RouteSideCar from '../components/shared/RoutesSideBar';
 import Carousel from '../components/Carousel';
-
-import {withUrqlClient} from 'next-urql';
-import {createUrqlClient} from '../lib/server/createUrqlClient';
 import EpicProfile from '../components/EpicProfile';
 import MetaHead from '../components/shared/MetaHead';
 import FooterDisclaimer from '../components/shared/FooterDisclaimer';
+import LoadingScreen from '../components/shared/LoadingScreen';
+import GameOfLife from '../components/conway/GameOfLife';
+
+import {withUrqlClient} from 'next-urql';
+import {createUrqlClient} from '../lib/server/createUrqlClient';
 import {useWindowSize} from '../lib/hooks/useWindow';
 import {useLanguagesQuery, useProfileQuery} from '../models/graphql/types';
 import {useRouter} from 'next/router';
-import LoadingScreen from '../components/shared/LoadingScreen';
 
 
 const Index: React.FC = () => {
@@ -29,9 +30,11 @@ const Index: React.FC = () => {
     const [{fetching, data, error}] = useProfileQuery();
     const [lang] = useLanguagesQuery();
 
-    if (error)
-        router.push('/404?nothing=true').catch(console.log);
-
+    if(error) {
+        if (typeof window !== 'undefined')
+            router.push('/404').catch(console.log);
+        return <LoadingScreen />;
+    }
     if(fetching || lang.fetching) {
         return <LoadingScreen />;
     }
@@ -49,6 +52,7 @@ const Index: React.FC = () => {
         <>
             <MetaHead title={data.profile.name} description={'Welcome to the d-exclaimation developer website by vin aka d-exclaimation. This is the website / web app for all things related to me. My profiles, links, repos, projects, bios, and blogs, you named it it is probably here'}/>
             <div className="App-header">
+                <GameOfLife />
                 <Grid
                     gap={4}
                 >
