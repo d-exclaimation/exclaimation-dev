@@ -14,15 +14,14 @@ export const LogoBackground: React.FC = () => {
     return (
         <Img
             pos="absolute"
-            w="80vmin"
-            top="calc(50% - 40vmin)"
-            left="calc(50% - 40vmin)"
             src="/images/mylogo.png"
-            className={isSpinning ? 'Spinning' : ''}
+            className={`Logo ${isSpinning ? 'Spinning' : ''}`}
             onClick={() => setSpinning(prev => !prev)}
             opacity={0.1}
             alt="My Image"
-            style={{ zIndex: 0 }}
+            style={{
+                zIndex: 0,
+            }}
         />
     );
 };

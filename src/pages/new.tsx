@@ -10,7 +10,7 @@ import React from 'react';
 import {
     Box,
     Grid,
-    GridItem, Img, Text, VStack
+    GridItem, Text, VStack
 } from '@chakra-ui/react';
 import {createUrqlClient} from '../lib/server/createUrqlClient';
 import {withUrqlClient} from 'next-urql';
@@ -20,7 +20,7 @@ import LoadingScreen from '../components/shared/features/LoadingScreen';
 import Hero from '../components/templates/Hero';
 import {allSections} from '../components/core/SectionChildren';
 import {darkMode} from '../constants/color.scheme';
-import LogoBackground from '../components/shared/features/LogoBackground';
+import BackgroundEntertainment from '../components/shared/features/BackgroundEntertainment';
 
 const DELAY = 100;
 
@@ -50,8 +50,9 @@ export const New: React.FC = () => {
 
     return (
         <div className="New-header">
+            <BackgroundEntertainment/>
             <Grid
-                h="97vh"
+                h="96vh"
                 gap=".5rem"
                 templateAreas={`
                     'a  b  c'
@@ -84,7 +85,6 @@ export const New: React.FC = () => {
                 >
                     <VStack>
                         <Hero title={data.profile.name} />
-                        <LogoBackground/>
                         <Box m={2}>
                             <Text
                                 align={'center'}

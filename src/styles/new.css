@@ -1,9 +1,16 @@
+root {
+    --ascent-red: #ff0056;
+    --ascent-blue: #0670a1;
+    --ascent-orange: #fabb1b;
+    --ascent-purple: #5e53bf;
+}
+
+
 .New-header {
     background-color: #282c34;
     min-height: 100vh;
     font-size: max(3vmin, 20px);
     color: azure;
-    --ascent-color-1: #f5a617;
     --stagger-delay: 100ms;
 }
 
@@ -26,4 +33,11 @@
     justify-content: center;
     animation: sectionEntrance 700ms ease-out;
     animation-fill-mode: backwards;
+}
+
+.Logo {
+    --radius: 40vmin;
+    width: calc(2 * var(--radius));
+    top: calc(50% - var(--radius));
+    left: calc(50% - var(--radius));
 }
