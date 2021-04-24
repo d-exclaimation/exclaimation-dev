@@ -68,5 +68,4 @@ const RouteSideCar: React.FC<Props> = ({color}: Props): JSX.Element => {
         </Box>
     );
 };
-
 export default RouteSideCar;
