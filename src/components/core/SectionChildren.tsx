@@ -19,27 +19,27 @@ export const allSections = (profile: ProfileSnapFragment, topLang: Language): Se
     [
         {
             val: 'a',
-            children: <pre>dab</pre>
+            children: <></>
         },
         {
             val: 'b',
-            children: <pre>dab</pre>
+            children: <></>
         },
         {
             val: 'c',
-            children: <pre>dab</pre>
+            children: <></>
         },
         {
             val: 'd',
-            children: <pre>dab</pre>
+            children: <></>
         },
         {
             val: 'e',
-            children: <pre>dab</pre>
+            children: <></>
         },
         {
             val: 'f',
-            children: <pre>dab</pre>
+            children: <></>
         },
         {
             val: 'g',
@@ -55,10 +55,10 @@ export const allSections = (profile: ProfileSnapFragment, topLang: Language): Se
         },
         {
             val: 'i',
-            children: <pre>dab</pre>
+            children: <></>
         },
         {
             val: 'j',
-            children: <pre>dab</pre>
+            children: <></>
         },
     ];

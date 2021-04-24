@@ -9,13 +9,13 @@
 import React from 'react';
 
 import { Box, Button, Stack } from '@chakra-ui/react';
-import {favRed} from '../../constants/color.scheme';
+import {favRed} from '../../../constants/color.scheme';
 import Link from 'next/link';
 
-import {routes} from '../../lib/routes';
-import {useWindowSize} from '../../lib/hooks/useWindow';
-import {capitalized} from '../../lib/Typography';
-import {useDynamicCorner} from '../../lib/hooks/useDynamicCorner';
+import {routes} from '../../../lib/routes';
+import {useWindowSize} from '../../../lib/hooks/useWindow';
+import {capitalized} from '../../../lib/Typography';
+import {useDynamicCorner} from '../../../lib/hooks/useDynamicCorner';
 
 interface Props {
     color?: string

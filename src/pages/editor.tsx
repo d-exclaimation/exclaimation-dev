@@ -10,12 +10,12 @@ import React from 'react';
 
 import {withUrqlClient} from 'next-urql';
 import {createUrqlClient} from '../lib/server/createUrqlClient';
-import MetaHead from '../components/shared/MetaHead';
+import MetaHead from '../components/shared/meta/MetaHead';
 import MarkdownEditor from '../components/editor/MarkdownEditor';
 import {useCreatePostMutationMutation} from '../models/graphql/types';
-import RouteSideCar from '../components/shared/RoutesSideBar';
+import RouteSideCar from '../components/shared/routes/RoutesSideBar';
 import {FormResult} from '../models/enum/FormResult';
-import FooterDisclaimer from '../components/shared/FooterDisclaimer';
+import FooterDisclaimer from '../components/shared/meta/FooterDisclaimer';
 
 const Editor: React.FC = () => {
     const [, createPost] = useCreatePostMutationMutation();

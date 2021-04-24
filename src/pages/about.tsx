@@ -9,14 +9,14 @@
 import React from 'react';
 
 import {Center, VStack} from '@chakra-ui/react';
-import RouteSideCar from '../components/shared/RoutesSideBar';
+import RouteSideCar from '../components/shared/routes/RoutesSideBar';
 import Bio, {Color} from '../components/profile/Bio';
 import ProfileCard from '../components/profile/ProfileCard';
 import Hero from '../components/templates/Hero';
-import MetaHead from '../components/shared/MetaHead';
+import MetaHead from '../components/shared/meta/MetaHead';
 
 import {GetStaticProps} from 'next';
-import FooterDisclaimer from '../components/shared/FooterDisclaimer';
+import FooterDisclaimer from '../components/shared/meta/FooterDisclaimer';
 import {BioSection} from '../models/interfaces/BioSection';
 
 interface Props {

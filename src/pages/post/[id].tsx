@@ -8,8 +8,8 @@
 
 import React from 'react';
 import Hero from '../../components/templates/Hero';
-import MetaHead from '../../components/shared/MetaHead';
-import RouteSideCar from '../../components/shared/RoutesSideBar';
+import MetaHead from '../../components/shared/meta/MetaHead';
+import RouteSideCar from '../../components/shared/routes/RoutesSideBar';
 import {Box, Center} from '@chakra-ui/react';
 
 import {createUrqlClient} from '../../lib/server/createUrqlClient';
@@ -20,8 +20,8 @@ import ContentView from '../../components/post/ContentView';
 import UpRave from '../../components/post/UpRave';
 import Deletion from '../../components/post/Deletion';
 import {FormResult} from '../../models/enum/FormResult';
-import FooterDisclaimer from '../../components/shared/FooterDisclaimer';
-import LoadingScreen from '../../components/shared/LoadingScreen';
+import FooterDisclaimer from '../../components/shared/meta/FooterDisclaimer';
+import LoadingScreen from '../../components/shared/features/LoadingScreen';
 
 
 const Post: React.FC = () => {

@@ -9,7 +9,7 @@
 import React from 'react';
 import {VStack, Heading} from '@chakra-ui/react';
 import {favRed} from '../constants/color.scheme';
-import FooterDisclaimer from '../components/shared/FooterDisclaimer';
+import FooterDisclaimer from '../components/shared/meta/FooterDisclaimer';
 import GameOfLife from '../components/conway/GameOfLife';
 
 const Error: React.FC = () => {

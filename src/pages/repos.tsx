@@ -10,17 +10,17 @@ import React from 'react';
 
 import {VStack, Text, HStack} from '@chakra-ui/react';
 import Hero from '../components/templates/Hero';
-import RouteSideCar from '../components/shared/RoutesSideBar';
+import RouteSideCar from '../components/shared/routes/RoutesSideBar';
 import ProjectGrid from '../components/projects/ProjectGrid';
-import MetaHead from '../components/shared/MetaHead';
+import MetaHead from '../components/shared/meta/MetaHead';
 
 import {withUrqlClient} from 'next-urql';
 import {createUrqlClient} from '../lib/server/createUrqlClient';
 
-import FooterDisclaimer from '../components/shared/FooterDisclaimer';
+import FooterDisclaimer from '../components/shared/meta/FooterDisclaimer';
 import {useReposQuery} from '../models/graphql/types';
 import {useRouter} from 'next/router';
-import LoadingScreen from '../components/shared/LoadingScreen';
+import LoadingScreen from '../components/shared/features/LoadingScreen';
 
 const Repos: React.FC = () => {
     const router = useRouter();

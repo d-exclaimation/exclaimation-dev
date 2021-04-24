@@ -10,7 +10,7 @@ import React from 'react';
 import {
     Box,
     Grid,
-    GridItem, Text, VStack
+    GridItem, Img, Text, VStack
 } from '@chakra-ui/react';
 import {createUrqlClient} from '../lib/server/createUrqlClient';
 import {withUrqlClient} from 'next-urql';
@@ -18,7 +18,9 @@ import {useRouter} from 'next/router';
 import {useLanguagesQuery, useProfileQuery} from '../models/graphql/types';
 import LoadingScreen from '../components/shared/LoadingScreen';
 import Hero from '../components/templates/Hero';
-import {allSections} from '../components/main/SectionChildren';
+import {allSections} from '../components/core/SectionChildren';
+import {darkMode} from '../constants/color.scheme';
+import LogoBackground from '../components/shared/LogoBackground';
 
 const DELAY = 100;
 
@@ -49,7 +51,7 @@ export const New: React.FC = () => {
     return (
         <div className="New-header">
             <Grid
-                h="100vh"
+                h="97vh"
                 gap=".5rem"
                 templateAreas={`
                     'a  b  c'
@@ -67,7 +69,7 @@ export const New: React.FC = () => {
                             className="New-Section"
                             key={idx}
                             gridArea={val}
-                            // bg="purple.500"
+                            bg={darkMode}
                             style={{animationDelay: `${delay}ms`}}
                         >
                             {children}
@@ -78,9 +80,11 @@ export const New: React.FC = () => {
                     className="New-Section"
                     gridArea="🌟"
                     style={{animationDelay: `${13 * DELAY}ms`}}
+                    bg={darkMode}
                 >
                     <VStack>
                         <Hero title={data.profile.name} />
+                        <LogoBackground/>
                         <Box m={2}>
                             <Text
                                 align={'center'}

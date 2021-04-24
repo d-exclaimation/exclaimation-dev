@@ -8,7 +8,7 @@
 
 import React from 'react';
 import {Text} from '@chakra-ui/react';
-import MetaHead from '../components/shared/MetaHead';
+import MetaHead from '../components/shared/meta/MetaHead';
 import LoginForm from '../components/admin/LoginForm';
 import {FormResult} from '../models/enum/FormResult';
 import {withUrqlClient} from 'next-urql';

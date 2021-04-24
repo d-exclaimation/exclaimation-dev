@@ -8,7 +8,7 @@
 
 import React from 'react';
 import {Box} from '@chakra-ui/react';
-import {overideMarkdown} from '../shared/MarkdownOveride';
+import {overideMarkdown} from '../shared/markdown/MarkdownOveride';
 import {useWindowSize} from '../../lib/hooks/useWindow';
 
 interface Props {

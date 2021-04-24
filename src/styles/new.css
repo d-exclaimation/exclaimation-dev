@@ -1,9 +1,8 @@
 .New-header {
     background-color: #282c34;
     min-height: 100vh;
-    font-size: /* calc(6px + 2vmin) */ max(3vmin, 20px);
+    font-size: max(3vmin, 20px);
     color: azure;
-
     --ascent-color-1: #f5a617;
     --stagger-delay: 100ms;
 }
@@ -12,12 +11,12 @@
     from {
         opacity: 0;
         transform: scale(0.3);
-        filter: saturate(0);
+        filter: brightness(200%);
     }
     to {
         opacity: 1;
         transform: scale(1);
-        filter: saturate(1);
+        filter: brightness(100%);
     }
 }
 

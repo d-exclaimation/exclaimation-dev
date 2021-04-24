@@ -8,16 +8,16 @@
 
 import React from 'react';
 
-import MetaHead from '../components/shared/MetaHead';
+import MetaHead from '../components/shared/meta/MetaHead';
 import MusicPlayer from '../components/music/MusicPlayer';
 import MediaModal from '../components/music/MediaModal';
 import MusicList from '../components/music/MusicList';
-import RouteSideCar from '../components/shared/RoutesSideBar';
+import RouteSideCar from '../components/shared/routes/RoutesSideBar';
 import Hero from '../components/templates/Hero';
 
 import {GetStaticProps} from 'next';
 import {IMedia} from '../models/interfaces/Media';
-import FooterDisclaimer from '../components/shared/FooterDisclaimer';
+import FooterDisclaimer from '../components/shared/meta/FooterDisclaimer';
 
 
 interface Props {

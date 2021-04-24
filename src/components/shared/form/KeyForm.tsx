@@ -8,7 +8,7 @@
 
 import React, {useState} from 'react';
 import {Input, InputGroup, InputRightElement, Button, Box} from '@chakra-ui/react';
-import {useWindowSize} from '../../lib/hooks/useWindow';
+import {useWindowSize} from '../../../lib/hooks/useWindow';
 
 interface Props {
     keyValue: string

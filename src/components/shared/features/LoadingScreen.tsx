@@ -8,7 +8,7 @@
 
 import React from 'react';
 import {Spinner} from '@chakra-ui/react';
-import {favRed} from '../../constants/color.scheme';
+import {favRed} from '../../../constants/color.scheme';
 
 export const LoadingScreen: React.FC = () => {
     return (

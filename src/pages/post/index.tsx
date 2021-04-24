@@ -7,19 +7,19 @@
 //
 
 import React from 'react';
-import MetaHead from '../../components/shared/MetaHead';
+import MetaHead from '../../components/shared/meta/MetaHead';
 import Hero from '../../components/templates/Hero';
 import PostFeed from '../../components/feed/PostFeed';
 import {Box} from '@chakra-ui/react';
 import {createUrqlClient} from '../../lib/server/createUrqlClient';
 import {withUrqlClient} from 'next-urql';
 import {useAllPostQuery} from '../../models/graphql/types';
-import RouteSideCar from '../../components/shared/RoutesSideBar';
+import RouteSideCar from '../../components/shared/routes/RoutesSideBar';
 import {useRouter} from 'next/router';
 import ShowMore from '../../components/feed/ShowMore';
 import ToggleSort from '../../components/feed/ToggleSort';
-import FooterDisclaimer from '../../components/shared/FooterDisclaimer';
-import LoadingScreen from '../../components/shared/LoadingScreen';
+import FooterDisclaimer from '../../components/shared/meta/FooterDisclaimer';
+import LoadingScreen from '../../components/shared/features/LoadingScreen';
 
 
 const Feed: React.FC = () => {

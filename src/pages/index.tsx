@@ -9,12 +9,12 @@
 import React from 'react';
 
 import {Grid, GridItem, Text, Box, VStack, Center} from '@chakra-ui/react';
-import RouteSideCar from '../components/shared/RoutesSideBar';
+import RouteSideCar from '../components/shared/routes/RoutesSideBar';
 import Carousel from '../components/Carousel';
 import EpicProfile from '../components/EpicProfile';
-import MetaHead from '../components/shared/MetaHead';
-import FooterDisclaimer from '../components/shared/FooterDisclaimer';
-import LoadingScreen from '../components/shared/LoadingScreen';
+import MetaHead from '../components/shared/meta/MetaHead';
+import FooterDisclaimer from '../components/shared/meta/FooterDisclaimer';
+import LoadingScreen from '../components/shared/features/LoadingScreen';
 import GameOfLife from '../components/conway/GameOfLife';
 
 import {withUrqlClient} from 'next-urql';
