@@ -16,11 +16,11 @@ import {createUrqlClient} from '../lib/server/createUrqlClient';
 import {withUrqlClient} from 'next-urql';
 import {useRouter} from 'next/router';
 import {useLanguagesQuery, useProfileQuery} from '../models/graphql/types';
-import LoadingScreen from '../components/shared/LoadingScreen';
+import LoadingScreen from '../components/shared/features/LoadingScreen';
 import Hero from '../components/templates/Hero';
 import {allSections} from '../components/core/SectionChildren';
 import {darkMode} from '../constants/color.scheme';
-import LogoBackground from '../components/shared/LogoBackground';
+import LogoBackground from '../components/shared/features/LogoBackground';
 
 const DELAY = 100;
 
