@@ -5,6 +5,9 @@ root {
     --ascent-purple: #5e53bf;
 }
 
+html {
+    background-color: #282c34;
+}
 
 .New-header {
     background-color: #282c34;

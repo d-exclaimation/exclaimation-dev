@@ -10,7 +10,10 @@ import React from 'react';
 import {
     Box,
     Grid,
-    GridItem, Text, VStack
+    GridItem,
+    Text,
+    VStack,
+    Stack, Img,
 } from '@chakra-ui/react';
 import {createUrqlClient} from '../lib/server/createUrqlClient';
 import {withUrqlClient} from 'next-urql';
@@ -21,10 +24,12 @@ import Hero from '../components/templates/Hero';
 import {allSections} from '../components/core/SectionChildren';
 import {darkMode} from '../constants/color.scheme';
 import BackgroundEntertainment from '../components/shared/features/BackgroundEntertainment';
+import {useResponsive} from '../lib/hooks/useResponsive';
 
 const DELAY = 100;
 
 export const New: React.FC = () => {
+    const {isPortrait} = useResponsive();
     const router = useRouter();
     const [{fetching, data, error}] = useProfileQuery();
     const [lang] = useLanguagesQuery();
@@ -83,15 +88,21 @@ export const New: React.FC = () => {
                     style={{animationDelay: `${13 * DELAY}ms`}}
                     bg={darkMode}
                 >
-                    <VStack>
-                        <Hero title={data.profile.name} />
-                        <Box m={2}>
-                            <Text
-                                align={'center'}
-                                m={2} color="#fafafa"
-                            >{data.profile.bio}</Text>
-                        </Box>
-                    </VStack>
+                    <Stack direction={isPortrait ? 'column' : 'row-reverse'} align="center">
+                        <Img
+                            w="30vmin"
+                            src="/svg/d-pad.svg"
+                        />
+                        <VStack align={isPortrait ? 'center' : 'flex-end'}>
+                            <Hero title={data.profile.name} />
+                            <Box m={2}>
+                                <Text
+                                    align={'center'}
+                                    m={2} color="#fafafa"
+                                >{data.profile.bio}</Text>
+                            </Box>
+                        </VStack>
+                    </Stack>
                 </GridItem>
             </Grid>
         </div>

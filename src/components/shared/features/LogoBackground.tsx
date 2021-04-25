@@ -14,7 +14,7 @@ export const LogoBackground: React.FC = () => {
     return (
         <Img
             pos="absolute"
-            src="/images/mylogo.png"
+            src="/svg/d.svg"
             className={`Logo ${isSpinning ? 'Spinning' : ''}`}
             onClick={() => setSpinning(prev => !prev)}
             opacity={0.1}
