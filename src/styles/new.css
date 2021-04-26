@@ -1,3 +1,6 @@
+/*
+  Overwrite style sheet
+*/
 root {
     --ascent-red: #ff0056;
     --ascent-blue: #0670a1;
@@ -9,6 +12,9 @@ html {
     background-color: #282c34;
 }
 
+/*
+  Stylesheet classes
+*/
 .New-header {
     background-color: #282c34;
     min-height: 100vh;
@@ -16,20 +22,6 @@ html {
     color: azure;
     --stagger-delay: 100ms;
 }
-
-@keyframes sectionEntrance {
-    from {
-        opacity: 0;
-        transform: scale(0.3);
-        filter: brightness(200%);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-        filter: brightness(100%);
-    }
-}
-
 .New-Section {
     display: flex;
     align-items: center;
@@ -43,4 +35,51 @@ html {
     width: calc(2 * var(--radius));
     top: calc(50% - var(--radius));
     left: calc(50% - var(--radius));
+}
+
+
+/*
+  Stylesheet selector
+*/
+#ex-face {
+    animation: popUp 500ms ease-out;
+    animation-fill-mode: backwards;
+    animation-delay: calc(15 * var(--stagger-delay));
+}
+
+
+/*
+  Keyframes animation
+*/
+@keyframes popUp {
+    from {
+        opacity: 0;
+        transform: scale(0.3) translate(50%, 50%);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translate(0%, 0%);
+    }
+}
+
+@keyframes popUpTransparent {
+    from {
+        transform: scale(0.3);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes sectionEntrance {
+    from {
+        opacity: 0;
+        transform: scale(0.3);
+        filter: brightness(200%);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: brightness(100%);
+    }
 }

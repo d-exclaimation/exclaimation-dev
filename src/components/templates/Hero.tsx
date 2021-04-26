@@ -17,7 +17,7 @@ const Hero: React.FC<HeroProps> = ({ title }: HeroProps) => {
     return (
         <Heading
             fontSize="6vw"
-            bgGradient="linear(to-r, #65FFE4, #E248F2)"
+            bgGradient="linear(to-r, #65FFE4, #FF0056)"
             bgClip="text"
         >
             { title ?? 'Next.js' }

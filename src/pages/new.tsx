@@ -25,6 +25,7 @@ import {allSections} from '../components/core/SectionChildren';
 import {darkMode} from '../constants/color.scheme';
 import BackgroundEntertainment from '../components/shared/features/BackgroundEntertainment';
 import {useResponsive} from '../lib/hooks/useResponsive';
+import ExBoxedIcon from '../components/shared/icons/ExBoxedIcon';
 
 const DELAY = 100;
 
@@ -89,10 +90,7 @@ export const New: React.FC = () => {
                     bg={darkMode}
                 >
                     <Stack direction={isPortrait ? 'column' : 'row-reverse'} align="center">
-                        <Img
-                            w="30vmin"
-                            src="/svg/d-pad.svg"
-                        />
+                        <ExBoxedIcon />
                         <VStack align={isPortrait ? 'center' : 'flex-end'}>
                             <Hero title={data.profile.name} />
                             <Box m={2}>

@@ -14,13 +14,15 @@ export const LogoBackground: React.FC = () => {
     return (
         <Img
             pos="absolute"
-            src="/svg/d.svg"
+            src="/svg/ex-face.svg"
             className={`Logo ${isSpinning ? 'Spinning' : ''}`}
             onClick={() => setSpinning(prev => !prev)}
             opacity={0.1}
             alt="My Image"
             style={{
                 zIndex: 0,
+                animation: 'popUpTransparent 500ms ease-out',
+                animationFillMode: 'backwards'
             }}
         />
     );
