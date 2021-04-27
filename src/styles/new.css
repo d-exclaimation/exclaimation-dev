@@ -26,7 +26,7 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: sectionEntrance 700ms ease-out;
+    animation: sectionEntrance 600ms ease-out;
     animation-fill-mode: backwards;
 }
 
@@ -44,7 +44,7 @@ html {
 #ex-face {
     animation: popUp 500ms ease-out;
     animation-fill-mode: backwards;
-    animation-delay: calc(15 * var(--stagger-delay));
+    animation-delay: calc(12 * var(--stagger-delay));
 }
 
 
@@ -54,16 +54,16 @@ html {
 @keyframes popUp {
     from {
         opacity: 0;
-        transform: scale(0.3) translate(50%, 50%);
+        transform: scale(0.3) translate(70%, 70%);
     }
     to {
-        opacity: 1;
         transform: scale(1) translate(0%, 0%);
     }
 }
 
 @keyframes popUpTransparent {
     from {
+        opacity: 0;
         transform: scale(0.3);
     }
     to {

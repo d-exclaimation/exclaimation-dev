@@ -11,7 +11,7 @@ import {Icon} from '@chakra-ui/react';
 
 export const ExBoxedIcon: React.FC = () => {
     return (
-        <Icon w="30vmin" h="30vmin" viewBox="0 0 272 272" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <Icon w="30vmin" h="30vmin" zIndex={1} viewBox="0 0 272 272" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="ex-dark">
                 <g id="logo" filter="url(#filter0_d)">
                     <rect x="30" y="30" width="212" height="212" rx="20" fill="#282C34"/>

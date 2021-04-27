@@ -18,7 +18,7 @@ const FeatureCycleButton: React.FC<Props> = ({cycle}: Props) => {
     return (
         <IconButton
             variant="ghost"
-            colorScheme="orange"
+            colorScheme="pink"
             boxShadow="dark-lg"
             aria-label="cycle"
             pos="absolute"

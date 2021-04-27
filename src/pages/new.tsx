@@ -13,7 +13,7 @@ import {
     GridItem,
     Text,
     VStack,
-    Stack, Img,
+    Stack,
 } from '@chakra-ui/react';
 import {createUrqlClient} from '../lib/server/createUrqlClient';
 import {withUrqlClient} from 'next-urql';
@@ -26,8 +26,9 @@ import {darkMode} from '../constants/color.scheme';
 import BackgroundEntertainment from '../components/shared/features/BackgroundEntertainment';
 import {useResponsive} from '../lib/hooks/useResponsive';
 import ExBoxedIcon from '../components/shared/icons/ExBoxedIcon';
+import MetaHead from '../components/shared/meta/MetaHead';
 
-const DELAY = 100;
+const DELAY = 50;
 
 export const New: React.FC = () => {
     const {isPortrait} = useResponsive();
@@ -56,6 +57,7 @@ export const New: React.FC = () => {
 
     return (
         <div className="New-header">
+            <MetaHead title={data.profile.name} description={'Welcome to the d-exclaimation developer website by vin aka d-exclaimation. This is the website / web app for all things related to me. My profiles, links, repos, projects, bios, and blogs, you named it it is probably here'}/>
             <BackgroundEntertainment/>
             <Grid
                 h="96vh"

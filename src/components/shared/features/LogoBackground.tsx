@@ -21,8 +21,8 @@ export const LogoBackground: React.FC = () => {
             alt="My Image"
             style={{
                 zIndex: 0,
-                animation: 'popUpTransparent 500ms ease-out',
-                animationFillMode: 'backwards'
+                animation: !isSpinning ? 'popUpTransparent 500ms ease-out': undefined,
+                animationFillMode: !isSpinning ? 'backwards' : undefined,
             }}
         />
     );

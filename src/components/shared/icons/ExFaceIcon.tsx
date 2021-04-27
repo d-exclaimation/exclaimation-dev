@@ -11,7 +11,7 @@ import {Icon} from '@chakra-ui/react';
 
 export const ExFaceIcon: React.FC = () => {
     return (
-        <Icon width="130" height="111" viewBox="0 0 130 111" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <Icon width="13" height="11" viewBox="0 0 130 111" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0)">
                 <path d="M27.5001 61.9392C7.81257 64.3923 13.7501 90.1492 29.0626 86.7762L27.5001 61.9392Z" fill="#FF0056" stroke="#FF0056" strokeWidth="6"/>
                 <path d="M101.25 61.9392C117.5 61.9392 118.437 86.7762 99.375 85.2431L101.25 61.9392Z" fill="#FF0056" stroke="#FF0056" strokeWidth="6"/>

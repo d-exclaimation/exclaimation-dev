@@ -6,7 +6,7 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import {useSequence} from '../../../lib/hooks/useSequence';
 import LogoBackground from './LogoBackground';
 import FeatureCycleButton from './FeatureCycleButton';
@@ -16,6 +16,16 @@ type Entertainments = 'game-of-life' | 'logo-spinning' | 'none'
 
 export const BackgroundEntertainment: React.FC = () => {
     const [curr, cycle] = useSequence<Entertainments>('none', 'logo-spinning', 'game-of-life');
+    const timeout = useRef<NodeJS.Timeout | null>(null);
+
+    useEffect(() => {
+        // Animation delay is too rigid, I just want the first render to have the delay
+        timeout.current = setTimeout(() => cycle(), 1200);
+        return () => {
+            if (timeout.current)
+                clearTimeout(timeout.current);
+        };
+    }, []);
 
     switch (curr) {
     case 'game-of-life':
