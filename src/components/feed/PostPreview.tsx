@@ -1,5 +1,5 @@
 //
-//  PostPreview.tsx
+//  LatestPost.tsx
 //  exclaimation
 //
 //  Created by d-exclaimation on 8:14 PM.

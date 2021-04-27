@@ -16,7 +16,7 @@ type Section = {
     children: JSX.Element
 }
 
-export const allSections = (profile: ProfileSnapFragment, topLang: LanguageSnapShotFragment): Section[] =>
+export const allSections = (profile: ProfileSnapFragment, topLang: LanguageSnapShotFragment, _ = false): Section[] =>
     [
         {
             val: 'a',
@@ -51,6 +51,7 @@ export const allSections = (profile: ProfileSnapFragment, topLang: LanguageSnapS
         {
             val: 'g',
             children: <>
+                <LatestPreview/>
             </>
         },
         {

@@ -8,29 +8,29 @@
 
 import React from 'react';
 import {VStack, Heading} from '@chakra-ui/react';
-import {favRed} from '../constants/color.scheme';
+import {lavender} from '../constants/color.scheme';
 import FooterDisclaimer from '../components/shared/meta/FooterDisclaimer';
-import GameOfLife from '../components/conway/GameOfLife';
+import BackgroundEntertainment from '../components/shared/features/BackgroundEntertainment';
 
 const Error: React.FC = () => {
     return (
         <>
             <div className="App-header">
+                <BackgroundEntertainment/>
                 <VStack>
                     <Heading
                         fontSize="6vw"
-                        color={favRed}
+                        color={lavender}
                     >
                         404
                     </Heading>
                     <Heading
                         fontSize="1vw"
-                        color={'#c10142'}
+                        color={'tan'}
                     >
                         Page Not Found
                     </Heading>
                 </VStack>
-                <GameOfLife init={true} />
                 <FooterDisclaimer/>
             </div>
         </>

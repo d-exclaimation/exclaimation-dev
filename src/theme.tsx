@@ -21,6 +21,7 @@ const breakpoints = createBreakpoints({
 const theme = extendTheme({
     colors: {
         black: '#16161D',
+        bg: '#282c34',
         tan: '#FCD6CE',
         purple: '#9B8FC0',
         popRed: '#FF0056',

@@ -7,7 +7,7 @@
 //
 
 import React  from 'react';
-import {lavender} from '../../constants/color.scheme';
+import {lavender} from '../../../../constants/color.scheme';
 
 interface Props {
     color?: string,

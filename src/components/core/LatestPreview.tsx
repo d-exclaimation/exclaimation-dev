@@ -7,51 +7,33 @@
 //
 
 import React from 'react';
-import {Box, Flex, Heading, IconButton, Link, Text} from '@chakra-ui/react';
-import {darkMode} from '../../constants/color.scheme';
-import {ChevronUpIcon} from '@chakra-ui/icons';
+import {Flex, Text, Link} from '@chakra-ui/react';
 import NextLink from 'next/link';
-import {usePostQuery} from '../../models/graphql/types';
+import LatestPost from './content/LatestPost';
+import {ascentGradient} from '../../constants/color.scheme';
 
 export const LatestPreview: React.FC = () => {
-    const [{data, fetching, error}] = usePostQuery({
-        pause: typeof window === 'undefined',
-        variables: {
-            id: 21
-        }
-    });
-
-    if (error)
-        return <></>;
 
     return (
         <Flex
-            p={5}
-            maxW="50vmax"
+            direction={'column'}
+            bg={'#282c34'}
+            p="1vmin"
+            mb="2vmin"
             w="80%"
-            shadow="dark-lg"
-            borderRadius={5}
-            bgColor={darkMode}>
-            <Flex direction="column"  alignItems="center" justifyContent="center" mr={4}>
-                <IconButton
-                    colorScheme="pink"
-                    aria-label="UpRave"
-                    variant="outline"
-                    size="2vmin"
-                    icon={<ChevronUpIcon/>}
-                    isLoading={fetching}
-                    // onClick={() => upRave({
-                    //     id: parseInt(post.id)
-                    // })}
-                />
-                <Text fontSize="16px" color="white" mt={2}>{data?.post?.crabrave ?? 0}</Text>
-            </Flex>
-            <Box>
-                <NextLink href="/post/[id]" as={`/post/${21}`}>
-                    <Heading as={Link} color="white" fontSize="1rem">{data?.post?.title ?? 'Fucked'}</Heading>
-                </NextLink>
-                <Text color="gray.500" maxW="80%" fontSize="1rem" mt={4} mb={3} isTruncated>{'Something here'}</Text>
-            </Box>
+            maxW="50vmax"
+        >
+            <Text
+                m={2}
+                fontSize="2.5vmin"
+                bgGradient={ascentGradient}
+                bgClip="text"
+            >
+                <Link href="/post">
+                    Recent activity
+                </Link>
+            </Text>
+            <LatestPost/>
         </Flex>
     );
 };

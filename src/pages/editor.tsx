@@ -21,7 +21,7 @@ const Editor: React.FC = () => {
     const [, createPost] = useCreatePostMutationMutation();
     return (
         <>
-            <MetaHead title={'d-exclaimation post editor'} description={'Editor with a preview with markdown'}/>
+            <MetaHead title={'d-exclaimation post editor'} description={'Editor with a content with markdown'}/>
             <div className="Post-header">
                 <RouteSideCar/>
                 <MarkdownEditor submit={async (title, body) => {

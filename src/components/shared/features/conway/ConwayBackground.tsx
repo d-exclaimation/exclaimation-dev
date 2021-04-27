@@ -10,7 +10,7 @@ import React, {useEffect} from 'react';
 import {useConway} from './libs/useConway';
 import LifeBlock from './LifeBlock';
 import {COLS} from './libs/utils/constant';
-import {favRed} from '../../constants/color.scheme';
+import {favRed} from '../../../../constants/color.scheme';
 
 export const ConwayBackground: React.FC = () => {
     const [{grid, isRunning}, {toggleRunning, toggleGrid}] = useConway();

@@ -10,7 +10,7 @@ import React, {useEffect, useRef} from 'react';
 import {useSequence} from '../../../lib/hooks/useSequence';
 import LogoBackground from './LogoBackground';
 import FeatureCycleButton from './FeatureCycleButton';
-import ConwayBackground from '../../conway/ConwayBackground';
+import ConwayBackground from './conway/ConwayBackground';
 
 type Entertainments = 'game-of-life' | 'logo-spinning' | 'none'
 
