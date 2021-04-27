@@ -57,7 +57,12 @@ export const New: React.FC = () => {
 
     return (
         <div className="New-header">
-            <MetaHead title={data.profile.name} description={'Welcome to the d-exclaimation developer website by vin aka d-exclaimation. This is the website / web app for all things related to me. My profiles, links, repos, projects, bios, and blogs, you named it it is probably here'}/>
+            <MetaHead
+                title={data.profile.name}
+                description={
+                    'Welcome to the d-exclaimation developer website by vin aka d-exclaimation. This is the website / web app for all things related to me. My profiles, links, repos, projects, bios, and blogs, you named it it is probably here'
+                }
+            />
             <BackgroundEntertainment/>
             <Grid
                 h="96vh"

@@ -54,7 +54,7 @@ html {
 @keyframes popUp {
     from {
         opacity: 0;
-        transform: scale(0.3) translate(70%, 70%);
+        transform: scale(0.3) translate(60%, 60%);
     }
     to {
         transform: scale(1) translate(0%, 0%);

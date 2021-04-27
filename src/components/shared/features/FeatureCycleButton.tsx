@@ -22,7 +22,7 @@ const FeatureCycleButton: React.FC<Props> = ({cycle}: Props) => {
             boxShadow="dark-lg"
             aria-label="cycle"
             pos="absolute"
-            bottom="1vmin"
+            top="1vmin"
             right="1vmin"
             m="1vmin"
             onClick={() => cycle()}

@@ -142,6 +142,11 @@ export type FullPostFragment = (
   )> }
 );
 
+export type LanguageSnapShotFragment = (
+  { __typename?: 'Language' }
+  & Pick<Language, 'id' | 'lang' | 'percentage'>
+);
+
 export type PostSnippetFragment = (
   { __typename?: 'Post' }
   & Pick<Post, 'id' | 'title' | 'snippet' | 'crabrave'>
@@ -214,7 +219,7 @@ export type LanguagesQuery = (
   { __typename?: 'Query' }
   & { topLang: (
     { __typename?: 'Language' }
-    & Pick<Language, 'id' | 'lang' | 'percentage'>
+    & LanguageSnapShotFragment
   ) }
 );
 
@@ -287,6 +292,13 @@ export const FullPostFragmentDoc = gql`
     leaf
   }
   crabrave
+}
+    `;
+export const LanguageSnapShotFragmentDoc = gql`
+    fragment LanguageSnapShot on Language {
+  id
+  lang
+  percentage
 }
     `;
 export const PostSnippetFragmentDoc = gql`
@@ -363,12 +375,10 @@ export function useLoginAdminMutation() {
 export const LanguagesDocument = gql`
     query Languages {
   topLang {
-    id
-    lang
-    percentage
+    ...LanguageSnapShot
   }
 }
-    `;
+    ${LanguageSnapShotFragmentDoc}`;
 
 export function useLanguagesQuery(options: Omit<Urql.UseQueryArgs<LanguagesQueryVariables>, 'query'> = {}) {
   return Urql.useQuery<LanguagesQuery>({ query: LanguagesDocument, ...options });

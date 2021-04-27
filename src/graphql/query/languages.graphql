@@ -1,7 +1,5 @@
 query Languages {
     topLang {
-        id
-        lang
-        percentage
+        ...LanguageSnapShot
     }
 }

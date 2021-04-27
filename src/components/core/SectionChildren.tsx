@@ -6,16 +6,17 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 import React from 'react';
-import {Language, ProfileSnapFragment} from '../../models/graphql/types';
+import {LanguageSnapShotFragment, ProfileSnapFragment} from '../../models/graphql/types';
 import SocialCarousel from './SocialCarousel';
 import ProfileStats from './ProfileStats';
+import LatestPreview from './LatestPreview';
 
 type Section = {
     val: string,
     children: JSX.Element
 }
 
-export const allSections = (profile: ProfileSnapFragment, topLang: Language): Section[] =>
+export const allSections = (profile: ProfileSnapFragment, topLang: LanguageSnapShotFragment): Section[] =>
     [
         {
             val: 'a',
@@ -23,15 +24,19 @@ export const allSections = (profile: ProfileSnapFragment, topLang: Language): Se
         },
         {
             val: 'b',
-            children: <></>
+            children: <>
+            </>
         },
         {
             val: 'c',
-            children: <></>
+            children: <>
+            </>
         },
         {
             val: 'd',
-            children: <></>
+            children: <>
+
+            </>
         },
         {
             val: 'e',
@@ -39,12 +44,13 @@ export const allSections = (profile: ProfileSnapFragment, topLang: Language): Se
         },
         {
             val: 'f',
-            children: <></>
+            children: <>
+                <ProfileStats github={profile} topLang={topLang} />
+            </>
         },
         {
             val: 'g',
             children: <>
-                <ProfileStats github={profile} topLang={topLang} />
             </>
         },
         {
