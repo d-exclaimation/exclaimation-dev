@@ -44,7 +44,6 @@ export const ConwayBackground: React.FC = () => {
                         index={{i, j}}
                         toggle={toggleGrid}
                         value={col}
-                        color={favRed}
                     />)
                 )
             )}

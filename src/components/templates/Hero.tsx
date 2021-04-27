@@ -8,6 +8,7 @@
 
 import React from 'react';
 import { Heading } from '@chakra-ui/react';
+import {ascentGradient} from '../../constants/color.scheme';
 
 interface HeroProps {
     title? : string,
@@ -17,7 +18,7 @@ const Hero: React.FC<HeroProps> = ({ title }: HeroProps) => {
     return (
         <Heading
             fontSize="6vw"
-            bgGradient="linear(to-r, #65FFE4, #FF0056)"
+            bgGradient={ascentGradient}
             bgClip="text"
         >
             { title ?? 'Next.js' }

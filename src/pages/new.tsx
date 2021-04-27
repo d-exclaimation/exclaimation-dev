@@ -13,7 +13,7 @@ import {
     GridItem,
     Text,
     VStack,
-    Stack,
+    Stack, useColorMode,
 } from '@chakra-ui/react';
 import {createUrqlClient} from '../lib/server/createUrqlClient';
 import {withUrqlClient} from 'next-urql';

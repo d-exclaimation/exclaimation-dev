@@ -7,6 +7,7 @@
 //
 
 import React  from 'react';
+import {lavender} from '../../constants/color.scheme';
 
 interface Props {
     color?: string,
@@ -22,7 +23,7 @@ const LifeBlock: React.FC<Props> = ({index, value, toggle, color}: Props) => {
             style={{
                 width: '2vmin',
                 height: '2vmin',
-                backgroundColor: value ? (color ? color : '#8e56f5') : undefined,
+                backgroundColor: value ? (color ? color : lavender) : undefined,
             }}
             onClick={() => toggle(i, j)}
         />

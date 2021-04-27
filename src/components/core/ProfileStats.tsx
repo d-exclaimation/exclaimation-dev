@@ -10,7 +10,6 @@ import React from 'react';
 import {LanguageSnapShotFragment, ProfileSnapFragment} from '../../models/graphql/types';
 import {Box, Stat, StatArrow, StatHelpText, StatLabel, StatNumber, Stack} from '@chakra-ui/react';
 import Link from 'next/link';
-import {favRed, nextBlue} from '../../constants/color.scheme';
 import {useResponsive} from '../../lib/hooks/useResponsive';
 
 interface Props {
@@ -26,7 +25,7 @@ const ProfileStats: React.FC<Props> = ({github, topLang}: Props) => {
                 <Link href={github.githubURL + '?tab=repositories'}>
                     <Stat textAlign={'right'}>
                         <StatLabel
-                            color={favRed}
+                            color="tan"
                             fontSize="min(1rem, 3vw)"
                         >{isMobile ? 'Repos' : 'Public repos'}</StatLabel>
                         <StatNumber
@@ -44,7 +43,7 @@ const ProfileStats: React.FC<Props> = ({github, topLang}: Props) => {
             <Box>
                 <Stat textAlign={'right'}>
                     <StatLabel
-                        color={nextBlue}
+                        color="purple"
                         fontSize="min(1rem, 3vw)"
                     >{isMobile ? 'Top' : 'Top Language'}</StatLabel>
                     <StatNumber
@@ -53,7 +52,7 @@ const ProfileStats: React.FC<Props> = ({github, topLang}: Props) => {
                     <StatHelpText
                         fontSize="min(1rem, 3vw)"
                     >
-                        <StatArrow type="increase" />
+                        <StatArrow type={['Elixir', 'Go', 'TypeScript'].includes(topLang.lang) ? 'increase' : 'decrease'} />
                         {topLang.percentage.toFixed(2)}%
                     </StatHelpText>
                 </Stat>

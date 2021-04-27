@@ -2,10 +2,12 @@
   Overwrite style sheet
 */
 root {
-    --ascent-red: #ff0056;
-    --ascent-blue: #0670a1;
-    --ascent-orange: #fabb1b;
-    --ascent-purple: #5e53bf;
+    --background-color: #282c34;
+    --ascent-tan: #FCD6CE;
+    --ascent-lavender: #9B8FC0;
+    --ascent-popRed: #FF0056;
+    --ascent-mint: #6AFFE5;
+    --ascent-grey: #4D546;
 }
 
 html {
