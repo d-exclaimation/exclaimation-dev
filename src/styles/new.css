@@ -39,6 +39,10 @@ html {
     left: calc(50% - var(--radius));
 }
 
+.SlideUpCard {
+    animation: slideUp 600ms ease-in-out;
+}
+
 
 /*
   Stylesheet selector
@@ -69,6 +73,17 @@ html {
         transform: scale(0.3);
     }
     to {
+        transform: scale(1);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20%);
+    }
+    to {
+        opacity: 1;
         transform: scale(1);
     }
 }

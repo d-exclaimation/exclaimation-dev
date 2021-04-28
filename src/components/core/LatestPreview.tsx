@@ -8,24 +8,32 @@
 
 import React from 'react';
 import {Flex, Text, Link} from '@chakra-ui/react';
-import NextLink from 'next/link';
 import LatestPost from './content/LatestPost';
 import {ascentGradient} from '../../constants/color.scheme';
+import {useSequence} from '../../lib/hooks/useSequence';
+import LatestRepo from './content/LatestRepo';
+import {useInterval} from '../../lib/hooks/useInterval';
+
+type LatestFeed = 'post' | 'repo'
 
 export const LatestPreview: React.FC = () => {
+    const [state, toggle] = useSequence<LatestFeed>('repo', 'post', 'repo');
+
+    useInterval(() => {
+        toggle();
+    },  5 * 1000);
 
     return (
         <Flex
             direction={'column'}
             bg={'#282c34'}
-            p="1vmin"
-            mb="2vmin"
+            mb="auto"
             w="80%"
             maxW="50vmax"
         >
             <Text
                 m={2}
-                fontSize="2.5vmin"
+                fontSize="min(2.5vmin, 16px)"
                 bgGradient={ascentGradient}
                 bgClip="text"
             >
@@ -33,7 +41,11 @@ export const LatestPreview: React.FC = () => {
                     Recent activity
                 </Link>
             </Text>
-            <LatestPost/>
+            {
+                state === 'post'
+                    ? <LatestPost/>
+                    : <LatestRepo/>
+            }
         </Flex>
     );
 };

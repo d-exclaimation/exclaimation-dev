@@ -27,6 +27,7 @@ export const LatestPost: React.FC = () => {
 
     return (
         <Flex
+            className="SlideUpCard"
             p={5}
             maxW="50vmax"
             direction={isMobile ? 'column-reverse': 'row'}
