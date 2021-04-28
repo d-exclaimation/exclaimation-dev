@@ -20,7 +20,8 @@ export const allSections = (profile: ProfileSnapFragment, topLang: LanguageSnapS
     [
         {
             val: 'a',
-            children: <></>
+            children: <>
+            </>
         },
         {
             val: 'b',

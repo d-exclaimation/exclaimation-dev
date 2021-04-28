@@ -23,10 +23,10 @@ import LoadingScreen from '../components/shared/features/LoadingScreen';
 import Hero from '../components/templates/Hero';
 import {allSections} from '../components/core/SectionChildren';
 import {darkMode} from '../constants/color.scheme';
-import BackgroundEntertainment from '../components/shared/features/BackgroundEntertainment';
 import {useResponsive} from '../lib/hooks/useResponsive';
 import ExBoxedIcon from '../components/shared/icons/ExBoxedIcon';
 import MetaHead from '../components/shared/meta/MetaHead';
+import RouteNavBar from '../components/shared/routes/RouteNavBar';
 
 const DELAY = 50;
 
@@ -63,7 +63,7 @@ export const Index: React.FC = () => {
                     'Welcome to the d-exclaimation developer website by vin aka d-exclaimation. This is the website / web app for all things related to me. My profiles, links, repos, projects, bios, and blogs, you named it it is probably here'
                 }
             />
-            <BackgroundEntertainment/>
+            <RouteNavBar/>
             <Grid
                 h="96vh"
                 gap=".5rem"
@@ -97,7 +97,7 @@ export const Index: React.FC = () => {
                     bg={darkMode}
                 >
                     <Stack direction={isPortrait ? 'column' : 'row-reverse'} align="center">
-                        <ExBoxedIcon />
+                        <ExBoxedIcon w={'30vmin'} />
                         <VStack align={isPortrait ? 'center' : 'flex-end'}>
                             <Hero title={data.profile.name} />
                             <Box m={2}>

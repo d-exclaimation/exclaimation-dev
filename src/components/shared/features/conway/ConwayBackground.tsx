@@ -11,6 +11,7 @@ import {useConway} from './libs/useConway';
 import LifeBlock from './LifeBlock';
 import {COLS} from './libs/utils/constant';
 import {favRed} from '../../../../constants/color.scheme';
+import ReactDOM from 'react-dom';
 
 export const ConwayBackground: React.FC = () => {
     const [{grid, isRunning}, {toggleRunning, toggleGrid}] = useConway();
@@ -33,7 +34,7 @@ export const ConwayBackground: React.FC = () => {
         gridTemplateColumns: `repeat(${COLS}, 2vmin)`
     };
 
-    return (
+    return ReactDOM.createPortal(
         <div
             style={gridStyle}
         >
@@ -47,7 +48,8 @@ export const ConwayBackground: React.FC = () => {
                     />)
                 )
             )}
-        </div>
+        </div>,
+        document.body
     );
 };
 

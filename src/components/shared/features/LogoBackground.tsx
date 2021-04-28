@@ -8,10 +8,12 @@
 
 import React, {useState} from 'react';
 import {Img} from '@chakra-ui/react';
+import ReactDOM from 'react-dom';
 
 export const LogoBackground: React.FC = () => {
     const [isSpinning, setSpinning] = useState<boolean>(false);
-    return (
+
+    return ReactDOM.createPortal(
         <Img
             pos="absolute"
             src="/svg/ex-face.svg"
@@ -25,7 +27,7 @@ export const LogoBackground: React.FC = () => {
                 animationFillMode: !isSpinning ? 'backwards' : undefined,
             }}
         />
-    );
+        ,document.body);
 };
 
 export default LogoBackground;
