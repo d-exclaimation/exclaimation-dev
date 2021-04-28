@@ -17,11 +17,13 @@ import {useInterval} from '../../lib/hooks/useInterval';
 type LatestFeed = 'post' | 'repo'
 
 export const LatestPreview: React.FC = () => {
-    const [state, toggle] = useSequence<LatestFeed>('repo', 'post', 'repo');
+    const order: LatestFeed[] = Math.random() > .5 ? ['post', 'repo'] as LatestFeed[] : ['repo', 'post'] as LatestFeed[];
+    const [state, toggle] = useSequence<LatestFeed>(...order);
+    console.log(state);
 
     useInterval(() => {
         toggle();
-    },  5 * 1000);
+    },  30 * 1000);
 
     return (
         <Flex
@@ -41,11 +43,13 @@ export const LatestPreview: React.FC = () => {
                     Recent activity
                 </Link>
             </Text>
-            {
-                state === 'post'
-                    ? <LatestPost/>
-                    : <LatestRepo/>
-            }
+            <div>
+                {
+                    state === 'post'
+                        ? <LatestPost/>
+                        : <LatestRepo/>
+                }
+            </div>
         </Flex>
     );
 };

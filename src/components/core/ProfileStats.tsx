@@ -18,7 +18,7 @@ interface Props {
 }
 
 const ProfileStats: React.FC<Props> = ({github, topLang}: Props) => {
-    const {isMobile} = useResponsive();
+    const {isPortrait} = useResponsive();
     return (
         <Stack direction={'column'} color="#fafafa">
             <Box>
@@ -27,7 +27,7 @@ const ProfileStats: React.FC<Props> = ({github, topLang}: Props) => {
                         <StatLabel
                             color="tan"
                             fontSize="min(1rem, 3vw)"
-                        >{isMobile ? 'Repos' : 'Public repos'}</StatLabel>
+                        >{isPortrait ? 'Repos' : 'Public repos'}</StatLabel>
                         <StatNumber
                             fontSize="min(1rem, 3vw)"
                         >{ github.reposCount }</StatNumber>
@@ -45,7 +45,7 @@ const ProfileStats: React.FC<Props> = ({github, topLang}: Props) => {
                     <StatLabel
                         color="purple"
                         fontSize="min(1rem, 3vw)"
-                    >{isMobile ? 'Top' : 'Top Language'}</StatLabel>
+                    >{isPortrait ? 'Top' : 'Top Language'}</StatLabel>
                     <StatNumber
                         fontSize="min(1rem, 3vw)"
                     >{ topLang.lang }</StatNumber>

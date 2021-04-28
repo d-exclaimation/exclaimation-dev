@@ -10,7 +10,7 @@
 import {useWindowSize} from './useWindow';
 
 type ResponsiveState = {
-    isMobile: boolean,
+    isPortrait: boolean,
     isPortrait: boolean,
     isLandscape: boolean,
 }
@@ -18,7 +18,7 @@ type ResponsiveState = {
 export function useResponsive(): ResponsiveState {
     const window = useWindowSize();
     return {
-        isMobile: window.width <= 765,
+        isPortrait: window.width <= 765,
         isLandscape: window.width > window.height,
         isPortrait: window.width < window.height
     };

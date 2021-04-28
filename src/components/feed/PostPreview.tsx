@@ -29,7 +29,7 @@ const PostPreview: React.FC<Props> = ({post}: Props) => {
 
     return (
         <Flex p={5} w={card.width} shadow="dark-lg" borderRadius={5}>
-            <Flex direction="column"  alignItems="center" justifyContent="center" mr={4}>
+            <Flex direction="column" alignItems="center" justifyContent="center" mr={4}>
                 <IconButton
                     colorScheme="pink"
                     aria-label="UpRave"

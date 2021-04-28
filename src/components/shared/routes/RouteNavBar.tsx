@@ -5,7 +5,7 @@
 //  Created by d-exclaimation on 10:09 AM.
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {
     Button,
     DarkMode,

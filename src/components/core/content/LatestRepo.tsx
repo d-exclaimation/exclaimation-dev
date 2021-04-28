@@ -11,7 +11,7 @@ import {useResponsive} from '../../../lib/hooks/useResponsive';
 import {langBarOptions} from '../../../lib/LanguageBarURL';
 
 export const LatestRepo: React.FC = () => {
-    const {isMobile} = useResponsive();
+    const {isPortrait} = useResponsive();
 
     const langImage = (lang: string): string => {
         if (langBarOptions.has(lang)) {
@@ -23,21 +23,21 @@ export const LatestRepo: React.FC = () => {
     return (
         <Flex
             className="SlideUpCard"
-            direction={isMobile ? 'column': 'row'}
+            direction={isPortrait ? 'column': 'row'}
             bg="bg"
             boxShadow="dark-lg"
             borderRadius="lg"
             overflow="hidden"
         >
             <Img
-                w={isMobile ? 'unset' : '15%'}
-                h={isMobile ? '40%' : 'unset'}
+                w={isPortrait ? 'unset' : '15%'}
+                h={isPortrait ? '20vmin' : '15vmin'}
                 objectFit="cover"
                 src={langImage('elixir')} alt={'elixir'}
             />
 
-            <Link href={'/'} m={isMobile ? 'unset': 5}>
-                <Box p="3">
+            <Box alignItems="center" p="3" m={isPortrait ? 'unset': 5}>
+                <Link href={'/'}>
                     <Box
                         mt="1"
                         fontWeight="semibold"
@@ -47,12 +47,12 @@ export const LatestRepo: React.FC = () => {
                     >
                         {'Something repo'}
                     </Box>
+                </Link>
 
-                    <Text fontSize="sm" color="gray.500" isTruncated>
-                        {'d-exclaimation/something-repo'}
-                    </Text>
-                </Box>
-            </Link>
+                <Text fontSize="sm" color="gray.500" isTruncated>
+                    {'d-exclaimation/something-repo'}
+                </Text>
+            </Box>
         </Flex>
     );
 };
