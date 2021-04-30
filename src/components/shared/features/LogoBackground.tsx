@@ -21,8 +21,8 @@ export const LogoBackground: React.FC = () => {
             onClick={() => setSpinning(prev => !prev)}
             opacity={0.1}
             alt="My Image"
+            zIndex={0}
             style={{
-                zIndex: 0,
                 animation: !isSpinning ? 'popUpTransparent 500ms ease-out': undefined,
                 animationFillMode: !isSpinning ? 'backwards' : undefined,
             }}

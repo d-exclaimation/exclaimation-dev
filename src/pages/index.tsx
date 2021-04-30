@@ -22,7 +22,6 @@ import {useLanguagesQuery, useProfileQuery} from '../models/graphql/types';
 import LoadingScreen from '../components/shared/features/LoadingScreen';
 import Hero from '../components/templates/Hero';
 import {allSections} from '../components/core/SectionChildren';
-import {darkMode} from '../constants/color.scheme';
 import {useResponsive} from '../lib/hooks/useResponsive';
 import ExBoxedIcon from '../components/shared/icons/ExBoxedIcon';
 import MetaHead from '../components/shared/meta/MetaHead';
@@ -63,17 +62,17 @@ export const Index: React.FC = () => {
                     'Welcome to the d-exclaimation developer website by vin aka d-exclaimation. This is the website / web app for all things related to me. My profiles, links, repos, projects, bios, and blogs, you named it it is probably here'
                 }
             />
-            <RouteNavBar/>
+            <RouteNavBar isHome={true}/>
             <Grid
                 h="96vh"
                 gap=".5rem"
                 templateAreas={`
-                    'a  b  c'
+                    'a  b c'
                     'j  🌟 d'
                     'i  🌟 e'
                     'h  g  f'
                 `}
-                gridTemplateRows="repeat(4, 25%)"
+                gridTemplateRows="21% 21% 21% 30%"
                 gridTemplateColumns="20vmin auto 20vmin"
             >
                 {sides.map(({val, children}, idx) => {
@@ -83,7 +82,6 @@ export const Index: React.FC = () => {
                             className="New-Section"
                             key={idx}
                             gridArea={val}
-                            bg={darkMode}
                             style={{animationDelay: `${delay}ms`}}
                         >
                             {children}
@@ -94,7 +92,6 @@ export const Index: React.FC = () => {
                     className="New-Section"
                     gridArea="🌟"
                     style={{animationDelay: `${13 * DELAY}ms`}}
-                    bg={darkMode}
                 >
                     <Stack direction={isPortrait ? 'column' : 'row-reverse'} align="center">
                         <ExBoxedIcon w={'30vmin'} />
@@ -103,7 +100,7 @@ export const Index: React.FC = () => {
                             <Box m={2}>
                                 <Text
                                     align={'center'}
-                                    m={2} color="#fafafa"
+                                    m={2} color="white"
                                 >{data.profile.bio}</Text>
                             </Box>
                         </VStack>

@@ -18,6 +18,7 @@ import MetaHead from '../components/shared/meta/MetaHead';
 import {GetStaticProps} from 'next';
 import FooterDisclaimer from '../components/shared/meta/FooterDisclaimer';
 import {BioSection} from '../models/interfaces/BioSection';
+import RouteNavBar from '../components/shared/routes/RouteNavBar';
 
 interface Props {
     name: string
@@ -30,19 +31,17 @@ const About: React.FC<Props> = ({ name, image, bio }: Props) => {
         <>
             <MetaHead title={`${name}'s profile`} description={'All profile me, d-exclaimation. My bio....maybe some other personal stuff that are not really technical'}/>
             <div className="App-header">
-                <Center>
-                    <VStack spacing={2}>
-                        <RouteSideCar/>
-                        <ProfileCard imageUrl={image} />
-                        <Hero title={name}/>
-                        { bio.map((curr, i) => {
-                            return (
-                                <Bio key={i} title={curr.title} bio={curr.bio} color={Color.gray} />
-                            );
-                        }) }
-                        <FooterDisclaimer/>
-                    </VStack>
-                </Center>
+                <RouteNavBar />
+                <VStack spacing={2}>
+                    <ProfileCard imageUrl={image} />
+                    <Hero title={name}/>
+                    { bio.map((curr, i) => {
+                        return (
+                            <Bio key={i} title={curr.title} bio={curr.bio} color={Color.gray} />
+                        );
+                    }) }
+                    <FooterDisclaimer/>
+                </VStack>
             </div>
         </>
     );

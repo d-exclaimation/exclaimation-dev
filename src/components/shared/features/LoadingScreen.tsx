@@ -8,7 +8,6 @@
 
 import React from 'react';
 import {Spinner} from '@chakra-ui/react';
-import {favRed} from '../../../constants/color.scheme';
 
 export const LoadingScreen: React.FC = () => {
     return (
@@ -16,7 +15,7 @@ export const LoadingScreen: React.FC = () => {
             <Spinner
                 thickness="1vw"
                 speed="1s"
-                color={favRed}
+                color="purple"
                 size="xl"
             />
         </div>

@@ -9,7 +9,7 @@ import React from 'react';
 import {LanguageSnapShotFragment, ProfileSnapFragment} from '../../models/graphql/types';
 import SocialCarousel from './SocialCarousel';
 import ProfileStats from './ProfileStats';
-import LatestPreview from './LatestPreview';
+import LatestViewModel from './LatestViewModel';
 
 type Section = {
     val: string,
@@ -23,11 +23,11 @@ export const allSections = (profile: ProfileSnapFragment, topLang: LanguageSnapS
             children: <>
             </>
         },
-        {
-            val: 'b',
-            children: <>
-            </>
-        },
+        // {
+        //     val: 'b',
+        //     children: <>
+        //     </>
+        // },
         {
             val: 'c',
             children: <>
@@ -52,7 +52,7 @@ export const allSections = (profile: ProfileSnapFragment, topLang: LanguageSnapS
         {
             val: 'g',
             children: <>
-                <LatestPreview/>
+                <LatestViewModel/>
             </>
         },
         {

@@ -14,11 +14,13 @@ import ConwayBackground from './conway/ConwayBackground';
 
 type Entertainments = 'game-of-life' | 'logo-spinning' | 'none'
 
-export const BackgroundEntertainment: React.FC = () => {
+export const BackgroundViewModel: React.FC<{isHome: boolean}> = ({isHome}: {isHome: boolean}) => {
     const [curr, cycle] = useSequence<Entertainments>('none', 'logo-spinning', 'game-of-life');
     const timeout = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
+        if (!isHome)
+            return;
         // Animation delay is too rigid, I just want the first render to have the delay
         timeout.current = setTimeout(() => cycle(), 1200);
         return () => {
@@ -51,4 +53,4 @@ export const BackgroundEntertainment: React.FC = () => {
     }
 };
 
-export default BackgroundEntertainment;
+export default BackgroundViewModel;

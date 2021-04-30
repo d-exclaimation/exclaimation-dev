@@ -33,7 +33,6 @@ export const LatestPost: React.FC = () => {
             direction={isPortrait ? 'column-reverse': 'row'}
             boxShadow="dark-lg"
             borderRadius={10}
-            zIndex={1}
             bgColor="bg"
         >
             <Flex

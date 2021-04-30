@@ -3,6 +3,7 @@
 */
 root {
     --background-color: #282c34;
+    --background-mild: #2a2d33;
     --ascent-tan: #FCD6CE;
     --ascent-lavender: #9B8FC0;
     --ascent-popRed: #FF0056;
@@ -18,10 +19,10 @@ html {
   Stylesheet classes
 */
 .New-header {
-    background-color: #282c34;
+    background-color: #2a2d33;
     min-height: 100vh;
     font-size: max(3vmin, 20px);
-    color: azure;
+    color: var(--background-color);
     --stagger-delay: 100ms;
 }
 .New-Section {

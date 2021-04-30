@@ -10,13 +10,13 @@ import React from 'react';
 import {VStack, Heading} from '@chakra-ui/react';
 import {lavender} from '../constants/color.scheme';
 import FooterDisclaimer from '../components/shared/meta/FooterDisclaimer';
-import BackgroundEntertainment from '../components/shared/features/BackgroundEntertainment';
+import BackgroundViewModel from '../components/shared/features/BackgroundViewModel';
 
 const Error: React.FC = () => {
     return (
         <>
             <div className="App-header">
-                <BackgroundEntertainment/>
+                <BackgroundViewModel/>
                 <VStack>
                     <Heading
                         fontSize="6vw"

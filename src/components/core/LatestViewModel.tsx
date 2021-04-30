@@ -7,7 +7,7 @@
 //
 
 import React from 'react';
-import {Flex, Text, Link} from '@chakra-ui/react';
+import {Stack, Text, Link} from '@chakra-ui/react';
 import LatestPost from './content/LatestPost';
 import {ascentGradient} from '../../constants/color.scheme';
 import {useSequence} from '../../lib/hooks/useSequence';
@@ -16,9 +16,8 @@ import {useInterval} from '../../lib/hooks/useInterval';
 
 type LatestFeed = 'post' | 'repo'
 
-export const LatestPreview: React.FC = () => {
-    const order: LatestFeed[] = Math.random() > .5 ? ['post', 'repo'] as LatestFeed[] : ['repo', 'post'] as LatestFeed[];
-    const [state, toggle] = useSequence<LatestFeed>(...order);
+export const LatestViewModel: React.FC = () => {
+    const [state, toggle] = useSequence<LatestFeed>('post', 'repo');
     console.log(state);
 
     useInterval(() => {
@@ -26,12 +25,9 @@ export const LatestPreview: React.FC = () => {
     },  30 * 1000);
 
     return (
-        <Flex
+        <Stack
             direction={'column'}
-            bg={'#282c34'}
-            mb="auto"
-            w="80%"
-            maxW="50vmax"
+            w="clamp(40%, 80%, 50vmax)"
         >
             <Text
                 m={2}
@@ -50,8 +46,8 @@ export const LatestPreview: React.FC = () => {
                         : <LatestRepo/>
                 }
             </div>
-        </Flex>
+        </Stack>
     );
 };
 
-export default LatestPreview;
+export default LatestViewModel;

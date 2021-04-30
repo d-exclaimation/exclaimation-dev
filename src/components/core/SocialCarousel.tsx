@@ -7,7 +7,7 @@
 //
 
 import React from 'react';
-import {VStack} from '@chakra-ui/react';
+import {LightMode, VStack} from '@chakra-ui/react';
 import {ProfileSnapFragment} from '../../models/graphql/types';
 import {FiGithub, FiTwitter, FiInstagram} from 'react-icons/fi';
 import SocialLink from './media/SocialLink';
@@ -23,23 +23,26 @@ const SocialCarousel: React.FC<Props> = ({github}: Props) => {
             px="auto"
             spacing="2vmin"
         >
-            <SocialLink
-                url={github.githubURL}
-                name={'Github'}
-                icon={<FiGithub/>}
-            />
-            <SocialLink
-                url={`https://twitter.com/${github.twitterUsername}`}
-                name={'Twitter'}
-                scheme={'twitter'}
-                icon={<FiTwitter/>}
-            />
-            <SocialLink
-                url={'https://www.instagram.com/d_exclaimation/'}
-                name={'Instagram'}
-                scheme={'pink'}
-                icon={<FiInstagram/>}
-            />
+            <LightMode>
+                <SocialLink
+                    url={github.githubURL}
+                    name={'Github'}
+                    scheme={'whiteAlpha'}
+                    icon={<FiGithub/>}
+                />
+                <SocialLink
+                    url={`https://twitter.com/${github.twitterUsername}`}
+                    name={'Twitter'}
+                    scheme={'twitter'}
+                    icon={<FiTwitter/>}
+                />
+                <SocialLink
+                    url={'https://www.instagram.com/d_exclaimation/'}
+                    name={'Instagram'}
+                    scheme={'pink'}
+                    icon={<FiInstagram/>}
+                />
+            </LightMode>
         </VStack>
     );
 };

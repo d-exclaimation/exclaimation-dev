@@ -10,6 +10,7 @@ export const favRed = '#ff0056';
 export const mildGray = '#808181';
 export const nextBlue = '#90f5eb';
 export const darkMode = '#282c34';
+export const mildbg = '#2a2d33';
 export const tan = '#FCD6CE';
 export const lavender = '#9B8FC0';
 export const popRed = '#FF0056';
