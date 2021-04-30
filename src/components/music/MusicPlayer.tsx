@@ -26,7 +26,7 @@ interface Props {
     name: string | undefined,
 }
 
-const MusicPlayer: React.FC<Props> = ({ url, name }: Props) => {
+const MusicPlayer: React.FC<Props> = ({ url, name }: React.PropsWithChildren<Props>) => {
     const { isPlaying, toggleAudio,  toggleVolume, time} = usePlayer(url, true);
     const window = useWindowSize();
     const corner = useDynamicCorner();

@@ -11,17 +11,17 @@ import {Box, Heading, Text} from '@chakra-ui/react';
 interface Props {
     title: string,
     desc: string,
-    width: number
+    width: number | string,
     headingColor: string,
     color: string
     font: string
 }
 
-const Feature: React.FC<Props> = ({ title, desc, width, headingColor, color, font }: Props) => {
+const Feature: React.FC<Props> = ({ title, desc, width, headingColor, color, font }: React.PropsWithChildren<Props>) => {
     return (
-        <Box w={width} m={3} p={5} shadow="md" boxShadow="dark-lg"  borderRadius={10}>
+        <Box w={width} p="2vmin">
             <Heading fontSize="xl" color={headingColor}>{title}</Heading>
-            <Text mt={4} fontSize={font} color={color}>{desc}</Text>
+            <Text mt="2vmin" fontSize={font} color={color}>{desc}</Text>
         </Box>
     );
 };

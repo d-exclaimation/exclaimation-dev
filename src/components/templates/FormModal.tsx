@@ -26,7 +26,7 @@ interface Props {
     children?: React.ReactNode
 }
 
-const FormModal: React.FC<Props> = ({title, isShown, onConfirm, onCancel, children}: Props) => {
+const FormModal: React.FC<Props> = ({title, isShown, onConfirm, onCancel, children}: React.PropsWithChildren<Props>) => {
     return (
         <Modal
             size={'2xl'}

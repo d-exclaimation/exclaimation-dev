@@ -36,7 +36,7 @@ const scheme = (index: number): ColorScheme => {
     return option[curr];
 };
 
-const MusicList: React.FC<Props> = ({curr, setCurr, musics}: Props) => {
+const MusicList: React.FC<Props> = ({curr, setCurr, musics}: React.PropsWithChildren<Props>) => {
     const corner = useDynamicCorner();
     const [isShown, setShown] = React.useState<boolean>(false);
 

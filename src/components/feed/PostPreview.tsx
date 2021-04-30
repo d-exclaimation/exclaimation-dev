@@ -18,7 +18,7 @@ interface Props {
     post: PostSnippetFragment
 }
 
-const PostPreview: React.FC<Props> = ({post}: Props) => {
+const PostPreview: React.FC<Props> = ({post}: React.PropsWithChildren<Props>) => {
     const window = useWindowSize();
     const size = useDynamicSize(2);
     const [{fetching}, upRave] = useUpRaveMutation();

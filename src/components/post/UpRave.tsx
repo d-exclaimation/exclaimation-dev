@@ -16,7 +16,7 @@ import {useDynamicSize} from '../../lib/hooks/useDynamicSize';
 interface Props {
     post: FullPostFragment
 }
-const UpRave: React.FC<Props> = ({post}: Props) => {
+const UpRave: React.FC<Props> = ({post}: React.PropsWithChildren<Props>) => {
     const [{fetching}, upRave] = useUpRaveMutation();
     const corner = useDynamicCorner();
     const size = useDynamicSize();

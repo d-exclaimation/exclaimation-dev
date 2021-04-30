@@ -21,7 +21,7 @@ interface Props {
     color?: string
 }
 
-const RouteSideCar: React.FC<Props> = ({color}: Props): JSX.Element => {
+const RouteSideCar: React.FC<Props> = ({color}: React.PropsWithChildren<Props>): JSX.Element => {
     const hex = color || favRed;
     const res = routes();
     const window = useWindowSize();

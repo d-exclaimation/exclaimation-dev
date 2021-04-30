@@ -37,7 +37,7 @@ type Props = {
     isHome?: boolean
 }
 
-export const RouteNavBar: React.FC<Props> = ({isHome}: Props) => {
+export const RouteNavBar: React.FC<Props> = ({isHome}: React.PropsWithChildren<Props>) => {
     const res = routes();
     const {isOpen, onClose, onOpen} = useDisclosure();
     const {isPortrait} = useResponsive();
@@ -69,7 +69,7 @@ export const RouteNavBar: React.FC<Props> = ({isHome}: Props) => {
                     />
                 </Box>
                 <Box p="2">
-                    <Heading bgGradient={ascentGradient} bgClip="text" size="md">d-exclaimation</Heading>
+                    <Heading bgGradient={ascentGradient} bgClip="text" size={isPortrait ? 'sm' : 'md'}>d-exclaimation</Heading>
                 </Box>
                 <Box p="2">
                     <Breadcrumb
@@ -94,14 +94,14 @@ export const RouteNavBar: React.FC<Props> = ({isHome}: Props) => {
                     {
                         isHome
                             ? <BackgroundViewModel isHome={isHome || false} />
-                            : <Button opacity="0" >I am not here</Button>
+                            : <Button opacity="0" >{isPortrait ? '' : 'I am not here'}</Button>
                     }
                 </Box>
                 <DarkMode>
                     <Drawer placement={isPortrait ? 'top' : 'left'}  onClose={onClose} isOpen={isOpen}>
                         <DrawerOverlay>
                             <DrawerContent color="tan">
-                                <DrawerHeader borderBottomWidth="1px">Basic Drawer</DrawerHeader>
+                                <DrawerHeader borderBottomWidth="1px">d-exclaimation pages</DrawerHeader>
                                 <DrawerBody>
                                     <Flex direction="column">
                                         {res.map((val, i) => {

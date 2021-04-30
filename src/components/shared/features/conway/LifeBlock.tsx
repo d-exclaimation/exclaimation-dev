@@ -16,7 +16,7 @@ interface Props {
     toggle: (i: number, j: number) => void,
 }
 
-const LifeBlock: React.FC<Props> = ({index, value, toggle, color}: Props) => {
+const LifeBlock: React.FC<Props> = ({index, value, toggle, color}: React.PropsWithChildren<Props>) => {
     const {i, j} = index;
     return (
         <div

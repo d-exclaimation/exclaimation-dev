@@ -15,7 +15,7 @@ interface Props {
     body: string,
 }
 
-const PreviewMarkdown: React.FC<Props> = ({body}: Props) => {
+const PreviewMarkdown: React.FC<Props> = ({body}: React.PropsWithChildren<Props>) => {
     const window = useWindowSize();
     return (
         <Box

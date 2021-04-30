@@ -18,7 +18,7 @@ interface Props {
     icon: ReactElement
 }
 
-const SocialLink: React.FC<Props> = ({url, name, scheme, icon}: Props) => {
+const SocialLink: React.FC<Props> = ({url, name, scheme, icon}: React.PropsWithChildren<Props>) => {
     const window = useWindowSize();
 
     if (window.width < window.height)

@@ -18,7 +18,7 @@ interface Props {
     url: string
 }
 
-const ShowCard: React.FC<Props> = ({ imageUrl, title, body, url }: Props) => {
+const ShowCard: React.FC<Props> = ({ imageUrl, title, body, url }: React.PropsWithChildren<Props>) => {
     const window = useWindowSize();
 
     const card = {

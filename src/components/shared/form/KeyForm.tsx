@@ -14,7 +14,7 @@ interface Props {
     keyValue: string
     changeKey: (val: string) => void,
 }
-const KeyForm: React.FC<Props> = ({keyValue, changeKey}: Props) => {
+const KeyForm: React.FC<Props> = ({keyValue, changeKey}: React.PropsWithChildren<Props>) => {
     const [isShown, setShown] = useState<boolean>(false);
     const window = useWindowSize();
     return (

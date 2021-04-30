@@ -11,7 +11,7 @@ import React from 'react';
 import {withUrqlClient} from 'next-urql';
 import {createUrqlClient} from '../lib/server/createUrqlClient';
 import MetaHead from '../components/shared/meta/MetaHead';
-import MarkdownEditor from '../components/editor/MarkdownEditor';
+import EditorViewModel from '../components/editor/EditorViewModel';
 import {useCreatePostMutationMutation} from '../models/graphql/types';
 import RouteSideCar from '../components/shared/routes/RoutesSideBar';
 import {FormResult} from '../models/enum/FormResult';
@@ -24,7 +24,7 @@ const Editor: React.FC = () => {
             <MetaHead title={'d-exclaimation post editor'} description={'Editor with a content with markdown'}/>
             <div className="Post-header">
                 <RouteSideCar/>
-                <MarkdownEditor submit={async (title, body) => {
+                <EditorViewModel submit={async (title, body) => {
                     try {
                         const {error} = await createPost({
                             input: {

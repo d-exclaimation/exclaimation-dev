@@ -19,7 +19,7 @@ import AlertPopUp from '../templates/AlertPopUp';
 interface Props {
     deletePost: () => Promise<FormResult>,
 }
-const Deletion: React.FC<Props> = ({deletePost}: Props) => {
+const Deletion: React.FC<Props> = ({deletePost}: React.PropsWithChildren<Props>) => {
     const router = useRouter();
     const corner = useDynamicCorner();
     const [isShown, setShown] = useState<boolean>(false);

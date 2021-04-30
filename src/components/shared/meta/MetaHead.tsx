@@ -13,7 +13,7 @@ interface Props {
     title: string
     description: string
 }
-const MetaHead: React.FC<Props> = ({title, description}: Props) => {
+const MetaHead: React.FC<Props> = ({title, description}: React.PropsWithChildren<Props>) => {
     return (
         <Head>
             <meta property="title" content={title}/>

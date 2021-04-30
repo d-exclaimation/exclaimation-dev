@@ -16,7 +16,7 @@ interface Props {
    github: ProfileSnapFragment
 }
 
-const SocialCarousel: React.FC<Props> = ({github}: Props) => {
+const SocialCarousel: React.FC<Props> = ({github}: React.PropsWithChildren<Props>) => {
     return (
         <VStack
             py="2vmin"

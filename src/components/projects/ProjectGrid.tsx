@@ -17,7 +17,7 @@ interface Props {
     repos: RepoSnapshotFragment[]
 }
 
-const ProjectGrid: React.FC<Props> = ({ repos }: Props) => {
+const ProjectGrid: React.FC<Props> = ({ repos }: React.PropsWithChildren<Props>) => {
     const window = useWindowSize();
     const grid = Math.floor(window.width / 240);
     const langImage = (lang: string): string => {

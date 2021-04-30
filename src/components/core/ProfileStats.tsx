@@ -17,7 +17,7 @@ interface Props {
     topLang: LanguageSnapShotFragment
 }
 
-const ProfileStats: React.FC<Props> = ({github, topLang}: Props) => {
+const ProfileStats: React.FC<Props> = ({github, topLang}: React.PropsWithChildren<Props>) => {
     const {isPortrait} = useResponsive();
     return (
         <Stack direction={'column'} color="#fafafa">

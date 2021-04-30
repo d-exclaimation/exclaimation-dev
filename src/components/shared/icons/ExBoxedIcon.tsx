@@ -13,7 +13,7 @@ interface Props {
     w: string | number
 }
 
-export const ExBoxedIcon: React.FC<Props> = ({w}: Props) => {
+export const ExBoxedIcon: React.FC<Props> = ({w}: React.PropsWithChildren<Props>) => {
     return (
         <Icon w={w} h="auto" zIndex={1} viewBox="0 0 272 272" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="ex-dark">

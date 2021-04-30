@@ -13,7 +13,7 @@ const FooterDisclaimer: React.FC = () => {
     return (
         <Text
             p={5} color="gray.500"
-            fontSize="min(10px, 2vw)"
+            fontSize="min(10px, 1vw)"
         > { 'Copyright © 2021 d-exclaimation. All rights reserved.' } </Text>
     );
 };

@@ -17,7 +17,7 @@ interface Props {
 }
 
 
-const PostFeed: React.FC<Props> = ({ isFetching, posts }: Props) => {
+const PostFeed: React.FC<Props> = ({ isFetching, posts }: React.PropsWithChildren<Props>) => {
     if(isFetching)
         return <Text color="#fafafa">Loading...</Text>;
     

@@ -15,7 +15,7 @@ interface Props {
     changeState: (newVal: string) => void
 }
 
-const TitleEditor: React.FC<Props> = ({state, changeState}: Props) => {
+const TitleEditor: React.FC<Props> = ({state, changeState}: React.PropsWithChildren<Props>) => {
     const window = useWindowSize();
     return (
         <Box

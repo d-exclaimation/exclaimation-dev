@@ -26,7 +26,7 @@ interface Props {
     onClose: () => void
 }
 
-const AlertPopUp: React.FC<Props> = ({header, body, confirmation, isShown, onClose, onConfirm}: Props) => {
+const AlertPopUp: React.FC<Props> = ({header, body, confirmation, isShown, onClose, onConfirm}: React.PropsWithChildren<Props>) => {
     const cancelRef = React.useRef<HTMLButtonElement>(null);
     return (
         <AlertDialog

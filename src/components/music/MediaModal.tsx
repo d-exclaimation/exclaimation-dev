@@ -23,7 +23,7 @@ interface Props {
     setMusics: (musics: IMedia[]) => void;
 }
 
-const MediaModal: React.FC<Props> = ({musics, setMusics}: Props) => {
+const MediaModal: React.FC<Props> = ({musics, setMusics}: React.PropsWithChildren<Props>) => {
     const corner = useDynamicCorner();
     const [shown, setShown] = React.useState(false);
     const [name, setName] = React.useState('');

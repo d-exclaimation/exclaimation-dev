@@ -18,7 +18,7 @@ interface Props {
     submit: (title: string, body: string) => Promise<FormResult>,
 }
 
-const MarkdownEditor: React.FC<Props> = ({submit}: Props) => {
+const EditorViewModel: React.FC<Props> = ({submit}: React.PropsWithChildren<Props>) => {
     const router = useRouter();
     const toast = useToast();
     const [form, setForm] = useState<string>('');
@@ -98,4 +98,4 @@ const MarkdownEditor: React.FC<Props> = ({submit}: Props) => {
     );
 };
 
-export default MarkdownEditor;
+export default EditorViewModel;

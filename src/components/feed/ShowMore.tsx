@@ -16,7 +16,7 @@ interface Props {
     sort: string
 }
 
-const ShowMore: React.FC<Props> = ({limit, sort}: Props) => {
+const ShowMore: React.FC<Props> = ({limit, sort}: React.PropsWithChildren<Props>) => {
     const size = useDynamicSize(2);
     const router = useRouter();
     const addition = Math.max(Math.floor(limit / 3 * 2), 1);

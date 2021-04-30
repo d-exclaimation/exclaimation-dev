@@ -7,12 +7,13 @@
 //
 
 import React from 'react';
-import {Stack, Text, Link} from '@chakra-ui/react';
+import {Stack, Text, Link, Center} from '@chakra-ui/react';
 import LatestPost from './content/LatestPost';
 import {ascentGradient} from '../../constants/color.scheme';
 import {useSequence} from '../../lib/hooks/useSequence';
 import LatestRepo from './content/LatestRepo';
 import {useInterval} from '../../lib/hooks/useInterval';
+import FooterDisclaimer from '../shared/meta/FooterDisclaimer';
 
 type LatestFeed = 'post' | 'repo'
 
@@ -46,6 +47,9 @@ export const LatestViewModel: React.FC = () => {
                         : <LatestRepo/>
                 }
             </div>
+            <Center>
+                <FooterDisclaimer/>
+            </Center>
         </Stack>
     );
 };

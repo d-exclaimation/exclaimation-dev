@@ -18,7 +18,7 @@ interface Props {
     limit: number
 }
 
-const ToggleSort: React.FC<Props> = ({sort, limit}: Props) => {
+const ToggleSort: React.FC<Props> = ({sort, limit}: React.PropsWithChildren<Props>) => {
     const router = useRouter();
     const corner = useDynamicCorner();
     const window = useWindowSize();

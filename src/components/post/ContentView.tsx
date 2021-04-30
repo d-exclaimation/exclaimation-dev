@@ -18,7 +18,7 @@ interface Props {
 }
 
 
-const ContentView: React.FC<Props> = ({post}: Props) => {
+const ContentView: React.FC<Props> = ({post}: React.PropsWithChildren<Props>) => {
     const window = useWindowSize();
     const limitWidth =  Math.floor(window.width * (window.width >= window.height ? 0.9 : 0.99));
 

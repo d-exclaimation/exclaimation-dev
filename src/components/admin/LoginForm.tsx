@@ -17,7 +17,7 @@ interface Props {
     login: (key: string) => Promise<FormResult>,
 }
 
-const LoginForm: React.FC<Props> = ({login}: Props) => {
+const LoginForm: React.FC<Props> = ({login}: React.PropsWithChildren<Props>) => {
     const router = useRouter();
     const [key, setKey] = useState<string>('');
     const [res, setRes] = useState<FormResult>(FormResult.none);

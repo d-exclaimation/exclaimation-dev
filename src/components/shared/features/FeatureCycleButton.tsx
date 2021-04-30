@@ -15,7 +15,7 @@ interface Props {
    cycle: () => void
 }
 
-const FeatureCycleButton: React.FC<Props> = ({cycle}: Props) => {
+const FeatureCycleButton: React.FC<Props> = ({cycle}: React.PropsWithChildren<Props>) => {
     const {isPortrait} = useResponsive();
     if(isPortrait)
         return (

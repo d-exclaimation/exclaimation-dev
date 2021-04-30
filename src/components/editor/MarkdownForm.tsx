@@ -19,7 +19,7 @@ interface Props {
     setBody: (val: string) => void
 }
 
-const MarkdownForm: React.FC<Props> = ({title, body, setTitle, setBody}: Props) => {
+const MarkdownForm: React.FC<Props> = ({title, body, setTitle, setBody}: React.PropsWithChildren<Props>) => {
     const window = useWindowSize();
     return (
         <>
