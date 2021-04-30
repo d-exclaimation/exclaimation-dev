@@ -29,6 +29,7 @@ export const LatestViewModel: React.FC = () => {
         <Stack
             direction={'column'}
             w="clamp(40%, 80%, 50vmax)"
+            zIndex={2}
         >
             <Text
                 m={2}

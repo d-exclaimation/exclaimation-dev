@@ -1,3 +1,4 @@
+import React from 'react';
 import NextDocument, {Html, Head, Main, NextScript} from 'next/document';
 import {ColorModeScript} from '@chakra-ui/react';
 import theme from '../theme';
@@ -9,6 +10,7 @@ class Document extends NextDocument {
                 <Head/>
                 <body>
                     {/* Make Color mode to persists when you refresh the page. */}
+                    <div id="target"/>
                     <ColorModeScript initialColorMode={theme.config.initialColorMode} />
                     <Main/>
                     <NextScript/>

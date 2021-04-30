@@ -16,7 +16,7 @@ interface Props {
 
 const BioViewModel: React.FC<Props> = ({bio}: React.PropsWithChildren<Props>) => {
     return (
-        <VStack bg="bg" h="clamp(20vh, 60vh, 80vh)" spacing={8} boxShadow="dark-lg" p="2vmin">
+        <VStack bg="bg" h="clamp(20vh, 60vh, auto)" spacing={8} boxShadow="dark-lg" p="2vmin">
             { bio.map((curr, i) => {
                 return (
                     <Bio key={i} title={curr.title} bio={curr.bio}/>

@@ -27,7 +27,7 @@ export const LogoBackground: React.FC = () => {
                 animationFillMode: !isSpinning ? 'backwards' : undefined,
             }}
         />
-        ,document.body);
+        ,document.getElementById('target') ?? document.body);
 };
 
 export default LogoBackground;

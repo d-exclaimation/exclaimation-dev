@@ -64,7 +64,7 @@ export const Index: React.FC = () => {
             />
             <RouteNavBar isHome={true}/>
             <Grid
-                h="93vh"
+                h="82vh"
                 gap=".5rem"
                 templateAreas={`
                     'a  b c'
@@ -72,7 +72,7 @@ export const Index: React.FC = () => {
                     'i  🌟 e'
                     'h  g  f'
                 `}
-                gridTemplateRows="22% 22% 22% 27%"
+                gridTemplateRows="20vh 20vh 21vh 24vh"
                 gridTemplateColumns="20vmin auto 20vmin"
             >
                 {sides.map(({val, children}, idx) => {
