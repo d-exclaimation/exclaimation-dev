@@ -28,7 +28,7 @@ const RepoPreview: React.FC<Props> = ({isPortrait, imageURL, title, body, url}: 
             overflow="hidden"
         >
             <Img
-                w={isPortrait ? 'unset' : '15%'}
+                w={isPortrait ? 'unset' : '20%'}
                 h={isPortrait ? '20vmin' : '15vmin'}
                 objectFit="cover"
                 src={imageURL} alt={title}
