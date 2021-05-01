@@ -50,7 +50,7 @@ const Repos: React.FC = () => {
                 title={`d-exclaimation's ${data.repos.length} repos`}
                 description={'All projects and repos made by d-exclaimation (vin). This is where you find whatever I spent most of my days doing.'}
             />
-            <div className="App-header">
+            <div className="New-header">
                 <RouteNavBar/>
                 <Grid
                     gap=".5rem"
