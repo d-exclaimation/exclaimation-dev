@@ -1,5 +1,5 @@
 //
-//  music.tsx
+//  content.tsx
 //  exclaimation
 //
 //  Created by d-exclaimation on 11:29 AM.
@@ -9,15 +9,10 @@
 import React from 'react';
 
 import MetaHead from '../components/shared/meta/MetaHead';
-import MusicPlayer from '../components/music/MusicPlayer';
-import MediaModal from '../components/music/MediaModal';
-import MusicList from '../components/music/MusicList';
-import RouteSideCar from '../components/shared/routes/RoutesSideBar';
-import Hero from '../components/templates/Hero';
-
 import {GetStaticProps} from 'next';
 import {IMedia} from '../models/interfaces/Media';
-import FooterDisclaimer from '../components/shared/meta/FooterDisclaimer';
+import RouteNavBar from '../components/shared/routes/RouteNavBar';
+import ChillViewModel from '../components/music/ChillViewModel';
 
 
 interface Props {
@@ -25,22 +20,12 @@ interface Props {
 }
 
 const Chill: React.FC<Props> = ({ musics }: Props) => {
-    const [musicList, setMusicList] = React.useState<IMedia[]>(musics);
-    const [curr, setCurr] = React.useState<IMedia | null>(null);
-
     return (
         <>
-            <MetaHead title={'d-exclaimation\'s music place'} description={'A music place to listen to your favourite lofi hiphop songs to study and relax'}/>
-            <div className="App-header">
-                <RouteSideCar/>
-                <MediaModal musics={musicList} setMusics={setMusicList}/>
-                <MusicList curr={curr} setCurr={setCurr} musics={musicList}/>
-                {
-                    curr ?
-                        <MusicPlayer url={curr.url} name={curr.name}/> :
-                        <Hero title={'Chill Zone'} />
-                }
-                <FooterDisclaimer/>
+            <MetaHead title={'d-exclaimation\'s content place'} description={'A content place to listen to your favourite lofi hiphop songs to study and relax'}/>
+            <div className="New-header">
+                <RouteNavBar/>
+                <ChillViewModel preRenderedList={musics}/>
             </div>
         </>
     );

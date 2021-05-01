@@ -29,7 +29,7 @@ const RepoPreview: React.FC<Props> = ({isPortrait, imageURL, title, body, url}: 
         >
             <Img
                 w={isPortrait ? 'unset' : '20%'}
-                h={isPortrait ? '20vmin' : '15vmin'}
+                h={isPortrait ? '20vmin' : '16vmin'}
                 objectFit="cover"
                 src={imageURL} alt={title}
             />

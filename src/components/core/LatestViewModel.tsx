@@ -7,7 +7,7 @@
 //
 
 import React from 'react';
-import {Stack, Text, Link, Center} from '@chakra-ui/react';
+import {Stack, Text, Link, Center, Box} from '@chakra-ui/react';
 import LatestPost from './content/LatestPost';
 import {ascentGradient} from '../../constants/color.scheme';
 import {useSequence} from '../../lib/hooks/useSequence';
@@ -41,13 +41,13 @@ export const LatestViewModel: React.FC = () => {
                     Recent activity
                 </Link>
             </Text>
-            <div>
+            <Box>
                 {
                     state === 'post'
                         ? <LatestPost/>
                         : <LatestRepo/>
                 }
-            </div>
+            </Box>
             <Center>
                 <FooterDisclaimer/>
             </Center>

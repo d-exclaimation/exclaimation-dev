@@ -9,11 +9,13 @@
 
 import { useState, useEffect } from 'react';
 
-interface Size {
+/// Window Size State
+type Size = {
     width: number;
     height: number;
 }
 
+/// Window resizing custom hooks
 export function useWindowSize(): Size {
     // Initialize state with undefined width/height so server and client server match
     const [windowSize, setWindowSize] = useState<Size>({

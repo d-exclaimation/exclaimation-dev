@@ -14,7 +14,7 @@ import {
     ModalCloseButton,
     ModalContent, ModalFooter,
     ModalHeader,
-    ModalOverlay
+    ModalOverlay, useColorMode
 } from '@chakra-ui/react';
 import {favRed} from '../../constants/color.scheme';
 
@@ -27,6 +27,7 @@ interface Props {
 }
 
 const FormModal: React.FC<Props> = ({title, isShown, onConfirm, onCancel, children}: React.PropsWithChildren<Props>) => {
+    const {colorMode} = useColorMode();
     return (
         <Modal
             size={'2xl'}
@@ -34,7 +35,7 @@ const FormModal: React.FC<Props> = ({title, isShown, onConfirm, onCancel, childr
             onClose={onCancel}
         >
             <ModalOverlay />
-            <ModalContent>
+            <ModalContent color={colorMode === 'dark' ? 'white' : 'black'}>
                 <ModalHeader> { title } </ModalHeader>
                 <ModalCloseButton />
                 <ModalBody pb={6}>
@@ -44,18 +45,16 @@ const FormModal: React.FC<Props> = ({title, isShown, onConfirm, onCancel, childr
                 <ModalFooter>
                     <Button
                         onClick={onConfirm}
-                        color={'#20ac74'}
+                        colorScheme="teal"
                         variant="ghost"
-                        shadow="dark-lg"
                         mr={3}
                     >
                         Save
                     </Button>
                     <Button
                         onClick={onCancel}
-                        color={favRed}
+                        colorScheme="red"
                         variant="ghost"
-                        shadow="dark-lg"
                     >Cancel</Button>
                 </ModalFooter>
             </ModalContent>

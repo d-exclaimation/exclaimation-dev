@@ -48,7 +48,7 @@ const About: React.FC<Props> = ({ name, image, bio }: Props) => {
                         `
                     }
                     gridTemplateRows="10vh 70vh 2vh"
-                    gridTemplateColumns={ isPortrait ? 'auto' :  '40vmin auto 20vh' }
+                    gridTemplateColumns={ isPortrait ? 'auto' :  '40vmin auto 20vmin' }
                 >
                     <GridItem
                         className="New-Section"

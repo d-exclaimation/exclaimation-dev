@@ -8,10 +8,12 @@
 
 import {useCallback, useReducer} from 'react';
 
+/// Toggling State on/off
 type ToggleState = {
     on: boolean,
 }
 
+/// Actions for Toggle
 type ToggleActions = { type: 'toggle' } | { type: 'force', payload: boolean }
 
 const initToggleState: ToggleState = {
@@ -20,6 +22,7 @@ const initToggleState: ToggleState = {
 
 const toggleReducer = (state: ToggleState, action: ToggleActions): ToggleState => ({ on: action.type === 'toggle' ? !state.on : action.payload });
 
+/// Custom for optimize toggling
 export function useToggle(): [boolean, (val?: boolean) => void] {
     const [state, dispatch] = useReducer(toggleReducer, initToggleState);
     const toggling = useCallback((val?: boolean) => 

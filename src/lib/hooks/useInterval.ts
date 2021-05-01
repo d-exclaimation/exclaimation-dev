@@ -8,6 +8,7 @@
 
 import { useEffect, useRef } from 'react';
 
+/// React-friendly setInterval with Hooks (no memory leaks)
 export function useInterval(callback: () => void, delay: number): void {
     const savedCallback = useRef<() => void>();
 

@@ -8,8 +8,12 @@
 
 import {useWindowSize} from './useWindow';
 
-type MediaQuery = { type: 'min', minWidth: number } | { type: 'max', maxWidth: number }
+/// Media Query options
+type MediaQuery =
+    { type: 'min', minWidth: number }
+    | { type: 'max', maxWidth: number }
 
+/// Custom hooks a media query with react hooks
 export function useWidthQuery(query: MediaQuery): boolean {
     const window = useWindowSize();
     switch (query.type) {
@@ -22,7 +26,7 @@ export function useWidthQuery(query: MediaQuery): boolean {
     }
 }
 
-
+/// Custom hooks media queries with react hooks
 export function useWidthQueries(...queries: MediaQuery[]): boolean[] {
     const window = useWindowSize();
     return queries.map(query => {

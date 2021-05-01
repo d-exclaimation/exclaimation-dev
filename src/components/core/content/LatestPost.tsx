@@ -10,19 +10,20 @@ import React from 'react';
 import {Box, Flex, Heading, IconButton, Link, Text} from '@chakra-ui/react';
 import {ChevronUpIcon} from '@chakra-ui/icons';
 import NextLink from 'next/link';
-import {usePostQuery} from '../../../models/graphql/types';
+import {useLatestPostQuery, useUpRaveMutation} from '../../../models/graphql/types';
 import {useResponsive} from '../../../lib/hooks/useResponsive';
 
 export const LatestPost: React.FC = () => {
     const {isPortrait} = useResponsive();
-    const [{data, fetching, error}] = usePostQuery({
+    const [{data, fetching, error}] = useLatestPostQuery({
         pause: typeof window === 'undefined',
-        variables: {
-            id: 21
-        }
     });
+    const [, upRave] = useUpRaveMutation();
 
     if (error)
+        return <></>;
+
+    if (fetching)
         return <></>;
 
     return (
@@ -33,7 +34,7 @@ export const LatestPost: React.FC = () => {
             direction={isPortrait ? 'column-reverse': 'row'}
             boxShadow="dark-lg"
             borderRadius={10}
-            bgColor="bg"
+            bg="bg"
         >
             <Flex
                 direction={isPortrait ? 'row': 'column'}
@@ -49,17 +50,20 @@ export const LatestPost: React.FC = () => {
                     size="2vmin"
                     icon={<ChevronUpIcon/>}
                     isLoading={fetching}
-                    // onClick={() => upRave({
-                    //     id: parseInt(post.id)
-                    // })}
+                    onClick={() => {
+                        if(!data) return;
+                        upRave({
+                            id: parseInt(data.latestPost.id)
+                        });
+                    }}
                 />
-                <Text fontSize="16px" color="white" mt={!isPortrait ? 2 : 'unset'} ml={isPortrait ? 2 : 'unset'} >{data?.post?.crabrave ?? 0}</Text>
+                <Text fontSize="16px" color="white" mt={!isPortrait ? 2 : 'unset'} ml={isPortrait ? 2 : 'unset'} >{data?.latestPost.crabrave ?? 0}</Text>
             </Flex>
             <Box>
                 <NextLink href="/post/[id]" as={`/post/${21}`}>
-                    <Heading as={Link} color="white" fontSize="1rem">{data?.post?.title ?? 'Fucked'}</Heading>
+                    <Heading as={Link} color="white" fontSize="1rem">{data?.latestPost?.title ?? 'unnamed'}</Heading>
                 </NextLink>
-                { isPortrait || <Text color="gray.500" maxW="80%" fontSize="1rem" mt={4} mb={3} isTruncated>{'Something here'}</Text>}
+                { isPortrait || <Text color="gray.500" maxW="80%" fontSize="1rem" mt={4} mb={3} isTruncated>{data?.latestPost.snippet ?? ''}</Text>}
             </Box>
         </Flex>
     );
