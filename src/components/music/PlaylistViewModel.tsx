@@ -18,9 +18,10 @@ interface Props {
     onClose: () => void
     musicList: IMedia[]
     setCurr: (state: IMedia) => void
+    appendMusic: (newTrack: IMedia) => void,
 }
 
-const PlaylistViewModel: React.FC<Props> = ({isOpen, onClose, musicList, setCurr}: React.PropsWithChildren<Props>) => {
+const PlaylistViewModel: React.FC<Props> = ({isOpen, onClose, musicList, setCurr, appendMusic}: React.PropsWithChildren<Props>) => {
     const {isPortrait} = useResponsive();
 
     if (isPortrait)
@@ -33,7 +34,7 @@ const PlaylistViewModel: React.FC<Props> = ({isOpen, onClose, musicList, setCurr
                 footer={
                     <>
                         <Text>All music is owned by their respective owner</Text>
-                        <MediaModal appendMusic={console.log}/>
+                        <MediaModal appendMusic={appendMusic}/>
                     </>
                 }
             >
@@ -62,7 +63,7 @@ const PlaylistViewModel: React.FC<Props> = ({isOpen, onClose, musicList, setCurr
                     <MusicPlaylist musics={musicList} setCurr={curr => setCurr(curr)}/>
                     <Spacer />
                     <Flex justifyContent="flex-end">
-                        <MediaModal appendMusic={console.log}/>
+                        <MediaModal appendMusic={appendMusic}/>
                     </Flex>
                 </Flex>
             </Box>

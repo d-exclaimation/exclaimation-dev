@@ -18,7 +18,7 @@ export const LatestPost: React.FC = () => {
     const [{data, fetching, error}] = useLatestPostQuery({
         pause: typeof window === 'undefined',
     });
-    const [, upRave] = useUpRaveMutation();
+    const [rave, upRave] = useUpRaveMutation();
 
     if (error)
         return <></>;
@@ -49,7 +49,7 @@ export const LatestPost: React.FC = () => {
                     variant="outline"
                     size="2vmin"
                     icon={<ChevronUpIcon/>}
-                    isLoading={fetching}
+                    isLoading={rave.fetching}
                     onClick={() => {
                         if(!data) return;
                         upRave({

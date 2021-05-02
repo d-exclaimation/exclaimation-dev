@@ -19,7 +19,6 @@ type LatestFeed = 'post' | 'repo'
 
 export const LatestViewModel: React.FC = () => {
     const [state, toggle] = useSequence<LatestFeed>('post', 'repo');
-    console.log(state);
 
     useInterval(() => {
         toggle();

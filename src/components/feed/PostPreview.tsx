@@ -13,41 +13,49 @@ import NextLink from 'next/link';
 import {useWindowSize} from '../../lib/hooks/useWindow';
 import {PostSnippetFragment, useUpRaveMutation} from '../../models/graphql/types';
 import {useDynamicSize} from '../../lib/hooks/useDynamicSize';
+import {useResponsive} from '../../lib/hooks/useResponsive';
 
 interface Props {
     post: PostSnippetFragment
 }
 
 const PostPreview: React.FC<Props> = ({post}: React.PropsWithChildren<Props>) => {
-    const window = useWindowSize();
-    const size = useDynamicSize(2);
+    const {isPortrait} = useResponsive();
     const [{fetching}, upRave] = useUpRaveMutation();
-    const card = {
-        width: Math.floor(window.width / 1.5),
-        text: Math.floor(window.width / 1.5 * 0.75)
-    };
-
     return (
-        <Flex p={5} w={card.width} shadow="dark-lg" borderRadius={5}>
-            <Flex direction="column" alignItems="center" justifyContent="center" mr={4}>
+        <Flex
+            className="SlideUpCard"
+            p={5}
+            direction={isPortrait ? 'column-reverse': 'row'}
+            boxShadow="dark-lg"
+            borderRadius={10}
+            bg="bg"
+        >
+            <Flex
+                direction={isPortrait ? 'row': 'column'}
+                alignItems="center" justifyContent="center"
+                mt={isPortrait ? 4 : 'unset'}
+                mb={isPortrait ? 3 : 'unset'}
+                mr={4}
+            >
                 <IconButton
-                    colorScheme="pink"
+                    colorScheme="purpled"
                     aria-label="UpRave"
                     variant="outline"
-                    size={size}
+                    size="2vmin"
                     icon={<ChevronUpIcon/>}
                     isLoading={fetching}
                     onClick={() => upRave({
                         id: parseInt(post.id)
                     })}
                 />
-                <Text fontSize={size} color="white" mt={2}>{post.crabrave}</Text>
+                <Text fontSize="16px" color="white" mt={!isPortrait ? 2 : 'unset'} ml={isPortrait ? 2 : 'unset'}>{post.crabrave}</Text>
             </Flex>
             <Box>
                 <NextLink href="/post/[id]" as={`/post/${post.id}`}>
                     <Heading as={Link} color="white" fontSize="xl">{post.title}</Heading>
                 </NextLink>
-                <Text color="gray.500" fontSize="lg" mt={4} mb={3} isTruncated maxW={card.text}>{post.snippet}</Text>
+                { isPortrait || <Text color="gray.500" maxW="80%" fontSize="1rem" mt={4} mb={3} isTruncated>{post.snippet}</Text> }
             </Box>
         </Flex>
     );

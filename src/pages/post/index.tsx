@@ -9,17 +9,15 @@
 import React from 'react';
 import MetaHead from '../../components/shared/meta/MetaHead';
 import Hero from '../../components/templates/Hero';
-import PostFeed from '../../components/feed/PostFeed';
-import {Box} from '@chakra-ui/react';
+import FeedViewModel from '../../components/feed/FeedViewModel';
+import {Box, Grid, GridItem} from '@chakra-ui/react';
 import {createUrqlClient} from '../../lib/server/createUrqlClient';
 import {withUrqlClient} from 'next-urql';
 import {useAllPostQuery} from '../../models/graphql/types';
-import RouteSideCar from '../../components/shared/routes/RoutesSideBar';
 import {useRouter} from 'next/router';
-import ShowMore from '../../components/feed/ShowMore';
-import ToggleSort from '../../components/feed/ToggleSort';
 import FooterDisclaimer from '../../components/shared/meta/FooterDisclaimer';
 import LoadingScreen from '../../components/shared/features/LoadingScreen';
+import RouteNavBar from '../../components/shared/routes/RouteNavBar';
 
 
 const Feed: React.FC = () => {
@@ -48,15 +46,47 @@ const Feed: React.FC = () => {
     return (
         <>
             <MetaHead title={`d-exclaimation's ${data?.posts.length ?? 0} posts `} description={'My blog, rant, and just shit posts all in one bundle'} />
-            <div className="App-header">
-                <RouteSideCar/>
-                <ToggleSort sort={by} limit={limit}/>
-                <Box m={5} mt="min(10px, 40vw)">
-                    <Hero title={'Blogs and Posts'}/>
-                </Box>
-                <PostFeed isFetching={fetching} posts={data?.posts ?? []}/>
-                <ShowMore limit={limit} sort={by}/>
-                <FooterDisclaimer/>
+            <div className="New-header">
+                <RouteNavBar/>
+                <Grid
+                    gap=".5rem"
+                    templateAreas={`
+                        't'
+                        'c'
+                        'c'
+                        'c'
+                        'f'
+                    `}
+                    gridTemplateRows="10vh 70vh 2vh"
+                    gridTemplateColumns="auto"
+                >
+                    <GridItem
+                        className="New-Section"
+                        gridArea="t"
+                    >
+                        <Box mt="4vh">
+                            <Hero title={'Blogs and Posts'}/>
+                        </Box>
+                    </GridItem>
+                    <GridItem
+                        className="New-Section"
+                        gridArea="c"
+                    >
+                        <Box mt="4vh">
+                            <FeedViewModel
+                                posts={data.posts}
+                                sort={by}
+                                limit={limit}
+                            />
+                        </Box>
+                    </GridItem>
+                    <GridItem
+                        className="New-Section"
+                        gridArea="f"
+                    >
+                        <FooterDisclaimer/>
+                    </GridItem>
+                </Grid>
             </div>
         </>
     );

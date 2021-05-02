@@ -7,11 +7,10 @@
 //
 
 import React from 'react';
-import {Select, Box, Center} from '@chakra-ui/react';
-import {useDynamicCorner} from '../../lib/hooks/useDynamicCorner';
-import {useDynamicSize} from '../../lib/hooks/useDynamicSize';
-import {useWindowSize} from '../../lib/hooks/useWindow';
+import {Select, Box} from '@chakra-ui/react';
+import {FcAlphabeticalSortingAz} from 'react-icons/fc';
 import {useRouter} from 'next/router';
+import {useResponsive} from '../../lib/hooks/useResponsive';
 
 interface Props {
     sort: 'latest' | 'hot'
@@ -20,28 +19,25 @@ interface Props {
 
 const ToggleSort: React.FC<Props> = ({sort, limit}: React.PropsWithChildren<Props>) => {
     const router = useRouter();
-    const corner = useDynamicCorner();
-    const window = useWindowSize();
+    const {isPortrait} = useResponsive();
     return (
         <Box
-            borderRadius={10} boxShadow="dark-lg"
-            top={corner.y} right={corner.x}
-            pos="absolute"
+            borderRadius={10}
         >
-            <Center m={window.width > window.height ? 1 : 0}>
-                <Select
-                    bg="#282c34"
-                    variant="filled"
-                    color="pink.500"
-                    size="md"
-                    width={window.width < window.height ? '30vw': 'auto'}
-                    fontSize={window.width < window.height ? '4vw' : '1vw'}
-                    onChange={val => router.push(`/post?limit=${limit}&sort=${val.target.value}`)} value={sort}
-                >
-                    <option value="latest">Latest</option>
-                    <option value="hot">Hot</option>
-                </Select>
-            </Center>
+            <Select
+                bg="bg"
+                variant="filled"
+                color="tan"
+                size="md"
+                icon={<FcAlphabeticalSortingAz/>}
+                width={isPortrait ? '30vw': 'auto'}
+                fontSize={isPortrait ? '4vw' : '1vw'}
+                onChange={val => router.push(`/post?limit=${limit}&sort=${val.target.value}`)}
+                value={sort}
+            >
+                <option value="latest">Latest</option>
+                <option value="hot">Hot</option>
+            </Select>
         </Box>
     );
 };

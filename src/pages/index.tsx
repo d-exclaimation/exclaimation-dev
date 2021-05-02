@@ -8,12 +8,12 @@
 
 import React from 'react';
 import {
-    Box,
     Grid,
     GridItem,
     Text,
     VStack,
-    Stack
+    Stack,
+    Flex,
 } from '@chakra-ui/react';
 import {createUrqlClient} from '../lib/server/createUrqlClient';
 import {withUrqlClient} from 'next-urql';
@@ -26,6 +26,8 @@ import {useResponsive} from '../lib/hooks/useResponsive';
 import ExBoxedIcon from '../components/shared/icons/ExBoxedIcon';
 import MetaHead from '../components/shared/meta/MetaHead';
 import RouteNavBar from '../components/shared/routes/RouteNavBar';
+import {useScramble, DUDS} from '../lib/hooks/useScramble';
+import {splitAtEveryOther} from '../lib/Typography';
 
 const DELAY = 50;
 
@@ -34,6 +36,13 @@ export const Index: React.FC = () => {
     const router = useRouter();
     const [{fetching, data, error}] = useProfileQuery();
     const [lang] = useLanguagesQuery();
+    const phrases = [
+        ...(data ? splitAtEveryOther(data.profile.bio, ' ') : []),
+        'Follow me at github btw',
+        'and at twitter as well',
+        'Thanks',
+    ];
+    const desc = useScramble(phrases);
 
     if(error) {
         if (typeof window !== 'undefined')
@@ -97,12 +106,30 @@ export const Index: React.FC = () => {
                         <ExBoxedIcon w={'30vmin'} />
                         <VStack align={isPortrait ? 'center' : 'flex-end'}>
                             <Hero title={data.profile.name} />
-                            <Box m={2}>
-                                <Text
-                                    align={'center'}
-                                    m={2} color="white"
-                                >{data.profile.bio}</Text>
-                            </Box>
+
+                            <Flex
+                                m={2}
+                                direction={'row'}
+                                alignItems="center"
+                                justifyContent="center"
+                                w="80%"
+                                wrap="wrap"
+                            >
+                                {desc.map((char, i) => {
+                                    const isSpaces = char === ' ';
+                                    const isDUDS = DUDS.indexOf(char) !== -1;
+                                    return (
+                                        <Text
+                                            key={i}
+                                            fontFamily="monospace"
+                                            color={isDUDS ? 'gray.500' : 'gray.50'}
+                                            opacity={isSpaces ? 0 : 1}
+                                        >
+                                            {isSpaces ? '_' : char}
+                                        </Text>
+                                    );
+                                })}
+                            </Flex>
                         </VStack>
                     </Stack>
                 </GridItem>

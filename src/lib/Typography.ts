@@ -25,6 +25,12 @@ export const paragraph = (word: string): string => {
         return [...prev, [curr]];
     }, new Array<string[]>(1).fill([]));
     const groupJoined = grouped.map(value => value.join(' '));
-    console.log(groupJoined);
     return groupJoined.join('\n');
 };
+
+export const splitAtEveryOther = (arr: string, split: string) =>
+    arr.split(split).reduce((acc: string[], curr, idx) => {
+        if (idx % 2 == 0 || acc.length < 1)
+            return [...acc, curr];
+        return [...acc.slice(0, acc.length - 1), acc[acc.length - 1] + ' ' + curr];
+    }, []);

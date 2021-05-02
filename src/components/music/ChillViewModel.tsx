@@ -6,7 +6,7 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {IMedia} from '../../models/interfaces/Media';
 import {
     Box,
@@ -16,12 +16,10 @@ import {
 import {useResponsive} from '../../lib/hooks/useResponsive';
 import Hero from '../templates/Hero';
 import FooterDisclaimer from '../shared/meta/FooterDisclaimer';
-import MusicPlaylist from './content/MusicPlaylist';
 import MusicDisc from './content/MusicDisc';
 import MusicControlPanel from './content/MusicControlPanel';
 import DummyControlPanel from './content/DummyControlPanel';
 import {useToggle} from '../../lib/hooks/useToggle';
-import AscentDrawer from '../templates/AscentDrawer';
 import PlaylistViewModel from './PlaylistViewModel';
 
 interface Props {
@@ -34,6 +32,10 @@ const ChillViewModel: React.FC<Props> = ({preRenderedList}: React.PropsWithChild
     const [on, toggle] = useToggle();
     const [currMusic, setCurr] = useState<IMedia | null>(null);
     const [isPlaying, setPlaying] = useState(false);
+
+    const appendMusic = useCallback((newTrack: IMedia) => {
+        setMusicList(prev => [...prev, newTrack]);
+    }, [setMusicList]);
 
     const gridArea = !isPortrait
         ? `
@@ -91,7 +93,13 @@ const ChillViewModel: React.FC<Props> = ({preRenderedList}: React.PropsWithChild
             >
                 <FooterDisclaimer/>
             </GridItem>
-            <PlaylistViewModel isOpen={on} onClose={toggle} musicList={musicList} setCurr={setCurr}/>
+            <PlaylistViewModel
+                isOpen={on}
+                onClose={toggle}
+                musicList={musicList}
+                setCurr={setCurr}
+                appendMusic={appendMusic}
+            />
         </Grid>
     );
 };
