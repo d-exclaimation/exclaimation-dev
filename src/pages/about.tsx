@@ -10,7 +10,7 @@ import React from 'react';
 
 import {Grid, GridItem, Box} from '@chakra-ui/react';
 import ProfileCard from '../components/profile/ProfileCard';
-import Hero from '../components/templates/Hero';
+import Hero from '../components/shared/meta/Hero';
 import MetaHead from '../components/shared/meta/MetaHead';
 
 import {GetStaticProps} from 'next';

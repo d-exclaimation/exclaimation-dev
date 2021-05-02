@@ -15,7 +15,7 @@ import {
     FormLabel,
     Input,
 } from '@chakra-ui/react';
-import FormModal from '../templates/FormModal';
+import FormModal from '../shared/modal/FormModal';
 
 interface Props {
     appendMusic: (musics: IMedia) => void;

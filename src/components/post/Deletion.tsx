@@ -10,39 +10,33 @@ import React, {useState} from 'react';
 import {
     IconButton,
 } from '@chakra-ui/react';
-import {ViewOffIcon} from '@chakra-ui/icons';
-import {useDynamicCorner} from '../../lib/hooks/useDynamicCorner';
+import {MdDelete} from 'react-icons/md';
 import {FormResult} from '../../models/enum/FormResult';
 import {useRouter} from 'next/router';
-import AlertPopUp from '../templates/AlertPopUp';
+import AlertPopUp from '../shared/modal/AlertPopUp';
 
 interface Props {
     deletePost: () => Promise<FormResult>,
 }
 const Deletion: React.FC<Props> = ({deletePost}: React.PropsWithChildren<Props>) => {
     const router = useRouter();
-    const corner = useDynamicCorner();
     const [isShown, setShown] = useState<boolean>(false);
     const onClose = () => setShown(false);
     return (
         <>
             <IconButton
                 aria-label="delete"
-                icon={<ViewOffIcon/>}
-                variant="ghost"
-                boxShadow="dark-lg"
+                icon={<MdDelete/>}
                 colorScheme="red"
+                size="sm"
                 onClick={() => setShown(true)}
-                pos="absolute"
-                bottom={corner.y}
-                right={corner.x}
             />
             <AlertPopUp
                 header={'Delete this post?'} body={'Are you sure about this?'}
                 confirmation={'Yes, please!'}
                 isShown={isShown}
                 onConfirm={async () => {
-                    const res = await deletePost();
+                    await deletePost();
                     setShown(false);
                     setTimeout(async () => await router.push('/post'), 20);
                 }}

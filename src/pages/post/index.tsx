@@ -8,7 +8,7 @@
 
 import React from 'react';
 import MetaHead from '../../components/shared/meta/MetaHead';
-import Hero from '../../components/templates/Hero';
+import Hero from '../../components/shared/meta/Hero';
 import FeedViewModel from '../../components/feed/FeedViewModel';
 import {Box, Grid, GridItem} from '@chakra-ui/react';
 import {createUrqlClient} from '../../lib/server/createUrqlClient';

@@ -7,12 +7,10 @@
 //
 
 import React from 'react';
-import {ChevronUpIcon} from '@chakra-ui/icons';
+import {AiFillLike} from 'react-icons/ai';
 import {Box, Text, Heading, Flex, IconButton, Link} from '@chakra-ui/react';
 import NextLink from 'next/link';
-import {useWindowSize} from '../../lib/hooks/useWindow';
 import {PostSnippetFragment, useUpRaveMutation} from '../../models/graphql/types';
-import {useDynamicSize} from '../../lib/hooks/useDynamicSize';
 import {useResponsive} from '../../lib/hooks/useResponsive';
 
 interface Props {
@@ -41,9 +39,9 @@ const PostPreview: React.FC<Props> = ({post}: React.PropsWithChildren<Props>) =>
                 <IconButton
                     colorScheme="purpled"
                     aria-label="UpRave"
-                    variant="outline"
+                    variant="ghost"
                     size="2vmin"
-                    icon={<ChevronUpIcon/>}
+                    icon={<AiFillLike/>}
                     isLoading={fetching}
                     onClick={() => upRave({
                         id: parseInt(post.id)

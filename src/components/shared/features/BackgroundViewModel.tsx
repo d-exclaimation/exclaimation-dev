@@ -14,7 +14,7 @@ import ConwayBackground from './conway/ConwayBackground';
 
 type Entertainments = 'game-of-life' | 'logo-spinning' | 'none'
 
-export const BackgroundViewModel: React.FC<{isHome: boolean}> = ({isHome}: {isHome: boolean}) => {
+export const BackgroundViewModel: React.FC<{isHome?: boolean}> = ({isHome}: {isHome?: boolean}) => {
     const [curr, cycle] = useSequence<Entertainments>('none', 'logo-spinning', 'game-of-life');
     const timeout = useRef<NodeJS.Timeout | null>(null);
 

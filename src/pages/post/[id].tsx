@@ -7,21 +7,18 @@
 //
 
 import React from 'react';
-import Hero from '../../components/templates/Hero';
+import Hero from '../../components/shared/meta/Hero';
 import MetaHead from '../../components/shared/meta/MetaHead';
-import RouteSideCar from '../../components/shared/routes/RoutesSideBar';
-import {Box, Center} from '@chakra-ui/react';
+import {Box, Grid, GridItem} from '@chakra-ui/react';
 
 import {createUrqlClient} from '../../lib/server/createUrqlClient';
 import {withUrqlClient} from 'next-urql';
 import {useRouter} from 'next/router';
-import {useDeletePostMutation, useMeQuery, usePostQuery} from '../../models/graphql/types';
-import ContentView from '../../components/post/ContentView';
-import UpRave from '../../components/post/UpRave';
-import Deletion from '../../components/post/Deletion';
-import {FormResult} from '../../models/enum/FormResult';
+import {usePostQuery} from '../../models/graphql/types';
+import ContentViewModel from '../../components/post/ContentViewModel';
 import FooterDisclaimer from '../../components/shared/meta/FooterDisclaimer';
 import LoadingScreen from '../../components/shared/features/LoadingScreen';
+import RouteNavBar from '../../components/shared/routes/RouteNavBar';
 
 
 const Post: React.FC = () => {
@@ -32,10 +29,6 @@ const Post: React.FC = () => {
         variables: {
             id: pid
         }
-    });
-    const [, deletePost] = useDeletePostMutation();
-    const [credentials] = useMeQuery({
-        pause: typeof window === 'undefined'
     });
 
     if(error) {
@@ -53,28 +46,43 @@ const Post: React.FC = () => {
     return (
         <>
             <MetaHead title={data.post.title} description={firstLine} />
-            <div className="Post-header">
-                <RouteSideCar />
-                <UpRave post={data.post}/>
-                <Box mx="auto">
-                    <Hero title={data.post.title} />
-                </Box>
-                <Center>
-                    <ContentView post={data.post}/>
-                </Center>
-                {
-                    !credentials.fetching && !credentials.error
-                    &&
-                    <Deletion deletePost={async () => {
-                        try {
-                            const {error} = await deletePost({id: pid});
-                            return error ? FormResult.failure : FormResult.success;
-                        } catch (e) {
-                            return FormResult.failure;
-                        }
-                    }}/>
-                }
-                <FooterDisclaimer/>
+            <div className="New-header">
+                <RouteNavBar/>
+                <Grid
+                    gap=".5rem"
+                    templateAreas={`
+                        't'
+                        'c'
+                        'c'
+                        'c'
+                        'f'
+                    `}
+                    gridTemplateRows="10vh 70vh 2vh"
+                    gridTemplateColumns="auto"
+                >
+                    <GridItem
+                        className="New-Section"
+                        gridArea="t"
+                    >
+                        <Box mx="auto">
+                            <Hero title={data.post.title} />
+                        </Box>
+                    </GridItem>
+                    <GridItem
+                        className="New-Section"
+                        gridArea="c"
+                    >
+                        <Box mt="3vh">
+                            <ContentViewModel post={data.post}/>
+                        </Box>
+                    </GridItem>
+                    <GridItem
+                        className="New-Section"
+                        gridArea="f"
+                    >
+                        <FooterDisclaimer/>
+                    </GridItem>
+                </Grid>
             </div>
         </>
     );

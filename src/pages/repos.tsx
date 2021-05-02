@@ -9,7 +9,7 @@
 import React from 'react';
 
 import {Box, Text, HStack, Grid, GridItem} from '@chakra-ui/react';
-import Hero from '../components/templates/Hero';
+import Hero from '../components/shared/meta/Hero';
 import MetaHead from '../components/shared/meta/MetaHead';
 
 import {withUrqlClient} from 'next-urql';

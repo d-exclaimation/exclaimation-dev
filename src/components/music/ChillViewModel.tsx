@@ -14,7 +14,7 @@ import {
     GridItem,
 } from '@chakra-ui/react';
 import {useResponsive} from '../../lib/hooks/useResponsive';
-import Hero from '../templates/Hero';
+import Hero from '../shared/meta/Hero';
 import FooterDisclaimer from '../shared/meta/FooterDisclaimer';
 import MusicDisc from './content/MusicDisc';
 import MusicControlPanel from './content/MusicControlPanel';

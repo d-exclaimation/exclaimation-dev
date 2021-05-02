@@ -16,7 +16,7 @@ const Error: React.FC = () => {
     return (
         <>
             <div className="App-header">
-                <BackgroundViewModel/>
+                <BackgroundViewModel isHome={false}/>
                 <VStack>
                     <Heading
                         fontSize="6vw"

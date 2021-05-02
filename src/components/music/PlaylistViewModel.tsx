@@ -6,7 +6,7 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 import React from 'react';
-import AscentDrawer from '../templates/AscentDrawer';
+import AscentDrawer from '../shared/containers/AscentDrawer';
 import MusicPlaylist from './content/MusicPlaylist';
 import {Box, Spacer, GridItem, Text, Flex, Heading} from '@chakra-ui/react';
 import {IMedia} from '../../models/interfaces/Media';

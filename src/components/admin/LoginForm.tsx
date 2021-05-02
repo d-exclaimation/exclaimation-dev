@@ -9,7 +9,7 @@
 import React, {useState} from 'react';
 import {Box, Button, Flex, FormControl, FormHelperText, FormLabel, Spacer, useToast} from '@chakra-ui/react';
 import {FormResult} from '../../models/enum/FormResult';
-import KeyForm from '../shared/form/KeyForm';
+import KeyForm from '../shared/modal/KeyForm';
 import {useWindowSize} from '../../lib/hooks/useWindow';
 import {useRouter} from 'next/router';
 

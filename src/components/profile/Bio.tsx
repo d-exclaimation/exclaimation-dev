@@ -9,7 +9,7 @@
 import React from 'react';
 
 import { Box } from '@chakra-ui/react';
-import Feature from '../templates/FeatureCard';
+import Feature from './FeatureCard';
 
 
 interface Props {

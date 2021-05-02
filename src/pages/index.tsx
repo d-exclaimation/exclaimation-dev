@@ -20,7 +20,7 @@ import {withUrqlClient} from 'next-urql';
 import {useRouter} from 'next/router';
 import {useLanguagesQuery, useProfileQuery} from '../models/graphql/types';
 import LoadingScreen from '../components/shared/features/LoadingScreen';
-import Hero from '../components/templates/Hero';
+import Hero from '../components/shared/meta/Hero';
 import {allSections} from '../components/core/SectionChildren';
 import {useResponsive} from '../lib/hooks/useResponsive';
 import ExBoxedIcon from '../components/shared/icons/ExBoxedIcon';

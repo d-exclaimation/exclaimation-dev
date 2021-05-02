@@ -16,7 +16,7 @@ import {
     ModalHeader,
     ModalOverlay, useColorMode
 } from '@chakra-ui/react';
-import {favRed} from '../../constants/color.scheme';
+import {favRed} from '../../../constants/color.scheme';
 
 interface Props {
     title: string,

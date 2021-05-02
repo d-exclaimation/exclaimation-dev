@@ -13,9 +13,9 @@ import {createUrqlClient} from '../lib/server/createUrqlClient';
 import MetaHead from '../components/shared/meta/MetaHead';
 import EditorViewModel from '../components/editor/EditorViewModel';
 import {useCreatePostMutationMutation} from '../models/graphql/types';
-import RouteSideCar from '../components/shared/routes/RoutesSideBar';
 import {FormResult} from '../models/enum/FormResult';
 import FooterDisclaimer from '../components/shared/meta/FooterDisclaimer';
+import RouteNavBar from '../components/shared/routes/RouteNavBar';
 
 const Editor: React.FC = () => {
     const [, createPost] = useCreatePostMutationMutation();
@@ -23,7 +23,7 @@ const Editor: React.FC = () => {
         <>
             <MetaHead title={'d-exclaimation post editor'} description={'Editor with a content with markdown'}/>
             <div className="Post-header">
-                <RouteSideCar/>
+                <RouteNavBar/>
                 <EditorViewModel submit={async (title, body) => {
                     try {
                         const {error} = await createPost({

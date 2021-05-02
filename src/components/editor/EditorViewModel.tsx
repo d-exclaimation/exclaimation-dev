@@ -9,8 +9,8 @@
 import React, {useState} from 'react';
 import {Box, Button, useToast} from '@chakra-ui/react';
 import MarkdownForm from './MarkdownForm';
-import Hero from '../templates/Hero';
-import AlertPopUp from '../templates/AlertPopUp';
+import Hero from '../shared/meta/Hero';
+import AlertPopUp from '../shared/modal/AlertPopUp';
 import {useRouter} from 'next/router';
 import {FormResult} from '../../models/enum/FormResult';
 

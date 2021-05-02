@@ -32,7 +32,7 @@ import {FiMenu} from 'react-icons/fi';
 import {ChevronRightIcon} from '@chakra-ui/icons';
 import BackgroundViewModel from '../features/BackgroundViewModel';
 import {ascentGradient} from '../../../constants/color.scheme';
-import AscentDrawer from '../../templates/AscentDrawer';
+import AscentDrawer from '../containers/AscentDrawer';
 
 type Props = {
     isHome?: boolean

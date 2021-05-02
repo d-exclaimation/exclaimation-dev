@@ -32,12 +32,12 @@ pre {
     white-space: pre-wrap;
     white-space: -o-pre-wrap;
     word-wrap: break-word;
-    background-color: #27272c;
+    background-color: #011627;
     border-radius: 1rem;
     padding: .5rem;
 }
 code {
-    color: #b9b9c0;
+    color: #d5ddea;
 }
 
 .Markdown {

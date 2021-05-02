@@ -13,15 +13,14 @@ import LoginForm from '../components/admin/LoginForm';
 import {FormResult} from '../models/enum/FormResult';
 import {withUrqlClient} from 'next-urql';
 import {createUrqlClient} from '../lib/server/createUrqlClient';
-import {useLoginAdminMutation, useMeQuery} from '../models/graphql/types';
+import {useLoginAdminMutation} from '../models/graphql/types';
+import {useAuth} from '../lib/server/useAuth';
 
 export const Admin: React.FC = () => {
     const [, loginAdmin] = useLoginAdminMutation();
-    const [{error, fetching}] = useMeQuery({
-        pause: typeof window === 'undefined'
-    });
+    const auth = useAuth();
 
-    if (!error && !fetching)
+    if (auth)
         return (<div className="App-header">
             <Text color="#fafafa"> You have logged in </Text>
         </div>);

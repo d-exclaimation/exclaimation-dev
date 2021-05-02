@@ -8,7 +8,7 @@
 
 import React from 'react';
 import {Box, Flex, Heading, IconButton, Link, Text} from '@chakra-ui/react';
-import {ChevronUpIcon} from '@chakra-ui/icons';
+import {AiFillLike} from 'react-icons/ai';
 import NextLink from 'next/link';
 import {useLatestPostQuery, useUpRaveMutation} from '../../../models/graphql/types';
 import {useResponsive} from '../../../lib/hooks/useResponsive';
@@ -46,9 +46,9 @@ export const LatestPost: React.FC = () => {
                 <IconButton
                     colorScheme="purpled"
                     aria-label="UpRave"
-                    variant="outline"
+                    variant="ghost"
                     size="2vmin"
-                    icon={<ChevronUpIcon/>}
+                    icon={<AiFillLike/>}
                     isLoading={rave.fetching}
                     onClick={() => {
                         if(!data) return;
