@@ -7,18 +7,23 @@
 //
 
 import React from 'react';
-import {VStack, Heading} from '@chakra-ui/react';
+import {VStack, Heading, Flex} from '@chakra-ui/react';
 import {lavender} from '../constants/color.scheme';
+import {useRouter} from 'next/router';
 import FooterDisclaimer from '../components/shared/meta/FooterDisclaimer';
 import BackgroundViewModel from '../components/shared/features/BackgroundViewModel';
 
 const Error: React.FC = () => {
+    const router = useRouter();
     return (
         <>
-            <div className="App-header">
+            <Flex direction="column" className="New-header" alignItems="center" justifyContent="center">
                 <BackgroundViewModel isHome={false}/>
                 <VStack>
                     <Heading
+                        onClick={async () => {
+                            await router.push('/');
+                        }}
                         fontSize="6vw"
                         color={lavender}
                     >
@@ -32,7 +37,7 @@ const Error: React.FC = () => {
                     </Heading>
                 </VStack>
                 <FooterDisclaimer/>
-            </div>
+            </Flex>
         </>
     );
 };

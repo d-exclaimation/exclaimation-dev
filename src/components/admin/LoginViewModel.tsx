@@ -8,69 +8,57 @@
 
 import React, {useState} from 'react';
 import {Box, Button, Flex, FormControl, FormHelperText, FormLabel, Spacer, useToast} from '@chakra-ui/react';
-import {FormResult} from '../../models/enum/FormResult';
 import KeyForm from '../shared/modal/KeyForm';
-import {useWindowSize} from '../../lib/hooks/useWindow';
 import {useRouter} from 'next/router';
 import {useLoginAdminMutation} from '../../models/graphql/types';
 
-interface Props {
-    login: (key: string) => Promise<FormResult>,
-}
 
-const LoginViewModel: React.FC<Props> = ({login}: React.PropsWithChildren<Props>) => {
+const LoginViewModel: React.FC = () => {
     const [, loginAdmin] = useLoginAdminMutation();
     const router = useRouter();
     const [key, setKey] = useState<string>('');
-    const [res, setRes] = useState<FormResult>(FormResult.none);
-    const window = useWindowSize();
     const toast = useToast();
 
-    const alertContent = ((): {status: 'success' | 'error' | 'info', title: string, body: string} => {
-        switch (res) {
-        case FormResult.none:
-            return {
-                status: 'info',
-                title: 'Something happened',
-                body: 'Be patient, as we try to resolve this'
-            };
-        case FormResult.failure:
-            return {
-                status: 'error',
-                title: 'Failure',
-                body: 'Failed to login as admin, check your credentials!'
-            };
-        case FormResult.success:
-            return {
-                status: 'success',
-                title: 'Success',
-                body: 'Welcome admin. Continue on!'
-            };
-        }
-    })();
+    const login = async () => {
+        try {
+            const {error} = await loginAdmin({
+                time: new Date().toUTCString(),
+                key: key,
+            });
 
-    React.useEffect(() => {
-        if (res === FormResult.none)
-            return;
-        toast({
-            title: alertContent.title,
-            description: alertContent.body,
-            status: alertContent.status,
-            duration: 2000,
-            isClosable: true,
-            onCloseComplete: async () => {
-                if(res === FormResult.success)
+            toast({
+                title: error ? 'Error' : 'Success',
+                description: error ? 'Failed to login as admin, check your credentials!' : 'Welcome admin. Continue on!',
+                status: error ? 'error' : 'success',
+                duration: 2000,
+                isClosable: true,
+                onCloseComplete: async () => {
+                    setKey('');
+                    if (error)
+                        return;
                     await router.push('/');
-            }
-        });
-    }, [res]);
+                }
+            });
+        } catch (e) {
+            toast({
+                title: 'Exception',
+                description: 'Be patient, as we try to resolve this',
+                status: 'info',
+                duration: 2000,
+                isClosable: true,
+                onCloseComplete: () => {
+                    setKey('');
+                }
+            });
+        }
+    };
 
     return (
-        <Box p={5} minW={Math.floor(window.width / 2.5)} boxShadow="dark-lg" borderRadius={10}>
+        <Box bg="bg" p={5} minW="40vw" boxShadow="dark-lg" borderRadius={10}>
             <FormControl>
-                <FormLabel color="#fafafa">Login as Admin</FormLabel>
+                <FormLabel color="gray.300">Login as Admin</FormLabel>
                 <KeyForm keyValue={key} changeKey={key => setKey(key)}/>
-                <Flex direction={'row'}>
+                <Flex direction="row">
                     <FormHelperText mt="auto" color="gray.500">
                         This is for admin only
                     </FormHelperText>
@@ -79,7 +67,7 @@ const LoginViewModel: React.FC<Props> = ({login}: React.PropsWithChildren<Props>
                         size="sm"
                         mt={6}
                         colorScheme="green"
-                        onClick={async () => setRes(await login(key))}
+                        onClick={login}
                     >
                         Submit
                     </Button>

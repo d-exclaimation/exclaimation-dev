@@ -7,42 +7,27 @@
 //
 
 import React from 'react';
-import {Text} from '@chakra-ui/react';
+import {Flex, Text} from '@chakra-ui/react';
 import MetaHead from '../components/shared/meta/MetaHead';
 import LoginViewModel from '../components/admin/LoginViewModel';
-import {FormResult} from '../models/enum/FormResult';
 import {withUrqlClient} from 'next-urql';
 import {createUrqlClient} from '../lib/server/createUrqlClient';
-import {useLoginAdminMutation} from '../models/graphql/types';
 import {useAuth} from '../lib/server/useAuth';
 
 export const Admin: React.FC = () => {
-    const [, loginAdmin] = useLoginAdminMutation();
     const auth = useAuth();
 
     if (auth)
-        return (<div className="App-header">
+        return (<Flex className="New-header" alignItems="center" justifyContent="center">
             <Text color="#fafafa"> You have logged in </Text>
-        </div>);
+        </Flex>);
 
     return (
         <>
             <MetaHead title={'d-exclaimation admin login page'} description={'Login page for d-exclaimation'} />
-            <div className="App-header">
-                <LoginViewModel login={async key => {
-                    try {
-                        const {error} = await loginAdmin({
-                            time: new Date().toUTCString(),
-                            key: key,
-                        });
-
-                        console.log(error);
-                        return error ? FormResult.failure : FormResult.success;
-                    } catch (e) {
-                        return FormResult.failure;
-                    }
-                }}/>
-            </div>
+            <Flex className="New-header" alignItems="center" justifyContent="center">
+                <LoginViewModel />
+            </Flex>
         </>
     );
 };
