@@ -7,8 +7,8 @@
 //
 
 import React from 'react';
-import { Button } from '@chakra-ui/react';
-import {useDynamicSize} from '../../lib/hooks/useDynamicSize';
+import {IconButton} from '@chakra-ui/react';
+import {CgMore} from 'react-icons/cg';
 import {useRouter} from 'next/router';
 
 interface Props {
@@ -16,21 +16,20 @@ interface Props {
     sort: string
 }
 
-const ShowMore: React.FC<Props> = ({limit, sort}: Props) => {
-    const size = useDynamicSize(2);
+const ShowMore: React.FC<Props> = ({limit, sort}: React.PropsWithChildren<Props>) => {
     const router = useRouter();
     const addition = Math.max(Math.floor(limit / 3 * 2), 1);
     return (
         <>
-            <Button
-                colorScheme="pink"
+            <IconButton
+                aria-label="show more"
+                colorScheme="purpled"
                 variant="ghost"
-                size={size}
+                size="min(16px, 3vw + 2px)"
                 m={5}
                 onClick={() => router.push(`/post?limit=${limit + addition}&sort=${sort}`)}
-            >
-                Show More
-            </Button>
+                icon={<CgMore/>}
+            />
         </>
     );
 };

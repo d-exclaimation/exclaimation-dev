@@ -8,16 +8,17 @@
 
 import React from 'react';
 
-import {Center, VStack} from '@chakra-ui/react';
-import RouteSideCar from '../components/shared/RoutesSideBar';
-import Bio, {Color} from '../components/profile/Bio';
+import {Grid, GridItem, Box} from '@chakra-ui/react';
 import ProfileCard from '../components/profile/ProfileCard';
-import Hero from '../components/templates/Hero';
-import MetaHead from '../components/shared/MetaHead';
+import Hero from '../components/shared/meta/Hero';
+import MetaHead from '../components/shared/meta/MetaHead';
 
 import {GetStaticProps} from 'next';
-import FooterDisclaimer from '../components/shared/FooterDisclaimer';
+import FooterDisclaimer from '../components/shared/meta/FooterDisclaimer';
 import {BioSection} from '../models/interfaces/BioSection';
+import RouteNavBar from '../components/shared/routes/RouteNavBar';
+import {useResponsive} from '../lib/hooks/useResponsive';
+import BioViewModel from '../components/profile/BioViewModel';
 
 interface Props {
     name: string
@@ -26,23 +27,60 @@ interface Props {
 }
 
 const About: React.FC<Props> = ({ name, image, bio }: Props) => {
+    const {isPortrait} = useResponsive();
     return (
         <>
             <MetaHead title={`${name}'s profile`} description={'All profile me, d-exclaimation. My bio....maybe some other personal stuff that are not really technical'}/>
-            <div className="App-header">
-                <Center>
-                    <VStack spacing={2}>
-                        <RouteSideCar/>
-                        <ProfileCard imageUrl={image} />
-                        <Hero title={name}/>
-                        { bio.map((curr, i) => {
-                            return (
-                                <Bio key={i} title={curr.title} bio={curr.bio} color={Color.gray} />
-                            );
-                        }) }
+            <div className="New-header">
+                <RouteNavBar />
+                <Grid
+                    h="82vh"
+                    gap=".5rem"
+                    templateAreas={
+                        !isPortrait ? `
+                        'p  t  t'
+                        'p  b  b'
+                        'p  b  b'
+                        'f  f  f'` : `
+                        't'
+                        'b'
+                        'f'
+                        `
+                    }
+                    gridTemplateRows="10vh 70vh 2vh"
+                    gridTemplateColumns={ isPortrait ? 'auto' :  '40vmin auto 20vmin' }
+                >
+                    <GridItem
+                        className="New-Section"
+                        gridArea="t"
+                    >
+                        <Box mt="2vh">
+                            <Hero title={name}/>
+                        </Box>
+                    </GridItem>
+                    {
+                        isPortrait ||
+                        <GridItem
+                            className="New-Section"
+                            gridArea="p"
+                        >
+                            <ProfileCard imageUrl={image} />
+                        </GridItem>
+                    }
+                    <GridItem
+                        className="New-Section"
+                        gridArea="b"
+                    >
+                        <BioViewModel bio={bio}/>
+                    </GridItem>
+                    <GridItem
+                        className="New-Section"
+                        gridArea="f"
+                    >
                         <FooterDisclaimer/>
-                    </VStack>
-                </Center>
+                    </GridItem>
+                </Grid>
+
             </div>
         </>
     );
@@ -50,9 +88,9 @@ const About: React.FC<Props> = ({ name, image, bio }: Props) => {
 
 export const getStaticProps: GetStaticProps = async () => {
     const bio: BioSection[] = [
-        {title: 'Quick bio', bio: 'Hey.....d-exclaimation here or you can call me Vincent (shorthand: \'vin\' or \'cent\', up to you). I am a programmer who can do full-stack development, and other stuff as well. '},
-        {title: 'What do I do?', bio: 'I can make Web-application or iOS for end to end client to server. I can also automate some stuff and make microservices. '},
-        {title: 'My Tech Stack', bio: 'I mainly use Typescript, Go, Swift, and Rust with some Elixir, and C#. I also usually stick a stack that consist of React, Typescript, Go, Postgres, NodeJs, and maybe GraphQL'},
+        {title: 'Quick bio', bio: 'Hey.....d-exclaimation here or you can call me Vincent (shorthand: \'vin\' or \'cent\', up to you, I don\'t care). I am a programmer who mainly focus on full-stack development, but I do other stuff as well. '},
+        {title: 'What do I do?', bio: 'I am currently still a student so I have that responsibility, but I spend a lot of time building apps, APIs, microservices, and plenty of full-stack projects. I also am in consistent grind to learn more technologies and improving my craft'},
+        {title: 'My Tech Stack', bio: 'I am currently focusing on Web Apps so that will be Typescript, Go, Elixir, but I often do iOS Apps with Swift. My goto stack includes React, Typescript, Go, Postgres, NodeJs, and maybe GraphQL'},
     ];
     return { props: {
         image: 'https://avatars.githubusercontent.com/u/70748917?v=4',

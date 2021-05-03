@@ -10,7 +10,8 @@ import React from 'react';
 import { ChakraProvider} from '@chakra-ui/react';
 
 import theme from '../theme';
-import '../index.css';
+import '../styles/index.css';
+import '../styles/new.css';
 import { AppProps } from 'next/app';
 
 

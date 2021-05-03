@@ -10,7 +10,8 @@ import {useState, useEffect, useRef} from 'react';
 import {useInterval} from './useInterval';
 import {useToggle} from './useToggle';
 
-interface AudioPlayer {
+/// Audio Player Controls and Data
+type AudioPlayer = {
     isPlaying: boolean,
     toggleAudio: () => void,
     volume: number,
@@ -18,6 +19,7 @@ interface AudioPlayer {
     time: number
 }
 
+/// Custom Hook to handle audio logic
 export function usePlayer(url: string, loop: boolean): AudioPlayer {
     const audio = useRef(new Audio(url));
     const [volume, setVolume] = useState(audio.current.volume);
@@ -53,6 +55,7 @@ export function usePlayer(url: string, loop: boolean): AudioPlayer {
     return { isPlaying, toggleAudio: () => toggleAudio(), volume, toggleVolume, time };
 }
 
+/// Custom hook to abstract usePlayer for easier use i.e one time sound effects
 export function useAudio(url: string): (() => void)  {
     return usePlayer(url, false).toggleAudio;
 }

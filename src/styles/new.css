@@ -1,0 +1,133 @@
+/*
+  Overwrite style sheet
+*/
+root {
+    --background-color: #282c34;
+    --background-mild: #1a202c;
+    --ascent-box: #0f1e24;
+    --ascent-tan: #FCD6CE;
+    --ascent-lavender: #9B8FC0;
+    --ascent-popRed: #FF0056;
+    --ascent-mint: #6AFFE5;
+    --ascent-grey: #4D546;
+}
+
+html {
+    background-color: #1a202c;
+}
+
+
+/*
+  Stylesheet classes
+*/
+.New-header {
+    background-color: #1a202c;
+    min-height: 100vh;
+    font-size: max(3vmin, 20px);
+    color: var(--background-color);
+    --stagger-delay: 100ms;
+}
+.New-Section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: sectionEntrance 600ms ease-out;
+    animation-fill-mode: backwards;
+}
+
+.Logo {
+    --radius: 40vmin;
+    width: calc(2 * var(--radius));
+    top: calc(50% - var(--radius));
+    left: calc(50% - var(--radius));
+}
+
+.Navbar {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+}
+
+.SlideUpCard {
+    animation: slideUp 600ms ease-in-out;
+}
+
+
+/*
+  Stylesheet selector
+*/
+#ex-face {
+    animation: popUp 500ms ease-out;
+    animation-fill-mode: backwards;
+    animation-delay: calc(12 * var(--stagger-delay));
+}
+
+
+/*
+  Keyframes animation
+*/
+@keyframes popUp {
+    from {
+        opacity: 0;
+        transform: scale(0.3) translate(60%, 60%);
+    }
+    to {
+        transform: scale(1) translate(0%, 0%);
+    }
+}
+
+@keyframes popUpTransparent {
+    from {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20%);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20%);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes sectionEntrance {
+    from {
+        opacity: 0;
+        transform: scale(0.3);
+        filter: brightness(200%);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: brightness(100%);
+    }
+}
+
+@keyframes wiggleToTheLeft {
+    0% { transform: translateX(-100%) rotate(0deg); }
+    12.5% { transform: translateX(-50%) rotate(45deg); }
+    25% { transform: translateX(0%) rotate(0deg); }
+    37.5% { transform: translateX(50%) rotate(-45deg); }
+    50% { transform: translateX(100%) rotate(0deg); }
+    62.5% { transform: translateX(50%) rotate(45deg); }
+    75% { transform: translateX(0%)  rotate(0deg); }
+    87.5% { transform: translateX(-50%)  rotate(-45deg); }
+    100% { transform: translateX(-100%) rotate(0deg); }
+}

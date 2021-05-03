@@ -10,34 +10,36 @@ import React from 'react';
 
 import {withUrqlClient} from 'next-urql';
 import {createUrqlClient} from '../lib/server/createUrqlClient';
-import MetaHead from '../components/shared/MetaHead';
-import MarkdownEditor from '../components/editor/MarkdownEditor';
-import {useCreatePostMutationMutation} from '../models/graphql/types';
-import RouteSideCar from '../components/shared/RoutesSideBar';
-import {FormResult} from '../models/enum/FormResult';
-import FooterDisclaimer from '../components/shared/FooterDisclaimer';
+import {Grid, GridItem} from '@chakra-ui/react';
+import MetaHead from '../components/shared/meta/MetaHead';
+import EditorViewModel from '../components/editor/EditorViewModel';
+import FooterDisclaimer from '../components/shared/meta/FooterDisclaimer';
+import RouteNavBar from '../components/shared/routes/RouteNavBar';
 
 const Editor: React.FC = () => {
-    const [, createPost] = useCreatePostMutationMutation();
     return (
         <>
-            <MetaHead title={'d-exclaimation post editor'} description={'Editor with a preview with markdown'}/>
-            <div className="Post-header">
-                <RouteSideCar/>
-                <MarkdownEditor submit={async (title, body) => {
-                    try {
-                        const {error} = await createPost({
-                            input: {
-                                title,
-                                body
-                            },
-                        });
-                        return error ? FormResult.failure : FormResult.success;
-                    } catch (e) {
-                        return FormResult.failure;
-                    }
-                }} />
-                <FooterDisclaimer/>
+            <MetaHead title={'d-exclaimation post editor'} description={'Editor with a content with markdown'}/>
+            <div className="New-header">
+                <RouteNavBar/>
+                <Grid
+                    h="82vh"
+                    gap=".5rem"
+                    templateAreas={`
+                        't'
+                        'b'
+                        'b'
+                        'f'
+                    `}
+                >
+                    <EditorViewModel />
+                    <GridItem
+                        className="New-Section"
+                        gridArea="f"
+                    >
+                        <FooterDisclaimer/>
+                    </GridItem>
+                </Grid>
             </div>
         </>
     );

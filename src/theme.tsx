@@ -21,9 +21,42 @@ const breakpoints = createBreakpoints({
 const theme = extendTheme({
     colors: {
         black: '#16161D',
+        cover: '#1a202c',
+        bg: '#2d3748',
+        tan: '#FCD6CE',
+        purple: '#9B8FC0',
+        popRed: '#FF0056',
+        mint: '#6AFFE5',
+        grey: '#4D5460',
+        tanned: {
+            900: '#ffa796',
+            800: '#fdad9c',
+            700: '#ffb1a0',
+            600: '#ffb7a8',
+            500: '#ffbbae',
+            400: '#ffc1b4',
+            300: '#ffc6bb',
+            200: '#ffd0c6',
+            100: '#ffe3de',
+        },
+        purpled: {
+            900: '#745fb2',
+            800: '#7b69b7',
+            700: '#8472bb',
+            600: '#8c7bbf',
+            500: '#9484c3',
+            400: '#9b8cc8',
+            300: '#a394cc',
+            200: '#bcb2da',
+            100: '#dcd6ec',
+        }
     },
     fonts,
     breakpoints,
+    config: {
+        initialColorMode: 'dark',
+        useSystemColorMode: false
+    }
 });
 
 export default theme;

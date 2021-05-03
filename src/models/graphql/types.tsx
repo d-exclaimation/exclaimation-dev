@@ -101,8 +101,10 @@ export type Query = {
   __typename?: 'Query';
   post?: Maybe<Post>;
   posts: Array<Post>;
+  latestPost: Post;
   profile: Profile;
   repos: Array<Repo>;
+  latestRepo: Repo;
   topLang: Language;
   me?: Maybe<Scalars['String']>;
 };
@@ -140,6 +142,11 @@ export type FullPostFragment = (
     { __typename?: 'PostNode' }
     & Pick<PostNode, 'id' | 'type' | 'leaf'>
   )> }
+);
+
+export type LanguageSnapShotFragment = (
+  { __typename?: 'Language' }
+  & Pick<Language, 'id' | 'lang' | 'percentage'>
 );
 
 export type PostSnippetFragment = (
@@ -214,7 +221,29 @@ export type LanguagesQuery = (
   { __typename?: 'Query' }
   & { topLang: (
     { __typename?: 'Language' }
-    & Pick<Language, 'lang' | 'percentage'>
+    & LanguageSnapShotFragment
+  ) }
+);
+
+export type LatestPostQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type LatestPostQuery = (
+  { __typename?: 'Query' }
+  & { latestPost: (
+    { __typename?: 'Post' }
+    & PostSnippetFragment
+  ) }
+);
+
+export type LatestRepoQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type LatestRepoQuery = (
+  { __typename?: 'Query' }
+  & { latestRepo: (
+    { __typename?: 'Repo' }
+    & RepoSnapshotFragment
   ) }
 );
 
@@ -287,6 +316,13 @@ export const FullPostFragmentDoc = gql`
     leaf
   }
   crabrave
+}
+    `;
+export const LanguageSnapShotFragmentDoc = gql`
+    fragment LanguageSnapShot on Language {
+  id
+  lang
+  percentage
 }
     `;
 export const PostSnippetFragmentDoc = gql`
@@ -363,14 +399,35 @@ export function useLoginAdminMutation() {
 export const LanguagesDocument = gql`
     query Languages {
   topLang {
-    lang
-    percentage
+    ...LanguageSnapShot
   }
 }
-    `;
+    ${LanguageSnapShotFragmentDoc}`;
 
 export function useLanguagesQuery(options: Omit<Urql.UseQueryArgs<LanguagesQueryVariables>, 'query'> = {}) {
     return Urql.useQuery<LanguagesQuery>({ query: LanguagesDocument, ...options });
+}
+export const LatestPostDocument = gql`
+    query LatestPost {
+  latestPost {
+    ...PostSnippet
+  }
+}
+    ${PostSnippetFragmentDoc}`;
+
+export function useLatestPostQuery(options: Omit<Urql.UseQueryArgs<LatestPostQueryVariables>, 'query'> = {}) {
+    return Urql.useQuery<LatestPostQuery>({ query: LatestPostDocument, ...options });
+}
+export const LatestRepoDocument = gql`
+    query LatestRepo {
+  latestRepo {
+    ...RepoSnapshot
+  }
+}
+    ${RepoSnapshotFragmentDoc}`;
+
+export function useLatestRepoQuery(options: Omit<Urql.UseQueryArgs<LatestRepoQueryVariables>, 'query'> = {}) {
+    return Urql.useQuery<LatestRepoQuery>({ query: LatestRepoDocument, ...options });
 }
 export const MeDocument = gql`
     query Me {

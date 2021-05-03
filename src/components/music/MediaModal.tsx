@@ -10,40 +10,36 @@ import React from 'react';
 import {IMedia} from '../../models/interfaces/Media';
 
 import {
-    Box, Button,
+    Button, DarkMode,
     FormControl,
     FormLabel,
     Input,
 } from '@chakra-ui/react';
-import FormModal from '../templates/FormModal';
-import {useDynamicCorner} from '../../lib/hooks/useDynamicCorner';
+import FormModal from '../shared/modal/FormModal';
 
 interface Props {
-    musics: IMedia[],
-    setMusics: (musics: IMedia[]) => void;
+    appendMusic: (musics: IMedia) => void;
 }
 
-const MediaModal: React.FC<Props> = ({musics, setMusics}: Props) => {
-    const corner = useDynamicCorner();
+const MediaModal: React.FC<Props> = ({appendMusic}: React.PropsWithChildren<Props>) => {
     const [shown, setShown] = React.useState(false);
     const [name, setName] = React.useState('');
     const [url, setURL] = React.useState('');
 
     return (
-        <Box
-            pos="absolute" bottom={corner.y} left={corner.x}
-        >
+        <DarkMode>
             <Button
-                color="teal"
+                colorScheme="teal"
                 boxShadow="dark-lg"
                 fontSize="min(16px, 3vw + 2px)"
-                onClick={() => setShown(true)}> Add New </Button>
+                borderRadius="50%"
+                onClick={() => setShown(true)}> + </Button>
             <FormModal
                 title={'Add a new media'}
                 isShown={shown}
                 onCancel={() => setShown(false)}
                 onConfirm={() => {
-                    setMusics([...musics, { name: name, url: url }]);
+                    appendMusic({ name: name, url: url });
                     setShown(false);
                 }}
             >
@@ -66,7 +62,7 @@ const MediaModal: React.FC<Props> = ({musics, setMusics}: Props) => {
                     />
                 </FormControl>
             </FormModal>
-        </Box>
+        </DarkMode>
     );
 };
 

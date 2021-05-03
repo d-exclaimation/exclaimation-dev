@@ -8,25 +8,26 @@
 
 import React from 'react';
 import {Input, Box} from '@chakra-ui/react';
-import {useWindowSize} from '../../lib/hooks/useWindow';
+import {useResponsive} from '../../lib/hooks/useResponsive';
 
 interface Props {
     state: string
     changeState: (newVal: string) => void
 }
 
-const TitleEditor: React.FC<Props> = ({state, changeState}: Props) => {
-    const window = useWindowSize();
+const TitleEditor: React.FC<Props> = ({state, changeState}: React.PropsWithChildren<Props>) => {
+    const {isPortrait} = useResponsive();
     return (
         <Box
-            p={window.width < window.height ? 2 : 4}
-            px={window.width < window.height ? 4 : 6}
-            m={10} boxShadow="dark-lg" borderRadius={10}
+            m="4"
         >
             <Input
+                borderRadius={10}
+                p={isPortrait ? 2 : 4}
+                bg="cover"
                 color="white"
                 placeholder="Enter your title"
-                minW={Math.floor(window.width / 1.25)}
+                minW="80vw"
                 variant="unstyled"
                 value={state}
                 onChange={e => changeState(e.target.value)}
