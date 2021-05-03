@@ -10,7 +10,6 @@ class Document extends NextDocument {
                 <Head/>
                 <body>
                     {/* Make Color mode to persists when you refresh the page. */}
-                    <div id="target"/>
                     <ColorModeScript initialColorMode={theme.config.initialColorMode} />
                     <Main/>
                     <NextScript/>

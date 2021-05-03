@@ -49,7 +49,7 @@ export const ConwayBackground: React.FC = () => {
                 )
             )}
         </div>,
-        document.getElementById('target') ?? document.body
+        document.getElementById('__next') ?? document.body
     );
 };
 

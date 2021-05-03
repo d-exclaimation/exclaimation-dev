@@ -8,7 +8,6 @@
 
 import React, {useState} from 'react';
 import {Input, InputGroup, InputRightElement, Button, Box} from '@chakra-ui/react';
-import {useWindowSize} from '../../../lib/hooks/useWindow';
 
 interface Props {
     keyValue: string
@@ -16,14 +15,13 @@ interface Props {
 }
 const KeyForm: React.FC<Props> = ({keyValue, changeKey}: React.PropsWithChildren<Props>) => {
     const [isShown, setShown] = useState<boolean>(false);
-    const window = useWindowSize();
     return (
         <Box>
             <InputGroup size="md">
                 <Input
                     variant={isShown ? 'outline' : 'filled'}
                     color="#fafafa"
-                    maxW={Math.floor(window.width / 1.5)}
+                    maxW="67vw"
                     pr="4.5rem"
                     type={isShown ? 'text' : 'password'}
                     placeholder="Enter password"

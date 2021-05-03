@@ -45,10 +45,10 @@ const ContentViewModel: React.FC<Props> = ({post}: React.PropsWithChildren<Props
             boxShadow="dark-lg"
             borderRadius={5}
             minW="80vw"
+            maxW="92vw"
             p={5}
         >
             <Box
-                maxW={isPortrait ? '98vw' : '90vw'}
                 minH="50vh"
             >
                 {post.nodes.map((leaf, idx) => {
