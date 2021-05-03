@@ -34,6 +34,7 @@ const PostPreview: React.FC<Props> = ({post}: React.PropsWithChildren<Props>) =>
                 alignItems="center" justifyContent="center"
                 mt={isPortrait ? 4 : 'unset'}
                 mb={isPortrait ? 3 : 'unset'}
+                overflow="hidden"
                 mr={4}
             >
                 <IconButton
@@ -49,7 +50,9 @@ const PostPreview: React.FC<Props> = ({post}: React.PropsWithChildren<Props>) =>
                 />
                 <Text fontSize="16px" color="white" mt={!isPortrait ? 2 : 'unset'} ml={isPortrait ? 2 : 'unset'}>{post.crabrave}</Text>
             </Flex>
-            <Box>
+            <Box
+                overflow="clip"
+            >
                 <NextLink href="/post/[id]" as={`/post/${post.id}`}>
                     <Heading as={Link} color="white" fontSize="xl">{post.title}</Heading>
                 </NextLink>
