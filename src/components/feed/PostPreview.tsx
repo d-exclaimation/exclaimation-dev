@@ -27,6 +27,7 @@ const PostPreview: React.FC<Props> = ({post}: React.PropsWithChildren<Props>) =>
             direction={isPortrait ? 'column-reverse': 'row'}
             boxShadow="dark-lg"
             borderRadius={10}
+            overflow="hidden"
             bg="bg"
         >
             <Flex
@@ -34,7 +35,6 @@ const PostPreview: React.FC<Props> = ({post}: React.PropsWithChildren<Props>) =>
                 alignItems="center" justifyContent="center"
                 mt={isPortrait ? 4 : 'unset'}
                 mb={isPortrait ? 3 : 'unset'}
-                overflow="hidden"
                 mr={4}
             >
                 <IconButton
