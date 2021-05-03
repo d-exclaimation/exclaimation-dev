@@ -12,12 +12,14 @@ import {FormResult} from '../../models/enum/FormResult';
 import KeyForm from '../shared/modal/KeyForm';
 import {useWindowSize} from '../../lib/hooks/useWindow';
 import {useRouter} from 'next/router';
+import {useLoginAdminMutation} from '../../models/graphql/types';
 
 interface Props {
     login: (key: string) => Promise<FormResult>,
 }
 
-const LoginForm: React.FC<Props> = ({login}: React.PropsWithChildren<Props>) => {
+const LoginViewModel: React.FC<Props> = ({login}: React.PropsWithChildren<Props>) => {
+    const [, loginAdmin] = useLoginAdminMutation();
     const router = useRouter();
     const [key, setKey] = useState<string>('');
     const [res, setRes] = useState<FormResult>(FormResult.none);
@@ -87,4 +89,4 @@ const LoginForm: React.FC<Props> = ({login}: React.PropsWithChildren<Props>) => 
     );
 };
 
-export default LoginForm;
+export default LoginViewModel;

@@ -8,7 +8,7 @@
 
 import React from 'react';
 import {FullPostFragment, useDeletePostMutation} from '../../models/graphql/types';
-import {Box, Flex} from '@chakra-ui/react';
+import {Box, Flex, Spacer} from '@chakra-ui/react';
 import Markdown from 'react-markdown';
 import {countHeader} from '../shared/markdown/HeaderOveride';
 import {useResponsive} from '../../lib/hooks/useResponsive';
@@ -26,30 +26,40 @@ const ContentViewModel: React.FC<Props> = ({post}: React.PropsWithChildren<Props
     const {isPortrait} = useResponsive();
     const [, deletePost] = useDeletePostMutation();
     const auth = useAuth();
-    const createMarkdown = (leaf: FullPostFragment['nodes'][0]) => {
-        return (
-            leaf.type === 'header' ? countHeader(leaf.leaf) : leaf.type === 'space' ? <Box my={4}/> :  <Markdown source={leaf.leaf} />
-        );
+    const createMarkdown = (node: FullPostFragment['nodes'][0]) => {
+        switch (node.type) {
+        case 'header':
+            return countHeader(node.leaf);
+        case 'space':
+            return <Box my="4" />;
+        default:
+            return <Markdown source={node.leaf}/>;
+        }
     };
 
     return (
-        <Box
+        <Flex
+            direction="column"
             bg="bg"
             color="white"
             boxShadow="dark-lg"
-            minW="80vw"
-            maxW={isPortrait ? '98vw' : '90vw'}
-            p={5}
             borderRadius={5}
-            minH="50vh"
+            minW="80vw"
+            p={5}
         >
-            {post.nodes.map((leaf, idx) => {
-                return (
-                    <Box key={idx}>
-                        {createMarkdown(leaf)}
-                    </Box>
-                );
-            })}
+            <Box
+                maxW={isPortrait ? '98vw' : '90vw'}
+                minH="50vh"
+            >
+                {post.nodes.map((leaf, idx) => {
+                    return (
+                        <Box key={idx}>
+                            {createMarkdown(leaf)}
+                        </Box>
+                    );
+                })}
+            </Box>
+            <Spacer/>
             <Flex justifyContent="flex-end" alignItems="center">
                 <UpRave post={post}/>
                 {auth &&
@@ -62,7 +72,7 @@ const ContentViewModel: React.FC<Props> = ({post}: React.PropsWithChildren<Props
                     }
                 }}/>}
             </Flex>
-        </Box>
+        </Flex>
     );
 };
 

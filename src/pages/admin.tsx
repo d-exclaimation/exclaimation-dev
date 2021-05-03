@@ -9,7 +9,7 @@
 import React from 'react';
 import {Text} from '@chakra-ui/react';
 import MetaHead from '../components/shared/meta/MetaHead';
-import LoginForm from '../components/admin/LoginForm';
+import LoginViewModel from '../components/admin/LoginViewModel';
 import {FormResult} from '../models/enum/FormResult';
 import {withUrqlClient} from 'next-urql';
 import {createUrqlClient} from '../lib/server/createUrqlClient';
@@ -29,7 +29,7 @@ export const Admin: React.FC = () => {
         <>
             <MetaHead title={'d-exclaimation admin login page'} description={'Login page for d-exclaimation'} />
             <div className="App-header">
-                <LoginForm login={async key => {
+                <LoginViewModel login={async key => {
                     try {
                         const {error} = await loginAdmin({
                             time: new Date().toUTCString(),
