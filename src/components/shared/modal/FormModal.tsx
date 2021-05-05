@@ -16,7 +16,6 @@ import {
     ModalHeader,
     ModalOverlay, useColorMode
 } from '@chakra-ui/react';
-import {favRed} from '../../../constants/color.scheme';
 
 interface Props {
     title: string,
@@ -26,6 +25,7 @@ interface Props {
     children?: React.ReactNode
 }
 
+/// Form on a modal
 const FormModal: React.FC<Props> = ({title, isShown, onConfirm, onCancel, children}: React.PropsWithChildren<Props>) => {
     const {colorMode} = useColorMode();
     return (

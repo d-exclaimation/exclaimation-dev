@@ -7,14 +7,12 @@
 //
 
 import React from 'react';
-import {FullPostFragment, useDeletePostMutation} from '../../models/graphql/types';
+import {FullPostFragment} from '../../models/graphql/types';
 import {Box, Flex, Spacer} from '@chakra-ui/react';
 import Markdown from 'react-markdown';
 import {countHeader} from '../shared/markdown/HeaderOveride';
-import {useResponsive} from '../../lib/hooks/useResponsive';
 import UpRave from './UpRave';
 import Deletion from './Deletion';
-import {FormResult} from '../../models/enum/FormResult';
 import {useAuth} from '../../lib/server/useAuth';
 
 interface Props {
@@ -23,9 +21,9 @@ interface Props {
 
 
 const ContentViewModel: React.FC<Props> = ({post}: React.PropsWithChildren<Props>) => {
-    const {isPortrait} = useResponsive();
-    const [, deletePost] = useDeletePostMutation();
     const auth = useAuth();
+    
+    // Create markdown based on the nodes to match chakra-ui theme
     const createMarkdown = (node: FullPostFragment['nodes'][0]) => {
         switch (node.type) {
         case 'header':
@@ -62,15 +60,7 @@ const ContentViewModel: React.FC<Props> = ({post}: React.PropsWithChildren<Props
             <Spacer/>
             <Flex justifyContent="flex-end" alignItems="center">
                 <UpRave post={post}/>
-                {auth &&
-                <Deletion deletePost={async () => {
-                    try {
-                        const {error} = await deletePost({ id: parseInt(post.id) });
-                        return error ? FormResult.failure : FormResult.success;
-                    } catch (e) {
-                        return FormResult.failure;
-                    }
-                }}/>}
+                {auth && <Deletion id={parseInt(post.id)} /> }
             </Flex>
         </Flex>
     );

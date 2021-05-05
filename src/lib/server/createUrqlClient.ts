@@ -12,7 +12,9 @@ import { cacheExchange } from '@urql/exchange-graphcache';
 import {SSRExchange} from 'next-urql';
 import {MeDocument} from '../../models/graphql/types';
 
+/// Create a URQL Client for SSR that can handle custom revalidation of cache and send cookie from the server
 export const createUrqlClient = (ssrExchange: SSRExchange, ctx: any) => {
+    // Pass cookie to the browser from the server
     let cookie = '';
     if (typeof window === 'undefined') {
         cookie = ctx?.req?.header?.cookie;
@@ -26,6 +28,7 @@ export const createUrqlClient = (ssrExchange: SSRExchange, ctx: any) => {
                 cookie,
             } : undefined,
         },
+        // Exchanges overide to revalidate cache
         exchanges: [dedupExchange, cacheExchange({
             updates: {
                 Mutation: {

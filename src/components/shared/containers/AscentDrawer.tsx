@@ -25,6 +25,7 @@ interface Props {
     footer?: string | JSX.Element
 }
 
+/// Drawer with the correct theme matching ascent color
 const AscentDrawer: React.FC<Props> = ({placement, onClose, isOpen, title, footer, children}: React.PropsWithChildren<Props>) => {
     return (
         <DarkMode>

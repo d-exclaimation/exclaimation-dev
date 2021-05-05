@@ -35,6 +35,7 @@ export const LatestRepo: React.FC = () => {
             className="SlideUpCard"
             direction={isPortrait ? 'column': 'row'}
             bg="bg"
+            maxW="50vw"
             boxShadow="dark-lg"
             borderRadius="lg"
             overflow="hidden"

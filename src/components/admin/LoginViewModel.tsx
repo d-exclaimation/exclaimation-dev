@@ -20,6 +20,7 @@ const LoginViewModel: React.FC = () => {
     const toast = useToast();
 
     const login = async () => {
+        // try to login using credentials, either way sent a toast to notify the user of the result
         try {
             const {error} = await loginAdmin({
                 time: new Date().toUTCString(),
@@ -40,6 +41,7 @@ const LoginViewModel: React.FC = () => {
                 }
             });
         } catch (e) {
+            // Just in case Typescript throws the error
             toast({
                 title: 'Exception',
                 description: 'Be patient, as we try to resolve this',

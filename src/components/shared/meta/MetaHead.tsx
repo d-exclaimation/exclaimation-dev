@@ -19,8 +19,8 @@ const MetaHead: React.FC<Props> = ({title, description}: React.PropsWithChildren
             <meta property="title" content={title}/>
             <meta property="og:title" content={title}/>
             <meta property="og:type" content="website"/>
-            <meta property="og:url" content="https://exclaimation.netlify.app/"/>
-            <meta property="og:image" content="https://docs.google.com/uc?export=download&id=1YJ3qp7-_dsW_JvCbKXHJUVeuXTR_vaEW"/>
+            <meta property="og:url" content="https://dexclaimation.com/"/>
+            <meta property="og:image" content="/images/my-logo.png"/>
             <link rel="icon" href="/images/favicon.ico" />
             <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
             <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />

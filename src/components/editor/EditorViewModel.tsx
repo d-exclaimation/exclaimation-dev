@@ -23,6 +23,7 @@ const EditorViewModel: React.FC = () => {
     const [isAlert, setAlert] = useState<boolean>(false);
 
     const onSubmit = async () => {
+        // Try submitting and notify with toast all the result
         try {
             const {error} = await createPost({
                 input: {
@@ -46,6 +47,7 @@ const EditorViewModel: React.FC = () => {
                 }
             });
         } catch (e) {
+            // Handling error on client side
             toast({
                 title: 'Failure',
                 description: 'Caught an exception when trying to upload',
@@ -60,6 +62,7 @@ const EditorViewModel: React.FC = () => {
         }
     };
 
+    /// Automatically clear all form input
     const clear = (): void => {
         setForm('');
         setTitle('');
@@ -90,7 +93,8 @@ const EditorViewModel: React.FC = () => {
                 confirmation={'Yes'}
                 isShown={isAlert}
                 onConfirm={onSubmit}
-                onClose={() => setAlert(false)}/>
+                onClose={() => setAlert(false)}
+            />
         </>
     );
 };

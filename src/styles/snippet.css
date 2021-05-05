@@ -1,0 +1,21 @@
+/* Make sure code snippet not overflow and wrap around the width */
+pre {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    background-color: #011627;
+    border-radius: 1rem;
+    padding: .5rem;
+}
+code {
+    color: #d5ddea;
+}
+
+/* Update the markdown style */
+.Markdown {
+    width: clamp(45ch, 70ch, 100ch);
+    padding: 1rem;
+}

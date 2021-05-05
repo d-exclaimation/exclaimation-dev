@@ -6,6 +6,7 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
+/// Utilities function to capitalized first letter of a word <Probably should use RegEx>
 export const capitalized = (word: string): string => {
     if (!word.length)
         throw new Error('Cannot capitalize empty string');
@@ -15,6 +16,7 @@ export const capitalized = (word: string): string => {
         .reduce((prev, curr) => prev + curr);
 };
 
+/// Create a paragraph breakdown for a given sentence
 export const paragraph = (word: string): string => {
     const words = word.split(' ');
     const grouped = words.reduce((prev, curr) => {
@@ -28,6 +30,7 @@ export const paragraph = (word: string): string => {
     return groupJoined.join('\n');
 };
 
+/// Utilities to split at everyother splitter
 export const splitAtEveryOther = (arr: string, split: string) =>
     arr.split(split).reduce((acc: string[], curr, idx) => {
         if (idx % 2 == 0 || acc.length < 1)

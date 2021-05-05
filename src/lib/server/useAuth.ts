@@ -8,6 +8,7 @@
 
 import {useMeQuery} from '../../models/graphql/types';
 
+/// Custom hook for Handling User Authentication with GraphQL URQL Client
 export function useAuth(): boolean {
     const [{data, fetching, error}] = useMeQuery({
         pause: typeof window === 'undefined'

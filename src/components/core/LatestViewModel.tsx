@@ -21,6 +21,7 @@ export const LatestViewModel: React.FC = () => {
     const [state, toggle] = useSequence<LatestFeed>('post', 'repo');
 
     useInterval(() => {
+        // We want to change the preview every half minute
         toggle();
     },  30 * 1000);
 

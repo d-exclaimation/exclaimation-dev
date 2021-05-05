@@ -7,16 +7,18 @@
 //
 
 import React, {useState} from 'react';
-import {Input, InputGroup, InputRightElement, Button, Box} from '@chakra-ui/react';
+import {Input, InputGroup, InputRightElement, Button, LightMode} from '@chakra-ui/react';
 
 interface Props {
     keyValue: string
     changeKey: (val: string) => void,
 }
+
+/// Password Keyinput
 const KeyForm: React.FC<Props> = ({keyValue, changeKey}: React.PropsWithChildren<Props>) => {
     const [isShown, setShown] = useState<boolean>(false);
     return (
-        <Box>
+        <LightMode>
             <InputGroup size="md">
                 <Input
                     variant={isShown ? 'outline' : 'filled'}
@@ -34,7 +36,7 @@ const KeyForm: React.FC<Props> = ({keyValue, changeKey}: React.PropsWithChildren
                     </Button>
                 </InputRightElement>
             </InputGroup>
-        </Box>
+        </LightMode>
     );
 };
 

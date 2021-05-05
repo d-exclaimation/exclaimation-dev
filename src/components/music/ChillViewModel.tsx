@@ -37,26 +37,24 @@ const ChillViewModel: React.FC<Props> = ({preRenderedList}: React.PropsWithChild
         setMusicList(prev => [...prev, newTrack]);
     }, [setMusicList]);
 
-    const gridArea = !isPortrait
-        ? `
-            't t t'
-            'd d l'
-            'p p l'
-            'f f f'
-        `
-        : `
-            't'
-            'd'
-            'p'
-            'f'
-        `;
-
 
     return (
         <Grid
             h="82vh"
             gap=".5rem"
-            templateAreas={gridArea}
+            templateAreas={!isPortrait
+                ? `
+                    't t t'
+                    'd d l'
+                    'p p l'
+                    'f f f'
+                `
+                : `
+                    't'
+                    'd'
+                    'p'
+                    'f'
+                `}
             gridTemplateRows="10vh 50vh 20vh 2vh"
             gridTemplateColumns={isPortrait ? 'auto' : '20vmin auto 50vmin'}
             color="#fafafa"

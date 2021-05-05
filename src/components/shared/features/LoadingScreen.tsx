@@ -9,9 +9,10 @@
 import React from 'react';
 import {Spinner} from '@chakra-ui/react';
 
+// Loading screen with proper color
 export const LoadingScreen: React.FC = () => {
     return (
-        <div className="App-header">
+        <div className="New-header" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <Spinner
                 thickness="1vw"
                 speed="1s"

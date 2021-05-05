@@ -24,6 +24,7 @@ interface Props {
 const PlaylistViewModel: React.FC<Props> = ({isOpen, onClose, musicList, setCurr, appendMusic}: React.PropsWithChildren<Props>) => {
     const {isPortrait} = useResponsive();
 
+    // Make list into a drawer to save space on portrait screens 
     if (isPortrait)
         return (
             <AscentDrawer

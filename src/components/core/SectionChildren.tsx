@@ -11,11 +11,13 @@ import SocialCarousel from './SocialCarousel';
 import ProfileStats from './ProfileStats';
 import LatestViewModel from './LatestViewModel';
 
+/// Section container
 type Section = {
     val: string,
     children: JSX.Element
 }
 
+/// Sections for Home Page Massive Grid
 export const allSections = (profile: ProfileSnapFragment, topLang: LanguageSnapShotFragment, _ = false): Section[] =>
     [
         {
@@ -23,11 +25,6 @@ export const allSections = (profile: ProfileSnapFragment, topLang: LanguageSnapS
             children: <>
             </>
         },
-        // {
-        //     val: 'b',
-        //     children: <>
-        //     </>
-        // },
         {
             val: 'c',
             children: <>

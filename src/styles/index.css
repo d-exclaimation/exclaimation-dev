@@ -1,55 +1,85 @@
-.App-header {
-    background-color: #282c34;
+/*
+  Overwrite style sheet
+*/
+root {
+    --background-color: #282c34;
+    --background-mild: #1a202c;
+    --ascent-box: #0f1e24;
+    --ascent-tan: #FCD6CE;
+    --ascent-lavender: #9B8FC0;
+    --ascent-popRed: #FF0056;
+    --ascent-mint: #6AFFE5;
+    --ascent-grey: #4D546;
+}
+
+html {
+    background-color: #1a202c;
+}
+
+
+/*
+  Stylesheet classes
+*/
+.New-header {
+    background-color: #1a202c;
     min-height: 100vh;
+    font-size: max(3vmin, 20px);
+    color: var(--background-color);
+    --stagger-delay: 100ms;
+}
+.New-Section {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: calc(10px + 2vmin);
+    animation: sectionEntrance 600ms ease-out;
+    animation-fill-mode: backwards;
 }
 
-.Post-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: /* calc(6px + 2vmin) */ max(3vmin, 20px);
+.Logo {
+    --radius: 40vmin;
+    width: calc(2 * var(--radius));
+    top: calc(50% - var(--radius));
+    left: calc(50% - var(--radius));
 }
 
-.Spinning {
-    animation-name: spin;
-    animation-duration: 5000ms;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+.Navbar {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
 }
 
-pre {
-    overflow-x: auto;
-    white-space: pre-wrap;
-    white-space: -moz-pre-wrap;
-    white-space: pre-wrap;
-    white-space: -o-pre-wrap;
-    word-wrap: break-word;
-    background-color: #011627;
-    border-radius: 1rem;
-    padding: .5rem;
-}
-code {
-    color: #d5ddea;
+/*
+  Stylesheet selector
+*/
+#ex-face {
+    animation: popUp 500ms ease-out;
+    animation-fill-mode: backwards;
+    animation-delay: calc(12 * var(--stagger-delay));
 }
 
-.Markdown {
-    width: clamp(45ch, 70ch, 100ch);
-    padding: 1rem;
-}
 
-@keyframes spin {
+/*
+  Keyframes animation
+*/
+@keyframes popUp {
     from {
-        transform:rotate(0deg);
+        opacity: 0;
+        transform: scale(0.3) translate(60%, 60%);
     }
     to {
-        transform:rotate(360deg);
+        transform: scale(1) translate(0%, 0%);
+    }
+}
+
+@keyframes sectionEntrance {
+    from {
+        opacity: 0;
+        transform: scale(0.3);
+        filter: brightness(200%);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: brightness(100%);
     }
 }

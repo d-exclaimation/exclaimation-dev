@@ -11,14 +11,15 @@ import {
     IconButton,
 } from '@chakra-ui/react';
 import {MdDelete} from 'react-icons/md';
-import {FormResult} from '../../models/enum/FormResult';
 import {useRouter} from 'next/router';
+import {useDeletePostMutation} from '../../models/graphql/types';
 import AlertPopUp from '../shared/modal/AlertPopUp';
 
 interface Props {
-    deletePost: () => Promise<FormResult>,
+    id: number,
 }
-const Deletion: React.FC<Props> = ({deletePost}: React.PropsWithChildren<Props>) => {
+const Deletion: React.FC<Props> = ({id}: React.PropsWithChildren<Props>) => {
+    const [, deletePost] = useDeletePostMutation();
     const router = useRouter();
     const [isShown, setShown] = useState<boolean>(false);
     const onClose = () => setShown(false);
@@ -36,7 +37,9 @@ const Deletion: React.FC<Props> = ({deletePost}: React.PropsWithChildren<Props>)
                 confirmation={'Yes, please!'}
                 isShown={isShown}
                 onConfirm={async () => {
-                    await deletePost();
+                    await deletePost({
+                        id,
+                    })
                     setShown(false);
                     setTimeout(async () => await router.push('/post'), 20);
                 }}
