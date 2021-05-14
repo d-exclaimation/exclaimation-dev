@@ -60,7 +60,7 @@ export const LatestPost: React.FC = () => {
                 <Text fontSize="16px" color="white" mt={!isPortrait ? 2 : 'unset'} ml={isPortrait ? 2 : 'unset'} >{data?.latestPost.crabrave ?? 0}</Text>
             </Flex>
             <Box>
-                <NextLink href="/post/[id]" as={`/post/${21}`}>
+                <NextLink href="/post/[id]" as={`/post/${data?.latestPost.id ?? 1}`}>
                     <Heading as={Link} color="white" fontSize="1rem">{data?.latestPost?.title ?? 'unnamed'}</Heading>
                 </NextLink>
                 { isPortrait || <Text color="gray.500" maxW="80%" fontSize="1rem" mt={4} mb={3} isTruncated>{data?.latestPost.snippet ?? ''}</Text>}

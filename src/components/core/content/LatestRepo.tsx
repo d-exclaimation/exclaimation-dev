@@ -48,7 +48,7 @@ export const LatestRepo: React.FC = () => {
             />
 
             <Box alignItems="center" p="3" m={isPortrait ? 'unset': 5}>
-                <Link href={'/'}>
+                <Link href={data?.latestRepo.url ?? '/'}>
                     <Box
                         mt="1"
                         fontWeight="semibold"
