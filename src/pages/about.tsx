@@ -6,19 +6,19 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
+import { Box, Grid, GridItem } from '@chakra-ui/react';
+import { GetStaticProps } from 'next';
 import React from 'react';
-
-import {Grid, GridItem, Box} from '@chakra-ui/react';
+import BioViewModel from '../components/profile/BioViewModel';
 import ProfileCard from '../components/profile/ProfileCard';
+import FooterDisclaimer from '../components/shared/meta/FooterDisclaimer';
 import Hero from '../components/shared/meta/Hero';
 import MetaHead from '../components/shared/meta/MetaHead';
-
-import {GetStaticProps} from 'next';
-import FooterDisclaimer from '../components/shared/meta/FooterDisclaimer';
-import {BioSection} from '../models/interfaces/BioSection';
 import RouteNavBar from '../components/shared/routes/RouteNavBar';
-import {useResponsive} from '../lib/hooks/useResponsive';
-import BioViewModel from '../components/profile/BioViewModel';
+import { useResponsive } from '../lib/hooks/useResponsive';
+import { BioSection } from '../models/interfaces/BioSection';
+
+
 
 interface Props {
     name: string
@@ -88,9 +88,9 @@ const About: React.FC<Props> = ({ name, image, bio }: Props) => {
 
 export const getStaticProps: GetStaticProps = async () => {
     const bio: BioSection[] = [
-        {title: 'Quick bio', bio: 'Hey.....d-exclaimation here or you can call me Vincent (shorthand: \'vin\' or \'cent\', up to you, I don\'t care). I am a programmer who mainly focus on full-stack development, but I do other stuff as well. '},
-        {title: 'What do I do?', bio: 'I am currently still a student so I have that responsibility, but I spend a lot of time building apps, APIs, microservices, and plenty of full-stack projects. I also am in consistent grind to learn more technologies and improving my craft'},
-        {title: 'My Tech Stack', bio: 'I am currently focusing on Web Apps so that will be Typescript, Go, Elixir, but I often do iOS Apps with Swift. My goto stack includes React, Typescript, Go, Postgres, NodeJs, and maybe GraphQL'},
+        {title: 'Quick bio', bio: 'Hey d-exclaimation here or you can call me vincent or vin. I am currently a computer science student aspiring to become a professional software engineer.'},
+        {title: 'What do I do?', bio: 'I am currently still a student so I have that responsibility, but I spend the majority of my waking hour building apps, APIs, microservices, and plenty of full-stack projects. I also am in consistent grind to learn more technologies and improving my craft.'},
+        {title: 'My Tech Stack', bio: 'On server-side, I have been primarily using Elixir for servers, but I am well acquainted with using Go, Node, and also adding GraphQL. On client-side, I can\'t stop myself from using React and Typescript, but for mobile, I primarily use Swift (that\'s actually where I started).'},
     ];
     return { props: {
         image: 'https://avatars.githubusercontent.com/u/70748917?v=4',

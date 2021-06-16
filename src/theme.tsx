@@ -6,8 +6,8 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
-import {extendTheme} from '@chakra-ui/react';
-import {createBreakpoints} from '@chakra-ui/theme-tools';
+import { extendTheme } from '@chakra-ui/react';
+import { createBreakpoints } from '@chakra-ui/theme-tools';
 
 const fonts = {mono: '\'Menlo\', monospace'};
 

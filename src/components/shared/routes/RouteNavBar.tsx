@@ -5,28 +5,20 @@
 //  Created by d-exclaimation on 10:09 AM.
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
-import React, {useEffect} from 'react';
+import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
-    Button,
-    IconButton,
-    Flex,
-    Spacer,
-    Box,
-    Heading,
-    useDisclosure,
-    BreadcrumbItem,
-    BreadcrumbLink,
-    Breadcrumb,
+    Box, Breadcrumb, BreadcrumbItem,
+    BreadcrumbLink, Button, Flex, Heading, IconButton, Spacer, useDisclosure
 } from '@chakra-ui/react';
-import {useResponsive} from '../../../lib/hooks/useResponsive';
-import {capitalized} from '../../../lib/Typography';
 import Link from 'next/link';
-import {routes} from '../../../lib/routes';
-import {FiMenu} from 'react-icons/fi';
-import {ChevronRightIcon} from '@chakra-ui/icons';
-import BackgroundViewModel from '../features/BackgroundViewModel';
-import {ascentGradient} from '../../../constants/color.scheme';
+import React, { useEffect } from 'react';
+import { FiMenu } from 'react-icons/fi';
+import { ascentGradient } from '../../../constants/color.scheme';
+import { useResponsive } from '../../../lib/hooks/useResponsive';
+import { routes } from '../../../lib/routes';
+import { capitalized } from '../../../lib/Typography';
 import AscentDrawer from '../containers/AscentDrawer';
+import BackgroundViewModel from '../features/BackgroundViewModel';
 
 type Props = {
     isHome?: boolean
@@ -89,7 +81,7 @@ export const RouteNavBar: React.FC<Props> = ({isHome}: React.PropsWithChildren<P
             <Box p={2}>
                 {
                     isHome
-                        ? <BackgroundViewModel isHome={isHome || false} />
+                        ? <BackgroundViewModel />
                         : <Button opacity="0" >{isPortrait ? '' : 'I am not here'}</Button>
                 }
             </Box>
