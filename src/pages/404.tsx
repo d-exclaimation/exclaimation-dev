@@ -18,7 +18,7 @@ const Error: React.FC = () => {
     return (
         <>
             <Flex direction="column" className="New-header" alignItems="center" justifyContent="center">
-                <BackgroundViewModel isHome={false}/>
+                <BackgroundViewModel/>
                 <VStack>
                     <Heading
                         onClick={async () => {
