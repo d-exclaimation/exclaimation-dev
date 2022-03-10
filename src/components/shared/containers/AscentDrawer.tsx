@@ -6,7 +6,6 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
-import React from 'react';
 import {
     DarkMode,
     Drawer,
@@ -16,6 +15,7 @@ import {
     DrawerOverlay,
     Text
 } from '@chakra-ui/react';
+import React from 'react';
 
 interface Props {
     title: string
@@ -31,7 +31,7 @@ const AscentDrawer: React.FC<Props> = ({placement, onClose, isOpen, title, foote
         <DarkMode>
             <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
                 <DrawerOverlay>
-                    <DrawerContent color="tan">
+                    <DrawerContent color="white">
                         <DrawerHeader borderBottomWidth="1px">{title}</DrawerHeader>
                         <DrawerBody>
                             {children}

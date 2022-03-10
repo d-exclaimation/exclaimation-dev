@@ -6,23 +6,39 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
+import { Flex, Text } from '@chakra-ui/react';
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
-import {ascentGradient} from '../../../constants/color.scheme';
+import { DUDS, useScramble } from '../../../lib/hooks/useScramble';
 
 interface HeroProps {
     title? : string,
 }
 
 const Hero: React.FC<HeroProps> = ({ title }: HeroProps) => {
+    const res = useScramble([title ?? 'Nothing', `This is my ${title?.toLowerCase() ?? 'stuff'}`, 'Enjoy'], 10, 5000);
     return (
-        <Heading
-            fontSize="6vw"
-            bgGradient={ascentGradient}
-            bgClip="text"
+        <Flex
+            direction="row"
+            alignItems="center"
+            justifyContent="center"
+            wrap="wrap"
         >
-            { title ?? 'Next.js' }
-        </Heading>
+            {res.map((char, i) => {
+                const isSpaces = char === ' ';
+                const isDUDS = DUDS.indexOf(char) != -1;
+                return (
+                    <Text
+                        key={i}
+                        fontFamily="monospace"
+                        color={isDUDS ? 'gray.500' : 'gray.50'}
+                        fontSize="6vw"
+                        opacity={isSpaces ? 0 : 1}
+                    >
+                        {isSpaces ? '_' : char}
+                    </Text>
+                );
+            })}
+        </Flex>
     );
 };
 

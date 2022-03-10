@@ -6,21 +6,21 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
+import { Box, Flex, HStack, Text } from '@chakra-ui/react';
+import { withUrqlClient } from 'next-urql';
+import { useRouter } from 'next/router';
 import React from 'react';
-
-import {Box, Text, HStack, Grid, GridItem} from '@chakra-ui/react';
+import RepoGridViewModel from '../components/projects/RepoGridViewModel';
+import LoadingScreen from '../components/shared/features/LoadingScreen';
+import FooterDisclaimer from '../components/shared/meta/FooterDisclaimer';
 import Hero from '../components/shared/meta/Hero';
 import MetaHead from '../components/shared/meta/MetaHead';
-
-import {withUrqlClient} from 'next-urql';
-import {createUrqlClient} from '../lib/server/createUrqlClient';
-
-import FooterDisclaimer from '../components/shared/meta/FooterDisclaimer';
-import {useReposQuery} from '../models/graphql/types';
-import {useRouter} from 'next/router';
-import LoadingScreen from '../components/shared/features/LoadingScreen';
 import RouteNavBar from '../components/shared/routes/RouteNavBar';
-import RepoGridViewModel from '../components/projects/RepoGridViewModel';
+import { createUrqlClient } from '../lib/server/createUrqlClient';
+import { useReposQuery } from '../models/graphql/types';
+
+
+
 
 const Repos: React.FC = () => {
     const router = useRouter();
@@ -52,49 +52,23 @@ const Repos: React.FC = () => {
             />
             <div className="New-header">
                 <RouteNavBar/>
-                <Grid
-                    gap=".5rem"
-                    templateAreas={`
-                        't'
-                        'c'
-                        'c'
-                        'c'
-                        'f'
-                    `}
-                    gridTemplateRows="10vh 70vh 2vh"
-                    gridTemplateColumns="auto"
-                >
-                    <GridItem
-                        className="New-Section"
-                        gridArea="t"
-                    >
-                        <Box mt="4vh">
-                            <Hero title={'Repos'}/>
-                        </Box>
-                    </GridItem>
-
-                    <GridItem
-                        className="New-Section"
-                        gridArea="c"
-                    >
-                        <RepoGridViewModel repos={data.repos}/>
-                    </GridItem>
-                    <GridItem
-                        className="New-Section"
-                        gridArea="f"
-                    >
-                        <HStack>
-                            <Text
-                                m={2}
-                                fontSize="min(10px, 2vw)"
-                                color="gray.500"
-                            >
+                <Flex flexDirection="column" alignItems="center" justifyContent="center">
+                    <Box mt="4vh">
+                        <Hero title={'Repos'}/>
+                    </Box> 
+                    <RepoGridViewModel repos={data.repos}/>
+                    <HStack>
+                        <Text
+                            m={2}
+                            fontSize="min(10px, 2vw)"
+                            color="gray.500"
+                        >
                                 Flat icons by MrSquaare
-                            </Text>
-                            <FooterDisclaimer/>
-                        </HStack>
-                    </GridItem>
-                </Grid>
+                        </Text>
+                        <FooterDisclaimer/>
+                    </HStack>
+                
+                </Flex>
             </div>
         </>
     );

@@ -13,6 +13,7 @@ import { default as NextLink } from 'next/link';
 import React from 'react';
 import MetaHead from '../components/shared/meta/MetaHead';
 import Scrambled from '../components/shared/meta/Scrambled';
+import RouteNavBar from '../components/shared/routes/RouteNavBar';
 import { useResponsive } from '../lib/hooks/useResponsive';
 import { DUDS, useScramble } from '../lib/hooks/useScramble';
 
@@ -20,7 +21,7 @@ const MotionText = motion(Text);
 
 const New: React.FC = () => {
     const {isPortrait} = useResponsive();
-    const title = useScramble(['vin', 'd-exclaimation'], 15, 5000);
+    const title = useScramble(['d-exclaimation', 'vin'], 15, 5000);
     const { scrollYProgress } = useViewportScroll();
     const headingSize = useTransform(scrollYProgress, [0, 0.4], [6, 3]);
     const headingSizeSpring = useSpring(headingSize, {
@@ -30,6 +31,7 @@ const New: React.FC = () => {
 
     return (
         <Box mb="300px" fontFamily="mono">
+            <RouteNavBar/>
             <MetaHead
                 title="d-exclaimation"
                 description={
@@ -121,12 +123,12 @@ const New: React.FC = () => {
                     'I don\'t know...', 'You should stop reading..', 'Like right now...', 'I am out of titles...',
                     'Hope you enjoy your visit...', 'Here is the part where I advertise myself', 'Follow me on Twitter',
                     '@d_exclaimation'
-                ]} speed={10} delay={5000} align="start" fontWeight={isPortrait ? 600 : 400} fontSize={isPortrait ? 'lg' : '2xl'} mb={8}/>
-                Hello, I am Vin (d-exclaimation). I am a software engineer and student from somewhere on this planet. 
+                ]} speed={10} delay={5000} align="start" fontWeight={600} fontSize={isPortrait ? 'lg' : '2xl'} mb={8}/>
+                Hello, I am Vincent (d-exclaimation). I am a software engineer and student from somewhere on this planet. 
                 I like a lot of things especially involving software engineering and new technologies such as distributed systems, server-side programming, GraphQL, etc. 
                 <br />
                 <br />
-                Studying currently is my number 1 priority as I am still a university student. However, as already stated, I spend a good amount of my free time learning and working on programming projects.
+                Studying is currently my number 1 priority as I am still a university student. However, as already stated, I spend a good amount of my free time learning and working on programming projects.
                 <br />
                 <br />
                 <Heading fontWeight={isPortrait ? 200 : 100} size={isPortrait ? 'md' : 'lg'} mb={4}>

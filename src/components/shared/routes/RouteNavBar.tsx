@@ -5,15 +5,12 @@
 //  Created by d-exclaimation on 10:09 AM.
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
-import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
-    Box, Breadcrumb, BreadcrumbItem,
-    BreadcrumbLink, Button, Flex, Heading, IconButton, Spacer, useDisclosure
+    Box, Button, Flex, IconButton, useDisclosure
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
 import { FiMenu } from 'react-icons/fi';
-import { ascentGradient } from '../../../constants/color.scheme';
 import { useResponsive } from '../../../lib/hooks/useResponsive';
 import { routes } from '../../../lib/routes';
 import { capitalized } from '../../../lib/Typography';
@@ -38,8 +35,6 @@ export const RouteNavBar: React.FC<Props> = ({isHome}: React.PropsWithChildren<P
         <Flex
             className="Navbar"
             alignItems="center"
-            boxShadow="dark-lg"
-            bg="bg"
             w="100vw"
             h="8%"
             px="2vmin"
@@ -50,34 +45,13 @@ export const RouteNavBar: React.FC<Props> = ({isHome}: React.PropsWithChildren<P
             <Box>
                 <IconButton
                     aria-label="menu"
-                    colorScheme="tanned"
+                    color="white"
                     variant="ghost"
+                    bg="bg"
                     onClick={onOpen}
                     icon={<FiMenu/>}
                 />
             </Box>
-            <Box p="2">
-                <Heading bgGradient={ascentGradient} bgClip="text" size={isPortrait ? 'sm' : 'md'}>d-exclaimation</Heading>
-            </Box>
-            <Box p="2">
-                <Breadcrumb
-                    spacing="8px"
-                    separator={<ChevronRightIcon color="gray.500" />}
-                    fontSize="min(16px, 3vw + 2px)"
-                    color="purple"
-                >
-                    <BreadcrumbItem>
-                        <BreadcrumbLink href="/">
-                            Home
-                        </BreadcrumbLink>
-                    </BreadcrumbItem>
-
-                    <BreadcrumbItem>
-                        <BreadcrumbLink href="/about">About</BreadcrumbLink>
-                    </BreadcrumbItem>
-                </Breadcrumb>
-            </Box>
-            <Spacer/>
             <Box p={2}>
                 {
                     isHome
