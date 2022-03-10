@@ -5,24 +5,28 @@
 //  Created by d-exclaimation on 00:07.
 //
 
-import { Box, Flex, Heading, Stack, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, Image, Link, Stack, Text } from '@chakra-ui/react';
 import {
     motion, useMotionTemplate, useSpring, useTransform, useViewportScroll
 } from 'framer-motion';
+import { default as NextLink } from 'next/link';
 import React from 'react';
 import MetaHead from '../components/shared/meta/MetaHead';
+import Scrambled from '../components/shared/meta/Scrambled';
+import { useResponsive } from '../lib/hooks/useResponsive';
 import { DUDS, useScramble } from '../lib/hooks/useScramble';
 
 const MotionText = motion(Text);
 
 const New: React.FC = () => {
-    const desc = useScramble(['d-exclaimation', 'vin'], 15, 2000);
+    const {isPortrait} = useResponsive();
+    const title = useScramble(['vin', 'd-exclaimation'], 15, 5000);
     const { scrollYProgress } = useViewportScroll();
-    const headingSize = useTransform(scrollYProgress, [0, 0.4], [100, 50]);
+    const headingSize = useTransform(scrollYProgress, [0, 0.4], [6, 3]);
     const headingSizeSpring = useSpring(headingSize, {
         mass: 0.008
     });
-    const headingSizePx = useMotionTemplate`${headingSizeSpring}px`;
+    const headingSizePx = useMotionTemplate`${headingSizeSpring}vw`;
 
     return (
         <Box mb="300px" fontFamily="mono">
@@ -41,7 +45,7 @@ const New: React.FC = () => {
                             justifyContent="center"
                             wrap="wrap"
                         >
-                            {desc.map((char, i) => {
+                            {title.map((char, i) => {
                                 const isSpaces = char === ' ';
                                 const isDUDS = DUDS.indexOf(char) !== -1;
                                 return (
@@ -57,151 +61,84 @@ const New: React.FC = () => {
                                 );
                             })}
                         </Flex>
-                        {/* <MotionHeading fontWeight={600} style={{ fontSize: headingSizePx }}>
-              d-exclaimation
-            </MotionHeading> */}
-                        <Heading fontWeight={400} fontSize="lg">
-              About
-                        </Heading>
-                        <Heading fontWeight={400} fontSize="lg">
-              Work
-                        </Heading>
-                        <Heading fontWeight={400} fontSize="lg">
-              Contact
-                        </Heading>
-
+                        <Stack direction={isPortrait ? 'row' : 'column'}>
+                            <NextLink href="/repos" passHref>
+                                <Link fontWeight={400} fontFamily="mono" size="min(1.5rem, 3vw)">
+                                Projects
+                                </Link>
+                            </NextLink>
+                            <NextLink href="/chill" passHref>
+                                <Link fontWeight={400} fontFamily="mono" size="min(1.5rem, 3vw)">
+                                Chill
+                                </Link>
+                            </NextLink>
+                            <NextLink href="https://github.com/d-exclaimation" passHref>
+                                <Link fontWeight={400} isExternal fontFamily="mono" size="min(1.5rem, 3vw)">
+                                Github
+                                </Link>
+                            </NextLink>
+                            <NextLink href="https://twitter.com/d_exclaimation" passHref>
+                                <Link fontWeight={400} isExternal fontFamily="mono" size="min(1.5rem, 3vw)">
+                                Twitter
+                                </Link>
+                            </NextLink>
+                        </Stack>
                     </Stack>
                 </Box>
             </Box>
             <Box
-                p={16}
-                bg="bg"
-                pos="relative"
-                maxW="800px"
-                margin="0 auto"
-                top={180}
-                right={160}
-                zIndex={1}
-                fontSize="lg"
-                lineHeight="170%"
-                borderRadius="md"
+                {...(isPortrait 
+                    ? {
+                        p: 4,
+                        bg: 'bg',
+                        pos: 'relative',
+                        maxWidth: '90vw',
+                        margin: '0 auto',
+                        top: '20vh',
+                        zIndex: 1,
+                        fontSize: 'sm',
+                        lineHeight: '170%',
+                        borderRadius: 'md',
+                    } 
+                    : {
+                        p: 16,
+                        bg: 'bg',
+                        pos: 'relative',
+                        maxW: 'min(800px, 95vw)',
+                        margin: '0 auto',
+                        top: '20vh',
+                        right: '8vw',
+                        zIndex: 1,
+                        fontSize: 'lg',
+                        lineHeight: '170%',
+                        borderRadius: 'md',
+                    } 
+                )}
+
             >
-                <Heading fontWeight={400} size="2xl" mb={8}>
-          Web Developer
+                <Scrambled phrases={[
+                    'Software Engineer', 'Computer Science Student', 'Somewhat competent Backend Engineer', 'Maybe Full Stack Developer', 'Probably not Frontend Developer', 'Avid functional programming enjoyer',
+                    'I don\'t know...', 'You should stop reading..', 'Like right now...', 'I am out of titles...',
+                    'Hope you enjoy your visit...', 'Here is the part where I advertise myself', 'Follow me on Twitter',
+                    '@d_exclaimation'
+                ]} speed={10} delay={5000} align="start" fontWeight={isPortrait ? 600 : 400} fontSize={isPortrait ? 'lg' : '2xl'} mb={8}/>
+                Hello, I am Vin (d-exclaimation). I am a software engineer and student from somewhere on this planet. 
+                I like a lot of things especially involving software engineering and new technologies such as distributed systems, server-side programming, GraphQL, etc. 
+                <br />
+                <br />
+                Studying currently is my number 1 priority as I am still a university student. However, as already stated, I spend a good amount of my free time learning and working on programming projects.
+                <br />
+                <br />
+                <Heading fontWeight={isPortrait ? 200 : 100} size={isPortrait ? 'md' : 'lg'} mb={4}>
+                    Proffesional Experience
                 </Heading>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec
-        ullamcorper massa, quis varius ex. Duis eu malesuada elit. Donec orci
-        nulla, pharetra non tellus in, pretium dignissim purus. Nunc vulputate
-        nulla et quam hendrerit tincidunt. Etiam sed nisi augue. Vestibulum nec
-        ornare augue. Maecenas eget nunc porttitor, pharetra est eget, laoreet
-        magna. Donec sit amet tellus tristique, dapibus ligula et, efficitur
-        sem. Sed eget fringilla eros. Donec maximus tortor dui.
+                I don{'\''}t have any professional experience as of now, so enjoy a picture of a cute dog I found on the internet instead.
                 <br />
                 <br />
-                <Heading fontWeight={100} size="lg" mb={4}>
-          Experience
-                </Heading>
-        Sed feugiat arcu diam, in tincidunt quam tempor sit amet. Pellentesque
-        bibendum convallis turpis, vitae egestas lectus accumsan eget. Cras
-        aliquam justo non augue sollicitudin porttitor. Praesent sodales neque
-        sed blandit consequat. Nam et nisi neque. Aenean elit purus, interdum ut
-        ipsum sed, interdum pellentesque ligula. Curabitur risus eros, elementum
-        vel sem non, elementum interdum neque. Nam vestibulum ex in magna
-        posuere, nec cursus velit condimentum. Aliquam at euismod nibh, id
-        consectetur massa. Sed ac luctus eros, faucibus placerat magna. Duis non
-        nisi sed tortor pellentesque ornare. Nam sit amet lacus nec dolor rutrum
-        auctor.
+                <Image src="/images/doge.jpeg" />
                 <br />
                 <br />
-        Aenean pellentesque ante eleifend, vestibulum magna nec, blandit risus.
-        Nam malesuada quam at pretium bibendum. In odio enim, sodales nec sapien
-        quis, luctus malesuada turpis. Proin rhoncus neque sit amet malesuada
-        tristique. Donec volutpat egestas est, sit amet placerat ante dictum at.
-        Donec nisl lorem, egestas vel lectus nec, varius varius dolor. Donec eu
-        placerat turpis.
-                <br />
-                <br />
-        Curabitur euismod purus tellus, sit amet lacinia elit accumsan ac. Ut
-        vehicula eleifend libero, non consectetur enim sagittis vitae. Cras at
-        lectus porttitor, feugiat augue id, sodales dolor. Ut vehicula cursus
-        mauris scelerisque interdum. Integer aliquet neque tincidunt tortor
-        condimentum aliquam. Sed condimentum non lorem at scelerisque. Aenean
-        pharetra elit ut lobortis condimentum. Nulla in dui nec quam facilisis
-        pellentesque. Aenean sollicitudin orci vel egestas tempus. Phasellus
-        quis aliquet nunc. Integer suscipit consequat odio, ac convallis dui
-        eleifend nec. Pellentesque laoreet eleifend eros, at suscipit nisi
-        vestibulum nec. Integer ornare ac tellus sed suscipit. Nulla auctor
-        ipsum a sodales egestas. Praesent blandit, risus eu bibendum volutpat,
-        ex justo fringilla velit, facilisis cursus dui enim ut nisl. Class
-        aptent taciti sociosqu ad litora torquent per conubia nostra, per
-        inceptos himenaeos.
-                <br />
-                <br />
-        Sed tincidunt volutpat efficitur. Duis blandit consectetur metus at
-        volutpat. Nulla semper felis elit, non scelerisque enim dignissim non.
-        Maecenas malesuada tincidunt est eu semper. Quisque blandit sed justo eu
-        rhoncus. Morbi vehicula ipsum vel ex posuere fermentum. Aenean nisl
-        tortor, luctus non lobortis at, iaculis eget orci. Mauris a arcu vel
-        lorem euismod egestas a et ex. In in nunc in dolor commodo hendrerit.
-        Sed accumsan, metus ut tincidunt hendrerit, ligula libero sodales
-        lectus, sed interdum urna nibh id nunc. Proin fermentum purus sit amet
-        sollicitudin faucibus.
-                <br />
-                <br />
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec
-        ullamcorper massa, quis varius ex. Duis eu malesuada elit. Donec orci
-        nulla, pharetra non tellus in, pretium dignissim purus. Nunc vulputate
-        nulla et quam hendrerit tincidunt. Etiam sed nisi augue. Vestibulum nec
-        ornare augue. Maecenas eget nunc porttitor, pharetra est eget, laoreet
-        magna. Donec sit amet tellus tristique, dapibus ligula et, efficitur
-        sem. Sed eget fringilla eros. Donec maximus tortor dui.
-                <br />
-                <br />
-        Sed feugiat arcu diam, in tincidunt quam tempor sit amet. Pellentesque
-        bibendum convallis turpis, vitae egestas lectus accumsan eget. Cras
-        aliquam justo non augue sollicitudin porttitor. Praesent sodales neque
-        sed blandit consequat. Nam et nisi neque. Aenean elit purus, interdum ut
-        ipsum sed, interdum pellentesque ligula. Curabitur risus eros, elementum
-        vel sem non, elementum interdum neque. Nam vestibulum ex in magna
-        posuere, nec cursus velit condimentum. Aliquam at euismod nibh, id
-        consectetur massa. Sed ac luctus eros, faucibus placerat magna. Duis non
-        nisi sed tortor pellentesque ornare. Nam sit amet lacus nec dolor rutrum
-        auctor.
-                <br />
-                <br />
-        Aenean pellentesque ante eleifend, vestibulum magna nec, blandit risus.
-        Nam malesuada quam at pretium bibendum. In odio enim, sodales nec sapien
-        quis, luctus malesuada turpis. Proin rhoncus neque sit amet malesuada
-        tristique. Donec volutpat egestas est, sit amet placerat ante dictum at.
-        Donec nisl lorem, egestas vel lectus nec, varius varius dolor. Donec eu
-        placerat turpis.
-                <br />
-                <br />
-        Curabitur euismod purus tellus, sit amet lacinia elit accumsan ac. Ut
-        vehicula eleifend libero, non consectetur enim sagittis vitae. Cras at
-        lectus porttitor, feugiat augue id, sodales dolor. Ut vehicula cursus
-        mauris scelerisque interdum. Integer aliquet neque tincidunt tortor
-        condimentum aliquam. Sed condimentum non lorem at scelerisque. Aenean
-        pharetra elit ut lobortis condimentum. Nulla in dui nec quam facilisis
-        pellentesque. Aenean sollicitudin orci vel egestas tempus. Phasellus
-        quis aliquet nunc. Integer suscipit consequat odio, ac convallis dui
-        eleifend nec. Pellentesque laoreet eleifend eros, at suscipit nisi
-        vestibulum nec. Integer ornare ac tellus sed suscipit. Nulla auctor
-        ipsum a sodales egestas. Praesent blandit, risus eu bibendum volutpat,
-        ex justo fringilla velit, facilisis cursus dui enim ut nisl. Class
-        aptent taciti sociosqu ad litora torquent per conubia nostra, per
-        inceptos himenaeos.
-                <br />
-                <br />
-        Sed tincidunt volutpat efficitur. Duis blandit consectetur metus at
-        volutpat. Nulla semper felis elit, non scelerisque enim dignissim non.
-        Maecenas malesuada tincidunt est eu semper. Quisque blandit sed justo eu
-        rhoncus. Morbi vehicula ipsum vel ex posuere fermentum. Aenean nisl
-        tortor, luctus non lobortis at, iaculis eget orci. Mauris a arcu vel
-        lorem euismod egestas a et ex. In in nunc in dolor commodo hendrerit.
-        Sed accumsan, metus ut tincidunt hendrerit, ligula libero sodales
-        lectus, sed interdum urna nibh id nunc. Proin fermentum purus sit amet
-        sollicitudin faucibus.
+                Your welcome.
             </Box>
         </Box>
     );
