@@ -1,5 +1,0 @@
-query Languages {
-    topLang {
-        ...LanguageSnapShot
-    }
-}

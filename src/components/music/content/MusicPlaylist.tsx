@@ -6,9 +6,9 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
+import { Button, DarkMode, Flex } from '@chakra-ui/react';
 import React from 'react';
-import {Flex, Button, DarkMode} from '@chakra-ui/react';
-import {IMedia} from '../../../models/interfaces/Media';
+import { IMedia } from '../../../models/interfaces/Media';
 
 interface Props {
     musics: IMedia[]
@@ -19,7 +19,7 @@ const MusicPlaylist: React.FC<Props> = ({musics, setCurr}: React.PropsWithChildr
     const schemes = ['purpled', 'pink', 'orange', 'messenger'];
     return (
         <DarkMode>
-            <Flex direction={'column'} alignItems={'flex-start'}>
+            <Flex direction={'column'} alignItems={'flex-start'} fontFamily="mono">
                 { musics.map((music, i) => (
                     <Button
                         key={i}

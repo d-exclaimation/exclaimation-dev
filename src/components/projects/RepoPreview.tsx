@@ -26,6 +26,7 @@ const RepoPreview: React.FC<Props> = ({isPortrait, imageURL, title, body, url}: 
             boxShadow="lg"
             borderRadius="lg"
             overflow="hidden"
+            fontFamily="mono"
         >
             <Img
                 w={isPortrait ? 'unset' : '20%'}

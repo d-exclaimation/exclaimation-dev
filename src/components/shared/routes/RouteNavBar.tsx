@@ -15,13 +15,9 @@ import { useResponsive } from '../../../lib/hooks/useResponsive';
 import { routes } from '../../../lib/routes';
 import { capitalized } from '../../../lib/Typography';
 import AscentDrawer from '../containers/AscentDrawer';
-import BackgroundViewModel from '../features/BackgroundViewModel';
 
-type Props = {
-    isHome?: boolean
-}
 
-export const RouteNavBar: React.FC<Props> = ({isHome}: React.PropsWithChildren<Props>) => {
+export const RouteNavBar: React.FC = () => {
     const res = routes();
     const {isOpen, onClose, onOpen} = useDisclosure();
     const {isPortrait} = useResponsive();
@@ -53,11 +49,7 @@ export const RouteNavBar: React.FC<Props> = ({isHome}: React.PropsWithChildren<P
                 />
             </Box>
             <Box p={2}>
-                {
-                    isHome
-                        ? <BackgroundViewModel />
-                        : <Button opacity="0" >{isPortrait ? '' : 'I am not here'}</Button>
-                }
+                <Button opacity="0" >{isPortrait ? '' : 'I am not here'}</Button>
             </Box>
             <AscentDrawer title={'d-exclaimation pages'} placement={isPortrait ? 'top' : 'left'} onClose={onClose} isOpen={isOpen}>
                 <Flex direction="column">

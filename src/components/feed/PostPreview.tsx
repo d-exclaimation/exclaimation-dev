@@ -29,6 +29,8 @@ const PostPreview: React.FC<Props> = ({post}: React.PropsWithChildren<Props>) =>
             borderRadius={10}
             overflow="hidden"
             bg="bg"
+            w={isPortrait ? '95vw' : 'unset'}
+            fontFamily="mono"
         >
             <Flex
                 direction={isPortrait ? 'row': 'column'}
@@ -56,7 +58,7 @@ const PostPreview: React.FC<Props> = ({post}: React.PropsWithChildren<Props>) =>
                 <NextLink href="/post/[id]" as={`/post/${post.id}`}>
                     <Heading as={Link} color="white" fontSize="xl">{post.title}</Heading>
                 </NextLink>
-                { isPortrait || <Text color="gray.500" maxW="80%" fontSize="1rem" mt={4} mb={3} isTruncated>{post.snippet}</Text> }
+                <Text color="gray.500" maxW={isPortrait ? '90vw' :'33vw'} fontSize="1rem" mt={4} mb={3} isTruncated>{post.snippet}</Text>
             </Box>
         </Flex>
     );

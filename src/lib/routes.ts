@@ -7,5 +7,5 @@
 //
 
 export const routes = (): string[] => {
-  return ["/new", "/repos", "/chill", "/post"];
+    return ['/', '/repos', '/chill', '/post'];
 };

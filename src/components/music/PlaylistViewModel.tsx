@@ -28,13 +28,13 @@ const PlaylistViewModel: React.FC<Props> = ({isOpen, onClose, musicList, setCurr
     if (isPortrait)
         return (
             <AscentDrawer
-                placement={'right'}
-                title={'Playlist'}
+                placement="right"
+                title="Playlist"
                 isOpen={isOpen}
                 onClose={onClose}
                 footer={
                     <>
-                        <Text>All music is owned by their respective owner</Text>
+                        <Text fontFamily="mono">All music is owned by their respective owner</Text>
                         <MediaModal appendMusic={appendMusic}/>
                     </>
                 }
