@@ -131,7 +131,7 @@ const Index: React.FC = () => {
                     'I don\'t know...', 'You should stop reading..', 'Like right now...', 'I am out of titles...',
                     'Hope you enjoy your visit...', 'Here is the part where I advertise myself', 'Follow me on Twitter',
                     '@d_exclaimation'
-                ]} speed={10} delay={5000} align="start" fontWeight={500} fontSize={isPortrait ? 'lg' : '2xl'} mb={8}/>
+                ]} speed={10} delay={5000} align="start" fontWeight={600} fontSize={isPortrait ? 'lg' : '2xl'} mb={8}/>
                 Hello, I am Vincent (d-exclaimation). I am a software engineer and student from somewhere on this planet. 
                 I like a lot of things especially involving software engineering and new technologies such as distributed systems, server-side programming, GraphQL, etc. 
                 <br />
@@ -142,7 +142,7 @@ const Index: React.FC = () => {
                 <br />
                 <Scrambled phrases={[
                     'Profesional Experience', 'Work history', 'and other things people put in their resume'
-                ]} speed={10} delay={7500} align="start" fontWeight={400} fontSize={isPortrait ? 'md' : 'lg'} mb="4"/>
+                ]} speed={10} delay={7500} align="start" fontWeight={600} fontSize={isPortrait ? 'md' : 'lg'} mb="4"/>
                 I don{'\''}t have any professional experience as of now, so enjoy a picture of a cute dog I found on the internet instead.
                 <br />
                 <br />

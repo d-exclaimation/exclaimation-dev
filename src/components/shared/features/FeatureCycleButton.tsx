@@ -6,10 +6,10 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
+import { Button, IconButton } from '@chakra-ui/react';
 import React from 'react';
-import {Button, IconButton} from '@chakra-ui/react';
-import {RiGameLine} from 'react-icons/ri';
-import {useResponsive} from '../../../lib/hooks/useResponsive';
+import { RiGameLine } from 'react-icons/ri';
+import { useResponsive } from '../../../lib/hooks/useResponsive';
 
 interface Props {
    cycle: () => void
@@ -21,7 +21,6 @@ const FeatureCycleButton: React.FC<Props> = ({cycle}: React.PropsWithChildren<Pr
         return (
             <IconButton
                 variant="ghost"
-                colorScheme="tanned"
                 aria-label="cycle"
                 onClick={() => cycle()}
                 icon={<RiGameLine/>}
@@ -36,7 +35,6 @@ const FeatureCycleButton: React.FC<Props> = ({cycle}: React.PropsWithChildren<Pr
         <Button
             variant="ghost"
             fontSize="min(16px, 3vw + 2px)"
-            colorScheme="tanned"
             onClick={() => cycle()}
             leftIcon={<RiGameLine/>}
             style={{
