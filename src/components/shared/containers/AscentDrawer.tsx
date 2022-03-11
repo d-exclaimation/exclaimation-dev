@@ -31,7 +31,7 @@ const AscentDrawer: React.FC<Props> = ({placement, onClose, isOpen, title, foote
         <DarkMode>
             <Drawer placement={placement} onClose={onClose} isOpen={isOpen}>
                 <DrawerOverlay>
-                    <DrawerContent color="white">
+                    <DrawerContent bg="bg" color="white">
                         <DrawerHeader borderBottomWidth="1px">{title}</DrawerHeader>
                         <DrawerBody>
                             {children}

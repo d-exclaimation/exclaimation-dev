@@ -6,9 +6,9 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
+import { Box, Input } from '@chakra-ui/react';
 import React from 'react';
-import {Input, Box} from '@chakra-ui/react';
-import {useResponsive} from '../../lib/hooks/useResponsive';
+import { useResponsive } from '../../lib/hooks/useResponsive';
 
 interface Props {
     state: string
@@ -24,7 +24,7 @@ const TitleEditor: React.FC<Props> = ({state, changeState}: React.PropsWithChild
             <Input
                 borderRadius={10}
                 p={isPortrait ? 2 : 4}
-                bg="cover"
+                bg="bg"
                 color="white"
                 placeholder="Enter your title"
                 minW="80vw"

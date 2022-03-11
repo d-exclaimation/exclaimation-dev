@@ -34,20 +34,20 @@ const MarkdownForm: React.FC<Props> = ({title, body, setTitle, setBody, setAlert
             <TitleEditor state={title} changeState={setTitle}/>
             <Box borderRadius={10}>
                 <DarkMode>
-                    <Tabs isFitted colorScheme="linkedin" isManual>
+                    <Tabs isFitted colorScheme="facebook" isManual>
                         <TabList>
-                            <Tab>Write</Tab>
-                            <Tab>Preview</Tab>
+                            <Tab outline="none">Write</Tab>
+                            <Tab outline="none">Preview</Tab>
                         </TabList>
                         <TabPanels>
                             <TabPanel>
                                 <Textarea
                                     p={isPortrait ? 2 : 4}
-                                    bg="cover"
+                                    bg="bg"
                                     variant="unstyled"
                                     minW="80vw" minH="62.5vh"
                                     size="lg"
-                                    color="gray.400"
+                                    color="whiteAlpha.800"
                                     value={body}
                                     placeholder="Enter your post body here"
                                     onChange={e => setBody(e.target.value)}

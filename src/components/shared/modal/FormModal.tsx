@@ -6,7 +6,6 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
-import React from 'react';
 import {
     Button,
     Modal,
@@ -16,6 +15,7 @@ import {
     ModalHeader,
     ModalOverlay, useColorMode
 } from '@chakra-ui/react';
+import React from 'react';
 
 interface Props {
     title: string,
@@ -35,7 +35,7 @@ const FormModal: React.FC<Props> = ({title, isShown, onConfirm, onCancel, childr
             onClose={onCancel}
         >
             <ModalOverlay />
-            <ModalContent color={colorMode === 'dark' ? 'white' : 'black'}>
+            <ModalContent bg="bg" color={colorMode === 'dark' ? 'white' : 'black'}>
                 <ModalHeader> { title } </ModalHeader>
                 <ModalCloseButton />
                 <ModalBody pb={6}>

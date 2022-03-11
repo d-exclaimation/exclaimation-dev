@@ -6,13 +6,13 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
-import React, {useState} from 'react';
-import {Box, GridItem, useToast} from '@chakra-ui/react';
-import MarkdownForm from './MarkdownForm';
+import { Box, GridItem, useToast } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
+import { useCreatePostMutationMutation } from '../../models/graphql/types';
 import Hero from '../shared/meta/Hero';
 import AlertPopUp from '../shared/modal/AlertPopUp';
-import {useRouter} from 'next/router';
-import {useCreatePostMutationMutation} from '../../models/graphql/types';
+import MarkdownForm from './MarkdownForm';
 
 const EditorViewModel: React.FC = () => {
     const [, createPost] = useCreatePostMutationMutation();
@@ -76,7 +76,7 @@ const EditorViewModel: React.FC = () => {
                 gridArea="t"
             >
                 <Box m={5} mt="min(10px, 40vw)">
-                    <Hero title={title || 'Enter your title'}/>
+                    <Hero title={title || 'Enter your title'} oneWord/>
                 </Box>
             </GridItem>
             <GridItem

@@ -26,20 +26,21 @@ const MotionText = motion(Text);
 const Index: React.FC = () => {
     const [{fetching, data}] = useProfileQuery();
     const {isPortrait} = useResponsive();
-    const title = useScramble([data?.profile.name ?? 'd-exclaimation', 'vin'], 15, 5000);
     const { scrollYProgress } = useViewportScroll();
-    const headingSize = useTransform(scrollYProgress, [0, 0.4], [6, 3]);
-    const headingSizeSpring = useSpring(headingSize, {
+
+    const title = useScramble([data?.profile.name ?? 'd-exclaimation', 'vin'], 15, 5000);
+    const titleTransformation = useTransform(scrollYProgress, [0, 0.4], [6, 3]);
+    const titleSpring = useSpring(titleTransformation, {
         mass: 0.008
     });
-    const headingSizePx = useMotionTemplate`${headingSizeSpring}vw`;
+    const titleSize = useMotionTemplate`${titleSpring}vw`;
 
     if (fetching) {
         return <LoadingScreen/>;
     }
 
     return (
-        <Box mb="300px" fontFamily="mono">
+        <Box mb="300px" fontFamily="mono" bg="black" >
             <RouteNavBar/>
             <MetaHead
                 title={data?.profile.name ?? 'd-exclaimation'}
@@ -49,7 +50,7 @@ const Index: React.FC = () => {
             />
             <Box pos="fixed" inset={0}>
                 <Box maxW="1000" margin="0 auto" py={14} px={12}>
-                    <Stack alignItems="flex-end">
+                    <Stack alignItems="flex-start">
                         <Flex
                             direction="row"
                             alignItems="center"
@@ -65,14 +66,14 @@ const Index: React.FC = () => {
                                         fontFamily="monospace"
                                         color={isDUDS ? 'gray.500' : 'gray.50'}
                                         opacity={isSpaces ? 0 : 1}
-                                        style={{fontSize: headingSizePx}}
+                                        style={{fontSize: titleSize}}
                                     >
                                         {isSpaces ? '_' : char}
                                     </MotionText>
                                 );
                             })}
                         </Flex>
-                        <Stack direction={isPortrait ? 'row' : 'column'} alignItems="flex-end">
+                        <Stack direction={isPortrait ? 'row' : 'column'} alignItems="flex-start">
                             <NextLink href="/repos" passHref>
                                 <Link fontWeight={400} fontFamily="mono" size="min(1.5rem, 3vw)">
                                 Projects
@@ -113,15 +114,13 @@ const Index: React.FC = () => {
                         maxWidth: '90vw',
                         top: '10vh',
                         fontSize: 'sm',
-                        borderRadius: 'md',
                     } 
                     : {
                         p: 16,
                         maxW: 'min(800px, 95vw)',
                         top: '20vh',
-                        right: '8vw',
+                        left: '8vw',
                         fontSize: 'lg',
-                        borderRadius: 'md',
                     } 
                 )}
 

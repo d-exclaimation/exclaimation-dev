@@ -6,10 +6,10 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
+import { Button, Flex } from '@chakra-ui/react';
 import React from 'react';
-import {Flex, Button} from '@chakra-ui/react';
-import {AiFillLike} from 'react-icons/ai';
-import {FullPostFragment, useUpRaveMutation} from '../../models/graphql/types';
+import { AiFillLike } from 'react-icons/ai';
+import { FullPostFragment, useUpRaveMutation } from '../../models/graphql/types';
 
 interface Props {
     post: FullPostFragment
@@ -25,7 +25,7 @@ const UpRave: React.FC<Props> = ({post}: React.PropsWithChildren<Props>) => {
             borderRadius={10}
         >
             <Button
-                colorScheme="purpled"
+                colorScheme="facebook"
                 size="sm"
                 leftIcon={<AiFillLike/>}
                 isLoading={fetching}

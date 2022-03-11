@@ -6,11 +6,11 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
+import { Box, Select } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import React from 'react';
-import {Select, Box} from '@chakra-ui/react';
-import {FcAlphabeticalSortingAz} from 'react-icons/fc';
-import {useRouter} from 'next/router';
-import {useResponsive} from '../../lib/hooks/useResponsive';
+import { FcAlphabeticalSortingAz } from 'react-icons/fc';
+import { useResponsive } from '../../lib/hooks/useResponsive';
 
 interface Props {
     sort: 'latest' | 'hot'
@@ -27,7 +27,7 @@ const ToggleSort: React.FC<Props> = ({sort, limit}: React.PropsWithChildren<Prop
             <Select
                 bg="bg"
                 variant="filled"
-                color="tan"
+                color="white"
                 size="md"
                 icon={<FcAlphabeticalSortingAz/>}
                 width={isPortrait ? '30vw': 'auto'}

@@ -6,16 +6,16 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
+import { ChakraProvider } from '@chakra-ui/react';
+import { AppProps } from 'next/app';
 import React from 'react';
-import { ChakraProvider} from '@chakra-ui/react';
-
-import theme from '../theme';
+import '../styles/animations/pop.css';
+import '../styles/animations/slide.css';
+import '../styles/animations/spin.css';
 import '../styles/index.css';
 import '../styles/snippet.css';
-import '../styles/animations/spin.css';
-import '../styles/animations/slide.css';
-import '../styles/animations/pop.css';
-import { AppProps } from 'next/app';
+import theme from '../theme';
+
 
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {

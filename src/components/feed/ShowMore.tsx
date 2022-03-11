@@ -6,10 +6,10 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
+import { IconButton } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import React from 'react';
-import {IconButton} from '@chakra-ui/react';
-import {CgMore} from 'react-icons/cg';
-import {useRouter} from 'next/router';
+import { CgMore } from 'react-icons/cg';
 
 interface Props {
     limit: number
@@ -23,7 +23,7 @@ const ShowMore: React.FC<Props> = ({limit, sort}: React.PropsWithChildren<Props>
         <>
             <IconButton
                 aria-label="show more"
-                colorScheme="purpled"
+                colorScheme="facebook.600"
                 variant="ghost"
                 size="min(16px, 3vw + 2px)"
                 m={5}

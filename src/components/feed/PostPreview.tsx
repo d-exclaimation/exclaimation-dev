@@ -40,7 +40,7 @@ const PostPreview: React.FC<Props> = ({post}: React.PropsWithChildren<Props>) =>
                 mr={4}
             >
                 <IconButton
-                    colorScheme="purpled"
+                    colorScheme="facebook"
                     aria-label="UpRave"
                     variant="ghost"
                     size="2vmin"

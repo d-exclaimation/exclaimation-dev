@@ -6,16 +6,13 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
-import React from 'react';
 import {
     AlertDialog,
-    AlertDialogBody,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogContent,
-    AlertDialogOverlay,
+    AlertDialogBody, AlertDialogContent, AlertDialogFooter,
+    AlertDialogHeader, AlertDialogOverlay,
     Button
 } from '@chakra-ui/react';
+import React from 'react';
 
 interface Props {
     header: string,
@@ -36,7 +33,7 @@ const AlertPopUp: React.FC<Props> = ({header, body, confirmation, isShown, onClo
             onClose={onClose}
         >
             <AlertDialogOverlay>
-                <AlertDialogContent>
+                <AlertDialogContent bg="bg">
                     <AlertDialogHeader fontSize="lg" fontWeight="bold">
                         {header}
                     </AlertDialogHeader>

@@ -3,7 +3,7 @@
 */
 root {
   --background-color: #282c34;
-  --background-mild: #1a202c;
+  --background-mild: #2b2c2e;
   --ascent-box: #0f1e24;
   --ascent-tan: #fcd6ce;
   --ascent-lavender: #9b8fc0;
@@ -13,14 +13,14 @@ root {
 }
 
 html {
-  background-color: #1a202c;
+  background-color: black;
 }
 
 /*
   Stylesheet classes
 */
 .New-header {
-  background-color: #1a202c;
+  background-color: black;
   min-height: 100vh;
   font-size: max(3vmin, 20px);
   color: var(--background-color);

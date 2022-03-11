@@ -6,8 +6,8 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
-import React, {useState} from 'react';
-import {Input, InputGroup, InputRightElement, Button, LightMode} from '@chakra-ui/react';
+import { Button, Input, InputGroup, InputRightElement, LightMode } from '@chakra-ui/react';
+import React, { useState } from 'react';
 
 interface Props {
     keyValue: string
@@ -22,7 +22,7 @@ const KeyForm: React.FC<Props> = ({keyValue, changeKey}: React.PropsWithChildren
             <InputGroup size="md">
                 <Input
                     variant={isShown ? 'outline' : 'filled'}
-                    color="#fafafa"
+                    textColor="#fafafa"
                     maxW="67vw"
                     pr="4.5rem"
                     type={isShown ? 'text' : 'password'}
@@ -31,7 +31,7 @@ const KeyForm: React.FC<Props> = ({keyValue, changeKey}: React.PropsWithChildren
                     onChange={e => changeKey(e.target.value)}
                 />
                 <InputRightElement width="4.5rem">
-                    <Button h="1.75rem" size="sm" onClick={() => setShown(!isShown)}>
+                    <Button h="1.75rem" size="sm" textColor="bg" onClick={() => setShown(!isShown)}>
                         {isShown ? 'Hide' : 'Show'}
                     </Button>
                 </InputRightElement>
