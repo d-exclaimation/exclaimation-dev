@@ -6,8 +6,8 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
+import { Box, Flex, Img, Link, Text } from '@chakra-ui/react';
 import React from 'react';
-import {Box, Flex, Img, Link, Text} from '@chakra-ui/react';
 
 interface Props {
     isPortrait: boolean,
@@ -23,9 +23,10 @@ const RepoPreview: React.FC<Props> = ({isPortrait, imageURL, title, body, url}: 
             className="SlideUpCard"
             direction={isPortrait ? 'column': 'row'}
             bg="bg"
-            boxShadow="dark-lg"
+            boxShadow="lg"
             borderRadius="lg"
             overflow="hidden"
+            fontFamily="mono"
         >
             <Img
                 w={isPortrait ? 'unset' : '20%'}
@@ -47,7 +48,7 @@ const RepoPreview: React.FC<Props> = ({isPortrait, imageURL, title, body, url}: 
                     </Box>
                 </Link>
 
-                <Text fontSize="sm" color="gray.500" maxW="80%" isTruncated>
+                <Text fontSize="sm" color="gray.500" maxWidth={isPortrait ? '90vw' : '20vw'} isTruncated>
                     {body}
                 </Text>
             </Box>

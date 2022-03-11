@@ -6,22 +6,18 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
-import React from 'react';
-import TitleEditor from './TitleEditor';
 import {
-    Box,
-    Tab,
+    Box, Button, DarkMode, Flex, Tab,
     TabList,
     TabPanel,
     TabPanels,
     Tabs,
-    Textarea,
-    DarkMode,
-    Button,
-    Flex,
+    Textarea
 } from '@chakra-ui/react';
+import React from 'react';
+import { useResponsive } from '../../lib/hooks/useResponsive';
 import PreviewMarkdown from './PreviewMarkdown';
-import {useResponsive} from '../../lib/hooks/useResponsive';
+import TitleEditor from './TitleEditor';
 
 interface Props {
     title: string,
@@ -34,7 +30,7 @@ interface Props {
 const MarkdownForm: React.FC<Props> = ({title, body, setTitle, setBody, setAlert}: React.PropsWithChildren<Props>) => {
     const {isPortrait} = useResponsive();
     return (
-        <Box boxShadow="dark-lg" bg="bg" p={isPortrait ? 2 : 4} borderRadius={20}>
+        <Box boxShadow="lg" bg="bg" p={isPortrait ? 2 : 4} borderRadius={20}>
             <TitleEditor state={title} changeState={setTitle}/>
             <Box borderRadius={10}>
                 <DarkMode>

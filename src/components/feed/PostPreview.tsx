@@ -6,12 +6,12 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
-import React from 'react';
-import {AiFillLike} from 'react-icons/ai';
-import {Box, Text, Heading, Flex, IconButton, Link} from '@chakra-ui/react';
+import { Box, Flex, Heading, IconButton, Link, Text } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import {PostSnippetFragment, useUpRaveMutation} from '../../models/graphql/types';
-import {useResponsive} from '../../lib/hooks/useResponsive';
+import React from 'react';
+import { AiFillLike } from 'react-icons/ai';
+import { useResponsive } from '../../lib/hooks/useResponsive';
+import { PostSnippetFragment, useUpRaveMutation } from '../../models/graphql/types';
 
 interface Props {
     post: PostSnippetFragment
@@ -25,10 +25,12 @@ const PostPreview: React.FC<Props> = ({post}: React.PropsWithChildren<Props>) =>
             className="SlideUpCard"
             p={5}
             direction={isPortrait ? 'column-reverse': 'row'}
-            boxShadow="dark-lg"
+            boxShadow="lg"
             borderRadius={10}
             overflow="hidden"
             bg="bg"
+            w={isPortrait ? '95vw' : 'unset'}
+            fontFamily="mono"
         >
             <Flex
                 direction={isPortrait ? 'row': 'column'}
@@ -56,7 +58,7 @@ const PostPreview: React.FC<Props> = ({post}: React.PropsWithChildren<Props>) =>
                 <NextLink href="/post/[id]" as={`/post/${post.id}`}>
                     <Heading as={Link} color="white" fontSize="xl">{post.title}</Heading>
                 </NextLink>
-                { isPortrait || <Text color="gray.500" maxW="80%" fontSize="1rem" mt={4} mb={3} isTruncated>{post.snippet}</Text> }
+                <Text color="gray.500" maxW={isPortrait ? '90vw' :'33vw'} fontSize="1rem" mt={4} mb={3} isTruncated>{post.snippet}</Text>
             </Box>
         </Flex>
     );

@@ -6,20 +6,20 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
-import React, {useCallback, useState} from 'react';
-import {IMedia} from '../../models/interfaces/Media';
 import {
     Box,
     Grid,
-    GridItem,
+    GridItem
 } from '@chakra-ui/react';
-import {useResponsive} from '../../lib/hooks/useResponsive';
-import Hero from '../shared/meta/Hero';
+import React, { useCallback, useState } from 'react';
+import { useResponsive } from '../../lib/hooks/useResponsive';
+import { useToggle } from '../../lib/hooks/useToggle';
+import { IMedia } from '../../models/interfaces/Media';
 import FooterDisclaimer from '../shared/meta/FooterDisclaimer';
-import MusicDisc from './content/MusicDisc';
-import MusicControlPanel from './content/MusicControlPanel';
+import Hero from '../shared/meta/Hero';
 import DummyControlPanel from './content/DummyControlPanel';
-import {useToggle} from '../../lib/hooks/useToggle';
+import MusicControlPanel from './content/MusicControlPanel';
+import MusicDisc from './content/MusicDisc';
 import PlaylistViewModel from './PlaylistViewModel';
 
 interface Props {
@@ -58,6 +58,7 @@ const ChillViewModel: React.FC<Props> = ({preRenderedList}: React.PropsWithChild
             gridTemplateRows="10vh 50vh 20vh 2vh"
             gridTemplateColumns={isPortrait ? 'auto' : '20vmin auto 50vmin'}
             color="#fafafa"
+            fontFamily="mono"
         >
             <GridItem
                 className="New-Section"

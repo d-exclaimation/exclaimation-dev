@@ -6,19 +6,19 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
+import { Box, Grid, GridItem } from '@chakra-ui/react';
+import { withUrqlClient } from 'next-urql';
+import { useRouter } from 'next/router';
 import React from 'react';
+import ContentViewModel from '../../components/post/ContentViewModel';
+import LoadingScreen from '../../components/shared/features/LoadingScreen';
+import FooterDisclaimer from '../../components/shared/meta/FooterDisclaimer';
 import Hero from '../../components/shared/meta/Hero';
 import MetaHead from '../../components/shared/meta/MetaHead';
-import {Box, Grid, GridItem} from '@chakra-ui/react';
-
-import {createUrqlClient} from '../../lib/server/createUrqlClient';
-import {withUrqlClient} from 'next-urql';
-import {useRouter} from 'next/router';
-import {usePostQuery} from '../../models/graphql/types';
-import ContentViewModel from '../../components/post/ContentViewModel';
-import FooterDisclaimer from '../../components/shared/meta/FooterDisclaimer';
-import LoadingScreen from '../../components/shared/features/LoadingScreen';
 import RouteNavBar from '../../components/shared/routes/RouteNavBar';
+import { createUrqlClient } from '../../lib/server/createUrqlClient';
+import { usePostQuery } from '../../models/graphql/types';
+
 
 
 const Post: React.FC = () => {
@@ -65,7 +65,7 @@ const Post: React.FC = () => {
                         gridArea="t"
                     >
                         <Box mx="auto">
-                            <Hero title={data.post.title} />
+                            <Hero title={data.post.title} oneWord/>
                         </Box>
                     </GridItem>
                     <GridItem

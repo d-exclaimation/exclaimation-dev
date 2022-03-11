@@ -6,16 +6,16 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
-import React from 'react';
-import {IMedia} from '../../models/interfaces/Media';
-
 import {
     Button, DarkMode,
     FormControl,
     FormLabel,
-    Input,
+    Input
 } from '@chakra-ui/react';
+import React from 'react';
+import { IMedia } from '../../models/interfaces/Media';
 import FormModal from '../shared/modal/FormModal';
+
 
 interface Props {
     appendMusic: (musics: IMedia) => void;
@@ -30,7 +30,7 @@ const MediaModal: React.FC<Props> = ({appendMusic}: React.PropsWithChildren<Prop
         <DarkMode>
             <Button
                 colorScheme="teal"
-                boxShadow="dark-lg"
+                boxShadow="lg"
                 fontSize="min(16px, 3vw + 2px)"
                 borderRadius="50%"
                 onClick={() => setShown(true)}> + </Button>

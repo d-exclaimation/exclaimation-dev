@@ -6,8 +6,8 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
+import { Spinner } from '@chakra-ui/react';
 import React from 'react';
-import {Spinner} from '@chakra-ui/react';
 
 // Loading screen with proper color
 export const LoadingScreen: React.FC = () => {
@@ -16,7 +16,7 @@ export const LoadingScreen: React.FC = () => {
             <Spinner
                 thickness="1vw"
                 speed="1s"
-                color="purple"
+                color="white"
                 size="xl"
             />
         </div>

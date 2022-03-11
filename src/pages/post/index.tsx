@@ -6,18 +6,18 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
+import { Box, Grid, GridItem } from '@chakra-ui/react';
+import { withUrqlClient } from 'next-urql';
+import { useRouter } from 'next/router';
 import React from 'react';
-import MetaHead from '../../components/shared/meta/MetaHead';
-import Hero from '../../components/shared/meta/Hero';
 import FeedViewModel from '../../components/feed/FeedViewModel';
-import {Box, Grid, GridItem} from '@chakra-ui/react';
-import {createUrqlClient} from '../../lib/server/createUrqlClient';
-import {withUrqlClient} from 'next-urql';
-import {useAllPostQuery} from '../../models/graphql/types';
-import {useRouter} from 'next/router';
-import FooterDisclaimer from '../../components/shared/meta/FooterDisclaimer';
 import LoadingScreen from '../../components/shared/features/LoadingScreen';
+import FooterDisclaimer from '../../components/shared/meta/FooterDisclaimer';
+import Hero from '../../components/shared/meta/Hero';
+import MetaHead from '../../components/shared/meta/MetaHead';
 import RouteNavBar from '../../components/shared/routes/RouteNavBar';
+import { createUrqlClient } from '../../lib/server/createUrqlClient';
+import { useAllPostQuery } from '../../models/graphql/types';
 
 
 const Feed: React.FC = () => {

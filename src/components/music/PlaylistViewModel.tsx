@@ -5,12 +5,12 @@
 //  Created by d-exclaimation on 6:36 PM.
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
+import { Box, Flex, GridItem, Heading, Spacer, Text } from '@chakra-ui/react';
 import React from 'react';
+import { useResponsive } from '../../lib/hooks/useResponsive';
+import { IMedia } from '../../models/interfaces/Media';
 import AscentDrawer from '../shared/containers/AscentDrawer';
 import MusicPlaylist from './content/MusicPlaylist';
-import {Box, Spacer, GridItem, Text, Flex, Heading} from '@chakra-ui/react';
-import {IMedia} from '../../models/interfaces/Media';
-import {useResponsive} from '../../lib/hooks/useResponsive';
 import MediaModal from './MediaModal';
 
 interface Props {
@@ -28,13 +28,13 @@ const PlaylistViewModel: React.FC<Props> = ({isOpen, onClose, musicList, setCurr
     if (isPortrait)
         return (
             <AscentDrawer
-                placement={'right'}
-                title={'Playlist'}
+                placement="right"
+                title="Playlist"
                 isOpen={isOpen}
                 onClose={onClose}
                 footer={
                     <>
-                        <Text>All music is owned by their respective owner</Text>
+                        <Text fontFamily="mono">All music is owned by their respective owner</Text>
                         <MediaModal appendMusic={appendMusic}/>
                     </>
                 }
@@ -52,8 +52,7 @@ const PlaylistViewModel: React.FC<Props> = ({isOpen, onClose, musicList, setCurr
                 bg="bg"
                 h="clamp(20vh, 60vh, 100vh)"
                 w="clamp(20vw, 40vw, 60vw)"
-                spacing={8}
-                boxShadow="dark-lg"
+                boxShadow="lg"
                 p="2vmin"
                 mr="2vmin"
             >

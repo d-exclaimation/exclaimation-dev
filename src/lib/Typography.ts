@@ -8,11 +8,11 @@
 
 /// Utilities function to capitalized first letter of a word <Probably should use RegEx>
 export const capitalized = (word: string): string => {
-    if (!word.length)
-        throw new Error('Cannot capitalize empty string');
+    if (!word.length) throw new Error('Cannot capitalize empty string');
 
-    return word.split('')
-        .map((char, i) => i === 0 ? char.toUpperCase() : char)
+    return word
+        .split('')
+        .map((char, i) => (i === 0 ? char.toUpperCase() : char))
         .reduce((prev, curr) => prev + curr);
 };
 
@@ -26,14 +26,6 @@ export const paragraph = (word: string): string => {
         }
         return [...prev, [curr]];
     }, new Array<string[]>(1).fill([]));
-    const groupJoined = grouped.map(value => value.join(' '));
+    const groupJoined = grouped.map((value) => value.join(' '));
     return groupJoined.join('\n');
 };
-
-/// Utilities to split at everyother splitter
-export const splitAtEveryOther = (arr: string, split: string) =>
-    arr.split(split).reduce((acc: string[], curr, idx) => {
-        if (idx % 2 == 0 || acc.length < 1)
-            return [...acc, curr];
-        return [...acc.slice(0, acc.length - 1), acc[acc.length - 1] + ' ' + curr];
-    }, []);

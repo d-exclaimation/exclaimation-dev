@@ -6,13 +6,13 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
-import React, {useState} from 'react';
 import {
-    IconButton,
+    IconButton
 } from '@chakra-ui/react';
-import {MdDelete} from 'react-icons/md';
-import {useRouter} from 'next/router';
-import {useDeletePostMutation} from '../../models/graphql/types';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
+import { MdDelete } from 'react-icons/md';
+import { useDeletePostMutation } from '../../models/graphql/types';
 import AlertPopUp from '../shared/modal/AlertPopUp';
 
 interface Props {
@@ -39,7 +39,7 @@ const Deletion: React.FC<Props> = ({id}: React.PropsWithChildren<Props>) => {
                 onConfirm={async () => {
                     await deletePost({
                         id,
-                    })
+                    });
                     setShown(false);
                     setTimeout(async () => await router.push('/post'), 20);
                 }}

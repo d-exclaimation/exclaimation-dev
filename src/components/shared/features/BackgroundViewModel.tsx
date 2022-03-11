@@ -15,7 +15,7 @@ import LogoBackground from './LogoBackground';
 type Entertainments = 'game-of-life' | 'logo-spinning' | 'none'
 
 export const BackgroundViewModel: React.FC = () => {
-    const [curr, cycle] = useSequence<Entertainments>('none', 'logo-spinning', 'game-of-life');
+    const [curr, cycle] = useSequence<Entertainments>('none', 'game-of-life', 'logo-spinning');
 
     switch (curr) {
     case 'game-of-life':

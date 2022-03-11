@@ -6,14 +6,14 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
+import { Box, Flex, Spacer } from '@chakra-ui/react';
 import React from 'react';
-import {FullPostFragment} from '../../models/graphql/types';
-import {Box, Flex, Spacer} from '@chakra-ui/react';
 import Markdown from 'react-markdown';
-import {countHeader} from '../shared/markdown/HeaderOveride';
-import UpRave from './UpRave';
+import { useAuth } from '../../lib/server/useAuth';
+import { FullPostFragment } from '../../models/graphql/types';
+import { countHeader } from '../shared/markdown/HeaderOveride';
 import Deletion from './Deletion';
-import {useAuth} from '../../lib/server/useAuth';
+import UpRave from './UpRave';
 
 interface Props {
     post: FullPostFragment
@@ -31,7 +31,7 @@ const ContentViewModel: React.FC<Props> = ({post}: React.PropsWithChildren<Props
         case 'space':
             return <Box my="4" />;
         default:
-            return <Markdown source={node.leaf}/>;
+            return <Markdown>{node.leaf}</Markdown>;
         }
     };
 
@@ -40,7 +40,7 @@ const ContentViewModel: React.FC<Props> = ({post}: React.PropsWithChildren<Props
             direction="column"
             bg="bg"
             color="white"
-            boxShadow="dark-lg"
+            boxShadow="lg"
             borderRadius={5}
             minW="80vw"
             maxW="92vw"

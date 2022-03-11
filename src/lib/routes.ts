@@ -6,13 +6,6 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
-
 export const routes = (): string[] => {
-    return [
-        '/',
-        '/repos',
-        '/about',
-        '/chill',
-        '/post'
-    ];
+    return ['/', '/repos', '/chill', '/post'];
 };
