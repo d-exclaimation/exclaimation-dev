@@ -6,12 +6,12 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
-import React from 'react';
-import {AiFillLike} from 'react-icons/ai';
-import {Box, Text, Heading, Flex, IconButton, Link} from '@chakra-ui/react';
+import { Box, Flex, Heading, IconButton, Link, Text } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import {PostSnippetFragment, useUpRaveMutation} from '../../models/graphql/types';
-import {useResponsive} from '../../lib/hooks/useResponsive';
+import React from 'react';
+import { AiFillLike } from 'react-icons/ai';
+import { useResponsive } from '../../lib/hooks/useResponsive';
+import { PostSnippetFragment, useUpRaveMutation } from '../../models/graphql/types';
 
 interface Props {
     post: PostSnippetFragment
@@ -25,7 +25,7 @@ const PostPreview: React.FC<Props> = ({post}: React.PropsWithChildren<Props>) =>
             className="SlideUpCard"
             p={5}
             direction={isPortrait ? 'column-reverse': 'row'}
-            boxShadow="dark-lg"
+            boxShadow="lg"
             borderRadius={10}
             overflow="hidden"
             bg="bg"

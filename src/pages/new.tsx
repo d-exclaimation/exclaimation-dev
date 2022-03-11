@@ -9,19 +9,26 @@ import { Box, Flex, Heading, Image, Link, Stack, Text } from '@chakra-ui/react';
 import {
     motion, useMotionTemplate, useSpring, useTransform, useViewportScroll
 } from 'framer-motion';
+import { withUrqlClient } from 'next-urql';
 import { default as NextLink } from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
+import LoadingScreen from '../components/shared/features/LoadingScreen';
 import MetaHead from '../components/shared/meta/MetaHead';
 import Scrambled from '../components/shared/meta/Scrambled';
 import RouteNavBar from '../components/shared/routes/RouteNavBar';
 import { useResponsive } from '../lib/hooks/useResponsive';
 import { DUDS, useScramble } from '../lib/hooks/useScramble';
+import { createUrqlClient } from '../lib/server/createUrqlClient';
+import { useProfileQuery } from '../models/graphql/types';
 
 const MotionText = motion(Text);
 
 const New: React.FC = () => {
+    const [{fetching, data, error}] = useProfileQuery();
+    const router = useRouter();
     const {isPortrait} = useResponsive();
-    const title = useScramble(['d-exclaimation', 'vin'], 15, 5000);
+    const title = useScramble([data?.profile.name ?? 'd-exclaimation', 'vin'], 15, 5000);
     const { scrollYProgress } = useViewportScroll();
     const headingSize = useTransform(scrollYProgress, [0, 0.4], [6, 3]);
     const headingSizeSpring = useSpring(headingSize, {
@@ -29,13 +36,23 @@ const New: React.FC = () => {
     });
     const headingSizePx = useMotionTemplate`${headingSizeSpring}vw`;
 
+    if (error) {
+        if (typeof window !== 'undefined')
+            router.push('/404').catch(console.log);
+        return <LoadingScreen />;
+    }
+
+    if (fetching || !data) {
+        return <LoadingScreen/>;
+    }
+
     return (
         <Box mb="300px" fontFamily="mono">
             <RouteNavBar/>
             <MetaHead
-                title="d-exclaimation"
+                title={data.profile.name}
                 description={
-                    'Welcome to the d-exclaimation developer website by vin aka d-exclaimation. This is the website / web app for all things related to me. My profiles, links, repos, projects, bios, and blogs, you named it it is probably here'
+                    data.profile.bio
                 }
             />
             <Box pos="fixed" inset={0}>
@@ -74,13 +91,13 @@ const New: React.FC = () => {
                                 Chill
                                 </Link>
                             </NextLink>
-                            <NextLink href="https://github.com/d-exclaimation" passHref>
-                                <Link fontWeight={400} isExternal fontFamily="mono" size="min(1.5rem, 3vw)">
+                            <NextLink href={data.profile.githubURL} passHref>
+                                <Link fontWeight={400} textColor="messenger.200" isExternal fontFamily="mono" size="min(1.5rem, 3vw)">
                                 Github
                                 </Link>
                             </NextLink>
-                            <NextLink href="https://twitter.com/d_exclaimation" passHref>
-                                <Link fontWeight={400} isExternal fontFamily="mono" size="min(1.5rem, 3vw)">
+                            <NextLink href={`https://twitter.com/${data.profile.twitterUsername}`} passHref>
+                                <Link fontWeight={400} textColor="messenger.200" isExternal fontFamily="mono" size="min(1.5rem, 3vw)">
                                 Twitter
                                 </Link>
                             </NextLink>
@@ -129,6 +146,7 @@ const New: React.FC = () => {
                 <br />
                 <br />
                 Studying is currently my number 1 priority as I am still a university student. However, as already stated, I spend a good amount of my free time learning and working on programming projects.
+                I often use different technologies as I like exploring. At the moment, I lean towards backend engineering using languages like Scala, Elixir, and Go.
                 <br />
                 <br />
                 <Heading fontWeight={isPortrait ? 200 : 100} size={isPortrait ? 'md' : 'lg'} mb={4}>
@@ -146,4 +164,4 @@ const New: React.FC = () => {
     );
 };
 
-export default New;
+export default  withUrqlClient(createUrqlClient, { ssr: true })(New);

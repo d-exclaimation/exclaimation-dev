@@ -6,19 +6,21 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
+import { Box, Flex, Heading, VStack } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import React from 'react';
-import {VStack, Heading, Flex} from '@chakra-ui/react';
-import {lavender} from '../constants/color.scheme';
-import {useRouter} from 'next/router';
-import FooterDisclaimer from '../components/shared/meta/FooterDisclaimer';
 import BackgroundViewModel from '../components/shared/features/BackgroundViewModel';
+import FooterDisclaimer from '../components/shared/meta/FooterDisclaimer';
+import { lavender } from '../constants/color.scheme';
 
 const Error: React.FC = () => {
     const router = useRouter();
     return (
         <>
             <Flex direction="column" className="New-header" alignItems="center" justifyContent="center">
-                <BackgroundViewModel/>
+                <Box pos="fixed" top="1vh" left="1vw">
+                    <BackgroundViewModel/>
+                </Box>
                 <VStack>
                     <Heading
                         onClick={async () => {

@@ -53,7 +53,7 @@ const Repos: React.FC = () => {
             <div className="New-header">
                 <RouteNavBar/>
                 <Flex flexDirection="column" alignItems="center" justifyContent="center">
-                    <Box mt="4vh">
+                    <Box mt="4vh" mb="1vh">
                         <Hero title={'Repos'}/>
                     </Box> 
                     <RepoGridViewModel repos={data.repos}/>

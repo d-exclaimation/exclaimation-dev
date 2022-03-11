@@ -5,11 +5,11 @@
 //  Created by d-exclaimation on 8:39 AM.
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
+import { Box, Flex, Img, Link, Text } from '@chakra-ui/react';
 import React from 'react';
-import {Box, Flex, Img, Link, Text} from '@chakra-ui/react';
-import {useResponsive} from '../../../lib/hooks/useResponsive';
-import {langBarOptions} from '../../../lib/LanguageBarURL';
-import {useLatestRepoQuery} from '../../../models/graphql/types';
+import { useResponsive } from '../../../lib/hooks/useResponsive';
+import { langBarOptions } from '../../../lib/LanguageBarURL';
+import { useLatestRepoQuery } from '../../../models/graphql/types';
 
 export const LatestRepo: React.FC = () => {
     const {isPortrait} = useResponsive();
@@ -36,7 +36,7 @@ export const LatestRepo: React.FC = () => {
             direction={isPortrait ? 'column': 'row'}
             bg="bg"
             maxW="50vw"
-            boxShadow="dark-lg"
+            boxShadow="lg"
             borderRadius="lg"
             overflow="hidden"
         >

@@ -6,12 +6,11 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
-import React, {useEffect} from 'react';
-import {useConway} from './libs/useConway';
-import LifeBlock from './LifeBlock';
-import {COLS} from './libs/utils/constant';
-import {favRed} from '../../../../constants/color.scheme';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import { useConway } from './libs/useConway';
+import { COLS } from './libs/utils/constant';
+import LifeBlock from './LifeBlock';
 
 export const ConwayBackground: React.FC = () => {
     const [{grid, isRunning}, {toggleRunning, toggleGrid}] = useConway();

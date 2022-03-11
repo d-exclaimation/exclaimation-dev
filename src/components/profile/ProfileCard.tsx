@@ -6,8 +6,8 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
+import { Box, Img } from '@chakra-ui/react';
 import React from 'react';
-import {Box, Img} from '@chakra-ui/react';
 
 interface Props {
     imageUrl: string,
@@ -18,7 +18,7 @@ const ProfileCard: React.FC<Props> = ({ imageUrl }: React.PropsWithChildren<Prop
         <Box
             ml="3vw"
             bg="#282c34" maxW="lg"
-            boxShadow="dark-lg"
+            boxShadow="lg"
             borderRadius="lg" overflow="hidden"
         >
             <Img width="50vw" src={imageUrl} alt="my logo" />

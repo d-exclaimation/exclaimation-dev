@@ -6,12 +6,12 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
-import React from 'react';
-import {Box, Flex, Heading, IconButton, Link, Text} from '@chakra-ui/react';
-import {AiFillLike} from 'react-icons/ai';
+import { Box, Flex, Heading, IconButton, Link, Text } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import {useLatestPostQuery, useUpRaveMutation} from '../../../models/graphql/types';
-import {useResponsive} from '../../../lib/hooks/useResponsive';
+import React from 'react';
+import { AiFillLike } from 'react-icons/ai';
+import { useResponsive } from '../../../lib/hooks/useResponsive';
+import { useLatestPostQuery, useUpRaveMutation } from '../../../models/graphql/types';
 
 export const LatestPost: React.FC = () => {
     const {isPortrait} = useResponsive();
@@ -32,7 +32,7 @@ export const LatestPost: React.FC = () => {
             p={5}
             maxW="50vmax"
             direction={isPortrait ? 'column-reverse': 'row'}
-            boxShadow="dark-lg"
+            boxShadow="lg"
             borderRadius={10}
             bg="bg"
         >

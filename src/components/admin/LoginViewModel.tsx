@@ -6,11 +6,11 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
-import React, {useState} from 'react';
-import {Box, Button, Flex, FormControl, FormHelperText, FormLabel, Spacer, useToast} from '@chakra-ui/react';
+import { Box, Button, Flex, FormControl, FormHelperText, FormLabel, Spacer, useToast } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
+import { useLoginAdminMutation } from '../../models/graphql/types';
 import KeyForm from '../shared/modal/KeyForm';
-import {useRouter} from 'next/router';
-import {useLoginAdminMutation} from '../../models/graphql/types';
 
 
 const LoginViewModel: React.FC = () => {
@@ -56,7 +56,7 @@ const LoginViewModel: React.FC = () => {
     };
 
     return (
-        <Box bg="bg" p={5} minW="40vw" boxShadow="dark-lg" borderRadius={10}>
+        <Box bg="bg" p={5} minW="40vw" boxShadow="lg" borderRadius={10}>
             <FormControl>
                 <FormLabel color="gray.300">Login as Admin</FormLabel>
                 <KeyForm keyValue={key} changeKey={key => setKey(key)}/>
