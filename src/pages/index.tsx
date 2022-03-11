@@ -80,7 +80,7 @@ const Index: React.FC = () => {
                                 );
                             })}
                         </Flex>
-                        <Stack direction={isPortrait ? 'row' : 'column'}>
+                        <Stack direction={isPortrait ? 'row' : 'column'} alignItems="flex-end">
                             <NextLink href="/repos" passHref>
                                 <Link fontWeight={400} fontFamily="mono" size="min(1.5rem, 3vw)">
                                 Projects
