@@ -11,7 +11,6 @@ import {
 } from 'framer-motion';
 import { withUrqlClient } from 'next-urql';
 import { default as NextLink } from 'next/link';
-import { useRouter } from 'next/router';
 import React from 'react';
 import LoadingScreen from '../components/shared/features/LoadingScreen';
 import MetaHead from '../components/shared/meta/MetaHead';
@@ -25,8 +24,7 @@ import { useProfileQuery } from '../models/graphql/types';
 const MotionText = motion(Text);
 
 const Index: React.FC = () => {
-    const [{fetching, data, error}] = useProfileQuery();
-    const router = useRouter();
+    const [{fetching, data}] = useProfileQuery();
     const {isPortrait} = useResponsive();
     const title = useScramble([data?.profile.name ?? 'd-exclaimation', 'vin'], 15, 5000);
     const { scrollYProgress } = useViewportScroll();
@@ -36,13 +34,7 @@ const Index: React.FC = () => {
     });
     const headingSizePx = useMotionTemplate`${headingSizeSpring}vw`;
 
-    if (error) {
-        if (typeof window !== 'undefined')
-            router.push('/404').catch(console.log);
-        return <LoadingScreen />;
-    }
-
-    if (fetching || !data) {
+    if (fetching) {
         return <LoadingScreen/>;
     }
 
@@ -50,9 +42,9 @@ const Index: React.FC = () => {
         <Box mb="300px" fontFamily="mono">
             <RouteNavBar/>
             <MetaHead
-                title={data.profile.name}
+                title={data?.profile.name ?? 'd-exclaimation'}
                 description={
-                    data.profile.bio
+                    data?.profile.bio ?? 'This is my website'
                 }
             />
             <Box pos="fixed" inset={0}>
@@ -91,16 +83,20 @@ const Index: React.FC = () => {
                                 Chill
                                 </Link>
                             </NextLink>
-                            <NextLink href={data.profile.githubURL} passHref>
-                                <Link fontWeight={400} textColor="messenger.200" isExternal fontFamily="mono" size="min(1.5rem, 3vw)">
-                                Github
-                                </Link>
-                            </NextLink>
-                            <NextLink href={`https://twitter.com/${data.profile.twitterUsername}`} passHref>
-                                <Link fontWeight={400} textColor="messenger.200" isExternal fontFamily="mono" size="min(1.5rem, 3vw)">
-                                Twitter
-                                </Link>
-                            </NextLink>
+                            { data &&
+                                <NextLink href={data.profile.githubURL} passHref>
+                                    <Link fontWeight={400} textColor="messenger.200" isExternal fontFamily="mono" size="min(1.5rem, 3vw)">
+                                        Github
+                                    </Link>
+                                </NextLink>
+                            }
+                            { data &&
+                                <NextLink href={`https://twitter.com/${data.profile.twitterUsername}`} passHref>
+                                    <Link fontWeight={400} textColor="messenger.200" isExternal fontFamily="mono" size="min(1.5rem, 3vw)">
+                                        Twitter
+                                    </Link>
+                                </NextLink>
+                            }
                         </Stack>
                     </Stack>
                 </Box>
