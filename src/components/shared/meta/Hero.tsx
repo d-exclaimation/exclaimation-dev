@@ -12,10 +12,11 @@ import { DUDS, useScramble } from '../../../lib/hooks/useScramble';
 
 interface HeroProps {
     title? : string,
+    oneWord?: boolean,
 }
 
-const Hero: React.FC<HeroProps> = ({ title }: HeroProps) => {
-    const res = useScramble([title ?? 'Nothing', `This is my ${title?.toLowerCase() ?? 'stuff'}`, 'Enjoy'], 10, 5000);
+const Hero: React.FC<HeroProps> = ({ title, oneWord }: HeroProps) => {
+    const res = useScramble(oneWord ? [title ?? 'Nothing'] : [title ?? 'Nothing', `This is my ${title?.toLowerCase() ?? 'stuff'}`, 'Enjoy'], 10, 5000);
     return (
         <Flex
             direction="row"

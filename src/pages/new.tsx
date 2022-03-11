@@ -5,7 +5,7 @@
 //  Created by d-exclaimation on 00:07.
 //
 
-import { Box, Flex, Heading, Image, Link, Stack, Text } from '@chakra-ui/react';
+import { Box, Flex, Image, Link, Stack, Text } from '@chakra-ui/react';
 import {
     motion, useMotionTemplate, useSpring, useTransform, useViewportScroll
 } from 'framer-motion';
@@ -106,30 +106,25 @@ const New: React.FC = () => {
                 </Box>
             </Box>
             <Box
+                bg="bg"
+                pos="relative"
+                margin="0 auto"
+                zIndex={1}
+                lineHeight="170%"
                 {...(isPortrait 
                     ? {
                         p: 4,
-                        bg: 'bg',
-                        pos: 'relative',
                         maxWidth: '90vw',
-                        margin: '0 auto',
-                        top: '20vh',
-                        zIndex: 1,
+                        top: '10vh',
                         fontSize: 'sm',
-                        lineHeight: '170%',
                         borderRadius: 'md',
                     } 
                     : {
                         p: 16,
-                        bg: 'bg',
-                        pos: 'relative',
                         maxW: 'min(800px, 95vw)',
-                        margin: '0 auto',
                         top: '20vh',
                         right: '8vw',
-                        zIndex: 1,
                         fontSize: 'lg',
-                        lineHeight: '170%',
                         borderRadius: 'md',
                     } 
                 )}
@@ -140,25 +135,25 @@ const New: React.FC = () => {
                     'I don\'t know...', 'You should stop reading..', 'Like right now...', 'I am out of titles...',
                     'Hope you enjoy your visit...', 'Here is the part where I advertise myself', 'Follow me on Twitter',
                     '@d_exclaimation'
-                ]} speed={10} delay={5000} align="start" fontWeight={600} fontSize={isPortrait ? 'lg' : '2xl'} mb={8}/>
+                ]} speed={10} delay={5000} align="start" fontWeight={500} fontSize={isPortrait ? 'lg' : '2xl'} mb={8}/>
                 Hello, I am Vincent (d-exclaimation). I am a software engineer and student from somewhere on this planet. 
                 I like a lot of things especially involving software engineering and new technologies such as distributed systems, server-side programming, GraphQL, etc. 
                 <br />
                 <br />
                 Studying is currently my number 1 priority as I am still a university student. However, as already stated, I spend a good amount of my free time learning and working on programming projects.
-                I often use different technologies as I like exploring. At the moment, I lean towards backend engineering using languages like Scala, Elixir, and Go.
+                I often use different technologies as I like exploring. At the moment, I am leaning towards backend engineering using languages like Scala, Elixir, and Go.
                 <br />
                 <br />
-                <Heading fontWeight={isPortrait ? 200 : 100} size={isPortrait ? 'md' : 'lg'} mb={4}>
-                    Proffesional Experience
-                </Heading>
+                <Scrambled phrases={[
+                    'Profesional Experience', 'Work history', 'and other things people put in their resume'
+                ]} speed={10} delay={7500} align="start" fontWeight={200} fontSize={isPortrait ? 'md' : 'lg'} mb="4"/>
                 I don{'\''}t have any professional experience as of now, so enjoy a picture of a cute dog I found on the internet instead.
                 <br />
                 <br />
                 <Image src="/images/doge.jpeg" />
                 <br />
                 <br />
-                Your welcome.
+                You{'\''}re welcome.
             </Box>
         </Box>
     );
