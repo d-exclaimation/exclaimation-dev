@@ -8,6 +8,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import LoadingScreen from '../components/shared/features/LoadingScreen';
+import MetaHead from '../components/shared/meta/MetaHead';
 
 const New: React.FC = () => {
     const router = useRouter();
@@ -16,7 +17,10 @@ const New: React.FC = () => {
         router.push('/');
 
     return (
-        <LoadingScreen/>
+        <>
+            <MetaHead title="d-exclaimation" description="About me" />
+            <LoadingScreen/>
+        </>
     );
 };
 

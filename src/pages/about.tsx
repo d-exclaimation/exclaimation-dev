@@ -9,6 +9,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import LoadingScreen from '../components/shared/features/LoadingScreen';
+import MetaHead from '../components/shared/meta/MetaHead';
 
 const About: React.FC = () => {
     const router = useRouter();
@@ -16,7 +17,10 @@ const About: React.FC = () => {
     if (typeof window !== 'undefined')
         router.push('/new');
     return (
-        <LoadingScreen/>
+        <>
+            <MetaHead title="d-exclaimation" description="About me" />
+            <LoadingScreen/>
+        </>
     );
 };
 
