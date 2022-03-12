@@ -8,8 +8,7 @@ class Document extends NextDocument {
         return (
             <Html>
                 <Head/>
-                <body>
-                    {/* Make Color mode to persists when you refresh the page. */}
+                <body style={{backgroundColor: 'black'}}>
                     <ColorModeScript initialColorMode={theme.config.initialColorMode} />
                     <Main/>
                     <NextScript/>

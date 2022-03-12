@@ -6,8 +6,8 @@
 //  Copyright © 2021 d-exclaimation. All rights reserved.
 //
 
-import React from 'react';
 import Head from 'next/head';
+import React from 'react';
 
 interface Props {
     title: string
@@ -20,7 +20,7 @@ const MetaHead: React.FC<Props> = ({title, description}: React.PropsWithChildren
             <meta property="og:title" content={title}/>
             <meta property="og:type" content="website"/>
             <meta property="og:url" content="https://dexclaimation.com/"/>
-            <meta property="og:image" content="/images/dexclaimation.png"/>
+            <meta property="og:image" content="/images/doge.jpeg"/>
             <link rel="icon" href="/images/favicon.ico" />
             <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
             <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />

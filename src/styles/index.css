@@ -2,8 +2,8 @@
   Overwrite style sheet
 */
 root {
-  --background-color: #282c34;
-  --background-mild: #2b2c2e;
+  --background-color: black;
+  --background-mild: black;
   --ascent-box: #0f1e24;
   --ascent-tan: #fcd6ce;
   --ascent-lavender: #9b8fc0;
@@ -13,6 +13,10 @@ root {
 }
 
 html {
+  background-color: black;
+}
+
+body {
   background-color: black;
 }
 
