@@ -10,13 +10,15 @@ import { Img } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
+
 export const LogoBackground: React.FC = () => {
     const [isSpinning, setSpinning] = useState<boolean>(false);
 
     return ReactDOM.createPortal(
         <div className="Logo">
             <Img
-                src="/svg/ex-a-logo.svg"
+                src="/images/cat-vibe.gif"
+                borderRadius={20}
                 className={isSpinning ? 'Spinning': ''}
                 onClick={() => setSpinning(prev => !prev)}
                 opacity={0.1}

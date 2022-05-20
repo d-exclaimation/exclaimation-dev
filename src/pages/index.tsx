@@ -5,7 +5,7 @@
 //  Created by d-exclaimation on 00:07.
 //
 
-import { Box, Flex, Image, Link, Stack, Text } from '@chakra-ui/react';
+import { Box, Flex, Link, Stack, Text } from '@chakra-ui/react';
 import {
     motion, useMotionTemplate, useSpring, useTransform, useViewportScroll
 } from 'framer-motion';
@@ -13,6 +13,7 @@ import { withUrqlClient } from 'next-urql';
 import { default as NextLink } from 'next/link';
 import React from 'react';
 import LoadingScreen from '../components/shared/features/LoadingScreen';
+import SpiningImage from '../components/shared/features/SpiningImage';
 import MetaHead from '../components/shared/meta/MetaHead';
 import Scrambled from '../components/shared/meta/Scrambled';
 import RouteNavBar from '../components/shared/routes/RouteNavBar';
@@ -142,10 +143,11 @@ const Index: React.FC = () => {
                 <Scrambled phrases={[
                     'Profesional Experience', 'Work history', 'and other things people put in their resume'
                 ]} speed={10} delay={7500} align="start" fontWeight={600} fontSize={isPortrait ? 'md' : 'lg'} mb="4"/>
-                I don{'\''}t have any professional experience as of now, so enjoy a picture of a cute dog I found on the internet instead.
+                I don{'\''}t have any professional experience as of now, so enjoy a picture of a cute cat vibing I found on the internet instead.
                 <br />
                 <br />
-                <Image src="/images/doge.jpeg" />
+                <SpiningImage src="/images/cat-vibe.gif"/>
+                <i><small>Try clicking the image</small></i>
                 <br />
                 <br />
                 You{'\''}re welcome.

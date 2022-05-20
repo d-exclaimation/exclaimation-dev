@@ -7,9 +7,25 @@
 
 @keyframes spin {
     from {
-        transform:rotate(0deg);
+        transform: rotate(0deg);
     }
     to {
         transform:rotate(360deg);
+    }
+}
+
+.ScaledSpinning {
+    animation-name: spin2;
+    animation-duration: 5000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear; 
+}
+
+@keyframes spin2 {
+    from {
+        transform: rotate(0deg) scale(0.8);
+    }
+    to {
+        transform:rotate(360deg) scale(0.8);
     }
 }
