@@ -130,20 +130,23 @@ const Index: React.FC = () => {
                     'Software Engineer', 'Computer Science Student', 'Somewhat competent Backend Engineer', 'Maybe Full Stack Developer', 'Probably not Frontend Developer', 'Avid functional programming enjoyer',
                     'I don\'t know...', 'You should stop reading..', 'Like right now...', 'I am out of titles...',
                     'Hope you enjoy your visit...', 'Here is the part where I advertise myself', 'Follow me on Twitter',
-                    '@d_exclaimation'
+                    '@d_exclaimation', 'Cheers!!'
                 ]} speed={10} delay={5000} align="start" fontWeight={600} fontSize={isPortrait ? 'lg' : '2xl'} mb={8}/>
-                Hello, I am Vincent (d-exclaimation). I am a software engineer and student from somewhere on this planet. 
-                I like a lot of things especially involving software engineering and new technologies such as distributed systems, server-side programming, GraphQL, etc. 
+                Hello, I am Vincent (d-exclaimation). I am a software engineer and university student. As you can probably tell, I am a big fan of programming.
+                I enjoy working on a lot of fields especially involving new technologies but most of the time, I work on full-stack projects front to back, big to small, anything that I find interesting. 
                 <br />
                 <br />
-                Studying is currently my number 1 priority as I am still a university student. However, as already stated, I spend a good amount of my free time learning and working on programming projects.
-                I often use different technologies as I like exploring. At the moment, I am leaning towards backend engineering using languages like Scala, Elixir, and Go.
+                Currently, I mainly dedicated most of my time towards studying. However, I often spend my free time coming up with some software projects to work on, sometimes as an excuse to use a new technology or learn a concept. 
+                <br />
+                <br />
+                My specialization is on server-side development mainly around API designs, concurrency, and databases but I have learnt and worked on fields beyond my comfort zone such as web frontend and iOS development.
+                Often times, you{'\''}ll see me using programming languages such as Scala, Go, Swift, Elixir, and Typescript, and technologies such as React, SwiftUI, Akka, GraphQL, Node.js, etc.
                 <br />
                 <br />
                 <Scrambled phrases={[
                     'Profesional Experience', 'Work history', 'and other things people put in their resume'
                 ]} speed={10} delay={7500} align="start" fontWeight={600} fontSize={isPortrait ? 'md' : 'lg'} mb="4"/>
-                I don{'\''}t have any professional experience as of now, so enjoy a picture of a cute cat vibing I found on the internet instead.
+                I don{'\''}t have any professional experience or job history as of now, so enjoy a picture of a cat I found on the internet instead.
                 <br />
                 <br />
                 <SpiningImage src="/images/cat-vibe.gif"/>
@@ -151,6 +154,15 @@ const Index: React.FC = () => {
                 <br />
                 <br />
                 You{'\''}re welcome.
+
+                <br />
+                <NextLink href="/static/cv.pdf" passHref>
+                    <Link fontWeight={400} textColor="messenger.200" isExternal fontFamily="mono">
+                        <Text fontSize={isPortrait ? 'xs' : 'sm'}>
+                            Also, here is my CV.
+                        </Text>
+                    </Link>
+                </NextLink>
             </Box>
         </Box>
     );
