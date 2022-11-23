@@ -2683,27 +2683,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@urql/core@npm:>=2.3.6, @urql/core@npm:^2.4.3":
-  version: 2.4.3
-  resolution: "@urql/core@npm:2.4.3"
+"@urql/core@npm:>=2.5.0, @urql/core@npm:^3.0.3":
+  version: 3.0.5
+  resolution: "@urql/core@npm:3.0.5"
   dependencies:
     "@graphql-typed-document-node/core": ^3.1.1
-    wonka: ^4.0.14
+    wonka: ^6.0.0
   peerDependencies:
     graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 368324171c33a3e9ede22896ac5ba93a34a8aaa22cc3765b23401a94da2c4501c47b334192220ddc3f5f7c139f17a40c1265a3c2efedf40533eaf7a85a8e76e5
+  checksum: e98f2dfb7535f3c5631a3f6d16ad877ba1a66f179f96345a5877301d864e5bffd6fa5dc541ed1ac2531b30d0efea6d85235a70de8ee82d5a2626c3b9a171c7ad
   languageName: node
   linkType: hard
 
-"@urql/exchange-graphcache@npm:^4.0.0":
-  version: 4.3.6
-  resolution: "@urql/exchange-graphcache@npm:4.3.6"
+"@urql/exchange-graphcache@npm:4.4.3":
+  version: 4.4.3
+  resolution: "@urql/exchange-graphcache@npm:4.4.3"
   dependencies:
-    "@urql/core": ">=2.3.6"
+    "@urql/core": ">=2.5.0"
     wonka: ^4.0.14
   peerDependencies:
     graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 861d52572d14d3a0a4c15068d6680b3b0ee4ec091ab5f16fe3b43e476cb14d628748bce3a2b1c81fdc46c407ef3a42883f9859e424da432ab57dbf34bd0ae7ec
+  checksum: 5435a0caaa01ae568f14461960eb99e6d300ce27a1cd743d933a43f75b653c4e6d7c1cf5a4affa753a4c6e4453a6c2222fb9b0b4fb81fa5a6ea9e0de75928d17
   languageName: node
   linkType: hard
 
@@ -3923,19 +3923,19 @@ __metadata:
     "@types/node": 17.0.21
     "@types/react": ^17.0.2
     "@types/react-dom": ^17.0.3
-    "@urql/exchange-graphcache": ^4.0.0
+    "@urql/exchange-graphcache": 4.4.3
     framer-motion: 6.2.8
     graphql: ^15.5.0
     graphql-tag: ^2.0.0
     next: 12.2.5
-    next-urql: ^3.0.0
+    next-urql: 3.3.3
     react: ^17.0.2
     react-dom: ^17.0.2
     react-icons: ^4.2.0
     react-is: ^17.0.2
     react-markdown: 8.0.0
     typescript: ^4.2.3
-    urql: ^2.0.1
+    urql: ^3.0.3
   languageName: unknown
   linkType: soft
 
@@ -5862,15 +5862,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-urql@npm:^3.0.0":
-  version: 3.3.2
-  resolution: "next-urql@npm:3.3.2"
+"next-urql@npm:3.3.3":
+  version: 3.3.3
+  resolution: "next-urql@npm:3.3.3"
   dependencies:
     react-ssr-prepass: ^1.4.0
   peerDependencies:
     react: ">=16.8.0"
     urql: ^2.0.0
-  checksum: b5e89bf5a4c717f5178475d06fbb20e683d3b89ee4e6632a009216565018bd4645e982a2e90bab45c5f5ffea8618f0604bca11f19e494fe86fa3e19c2167ca29
+  checksum: fc6e164152a013ece6fb036e9a52b318c830fa32fb2e18e5eeb7d355cd2f23f70a3846f98f87862dd96d586accf74d6e7de8fce7e18b004f6bef3a1a9d11b901
   languageName: node
   linkType: hard
 
@@ -7638,16 +7638,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"urql@npm:^2.0.1":
-  version: 2.2.0
-  resolution: "urql@npm:2.2.0"
+"urql@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "urql@npm:3.0.3"
   dependencies:
-    "@urql/core": ^2.4.3
-    wonka: ^4.0.14
+    "@urql/core": ^3.0.3
+    wonka: ^6.0.0
   peerDependencies:
     graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     react: ">= 16.8.0"
-  checksum: e3dad5a7b88f30315b774a8d5eb73a19d57377e76f25416540e0be3a8222a1fca26e1f46f7b241b2f79a270a4227dfda75f5621c632af0e05b39799834a66df7
+  checksum: 0376873d95b28a7593c9c791da2df54fbbd079caa283ef0225b51bd169d87108744dc47d3d14417e51f7079439e4dd28427bc7f4d74b22b7c5de36a0dea06855
   languageName: node
   linkType: hard
 
@@ -7829,6 +7829,13 @@ __metadata:
   version: 4.0.15
   resolution: "wonka@npm:4.0.15"
   checksum: afbee7359ed2d0a9146bf682f3953cb093f47d5f827e767e6ef33cb70ca6f30631afe5fe31dbb8d6c7eaed26c4ac6426e7c13568917c017ef6f42c71139b38f7
+  languageName: node
+  linkType: hard
+
+"wonka@npm:^6.0.0":
+  version: 6.1.1
+  resolution: "wonka@npm:6.1.1"
+  checksum: fadd28d21f212cd71440e6b13beb4978d446be8e94c3ee77568ca92eac1875cefcd200bdc61677c4406c464ab7907ae2949b7301faf7ff50acee0eea3542654b
   languageName: node
   linkType: hard
 
