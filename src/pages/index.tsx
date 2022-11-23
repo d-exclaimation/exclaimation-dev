@@ -5,7 +5,18 @@
 //  Created by d-exclaimation on 00:07.
 //
 
-import { Box, Flex, Link, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Divider,
+  Flex,
+  Link,
+  Stack,
+  Stat,
+  StatHelpText,
+  StatLabel,
+  StatNumber,
+  Text,
+} from "@chakra-ui/react";
 import {
   motion,
   useMotionTemplate,
@@ -34,7 +45,7 @@ const Index: React.FC = () => {
   const { scrollYProgress } = useViewportScroll();
 
   const title = useScramble(
-    [data?.profile.name ?? "d-exclaimation", "vin"],
+    [data?.profile.name ?? "d-exclaimation", "vin", "vincent"],
     15,
     5000
   );
@@ -104,9 +115,11 @@ const Index: React.FC = () => {
               </NextLink>
               <NextLink href="https://linkedin.com/in/d-exclaimation" passHref>
                 <Link
-                  fontWeight={400}
+                  textColor="messenger.200"
+                  isExternal
                   fontFamily="mono"
                   size="min(1.5rem, 3vw)"
+                  fontWeight={400}
                 >
                   Linkedin
                 </Link>
@@ -197,17 +210,12 @@ const Index: React.FC = () => {
         to back, big to small, anything that I find interesting.
         <br />
         <br />
-        Currently, I mainly dedicated most of my time towards studying. However,
-        I often spend my free time coming up with some software projects to work
-        on, sometimes as an excuse to use a new technology or learn a concept.
-        <br />
-        <br />
         My specialization is on server-side development mainly around API
-        designs, concurrency, and databases but I have learnt and worked on
-        fields beyond my comfort zone such as web frontend and iOS development.
-        Often times, you{"'"}ll see me using programming languages such as
-        Scala, Go, Swift, Elixir, and Typescript, and technologies such as
-        React, SwiftUI, Akka, GraphQL, Node.js, etc.
+        designs, concurrency, microservices, and databases but I have learnt and
+        worked on fields beyond my comfort zone such as web frontend and iOS
+        development. Often times, you{"'"}ll see me using programming languages
+        such as Typescript, Swift, Go, Elixir, and Rust, and technologies such
+        as React, SwiftUI, GraphQL, Node.js, Phoenix, PostgreSQL, Redis, etc.
         <br />
         <br />
         <Scrambled
@@ -220,17 +228,31 @@ const Index: React.FC = () => {
           delay={7500}
           align="start"
           fontWeight={600}
-          fontSize={isPortrait ? "md" : "lg"}
+          fontSize={isPortrait ? "lg" : "2xl"}
           mb="4"
         />
-        I don{"'"}t have any professional experience or job history as of now,
-        so enjoy a picture of a cat I found on the internet instead.
+        <Stat>
+          <StatLabel>Software Engineer Intern</StatLabel>
+          <StatNumber>
+            <NextLink href="https://www.partly.com/" passHref>
+              <Link textColor="messenger.200" isExternal fontFamily="mono">
+                @Partly
+              </Link>
+            </NextLink>
+          </StatNumber>
+          <StatHelpText>Nov 2022 - Feb 2023</StatHelpText>
+        </Stat>
+        <Divider />
+        <br />
+        Also enjoy this cat vibing :)
         <br />
         <br />
-        <SpiningImage src="/images/cat-vibe.gif" />
-        <i>
-          <small>Try clicking the image</small>
-        </i>
+        <Flex flexDir="column" alignItems="center" justifyContent="center">
+          <SpiningImage src="/images/cat-vibe.gif" />
+          <i>
+            <sub>Try clicking the image</sub>
+          </i>
+        </Flex>
         <br />
         <br />
         You{"'"}re welcome.
